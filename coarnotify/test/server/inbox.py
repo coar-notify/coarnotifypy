@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response
 from coarnotify.test.server import settings
-from coarnotify.server import COARNotifyServer
+from coarnotify.server import COARNotifyServer, COARNotifyServiceBinding, COARNotifyReceipt, COARNotifyServerError
 from coarnotify.common import COARNotifyFactory
 import uuid, json, sys, os
 from datetime import datetime
@@ -14,28 +14,39 @@ def create_app():
 app = create_app()
 
 
+class COARNotifyServiceTestImpl(COARNotifyServiceBinding):
+    def notification_received(self, notification):
+        store = app.config.get("STORE_DIR")
+        if not os.path.exists(store):
+            print(f"Store directory {store} does not exist, you must create it manually")
+            raise COARNotifyServerError(500, "Store directory does not exist")
+
+        now = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+        fn = now + "_" + uuid.uuid4().hex
+
+        with open(f"{store}/{fn}.json", "w") as f:
+            f.write(json.dumps(notification.to_dict()))
+
+        rstatus = app.config.get("RESPONSE_STATUS", COARNotifyReceipt.CREATED)
+        location = f"{request.url_root}inbox/{fn}"
+
+        return COARNotifyReceipt(rstatus, location)
+
+
 @app.route("/inbox", methods=["POST"])
 def inbox():
     notification = request.json
-    obj = COARNotifyFactory.get_by_object(notification)
+    server = COARNotifyServer(COARNotifyServiceTestImpl())
 
-    store = app.config.get("STORE_DIR")
-    if not os.path.exists(store):
-        print(f"Store directory {store} does not exist, you must create it manually")
-        return make_response("Store directory does not exist", 500)
-
-    now = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-    fn = now + "_" + uuid.uuid4().hex
-
-    with open(f"{store}/{fn}.json", "w") as f:
-        f.write(json.dumps(obj.to_dict()))
-
-    rstatus = app.config.get("RESPONSE_STATUS", 201)
+    try:
+        result = server.receive(notification)
+    except COARNotifyServerError as e:
+        return make_response(e.message, e.status)
 
     resp = make_response()
-    resp.status_code = rstatus
-    if rstatus == 201:
-        resp.headers["Location"] = f"{request.url_root}inbox/{fn}"
+    resp.status_code = result.status
+    if result.status == result.CREATED:
+        resp.headers["Location"] = result.location
     return resp
 
 
