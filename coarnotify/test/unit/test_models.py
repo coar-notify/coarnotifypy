@@ -1,14 +1,14 @@
 from unittest import TestCase
 
-from coarnotify.models.notify import Notify, NotifyService, NotifyObject, NotifyActor, NotifyContext
-from coarnotify.models.accept import Accept
-from coarnotify.models.announce_endorsement import AnnounceEndorsement
+from coarnotify.models import Notify, NotifyService, NotifyObject, NotifyActor, NotifyContext, NotifyItem
+from coarnotify.models import Accept, AnnounceEndorsement, AnnounceIngest
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures.accept import AcceptFixtureFactory
 from coarnotify.test.fixtures.announce_endorsement import AnnounceEndorsementFixtureFactory
+from coarnotify.test.fixtures.announce_ingest import AnnounceIngestFixtureFactory
 
 
-class TestNotify(TestCase):
+class TestModels(TestCase):
     def test_01_notify_manual_construct(self):
         n = Notify()
 
@@ -77,12 +77,19 @@ class TestNotify(TestCase):
         # now check we've got all the source properties
         assert n.id == source["id"]
         assert n.type == source["type"]
+        assert isinstance(n.origin, NotifyService)
         assert n.origin.id == source["origin"]["id"]
+        assert isinstance(n.object, NotifyObject)
         assert n.object.id == source["object"]["id"]
+        assert isinstance(n.target, NotifyService)
         assert n.target.id == source["target"]["id"]
+        assert isinstance(n.actor, NotifyActor)
         assert n.actor.id == source["actor"]["id"]
         assert n.in_reply_to == source["inReplyTo"]
+        assert isinstance(n.context, NotifyContext)
         assert n.context.id == source["context"]["id"]
+        assert isinstance(n.context.item, NotifyItem)
+        assert n.context.item.id == source["context"]["ietf:item"]["id"]
 
         # now check we can rewrite some properties
         n.id = "whatever"
@@ -102,9 +109,6 @@ class TestNotify(TestCase):
 
     def test_04_accept(self):
         a = Accept()
-        # Accept is the same as the base Notify class, so don't need to test it beyond
-        # construction
-
         source = AcceptFixtureFactory.source()
         a = Accept(source)
         assert a.validate() is True
@@ -112,10 +116,14 @@ class TestNotify(TestCase):
 
     def test_05_announce_endorsement(self):
         ae = AnnounceEndorsement()
-        # Accept is the same as the base Notify class, so don't need to test it beyond
-        # construction
-
         source = AnnounceEndorsementFixtureFactory.source()
         ae = AnnounceEndorsement(source)
+        assert ae.validate() is True
+        assert ae.to_dict() == source
+
+    def test_06_announce_ingest(self):
+        ai = AnnounceIngest()
+        source = AnnounceIngestFixtureFactory.source()
+        ae = AnnounceIngest(source)
         assert ae.validate() is True
         assert ae.to_dict() == source

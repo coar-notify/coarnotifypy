@@ -19,6 +19,10 @@ ACCEPT = {
         "inbox": "https://generic-service.com/system/inbox/",
         "type": "Service"
     },
+    "object": {
+        "id": "urn:uuid:4fb3af44-1111-4226-9475-2d09c2d8d9e0",
+        "type": "Offer"
+    },
     "target": {
         "id": "https://some-organisation.org",
         "inbox": "https://some-organisation.org/inbox/",

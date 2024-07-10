@@ -119,7 +119,7 @@ class Notify:
     def context(self):
         c = self._stream.get_property(Properties.CONTEXT)
         if c is not None:
-            return NotifyService(deepcopy(c))
+            return NotifyContext(deepcopy(c))
         return None
 
     @context.setter
@@ -131,9 +131,8 @@ class Notify:
             self.id is None,
             self.type is None,
             self.origin is None,
-            self.target is None#,
-            # object is specified as required, but advised that this may be in error, so assuming not required for now
-            #self.object is None
+            self.target is None,
+            self.object is None
         ])
 
     def to_dict(self, include_jsonld_context=True):
@@ -167,14 +166,41 @@ class NotifyObject(Notify):
     def __init__(self, stream: Union[ActivityStream, dict] = None):
         super(NotifyObject, self).__init__(stream=stream)
 
+    @property
+    def cite_as(self):
+        return self._stream.get_property("ietf:cite-as")
+
+    @cite_as.setter
+    def cite_as(self, value):
+        self._stream.set_property("ietf:cite-as", value)
+
+    @property
+    def item(self):
+        i = self._stream.get_property("ietf:item")
+        if i is not None:
+            return NotifyItem(deepcopy(i))
+        return None
+
+    @item.setter
+    def item(self, value):
+        self._stream.set_property("ietf:item", value)
+
 
 class NotifyActor(Notify):
     DEFAULT_TYPE = "Service"
-    ALLOWED_TYPES = [DEFAULT_TYPE]
+    ALLOWED_TYPES = [DEFAULT_TYPE, "Application", "Group", "Organization", "Person"]
     FORCE_TYPE = False
 
     def __init__(self, stream: Union[ActivityStream, dict] = None):
         super(NotifyActor, self).__init__(stream=stream)
+
+    @property
+    def name(self):
+        return self._stream.get_property("name")
+
+    @name.setter
+    def name(self, value):
+        self._stream.set_property("name", value)
 
 
 class NotifyContext(Notify):
@@ -182,3 +208,37 @@ class NotifyContext(Notify):
 
     def __init__(self, stream: Union[ActivityStream, dict] = None):
         super(NotifyContext, self).__init__(stream=stream)
+
+    @property
+    def cite_as(self):
+        return self._stream.get_property("ietf:cite-as")
+
+    @cite_as.setter
+    def cite_as(self, value):
+        self._stream.set_property("ietf:cite-as", value)
+
+    @property
+    def item(self):
+        i = self._stream.get_property("ietf:item")
+        if i is not None:
+            return NotifyItem(deepcopy(i))
+        return None
+
+    @item.setter
+    def item(self, value):
+        self._stream.set_property("ietf:item", value)
+
+
+class NotifyItem(Notify):
+    FORCE_TYPE = False
+
+    def __init__(self, stream: Union[ActivityStream, dict] = None):
+        super(NotifyItem, self).__init__(stream=stream)
+
+    @property
+    def media_type(self):
+        return self._stream.get_property("mediaType")
+
+    @media_type.setter
+    def media_type(self, value):
+        self._stream.set_property("mediaType", value)

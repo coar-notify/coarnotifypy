@@ -1,8 +1,6 @@
-#from pkg_resources import iter_entry_points
 from typing import List
 from coarnotify.activitystreams.activitystreams import ActivityStream
-from coarnotify.models.accept import Accept
-from coarnotify.models.announce_endorsement import AnnounceEndorsement
+from coarnotify.models import Accept, AnnounceEndorsement, AnnounceIngest
 from coarnotify.exceptions import NotifyException
 
 
@@ -10,7 +8,8 @@ class COARNotifyFactory:
 
     MODELS = [
         Accept,
-        AnnounceEndorsement
+        AnnounceEndorsement,
+        AnnounceIngest
     ]
 
     @classmethod

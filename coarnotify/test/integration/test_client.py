@@ -1,9 +1,14 @@
 from unittest import TestCase
 
 from coarnotify.client import COARNotifyClient
-from coarnotify.models.accept import Accept
+from coarnotify.models import Accept
 from coarnotify.test.fixtures.accept import AcceptFixtureFactory
-from coarnotify.models.announce_endorsement import AnnounceEndorsement
+
+from coarnotify.models import AnnounceEndorsement
+from coarnotify.test.fixtures.announce_endorsement import AnnounceEndorsementFixtureFactory
+
+from coarnotify.models import AnnounceIngest
+from coarnotify.test.fixtures.announce_ingest import AnnounceIngestFixtureFactory
 
 INBOX = "http://localhost:5005/inbox"
 
@@ -14,6 +19,24 @@ class TestClient(TestCase):
         source = AcceptFixtureFactory.source()
         acc = Accept(source)
         resp = client.send(acc)
+        assert resp.action == resp.CREATED
+        assert resp.location is not None
+        print(resp.location)
+
+    def test_02_announce_endorsement(self):
+        client = COARNotifyClient(INBOX)
+        source = AnnounceEndorsementFixtureFactory.source()
+        ae = AnnounceEndorsement(source)
+        resp = client.send(ae)
+        assert resp.action == resp.CREATED
+        assert resp.location is not None
+        print(resp.location)
+
+    def test_03_announce_ingest(self):
+        client = COARNotifyClient(INBOX)
+        source = AnnounceIngestFixtureFactory.source()
+        ae = AnnounceIngest(source)
+        resp = client.send(ae)
         assert resp.action == resp.CREATED
         assert resp.location is not None
         print(resp.location)
