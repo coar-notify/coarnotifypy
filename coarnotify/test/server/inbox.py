@@ -3,6 +3,7 @@ from coarnotify.test.server import settings
 from coarnotify.server import COARNotifyServer
 from coarnotify.common import COARNotifyFactory
 import uuid, json, sys, os
+from datetime import datetime
 
 def create_app():
     app = Flask(__name__)
@@ -23,13 +24,18 @@ def inbox():
         print(f"Store directory {store} does not exist, you must create it manually")
         return make_response("Store directory does not exist", 500)
 
-    fn = uuid.uuid4().hex
+    now = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    fn = now + "_" + uuid.uuid4().hex
+
     with open(f"{store}/{fn}.json", "w") as f:
         f.write(json.dumps(obj.to_dict()))
 
+    rstatus = app.config.get("RESPONSE_STATUS", 201)
+
     resp = make_response()
-    resp.headers["Location"] = f"{request.url_root}inbox/{fn}"
-    resp.status_code = 201
+    resp.status_code = rstatus
+    if rstatus == 201:
+        resp.headers["Location"] = f"{request.url_root}inbox/{fn}"
     return resp
 
 

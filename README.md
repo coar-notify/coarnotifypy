@@ -1,3 +1,3 @@
-# COAR Nofify
+# COAR Notify
 
 TODO

@@ -15,6 +15,9 @@ class Notify:
     DEFAULT_TYPE = "Object"
     ALLOWED_TYPES = []
     FORCE_TYPE = True
+    IDENTIFY_BY_TYPE = [
+        [DEFAULT_TYPE]
+    ]
 
     def __init__(self, stream: Union[ActivityStream, dict] = None):
         if stream is None:

@@ -1,23 +1,26 @@
 #from pkg_resources import iter_entry_points
 from typing import List
-from activitystreams.activitystreams import ActivityStream
+from coarnotify.activitystreams.activitystreams import ActivityStream
+from coarnotify.models.accept import Accept
 from coarnotify.models.announce_endorsement import AnnounceEndorsement
 from coarnotify.exceptions import NotifyException
+
 
 class COARNotifyFactory:
 
     MODELS = [
+        Accept,
         AnnounceEndorsement
     ]
 
     @classmethod
-    def get_by_types(cls, type:List[str]):
+    def get_by_types(cls, incoming_types:List[str]):
         for m in cls.MODELS:
-            types = m.TYPE
-            if not isinstance(types, list):
-                types = [types]
-            if set(types) == set(type):
-                return m
+            idents = m.IDENTIFY_BY_TYPE
+            for ident_set in idents:
+                match = [True if x in incoming_types else False for x in ident_set]
+                if all(match):
+                    return m
         return None
 
         # for entry_point in iter_entry_points(group='coarnotify'):

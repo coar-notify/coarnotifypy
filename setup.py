@@ -18,10 +18,5 @@ setup(
         'test': [
             "Flask>3.0.0"
         ],
-    },
-    entry_points={
-        "coarnotify": [
-            "announce_endorsement = coarnotify.models.announce_endorsement:AnnounceEndorsement",
-        ]
     }
 )
