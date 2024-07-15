@@ -1,21 +1,22 @@
 from unittest import TestCase
 
-from coarnotify.models import Notify, NotifyService, NotifyObject, NotifyActor, NotifyContext, NotifyItem
-from coarnotify.models import Accept, AnnounceEndorsement, AnnounceIngest
+from coarnotify.models import NotifyDocument, NotifyService, NotifyObject, NotifyActor, NotifyItem
+from coarnotify.models import Accept, AnnounceEndorsement, AnnounceIngest, AnnounceRelationship
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures.accept import AcceptFixtureFactory
 from coarnotify.test.fixtures.announce_endorsement import AnnounceEndorsementFixtureFactory
 from coarnotify.test.fixtures.announce_ingest import AnnounceIngestFixtureFactory
+from coarnotify.test.fixtures.announce_relationship import AnnounceRelationshipFixtureFactory
 
 
 class TestModels(TestCase):
     def test_01_notify_manual_construct(self):
-        n = Notify()
+        n = NotifyDocument()
 
         # check the default properties
         assert n.id is not None
         assert n.id.startswith("urn:uuid:")
-        assert n.type == Notify.DEFAULT_TYPE
+        assert n.type == NotifyDocument.TYPE
         assert n.origin is None
         assert n.target is None
         assert n.object is None
@@ -39,19 +40,19 @@ class TestModels(TestCase):
 
         obj = NotifyObject()
         assert obj.id is not None
-        assert obj.type != obj.DEFAULT_TYPE
+        assert obj.type is None
         n.object = obj
 
         actor = NotifyActor()
         assert actor.id is not None
-        assert actor.type != actor.DEFAULT_TYPE
+        assert actor.type == actor.DEFAULT_TYPE
         n.actor = actor
 
         n.in_reply_to = "irt"
 
-        context = NotifyContext()
+        context = NotifyObject()
         assert context.id is not None
-        assert context.type != context.DEFAULT_TYPE
+        assert context.type is None
         n.context = context
 
         assert n.id == "whatever"
@@ -63,16 +64,16 @@ class TestModels(TestCase):
         assert n.target.type == target.DEFAULT_TYPE
         assert n.target.inbox == "http://target.com/inbox"
         assert n.object.id == obj.id
-        assert n.object.type != obj.DEFAULT_TYPE
+        assert n.object.type is None
         assert n.actor.id == actor.id
-        assert n.actor.type != actor.DEFAULT_TYPE
+        assert n.actor.type == actor.DEFAULT_TYPE
         assert n.in_reply_to == "irt"
         assert n.context.id == context.id
-        assert n.context.type != context.DEFAULT_TYPE
+        assert n.context.type is None
 
     def test_02_notify_from_fixture(self):
         source = NotifyFixtureFactory.source()
-        n = Notify(source)
+        n = NotifyDocument(source)
 
         # now check we've got all the source properties
         assert n.id == source["id"]
@@ -86,7 +87,7 @@ class TestModels(TestCase):
         assert isinstance(n.actor, NotifyActor)
         assert n.actor.id == source["actor"]["id"]
         assert n.in_reply_to == source["inReplyTo"]
-        assert isinstance(n.context, NotifyContext)
+        assert isinstance(n.context, NotifyObject)
         assert n.context.id == source["context"]["id"]
         assert isinstance(n.context.item, NotifyItem)
         assert n.context.item.id == source["context"]["ietf:item"]["id"]
@@ -98,12 +99,12 @@ class TestModels(TestCase):
         assert n.type == "Other"
 
     def test_03_notify_operations(self):
-        n = Notify()
+        n = NotifyDocument()
         assert n.validate() is False
         assert n.to_dict() is not None
 
         source = NotifyFixtureFactory.source()
-        n = Notify(source)
+        n = NotifyDocument(source)
         assert n.validate() is True
         assert n.to_dict() == source
 
@@ -124,6 +125,45 @@ class TestModels(TestCase):
     def test_06_announce_ingest(self):
         ai = AnnounceIngest()
         source = AnnounceIngestFixtureFactory.source()
-        ae = AnnounceIngest(source)
+        ai = AnnounceIngest(source)
+        assert ai.validate() is True
+        assert ai.to_dict() == source
+
+    def test_07_announce_relationship(self):
+        ae = AnnounceRelationship()
+
+        source = AnnounceRelationshipFixtureFactory.source()
+        ae = AnnounceRelationship(source)
         assert ae.validate() is True
         assert ae.to_dict() == source
+
+        # now test we are properly reading the fixture
+        assert ae.actor.id == "https://research-organisation.org"
+        assert ae.actor.name == "Research Organisation"
+        assert ae.actor.type == "Organization"
+
+        assert ae.context.id == "https://another-research-organisation.org/repository/datasets/item/201203421/"
+        assert ae.context.cite_as == "https://doi.org/10.5555/999555666"
+        item = ae.context.item
+        assert item.id == "https://another-research-organisation.org/repository/datasets/item/201203421/data_archive.zip"
+        assert item.media_type == "application/zip"
+        assert item.type == ["Article", "sorg:Dataset"]
+
+        assert ae.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
+        assert ae.type == ["Announce", "coar-notify:RelationshipAction"]
+
+        assert ae.object.id == "urn:uuid:74FFB356-0632-44D9-B176-888DA85758DC"
+        assert ae.object.type == "Relationship"
+        triple = ae.object.triple
+        assert triple[0] == "https://another-research-organisation.org/repository/datasets/item/201203421/"
+        assert triple[1] == "http://purl.org/vocab/frbr/core#supplement"
+        assert triple[2] == "https://research-organisation.org/repository/item/201203/421/"
+
+        assert ae.origin.id == "https://research-organisation.org/repository"
+        assert ae.origin.inbox == "https://research-organisation.org/inbox/"
+        assert ae.origin.type == "Service"
+
+        assert ae.target.id == "https://another-research-organisation.org/repository"
+        assert ae.target.inbox == "https://another-research-organisation.org/inbox/"
+        assert ae.target.type == "Service"
+

@@ -1,4 +1,4 @@
-from coarnotify.models import Notify
+from coarnotify.models import NotifyDocument
 from coarnotify.common import COARNotifyFactory
 
 
@@ -20,7 +20,7 @@ class COARNotifyReceipt:
 
 
 class COARNotifyServiceBinding:
-    def notification_received(self, notification: Notify) -> COARNotifyReceipt:
+    def notification_received(self, notification: NotifyDocument) -> COARNotifyReceipt:
         raise NotImplementedError()
 
 

@@ -1,6 +1,6 @@
 import json
 from coarnotify.http import RequestsHttpLayer, HttpLayer
-from coarnotify.models.notify import Notify
+from coarnotify.models.notify import NotifyDocument
 from coarnotify.exceptions import NotifyException
 
 
@@ -40,7 +40,7 @@ class COARNotifyClient:
         # resp = self._http.get(target_url, headers={"Accept": "text/html"})
         pass
 
-    def send(self, notification: Notify, inbox_url: str = None):
+    def send(self, notification: NotifyDocument, inbox_url: str = None):
         if inbox_url is None:
             inbox_url = self._inbox_url
         if inbox_url is None:

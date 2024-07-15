@@ -1,5 +1,6 @@
 from coarnotify.constants import ConstantList
 
+
 class Properties(ConstantList):
     ID = "id"
     TYPE = "type"
