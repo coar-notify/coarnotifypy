@@ -43,6 +43,10 @@ class COARNotifyServer:
     def __init__(self, service_impl):
         self._service_impl = service_impl
 
-    def receive(self, raw):
+    def receive(self, raw, validate=True):
         obj = COARNotifyFactory.get_by_object(raw)
+        if validate:
+            if not obj.validate():
+                raise COARNotifyServerError(400, "Invalid notification")
+
         return self._service_impl.notification_received(obj)

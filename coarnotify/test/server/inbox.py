@@ -1,7 +1,6 @@
 from flask import Flask, request, make_response
 from coarnotify.test.server import settings
 from coarnotify.server import COARNotifyServer, COARNotifyServiceBinding, COARNotifyReceipt, COARNotifyServerError
-from coarnotify.common import COARNotifyFactory
 import uuid, json, sys, os
 from datetime import datetime
 
@@ -39,7 +38,7 @@ def inbox():
     server = COARNotifyServer(COARNotifyServiceTestImpl())
 
     try:
-        result = server.receive(notification)
+        result = server.receive(notification, validate=app.config.get("VALIDATE_INCOMING", True))
     except COARNotifyServerError as e:
         return make_response(e.message, e.status)
 

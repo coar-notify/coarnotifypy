@@ -4,6 +4,7 @@ from coarnotify.client import COARNotifyClient
 from coarnotify.models.announce_endorsement import AnnounceEndorsement
 from coarnotify.test.mocks.http import MockHttpResponse, MockHttpLayer
 
+
 class TestClient(TestCase):
     def test_01_construction(self):
         client = COARNotifyClient()

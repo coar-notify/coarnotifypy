@@ -6,9 +6,6 @@ from coarnotify.activitystreams.activitystreams import ActivityStream
 
 class AnnounceEndorsement(NotifyDocument):
     TYPE = ["Announce", "coar-notify:EndorsementAction"]
-    IDENTIFY_BY_TYPE = [
-        TYPE
-    ]
 
     def __init__(self, stream: Union[ActivityStream, dict] = None):
         super(AnnounceEndorsement, self).__init__(stream=stream)

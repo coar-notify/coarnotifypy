@@ -40,11 +40,15 @@ class COARNotifyClient:
         # resp = self._http.get(target_url, headers={"Accept": "text/html"})
         pass
 
-    def send(self, notification: NotifyDocument, inbox_url: str = None):
+    def send(self, notification: NotifyDocument, inbox_url: str = None, validate: bool = True) -> NotifyResponse:
         if inbox_url is None:
             inbox_url = self._inbox_url
         if inbox_url is None:
             raise ValueError("No inbox URL provided")
+
+        if validate:
+            if not notification.validate():
+                raise NotifyException("Attempting to send invalid notification; to override set validate=False when calling this method")
 
         resp = self._http.post(inbox_url,
                         data=json.dumps(notification.to_dict()),
