@@ -1,12 +1,21 @@
 from unittest import TestCase
 
 from coarnotify.models import NotifyDocument, NotifyService, NotifyObject, NotifyActor, NotifyItem
-from coarnotify.models import Accept, AnnounceEndorsement, AnnounceIngest, AnnounceRelationship
+from coarnotify.models import (
+    Accept,
+    AnnounceEndorsement,
+    AnnounceIngest,
+    AnnounceRelationship,
+    AnnounceReview
+)
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
-from coarnotify.test.fixtures.accept import AcceptFixtureFactory
-from coarnotify.test.fixtures.announce_endorsement import AnnounceEndorsementFixtureFactory
-from coarnotify.test.fixtures.announce_ingest import AnnounceIngestFixtureFactory
-from coarnotify.test.fixtures.announce_relationship import AnnounceRelationshipFixtureFactory
+from coarnotify.test.fixtures import (
+    AcceptFixtureFactory,
+    AnnounceEndorsementFixtureFactory,
+    AnnounceIngestFixtureFactory,
+    AnnounceRelationshipFixtureFactory,
+    AnnounceReviewFixtureFactory
+)
 
 
 class TestModels(TestCase):
@@ -246,3 +255,40 @@ class TestModels(TestCase):
         assert ae.target.inbox == "https://another-research-organisation.org/inbox/"
         assert ae.target.type == "Service"
 
+    def test_08_announce_review(self):
+        ar = AnnounceReview()
+
+        source = AnnounceReviewFixtureFactory.source()
+        ar = AnnounceReview(source)
+        assert ar.validate() is True
+        assert ar.to_dict() == source
+
+        # now test we are properly reading the fixture
+        assert ar.actor.id == "https://review-service.com"
+        assert ar.actor.name == "Review Service"
+        assert ar.actor.type == "Service"
+
+        assert ar.context.id == "https://research-organisation.org/repository/preprint/201203/421/"
+        assert ar.context.cite_as == "https://doi.org/10.5555/12345680"
+        assert ar.context.type == "sorg:AboutPage"
+        item = ar.context.item
+        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
+        assert item.media_type == "application/pdf"
+        assert item.type == ["Article", "sorg:ScholarlyArticle"]
+
+        assert ar.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
+        assert ar.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+
+        assert ar.object.id == "https://review-service.com/review/geo/202103/0021"
+        assert ar.object.cite_as == "https://doi.org/10.3214/987654"
+        assert ar.object.type == ["Document", "sorg:Review"]
+
+        assert ar.origin.id == "https://review-service.com/system"
+        assert ar.origin.inbox == "https://review-service.com/inbox/"
+        assert ar.origin.type == "Service"
+
+        assert ar.target.id == "https://generic-service.com/system"
+        assert ar.target.inbox == "https://generic-service.com/system/inbox/"
+        assert ar.target.type == "Service"
+
+        assert ar.type == ["Announce", "coar-notify:ReviewAction"]

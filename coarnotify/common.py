@@ -1,6 +1,12 @@
 from typing import List
 from coarnotify.activitystreams.activitystreams import ActivityStream
-from coarnotify.models import Accept, AnnounceEndorsement, AnnounceIngest, AnnounceRelationship
+from coarnotify.models import (
+    Accept,
+    AnnounceEndorsement,
+    AnnounceIngest,
+    AnnounceRelationship,
+    AnnounceReview
+)
 from coarnotify.exceptions import NotifyException
 
 
@@ -10,7 +16,8 @@ class COARNotifyFactory:
         Accept,
         AnnounceEndorsement,
         AnnounceIngest,
-        AnnounceRelationship
+        AnnounceRelationship,
+        AnnounceReview
     ]
 
     @classmethod

@@ -1,9 +1,21 @@
 from unittest import TestCase
 
-from coarnotify.models import Accept, AnnounceEndorsement, AnnounceIngest, AnnounceRelationship
+from coarnotify.models import (
+    Accept,
+    AnnounceEndorsement,
+    AnnounceIngest,
+    AnnounceRelationship,
+    AnnounceReview
+)
 from coarnotify.common import COARNotifyFactory
 
-from coarnotify.test.fixtures import AcceptFixtureFactory, AnnounceEndorsementFixtureFactory, AnnounceIngestFixtureFactory, AnnounceRelationshipFixtureFactory
+from coarnotify.test.fixtures import (
+    AcceptFixtureFactory,
+    AnnounceEndorsementFixtureFactory,
+    AnnounceIngestFixtureFactory,
+    AnnounceRelationshipFixtureFactory,
+    AnnounceReviewFixtureFactory
+)
 
 
 class TestFactory(TestCase):
@@ -44,5 +56,15 @@ class TestFactory(TestCase):
         source = AnnounceRelationshipFixtureFactory.source()
         ar = COARNotifyFactory.get_by_object(source)
         assert isinstance(ar, AnnounceRelationship)
+
+        assert ar.id == source["id"]
+
+    def test_05_announce_review(self):
+        ar = COARNotifyFactory.get_by_types(AnnounceReview.TYPE)
+        assert ar == AnnounceReview
+
+        source = AnnounceReviewFixtureFactory.source()
+        ar = COARNotifyFactory.get_by_object(source)
+        assert isinstance(ar, AnnounceReview)
 
         assert ar.id == source["id"]
