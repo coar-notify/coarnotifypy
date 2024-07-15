@@ -110,10 +110,27 @@ class TestModels(TestCase):
 
     def test_04_accept(self):
         a = Accept()
+
         source = AcceptFixtureFactory.source()
         a = Accept(source)
         assert a.validate() is True
         assert a.to_dict() == source
+
+        assert a.id == "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
+        assert a.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+
+        assert a.origin.id == "https://generic-service.com/system"
+        assert a.origin.inbox == "https://generic-service.com/system/inbox/"
+        assert a.origin.type == "Service"
+
+        assert a.object.id == "urn:uuid:4fb3af44-1111-4226-9475-2d09c2d8d9e0"
+        assert a.object.type == "Offer"
+
+        assert a.target.id == "https://some-organisation.org"
+        assert a.target.inbox == "https://some-organisation.org/inbox/"
+        assert a.target.type == "Organization"
+
+        assert a.type == "Accept"
 
     def test_05_announce_endorsement(self):
         ae = AnnounceEndorsement()
@@ -122,12 +139,74 @@ class TestModels(TestCase):
         assert ae.validate() is True
         assert ae.to_dict() == source
 
+        assert ae.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
+        assert ae.type == ["Announce", "coar-notify:EndorsementAction"]
+
+        assert ae.origin.id == "https://overlay-journal.com/system"
+        assert ae.origin.inbox == "https://overlay-journal.com/inbox/"
+        assert ae.origin.type == "Service"
+
+        assert ae.object.id == "https://overlay-journal.com/articles/00001/"
+        assert ae.object.cite_as == "https://overlay-journal.com/articles/00001/"
+        assert ae.object.type == ["Page", "sorg:WebPage"]
+
+        assert ae.target.id == "https://research-organisation.org/repository"
+        assert ae.target.inbox == "https://research-organisation.org/inbox/"
+        assert ae.target.type == "Service"
+
+        assert ae.actor.id == "https://overlay-journal.com"
+        assert ae.actor.name == "Overlay Journal"
+        assert ae.actor.type == "Service"
+
+        assert ae.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+        assert ae.context.id == "https://research-organisation.org/repository/preprint/201203/421/"
+        assert ae.context.cite_as == "https://doi.org/10.5555/12345680"
+        assert ae.context.type == "sorg:AboutPage"
+
+        item = ae.context.item
+        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
+        assert item.media_type == "application/pdf"
+        assert item.type == ["Article", "sorg:ScholarlyArticle"]
+
     def test_06_announce_ingest(self):
         ai = AnnounceIngest()
+
         source = AnnounceIngestFixtureFactory.source()
         ai = AnnounceIngest(source)
         assert ai.validate() is True
         assert ai.to_dict() == source
+
+        assert ai.actor.id == "https://research-organisation.org"
+        assert ai.actor.name == "Research Organisation"
+        assert ai.actor.type == "Organization"
+
+        assert ai.context.id == "https://research-organisation.org/repository/preprint/201203/421/"
+        assert ai.context.cite_as == "https://doi.org/10.5555/12345680"
+        assert ai.context.type == "sorg:AboutPage"
+        item = ai.context.item
+        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
+        assert item.media_type == "application/pdf"
+        assert item.type == ["Article", "sorg:ScholarlyArticle"]
+
+        assert ai.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
+        assert ai.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+
+        assert ai.object.id == "https://research-organisation.org/repository/preprint/201203/421/"
+        assert ai.object.cite_as == "https://doi.org/10.5555/12345680"
+        item = ai.object.item
+        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
+        assert item.media_type == "application/pdf"
+        assert item.type == ["Article", "sorg:ScholarlyArticle"]
+
+        assert ai.origin.id == "https://research-organisation.org/repository"
+        assert ai.origin.inbox == "https://research-organisation.org/inbox/"
+        assert ai.origin.type == "Service"
+
+        assert ai.target.id == "https://overlay-journal.com/system"
+        assert ai.target.inbox == "https://overlay-journal.com/inbox/"
+        assert ai.target.type == "Service"
+
+        assert ai.type == ["Announce", "coar-notify:IngestAction"]
 
     def test_07_announce_relationship(self):
         ae = AnnounceRelationship()
