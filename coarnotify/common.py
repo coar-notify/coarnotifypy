@@ -1,5 +1,5 @@
 from typing import List
-from coarnotify.activitystreams.activitystreams import ActivityStream
+from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
@@ -36,7 +36,7 @@ class COARNotifyFactory:
     def get_by_object(cls, data):
         stream = ActivityStream(data)
 
-        types = stream.type
+        types = stream.get_property(Properties.TYPE)
         if types is None:
             raise NotifyException("No type found in object")
 

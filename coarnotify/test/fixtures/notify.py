@@ -13,10 +13,7 @@ BASE_NOTIFY = {
         "https://purl.org/coar/notify"
     ],
     "id": "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f",
-    "type": [
-        "Announce",
-        "coar-notify:EndorsementAction"
-    ],
+    "type": "Object",
     "origin": {
         "id": "https://overlay-journal.com/system",
         "inbox": "https://overlay-journal.com/inbox/",

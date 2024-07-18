@@ -1,4 +1,5 @@
 from unittest import TestCase
+from copy import deepcopy
 
 from coarnotify.models import NotifyDocument, NotifyService, NotifyObject, NotifyActor, NotifyItem
 from coarnotify.models import (
@@ -110,20 +111,22 @@ class TestModels(TestCase):
     def test_03_notify_operations(self):
         n = NotifyDocument()
         assert n.validate() is False
-        assert n.to_dict() is not None
+        assert n.to_jsonld() is not None
 
         source = NotifyFixtureFactory.source()
+        compare = deepcopy(source)
         n = NotifyDocument(source)
         assert n.validate() is True
-        assert n.to_dict() == source
+        assert n.to_jsonld() == compare
 
     def test_04_accept(self):
         a = Accept()
 
         source = AcceptFixtureFactory.source()
+        compare = deepcopy(source)
         a = Accept(source)
         assert a.validate() is True
-        assert a.to_dict() == source
+        assert a.to_jsonld() == compare
 
         assert a.id == "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
         assert a.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
@@ -144,9 +147,10 @@ class TestModels(TestCase):
     def test_05_announce_endorsement(self):
         ae = AnnounceEndorsement()
         source = AnnounceEndorsementFixtureFactory.source()
+        compare = deepcopy(source)
         ae = AnnounceEndorsement(source)
         assert ae.validate() is True
-        assert ae.to_dict() == source
+        assert ae.to_jsonld() == compare
 
         assert ae.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
         assert ae.type == ["Announce", "coar-notify:EndorsementAction"]
@@ -181,9 +185,10 @@ class TestModels(TestCase):
         ai = AnnounceIngest()
 
         source = AnnounceIngestFixtureFactory.source()
+        compare = deepcopy(source)
         ai = AnnounceIngest(source)
         assert ai.validate() is True
-        assert ai.to_dict() == source
+        assert ai.to_jsonld() == compare
 
         assert ai.actor.id == "https://research-organisation.org"
         assert ai.actor.name == "Research Organisation"
@@ -221,9 +226,10 @@ class TestModels(TestCase):
         ae = AnnounceRelationship()
 
         source = AnnounceRelationshipFixtureFactory.source()
+        compare = deepcopy(source)
         ae = AnnounceRelationship(source)
         assert ae.validate() is True
-        assert ae.to_dict() == source
+        assert ae.to_jsonld() == compare
 
         # now test we are properly reading the fixture
         assert ae.actor.id == "https://research-organisation.org"
@@ -259,9 +265,10 @@ class TestModels(TestCase):
         ar = AnnounceReview()
 
         source = AnnounceReviewFixtureFactory.source()
+        compare = deepcopy(source)
         ar = AnnounceReview(source)
         assert ar.validate() is True
-        assert ar.to_dict() == source
+        assert ar.to_jsonld() == compare
 
         # now test we are properly reading the fixture
         assert ar.actor.id == "https://review-service.com"

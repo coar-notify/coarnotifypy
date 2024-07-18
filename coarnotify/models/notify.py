@@ -1,13 +1,14 @@
-from coarnotify.activitystreams.activitystreams import ActivityStream, Properties
+from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties
 from coarnotify.constants import ConstantList
 from typing import Union
 import uuid
 from copy import deepcopy
 
-JSONLD_CONTEXT = "https://purl.org/coar/notify"
+NOTIFY_NAMESPACE = "https://purl.org/coar/notify"
+
 
 class NotifyProperties(ConstantList):
-    INBOX = "inbox"
+    INBOX = ("inbox", NOTIFY_NAMESPACE)
 
 
 class NotifyBase:
@@ -21,6 +22,10 @@ class NotifyBase:
 
         if self._stream.get_property(Properties.ID) is None:
             self._stream.set_property(Properties.ID, "urn:uuid:" + str(uuid.uuid4().hex))
+
+    @property
+    def doc(self):
+        return self._stream.doc
 
     @property
     def id(self) -> str:
@@ -44,8 +49,8 @@ class NotifyBase:
             self.type is None
         ])
 
-    def to_dict(self):
-        raise NotImplementedError("Subclasses must implement this method")
+    def to_jsonld(self):
+        return self._stream.to_jsonld()
 
 
 class NotifyDocument(NotifyBase):
@@ -80,7 +85,7 @@ class NotifyDocument(NotifyBase):
 
     @origin.setter
     def origin(self, value: "NotifyService"):
-        self._stream.set_property(Properties.ORIGIN, value.to_dict())
+        self._stream.set_property(Properties.ORIGIN, value.doc)
 
     @property
     def target(self) -> Union["NotifyService", None]:
@@ -91,7 +96,7 @@ class NotifyDocument(NotifyBase):
 
     @target.setter
     def target(self, value: "NotifyService"):
-        self._stream.set_property(Properties.TARGET, value.to_dict())
+        self._stream.set_property(Properties.TARGET, value.doc)
 
     @property
     def object(self) -> Union["NotifyObject", None]:
@@ -102,7 +107,7 @@ class NotifyDocument(NotifyBase):
 
     @object.setter
     def object(self, value: "NotifyObject"):
-        self._stream.set_property(Properties.OBJECT, value.to_dict())
+        self._stream.set_property(Properties.OBJECT, value.doc)
 
     @property
     def in_reply_to(self) -> str:
@@ -121,7 +126,7 @@ class NotifyDocument(NotifyBase):
 
     @actor.setter
     def actor(self, value: "NotifyActor"):
-        self._stream.set_property(Properties.ACTOR, value.to_dict())
+        self._stream.set_property(Properties.ACTOR, value.doc)
 
     @property
     def context(self) -> Union["NotifyObject", None]:
@@ -132,7 +137,7 @@ class NotifyDocument(NotifyBase):
 
     @context.setter
     def context(self, value: "NotifyObject"):
-        self._stream.set_property(Properties.CONTEXT, value.to_dict())
+        self._stream.set_property(Properties.CONTEXT, value.doc)
 
     def validate(self):
         supervalid = super(NotifyDocument, self).validate()
@@ -144,15 +149,6 @@ class NotifyDocument(NotifyBase):
             self.target is None,
             self.object is None
         ])
-
-    def to_dict(self, include_jsonld_context=True):
-        # FIXME: this looks wrong, needs a review
-        if include_jsonld_context:
-            self._stream.add_jsonld_context(JSONLD_CONTEXT)
-        d = self._stream.to_dict()
-        if "@context" in d:
-            del d["@context"]
-        return d
 
 
 class NotifyDocumentPart(NotifyBase):
@@ -182,10 +178,10 @@ class NotifyDocumentPart(NotifyBase):
         self._stream.set_property(Properties.TYPE, types)
 
     def to_dict(self):
-        d = self._stream.to_dict()
-        if "@context" in d:
-            del d["@context"]
-        return d
+        # d = self._stream.to_dict()
+        # if "@context" in d:
+        #     del d["@context"]
+        return self._stream.doc
 
 
 class NotifyService(NotifyDocumentPart):

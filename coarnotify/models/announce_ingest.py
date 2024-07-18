@@ -1,7 +1,7 @@
 from typing import Union
 
 from coarnotify.models.notify import NotifyDocument
-from coarnotify.activitystreams.activitystreams import ActivityStream
+from coarnotify.activitystreams2.activitystreams2 import ActivityStream
 
 
 class AnnounceIngest(NotifyDocument):

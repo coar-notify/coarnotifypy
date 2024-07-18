@@ -51,7 +51,7 @@ class COARNotifyClient:
                 raise NotifyException("Attempting to send invalid notification; to override set validate=False when calling this method")
 
         resp = self._http.post(inbox_url,
-                        data=json.dumps(notification.to_dict()),
+                        data=json.dumps(notification.to_jsonld()),
                         headers={"Content-Type": "application/ld+json;profile=\"https://www.w3.org/ns/activitystreams\""}
                         )
 

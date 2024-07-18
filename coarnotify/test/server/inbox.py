@@ -24,7 +24,7 @@ class COARNotifyServiceTestImpl(COARNotifyServiceBinding):
         fn = now + "_" + uuid.uuid4().hex
 
         with open(f"{store}/{fn}.json", "w") as f:
-            f.write(json.dumps(notification.to_dict()))
+            f.write(json.dumps(notification.to_jsonld()))
 
         rstatus = app.config.get("RESPONSE_STATUS", COARNotifyReceipt.CREATED)
         location = f"{request.url_root}inbox/{fn}"
