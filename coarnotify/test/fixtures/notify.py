@@ -1,10 +1,23 @@
 from copy import deepcopy
+from coarnotify.models import NotifyObject, NotifyService
 
 
 class NotifyFixtureFactory:
     @classmethod
     def source(cls):
         return deepcopy(BASE_NOTIFY)
+
+    @classmethod
+    def target(cls):
+        return NotifyService(deepcopy(BASE_NOTIFY["target"]))
+
+    @classmethod
+    def origin(cls):
+        return NotifyService(deepcopy(BASE_NOTIFY["origin"]))
+
+    @classmethod
+    def object(cls):
+        return NotifyObject(deepcopy(BASE_NOTIFY["object"]))
 
 
 BASE_NOTIFY = {
