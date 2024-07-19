@@ -1,6 +1,8 @@
 from unittest import TestCase
 from copy import deepcopy
 
+from coarnotify.exceptions import ValidationError
+
 from coarnotify.models import NotifyDocument, NotifyService, NotifyObject, NotifyActor, NotifyItem
 from coarnotify.models import (
     Accept,
@@ -8,7 +10,8 @@ from coarnotify.models import (
     AnnounceIngest,
     AnnounceRelationship,
     AnnounceReview,
-    AnnounceServiceResult
+    AnnounceServiceResult,
+    Reject
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -17,7 +20,8 @@ from coarnotify.test.fixtures import (
     AnnounceIngestFixtureFactory,
     AnnounceRelationshipFixtureFactory,
     AnnounceReviewFixtureFactory,
-    AnnounceServiceResultFixtureFactory
+    AnnounceServiceResultFixtureFactory,
+    RejectFixtureFactory
 )
 
 
@@ -112,7 +116,8 @@ class TestModels(TestCase):
 
     def test_03_notify_operations(self):
         n = NotifyDocument()
-        assert n.validate() is False
+        with self.assertRaises(ValidationError):
+            n.validate()
         assert n.to_jsonld() is not None
 
         source = NotifyFixtureFactory.source()
@@ -302,7 +307,7 @@ class TestModels(TestCase):
 
         assert ar.type == ["Announce", "coar-notify:ReviewAction"]
 
-    def test_08_announce_service_result(self):
+    def test_09_announce_service_result(self):
         asr = AnnounceServiceResult()
 
         source = AnnounceServiceResultFixtureFactory.source()
@@ -340,3 +345,26 @@ class TestModels(TestCase):
         assert asr.target.type == "Service"
 
         assert asr.type == "Announce"
+
+    def test_10_reject(self):
+        rej = Reject()
+
+        source = RejectFixtureFactory.source()
+        compare = deepcopy(source)
+        rej = Reject(source)
+        assert rej.validate() is True
+        assert rej.to_jsonld() == compare
+
+        # now test we are properly reading the fixture
+        assert rej.id == "urn:uuid:668f26e0-2c8d-4117-a0d2-ee713523bcb1"
+        assert rej.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+
+        assert rej.origin.id == "https://generic-service.com/system"
+        assert rej.origin.inbox == "https://generic-service.com/system/inbox/"
+        assert rej.origin.type == "Service"
+
+        assert rej.target.id == "https://some-organisation.org"
+        assert rej.target.inbox == "https://some-organisation.org/inbox/"
+        assert rej.target.type == "Organization"
+
+        assert rej.type == "Reject"

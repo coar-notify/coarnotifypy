@@ -1,7 +1,8 @@
 from unittest import TestCase
 
 from coarnotify.client import COARNotifyClient
-from coarnotify.models.announce_endorsement import AnnounceEndorsement
+from coarnotify.models import AnnounceEndorsement
+from coarnotify.test.fixtures import AnnounceEndorsementFixtureFactory
 from coarnotify.test.mocks.http import MockHttpResponse, MockHttpLayer
 
 
@@ -21,22 +22,19 @@ class TestClient(TestCase):
             status_code=201,
             location="http://example.com/location"
         ))
-        ae = AnnounceEndorsement()
+        source = AnnounceEndorsementFixtureFactory.source()
+        ae = AnnounceEndorsement(source)
         resp = client.send(ae)
         assert resp.action == resp.CREATED
         assert resp.location == "http://example.com/location"
 
-        # inbox_url = client.discover("https://example.org")
-        # inbox_url = "http://localhost:5005/inbox"
-        # ae = AnnounceEndorsement()
-        # resp = client.send(inbox_url, ae)
-        # assert resp.action in [resp.CREATED, resp.ACCEPTED]
 
     def test_03_accepted_response(self):
         client = COARNotifyClient("http://example.com/inbox", MockHttpLayer(
             status_code=202
         ))
-        ae = AnnounceEndorsement()
+        source = AnnounceEndorsementFixtureFactory.source()
+        ae = AnnounceEndorsement(source)
         resp = client.send(ae)
         assert resp.action == resp.ACCEPTED
         assert resp.location is None

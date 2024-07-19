@@ -6,7 +6,8 @@ from coarnotify.models import (
     AnnounceIngest,
     AnnounceRelationship,
     AnnounceReview,
-    AnnounceServiceResult
+    AnnounceServiceResult,
+    Reject
 )
 from coarnotify.exceptions import NotifyException
 
@@ -19,7 +20,8 @@ class COARNotifyFactory:
         AnnounceIngest,
         AnnounceRelationship,
         AnnounceReview,
-        AnnounceServiceResult
+        AnnounceServiceResult,
+        Reject
     ]
 
     @classmethod
