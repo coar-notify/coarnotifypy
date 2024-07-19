@@ -5,7 +5,8 @@ from coarnotify.models import (
     AnnounceEndorsement,
     AnnounceIngest,
     AnnounceRelationship,
-    AnnounceReview
+    AnnounceReview,
+    AnnounceServiceResult
 )
 from coarnotify.common import COARNotifyFactory
 
@@ -14,7 +15,8 @@ from coarnotify.test.fixtures import (
     AnnounceEndorsementFixtureFactory,
     AnnounceIngestFixtureFactory,
     AnnounceRelationshipFixtureFactory,
-    AnnounceReviewFixtureFactory
+    AnnounceReviewFixtureFactory,
+    AnnounceServiceResultFixtureFactory
 )
 
 
@@ -66,5 +68,15 @@ class TestFactory(TestCase):
         source = AnnounceReviewFixtureFactory.source()
         ar = COARNotifyFactory.get_by_object(source)
         assert isinstance(ar, AnnounceReview)
+
+        assert ar.id == source["id"]
+
+    def test_05_announce_service_result(self):
+        ar = COARNotifyFactory.get_by_types(AnnounceServiceResult.TYPE)
+        assert ar == AnnounceServiceResult
+
+        source = AnnounceServiceResultFixtureFactory.source()
+        ar = COARNotifyFactory.get_by_object(source)
+        assert isinstance(ar, AnnounceServiceResult)
 
         assert ar.id == source["id"]

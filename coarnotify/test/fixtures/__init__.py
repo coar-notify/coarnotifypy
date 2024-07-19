@@ -3,3 +3,4 @@ from coarnotify.test.fixtures.announce_endorsement import AnnounceEndorsementFix
 from coarnotify.test.fixtures.announce_ingest import AnnounceIngestFixtureFactory
 from coarnotify.test.fixtures.announce_relationship import AnnounceRelationshipFixtureFactory
 from coarnotify.test.fixtures.announce_review import AnnounceReviewFixtureFactory
+from coarnotify.test.fixtures.announce_service_result import AnnounceServiceResultFixtureFactory

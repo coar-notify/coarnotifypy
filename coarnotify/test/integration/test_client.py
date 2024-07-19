@@ -16,6 +16,9 @@ from coarnotify.test.fixtures.announce_relationship import AnnounceRelationshipF
 from coarnotify.models import AnnounceReview
 from coarnotify.test.fixtures.announce_review import AnnounceReviewFixtureFactory
 
+from coarnotify.models import AnnounceServiceResult
+from coarnotify.test.fixtures import AnnounceServiceResultFixtureFactory
+
 INBOX = "http://localhost:5005/inbox"
 
 
@@ -60,6 +63,15 @@ class TestClient(TestCase):
         client = COARNotifyClient(INBOX)
         source = AnnounceReviewFixtureFactory.source()
         ae = AnnounceReview(source)
+        resp = client.send(ae)
+        assert resp.action == resp.CREATED
+        assert resp.location is not None
+        print(resp.location)
+
+    def test_04_announce_service_result(self):
+        client = COARNotifyClient(INBOX)
+        source = AnnounceServiceResultFixtureFactory.source()
+        ae = AnnounceServiceResult(source)
         resp = client.send(ae)
         assert resp.action == resp.CREATED
         assert resp.location is not None

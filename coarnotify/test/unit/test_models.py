@@ -7,7 +7,8 @@ from coarnotify.models import (
     AnnounceEndorsement,
     AnnounceIngest,
     AnnounceRelationship,
-    AnnounceReview
+    AnnounceReview,
+    AnnounceServiceResult
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -15,7 +16,8 @@ from coarnotify.test.fixtures import (
     AnnounceEndorsementFixtureFactory,
     AnnounceIngestFixtureFactory,
     AnnounceRelationshipFixtureFactory,
-    AnnounceReviewFixtureFactory
+    AnnounceReviewFixtureFactory,
+    AnnounceServiceResultFixtureFactory
 )
 
 
@@ -299,3 +301,42 @@ class TestModels(TestCase):
         assert ar.target.type == "Service"
 
         assert ar.type == ["Announce", "coar-notify:ReviewAction"]
+
+    def test_08_announce_service_result(self):
+        asr = AnnounceServiceResult()
+
+        source = AnnounceServiceResultFixtureFactory.source()
+        compare = deepcopy(source)
+        asr = AnnounceServiceResult(source)
+        assert asr.validate() is True
+        assert asr.to_jsonld() == compare
+
+        # now test we are properly reading the fixture
+        assert asr.actor.id == "https://overlay-journal.com"
+        assert asr.actor.name == "Overlay Journal"
+        assert asr.actor.type == "Service"
+
+        assert asr.context.id == "https://research-organisation.org/repository/preprint/201203/421/"
+        assert asr.context.cite_as == "https://doi.org/10.5555/12345680"
+        assert asr.context.type == "sorg:AboutPage"
+
+        item = asr.context.item
+        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
+        assert item.media_type == "application/pdf"
+        assert item.type == ["Article", "sorg:ScholarlyArticle"]
+
+        assert asr.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
+        assert asr.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+
+        assert asr.object.id == "https://overlay-journal.com/information-page"
+        assert asr.object.type == ["Page", "sorg:WebPage"]
+
+        assert asr.origin.id == "https://overlay-journal.com/system"
+        assert asr.origin.inbox == "https://overlay-journal.com/inbox/"
+        assert asr.origin.type == "Service"
+
+        assert asr.target.id == "https://generic-service.com/system"
+        assert asr.target.inbox == "https://generic-service.com/system/inbox/"
+        assert asr.target.type == "Service"
+
+        assert asr.type == "Announce"
