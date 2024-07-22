@@ -13,17 +13,48 @@ class NotifyProperties(ConstantList):
     INBOX = ("inbox", NOTIFY_NAMESPACE)
 
 
+VALIDATORS = {
+    Properties.ID: validate.uri_validator,
+    Properties.ID[0]: validate.uri_validator,
+}
+
+
 class NotifyBase:
-    def __init__(self, stream: Union[ActivityStream, dict] = None):
+    def __init__(self, stream: Union[ActivityStream, dict] = None,
+                 validate_stream_on_construct=True,
+                 validate_properties=True,
+                 validators=None):
+        self._validate_stream_on_construct = validate_stream_on_construct
+        self._validate_properties = validate_properties
+        self._validators = validators if validators is not None else VALIDATORS
+        validate_now = False
+
         if stream is None:
             self._stream = ActivityStream()
         elif isinstance(stream, dict):
+            validate_now = validate_stream_on_construct
             self._stream = ActivityStream(stream)
         else:
+            validate_now = validate_stream_on_construct
             self._stream = stream
 
         if self._stream.get_property(Properties.ID) is None:
             self._stream.set_property(Properties.ID, "urn:uuid:" + str(uuid.uuid4().hex))
+
+        if validate_now:
+            self.validate()
+
+    @property
+    def validate_properties(self):
+        return self._validate_properties
+
+    @property
+    def validate_stream_on_construct(self):
+        return self._validate_stream_on_construct
+
+    @property
+    def validators(self):
+        return self._validators
 
     @property
     def doc(self):
@@ -31,29 +62,59 @@ class NotifyBase:
 
     @property
     def id(self) -> str:
-        return self._stream.get_property(Properties.ID)
+        return self.get_property(Properties.ID)
 
     @id.setter
     def id(self, value: str):
-        self._stream.set_property(Properties.ID, value)
+        self.set_property(Properties.ID, value)
 
     @property
     def type(self) -> Union[str, list[str]]:
-        return self._stream.get_property(Properties.TYPE)
+        return self.get_property(Properties.TYPE)
 
     @type.setter
     def type(self, types: Union[str, list[str]]):
-        self._stream.set_property(Properties.TYPE, types)
+        self.set_property(Properties.TYPE, types)
+
+    def get_property(self, prop_name):
+        return self._stream.get_property(prop_name)
+
+    def set_property(self, prop_name, value):
+        self.validate_property(prop_name, value)
+        self._stream.set_property(prop_name, value)
 
     def validate(self):
         ve = ValidationError()
         if self.id is None:
             ve.add_error(Properties.ID, validate.REQUIRED_MESSAGE.format(x=Properties.ID[0]))
+        else:
+            self.register_property_validation_error(ve, Properties.ID, self.id)
+
         if self.type is None:
             ve.add_error(Properties.TYPE, validate.REQUIRED_MESSAGE.format(x=Properties.TYPE[0]))
         if ve.has_errors():
             raise ve
         return True
+
+    def validate_property(self, prop_name: str, value, force_validate=False, raise_error=True):
+        if value is None:
+            return True, ""
+        if self.validate_properties or force_validate:
+            validator = self._validators.get(prop_name, None)
+            if validator is not None:
+                try:
+                    validator(value)
+                except ValueError as ve:
+                    if raise_error:
+                        raise ve
+                    else:
+                        return False, str(ve)
+        return True, ""
+
+    def register_property_validation_error(self, ve: ValidationError, prop_name: str, value):
+        e, msg = self.validate_property(prop_name, value, force_validate=True, raise_error=False)
+        if not e:
+            ve.add_error(prop_name, msg)
 
     def to_jsonld(self):
         return self._stream.to_jsonld()
@@ -62,8 +123,14 @@ class NotifyBase:
 class NotifyDocument(NotifyBase):
     TYPE = "Object"
 
-    def __init__(self, stream: Union[ActivityStream, dict] = None):
-        super(NotifyDocument, self).__init__(stream=stream)
+    def __init__(self, stream: Union[ActivityStream, dict] = None,
+                 validate_stream_on_construct=True,
+                 validate_properties=True,
+                 validators=None):
+        super(NotifyDocument, self).__init__(stream=stream,
+                                             validate_stream_on_construct=validate_stream_on_construct,
+                                             validate_properties=validate_properties,
+                                             validators=validators)
         self._ensure_type_contains(self.TYPE)
 
     def _ensure_type_contains(self, types: Union[str, list[str]]):
@@ -86,7 +153,10 @@ class NotifyDocument(NotifyBase):
     def origin(self) -> Union["NotifyService", None]:
         o = self._stream.get_property(Properties.ORIGIN)
         if o is not None:
-            return NotifyService(deepcopy(o))
+            return NotifyService(deepcopy(o),
+                                 validate_stream_on_construct=False,
+                                 validate_properties=self.validate_properties,
+                                 validators=self.validators)
         return None
 
     @origin.setter
@@ -97,7 +167,10 @@ class NotifyDocument(NotifyBase):
     def target(self) -> Union["NotifyService", None]:
         t = self._stream.get_property(Properties.TARGET)
         if t is not None:
-            return NotifyService(deepcopy(t))
+            return NotifyService(deepcopy(t),
+                                 validate_stream_on_construct=False,
+                                 validate_properties=self.validate_properties,
+                                 validators=self.validators)
         return None
 
     @target.setter
@@ -108,7 +181,10 @@ class NotifyDocument(NotifyBase):
     def object(self) -> Union["NotifyObject", None]:
         o = self._stream.get_property(Properties.OBJECT)
         if o is not None:
-            return NotifyObject(deepcopy(o))
+            return NotifyObject(deepcopy(o),
+                                 validate_stream_on_construct=False,
+                                 validate_properties=self.validate_properties,
+                                 validators=self.validators)
         return None
 
     @object.setter
@@ -127,7 +203,10 @@ class NotifyDocument(NotifyBase):
     def actor(self) -> Union["NotifyActor", None]:
         a = self._stream.get_property(Properties.ACTOR)
         if a is not None:
-            return NotifyActor(deepcopy(a))
+            return NotifyActor(deepcopy(a),
+                                 validate_stream_on_construct=False,
+                                 validate_properties=self.validate_properties,
+                                 validators=self.validators)
         return None
 
     @actor.setter
@@ -138,7 +217,10 @@ class NotifyDocument(NotifyBase):
     def context(self) -> Union["NotifyObject", None]:
         c = self._stream.get_property(Properties.CONTEXT)
         if c is not None:
-            return NotifyObject(deepcopy(c))
+            return NotifyObject(deepcopy(c),
+                                 validate_stream_on_construct=False,
+                                 validate_properties=self.validate_properties,
+                                 validators=self.validators)
         return None
 
     @context.setter
@@ -186,8 +268,14 @@ class NotifyDocumentPart(NotifyBase):
     DEFAULT_TYPE = None
     ALLOWED_TYPES = []
 
-    def __init__(self, stream: Union[ActivityStream, dict] = None):
-        super(NotifyDocumentPart, self).__init__(stream=stream)
+    def __init__(self, stream: Union[ActivityStream, dict] = None,
+                 validate_stream_on_construct=True,
+                 validate_properties=True,
+                 validators=None):
+        super(NotifyDocumentPart, self).__init__(stream=stream,
+                                                 validate_stream_on_construct=validate_stream_on_construct,
+                                                 validate_properties=validate_properties,
+                                                 validators=validators)
         if self.DEFAULT_TYPE is not None and self.type is None:
             self.type = self.DEFAULT_TYPE
 
@@ -216,9 +304,6 @@ class NotifyService(NotifyDocumentPart):
     DEFAULT_TYPE = "Service"
     ALLOWED_TYPES = [DEFAULT_TYPE]
 
-    def __init__(self, stream: Union[ActivityStream, dict] = None):
-        super(NotifyService, self).__init__(stream=stream)
-
     @property
     def inbox(self) -> str:
         return self._stream.get_property(NotifyProperties.INBOX)
@@ -245,9 +330,6 @@ class NotifyService(NotifyDocumentPart):
 
 class NotifyObject(NotifyDocumentPart):
 
-    def __init__(self, stream: Union[ActivityStream, dict] = None):
-        super(NotifyObject, self).__init__(stream=stream)
-
     @property
     def cite_as(self) -> str:
         return self._stream.get_property("ietf:cite-as")
@@ -260,7 +342,10 @@ class NotifyObject(NotifyDocumentPart):
     def item(self) -> Union["NotifyItem", None]:
         i = self._stream.get_property("ietf:item")
         if i is not None:
-            return NotifyItem(deepcopy(i))
+            return NotifyItem(deepcopy(i),
+                                 validate_stream_on_construct=False,
+                                 validate_properties=self.validate_properties,
+                                 validators=self.validators)
         return None
 
     @item.setter
@@ -286,9 +371,6 @@ class NotifyActor(NotifyDocumentPart):
     DEFAULT_TYPE = "Service"
     ALLOWED_TYPES = [DEFAULT_TYPE, "Application", "Group", "Organization", "Person"]
 
-    def __init__(self, stream: Union[ActivityStream, dict] = None):
-        super(NotifyActor, self).__init__(stream=stream)
-
     @property
     def name(self) -> str:
         return self._stream.get_property("name")
@@ -299,9 +381,6 @@ class NotifyActor(NotifyDocumentPart):
 
 
 class NotifyItem(NotifyDocumentPart):
-
-    def __init__(self, stream: Union[ActivityStream, dict] = None):
-        super(NotifyItem, self).__init__(stream=stream)
 
     @property
     def media_type(self) -> str:
