@@ -11,7 +11,8 @@ from coarnotify.models import (
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
-    Reject
+    Reject,
+    RequestEndorsement
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -21,7 +22,8 @@ from coarnotify.test.fixtures import (
     AnnounceRelationshipFixtureFactory,
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
-    RejectFixtureFactory
+    RejectFixtureFactory,
+    RequestEndorsementFixtureFactory
 )
 
 
@@ -368,3 +370,35 @@ class TestModels(TestCase):
         assert rej.target.type == "Organization"
 
         assert rej.type == "Reject"
+
+    def test_11_request_endorsement(self):
+        re = Reject()
+
+        source = RequestEndorsementFixtureFactory.source()
+        compare = deepcopy(source)
+        re = RequestEndorsement(source)
+        assert re.validate() is True
+        assert re.to_jsonld() == compare
+
+        assert re.actor.id == "https://orcid.org/0000-0002-1825-0097"
+        assert re.actor.name == "Josiah Carberry"
+        assert re.actor.type == "Person"
+
+        assert re.id == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+        assert re.object.id == "https://research-organisation.org/repository/preprint/201203/421/"
+        assert re.object.cite_as == "https://doi.org/10.5555/12345680"
+        item = re.object.item
+        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
+        assert item.media_type == "application/pdf"
+        assert item.type == ["Article", "sorg:ScholarlyArticle"]
+        assert re.object.type == "sorg:AboutPage"
+
+        assert re.origin.id == "https://research-organisation.org/repository"
+        assert re.origin.inbox == "https://research-organisation.org/inbox/"
+        assert re.origin.type == "Service"
+
+        assert re.target.id == "https://overlay-journal.com/system"
+        assert re.target.inbox == "https://overlay-journal.com/inbox/"
+        assert re.target.type == "Service"
+
+        assert re.type == ["Offer", "coar-notify:EndorsementAction"]

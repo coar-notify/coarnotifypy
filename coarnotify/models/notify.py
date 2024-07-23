@@ -13,20 +13,67 @@ class NotifyProperties(ConstantList):
     INBOX = ("inbox", NOTIFY_NAMESPACE)
 
 
-VALIDATORS = {
-    Properties.ID: validate.uri_validator,
-    Properties.ID[0]: validate.uri_validator,
+# VALIDATORS = {
+#     Properties.ID: validate.absolute_uri,
+#     Properties.ID[0]: validate.absolute_uri,
+# }
+
+CONTEXT_VALIDATORS = {
+    Properties.ID: {
+        "default": validate.absolute_uri,
+        "context": {
+            Properties.OBJECT: {
+                "default": validate.url
+            },
+            "ietf:item": {
+                "default": validate.url
+            },
+            Properties.ORIGIN: {
+                "default": validate.url
+            },
+            Properties.TARGET: {
+                "default": validate.url
+            }
+        }
+    },
+    Properties.TYPE: {
+        "default": None,
+        "context": {
+            Properties.ACTOR: {
+                "default": validate.one_of(["Service", "Application", "Group", "Organization", "Person"])
+            },
+            Properties.OBJECT: {
+                "default": validate.contains("sorg:AboutPage"),
+            },
+            Properties.ORIGIN: {
+                "default": validate.contains("Service")
+            },
+            Properties.TARGET: {
+                "default": validate.contains("Service")
+            }
+        }
+    },
+    "ietf:cite-as": {
+        "default": validate.url
+    },
+    NotifyProperties.INBOX: {
+        "default": validate.url
+    }
 }
+
+VALIDATORS = validate.Validator(CONTEXT_VALIDATORS)
 
 
 class NotifyBase:
     def __init__(self, stream: Union[ActivityStream, dict] = None,
                  validate_stream_on_construct=True,
                  validate_properties=True,
-                 validators=None):
+                 validators=None,
+                 validation_context=None):
         self._validate_stream_on_construct = validate_stream_on_construct
         self._validate_properties = validate_properties
         self._validators = validators if validators is not None else VALIDATORS
+        self._validation_context = validation_context
         validate_now = False
 
         if stream is None:
@@ -100,7 +147,7 @@ class NotifyBase:
         if value is None:
             return True, ""
         if self.validate_properties or force_validate:
-            validator = self._validators.get(prop_name, None)
+            validator = self.validators.get(prop_name, self._validation_context)
             if validator is not None:
                 try:
                     validator(value)
@@ -126,17 +173,19 @@ class NotifyDocument(NotifyBase):
     def __init__(self, stream: Union[ActivityStream, dict] = None,
                  validate_stream_on_construct=True,
                  validate_properties=True,
-                 validators=None):
+                 validators=None,
+                 validation_context=None):
         super(NotifyDocument, self).__init__(stream=stream,
                                              validate_stream_on_construct=validate_stream_on_construct,
                                              validate_properties=validate_properties,
-                                             validators=validators)
+                                             validators=validators,
+                                             validation_context=validation_context)
         self._ensure_type_contains(self.TYPE)
 
     def _ensure_type_contains(self, types: Union[str, list[str]]):
         existing = self._stream.get_property(Properties.TYPE)
         if existing is None:
-            self._stream.set_property(Properties.TYPE, types)
+            self.set_property(Properties.TYPE, types)
         else:
             if not isinstance(existing, list):
                 existing = [existing]
@@ -147,85 +196,90 @@ class NotifyDocument(NotifyBase):
                     existing.append(t)
             if len(existing) == 1:
                 existing = existing[0]
-            self._stream.set_property(Properties.TYPE, existing)
+            self.set_property(Properties.TYPE, existing)
 
     @property
     def origin(self) -> Union["NotifyService", None]:
-        o = self._stream.get_property(Properties.ORIGIN)
+        o = self.get_property(Properties.ORIGIN)
         if o is not None:
             return NotifyService(deepcopy(o),
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
-                                 validators=self.validators)
+                                 validators=self.validators,
+                                 validation_context=Properties.ORIGIN)
         return None
 
     @origin.setter
     def origin(self, value: "NotifyService"):
-        self._stream.set_property(Properties.ORIGIN, value.doc)
+        self.set_property(Properties.ORIGIN, value.doc)
 
     @property
     def target(self) -> Union["NotifyService", None]:
-        t = self._stream.get_property(Properties.TARGET)
+        t = self.get_property(Properties.TARGET)
         if t is not None:
             return NotifyService(deepcopy(t),
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
-                                 validators=self.validators)
+                                 validators=self.validators,
+                                 validation_context=Properties.TARGET)
         return None
 
     @target.setter
     def target(self, value: "NotifyService"):
-        self._stream.set_property(Properties.TARGET, value.doc)
+        self.set_property(Properties.TARGET, value.doc)
 
     @property
     def object(self) -> Union["NotifyObject", None]:
-        o = self._stream.get_property(Properties.OBJECT)
+        o = self.get_property(Properties.OBJECT)
         if o is not None:
             return NotifyObject(deepcopy(o),
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
-                                 validators=self.validators)
+                                 validators=self.validators,
+                                 validation_context=Properties.OBJECT)
         return None
 
     @object.setter
     def object(self, value: "NotifyObject"):
-        self._stream.set_property(Properties.OBJECT, value.doc)
+        self.set_property(Properties.OBJECT, value.doc)
 
     @property
     def in_reply_to(self) -> str:
-        return self._stream.get_property(Properties.IN_REPLY_TO)
+        return self.get_property(Properties.IN_REPLY_TO)
 
     @in_reply_to.setter
     def in_reply_to(self, value: str):
-        self._stream.set_property(Properties.IN_REPLY_TO, value)
+        self.set_property(Properties.IN_REPLY_TO, value)
 
     @property
     def actor(self) -> Union["NotifyActor", None]:
-        a = self._stream.get_property(Properties.ACTOR)
+        a = self.get_property(Properties.ACTOR)
         if a is not None:
             return NotifyActor(deepcopy(a),
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
-                                 validators=self.validators)
+                                 validators=self.validators,
+                                 validation_context=Properties.ACTOR)
         return None
 
     @actor.setter
     def actor(self, value: "NotifyActor"):
-        self._stream.set_property(Properties.ACTOR, value.doc)
+        self.set_property(Properties.ACTOR, value.doc)
 
     @property
     def context(self) -> Union["NotifyObject", None]:
-        c = self._stream.get_property(Properties.CONTEXT)
+        c = self.get_property(Properties.CONTEXT)
         if c is not None:
             return NotifyObject(deepcopy(c),
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
-                                 validators=self.validators)
+                                 validators=self.validators,
+                                 validation_context=Properties.CONTEXT)
         return None
 
     @context.setter
     def context(self, value: "NotifyObject"):
-        self._stream.set_property(Properties.CONTEXT, value.doc)
+        self.set_property(Properties.CONTEXT, value.doc)
 
     def validate(self):
         ve = ValidationError()
@@ -271,11 +325,13 @@ class NotifyDocumentPart(NotifyBase):
     def __init__(self, stream: Union[ActivityStream, dict] = None,
                  validate_stream_on_construct=True,
                  validate_properties=True,
-                 validators=None):
+                 validators=None,
+                 validation_context=None):
         super(NotifyDocumentPart, self).__init__(stream=stream,
                                                  validate_stream_on_construct=validate_stream_on_construct,
                                                  validate_properties=validate_properties,
-                                                 validators=validators)
+                                                 validators=validators,
+                                                 validation_context=validation_context)
         if self.DEFAULT_TYPE is not None and self.type is None:
             self.type = self.DEFAULT_TYPE
 
@@ -294,7 +350,7 @@ class NotifyDocumentPart(NotifyBase):
         if len(types) == 1:
             types = types[0]
 
-        self._stream.set_property(Properties.TYPE, types)
+        self.set_property(Properties.TYPE, types)
 
     def to_dict(self):
         return self._stream.doc
@@ -306,11 +362,11 @@ class NotifyService(NotifyDocumentPart):
 
     @property
     def inbox(self) -> str:
-        return self._stream.get_property(NotifyProperties.INBOX)
+        return self.get_property(NotifyProperties.INBOX)
 
     @inbox.setter
     def inbox(self, value: str):
-        self._stream.set_property(NotifyProperties.INBOX, value)
+        self.set_property(NotifyProperties.INBOX, value)
 
     def validate(self):
         ve = ValidationError()
@@ -332,39 +388,40 @@ class NotifyObject(NotifyDocumentPart):
 
     @property
     def cite_as(self) -> str:
-        return self._stream.get_property("ietf:cite-as")
+        return self.get_property("ietf:cite-as")
 
     @cite_as.setter
     def cite_as(self, value: str):
-        self._stream.set_property("ietf:cite-as", value)
+        self.set_property("ietf:cite-as", value)
 
     @property
     def item(self) -> Union["NotifyItem", None]:
-        i = self._stream.get_property("ietf:item")
+        i = self.get_property("ietf:item")
         if i is not None:
             return NotifyItem(deepcopy(i),
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
-                                 validators=self.validators)
+                                 validators=self.validators,
+                                 validation_context="ietf:item")
         return None
 
     @item.setter
     def item(self, value: "NotifyItem"):
-        self._stream.set_property("ietf:item", value)
+        self.set_property("ietf:item", value)
 
     @property
     def triple(self) -> tuple[str, str, str]:
-        obj = self._stream.get_property("as:object")
-        rel = self._stream.get_property("as:relationship")
-        subj = self._stream.get_property("as:subject")
+        obj = self.get_property("as:object")
+        rel = self.get_property("as:relationship")
+        subj = self.get_property("as:subject")
         return obj, rel, subj
 
     @triple.setter
     def triple(self, value: tuple[str, str, str]):
         obj, rel, subj = value
-        self._stream.set_property("as:object", obj)
-        self._stream.set_property("as:relationship", rel)
-        self._stream.set_property("as:subject", subj)
+        self.set_property("as:object", obj)
+        self.set_property("as:relationship", rel)
+        self.set_property("as:subject", subj)
 
 
 class NotifyActor(NotifyDocumentPart):
@@ -373,19 +430,19 @@ class NotifyActor(NotifyDocumentPart):
 
     @property
     def name(self) -> str:
-        return self._stream.get_property("name")
+        return self.get_property("name")
 
     @name.setter
     def name(self, value: str):
-        self._stream.set_property("name", value)
+        self.set_property("name", value)
 
 
 class NotifyItem(NotifyDocumentPart):
 
     @property
     def media_type(self) -> str:
-        return self._stream.get_property("mediaType")
+        return self.get_property("mediaType")
 
     @media_type.setter
     def media_type(self, value: str):
-        self._stream.set_property("mediaType", value)
+        self.set_property("mediaType", value)

@@ -8,7 +8,8 @@ from coarnotify.models import (
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
-    Reject
+    Reject,
+    RequestEndorsement
 )
 
 from coarnotify.test.fixtures import (
@@ -18,7 +19,8 @@ from coarnotify.test.fixtures import (
     AnnounceRelationshipFixtureFactory,
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
-    RejectFixtureFactory
+    RejectFixtureFactory,
+    RequestEndorsementFixtureFactory
 )
 
 INBOX = "http://localhost:5005/inbox"
@@ -83,6 +85,15 @@ class TestClient(TestCase):
         client = COARNotifyClient(INBOX)
         source = RejectFixtureFactory.source()
         ae = Reject(source)
+        resp = client.send(ae)
+        assert resp.action == resp.CREATED
+        assert resp.location is not None
+        print(resp.location)
+
+    def test_08_request_endorsement(self):
+        client = COARNotifyClient(INBOX)
+        source = RequestEndorsementFixtureFactory.source()
+        ae = RequestEndorsement(source)
         resp = client.send(ae)
         assert resp.action == resp.CREATED
         assert resp.location is not None
