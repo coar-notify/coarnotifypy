@@ -11,6 +11,8 @@ NOTIFY_NAMESPACE = "https://purl.org/coar/notify"
 
 class NotifyProperties(ConstantList):
     INBOX = ("inbox", NOTIFY_NAMESPACE)
+    CITE_AS = ("ietf:cite-as", NOTIFY_NAMESPACE)
+    ITEM = ("ietf:item", NOTIFY_NAMESPACE)
 
 
 # VALIDATORS = {
@@ -23,15 +25,18 @@ CONTEXT_VALIDATORS = {
         "default": validate.absolute_uri,
         "context": {
             Properties.OBJECT: {
-                "default": validate.url
+                "default": validate.url     # For AnnounceEndorsement, AnnounceServiceResult this is not specified clearly, AnnounceRelationship says URI
             },
-            "ietf:item": {
+            Properties.CONTEXT: {
                 "default": validate.url
             },
             Properties.ORIGIN: {
                 "default": validate.url
             },
             Properties.TARGET: {
+                "default": validate.url
+            },
+            NotifyProperties.ITEM: {
                 "default": validate.url
             }
         }
@@ -40,7 +45,7 @@ CONTEXT_VALIDATORS = {
         "default": None,
         "context": {
             Properties.ACTOR: {
-                "default": validate.one_of(["Service", "Application", "Group", "Organization", "Person"])
+                "default": validate.one_of(["Service", "Application", "Group", "Organization", "Person"])   # is this a MUST or a SHOULD?
             },
             Properties.OBJECT: {
                 "default": validate.contains("sorg:AboutPage"),
@@ -50,14 +55,29 @@ CONTEXT_VALIDATORS = {
             },
             Properties.TARGET: {
                 "default": validate.contains("Service")
+            },
+            Properties.CONTEXT: {
+                "default": validate.contains("sorg:AboutPage")
             }
         }
     },
-    "ietf:cite-as": {
+    NotifyProperties.CITE_AS: {
         "default": validate.url
     },
     NotifyProperties.INBOX: {
         "default": validate.url
+    },
+    Properties.IN_REPLY_TO: {
+        "default": validate.absolute_uri
+    },
+    Properties.SUBJECT_TRIPLE: {
+        "default": validate.absolute_uri
+    },
+    Properties.OBJECT_TRIPLE: {
+        "default": validate.absolute_uri
+    },
+    Properties.RELATIONSHIP_TRIPLE: {
+        "default": validate.absolute_uri
     }
 }
 

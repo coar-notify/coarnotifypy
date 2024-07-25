@@ -6,7 +6,7 @@ TODO
 
 1. Create a new module for the model in `coarnotify.models` (for example `coarnotify.models.announce_ingest`)
 2. Create the new model class in the new module (for example, `AnnounceIngest`) and implement as needed
-3. Review the validation requirements of the new model and ensure validation is updated
+3. Review the validation requirements of the new model and ensure validation is updated (update the model spreadsheet)
 4. Add the new model to `coarnotify.models.__init__.py` so it can be imported from `coarnotify.models`
 5. Add the new model to the factory list of models in `coarnotify.common.COARNotifyFactory.MODELS`
 6. Create a fixture and fixture factory in `coarnotify.test.fixtures` (for example, `coarnotify.test.fixtures.announce_ingest`)

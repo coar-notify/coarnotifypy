@@ -15,6 +15,9 @@ class Properties(ConstantList):
     IN_REPLY_TO = ("inReplyTo", ACTIVITY_STREAMS_NAMESPACE)
     CONTEXT = ("context", ACTIVITY_STREAMS_NAMESPACE)
     SUMMARY = ("summary", ACTIVITY_STREAMS_NAMESPACE)
+    SUBJECT_TRIPLE = ("as:subject", ACTIVITY_STREAMS_NAMESPACE)
+    OBJECT_TRIPLE = ("as:object", ACTIVITY_STREAMS_NAMESPACE)
+    RELATIONSHIP_TRIPLE = ("as:relationship", ACTIVITY_STREAMS_NAMESPACE)
 
 
 class ActivityStream:
