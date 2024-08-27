@@ -17,12 +17,14 @@ from coarnotify.test.fixtures import (
     AnnounceIngestFixtureFactory,
     AnnounceRelationshipFixtureFactory,
     AnnounceReviewFixtureFactory,
-    AnnounceServiceResultFixtureFactory
+    AnnounceServiceResultFixtureFactory,
+    URIFixtureFactory
 )
 
 from coarnotify.exceptions import ValidationError
 from coarnotify.activitystreams2.activitystreams2 import Properties
 from coarnotify.models.notify import NotifyProperties
+from coarnotify import validate
 
 
 class TestValidate(TestCase):
@@ -155,4 +157,65 @@ class TestValidate(TestCase):
         n.id = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
         n.id = "https://generic-service.com/system"
         n.id = "https://generic-service.com/system/inbox/"
+
+    def test_07_validate_url(self):
+        urls = URIFixtureFactory.generate(schemes=["http", "https"])
+        # print(urls)
+
+        for url in urls:
+            # print(url)
+            assert validate.url(url) is True
+
+        with self.assertRaises(ValueError):
+            validate.url("ftp://example.com")
+        with self.assertRaises(ValueError):
+            validate.url("http:/example.com")
+        with self.assertRaises(ValueError):
+            validate.url("http://domain/path")
+        with self.assertRaises(ValueError):
+            validate.url("http://example.com/path^wrong")
+
+    def test_one_of(self):
+        values = ["a", "b", "c"]
+        validator = validate.one_of(values)
+        assert validator("a") is True
+        assert validator("b") is True
+        assert validator("c") is True
+
+        with self.assertRaises(ValueError):
+            validator("d")
+
+        actor = NotifyActor()
+        with self.assertRaises(ValueError):
+            actor.type = "SomethingElse"
+
+        source = AnnounceEndorsementFixtureFactory.source()
+        asource = source.get("actor")
+        asource["type"] = "SomethingElse"
+        with self.assertRaises(ValidationError):
+            NotifyActor(asource, validation_context=Properties.ACTOR)
+
+        source = AnnounceEndorsementFixtureFactory.source()
+        source["actor"]["type"] = "SomethingElse"
+        with self.assertRaises(ValidationError):
+            AnnounceEndorsement(source)
+
+    def test_contains(self):
+        validator = validate.contains("a")
+        assert validator(["a", "b", "c"]) is True
+
+        with self.assertRaises(ValueError):
+            validator(["b", "c", "d"])
+
+        source = AnnounceEndorsementFixtureFactory.source()
+        osource = source.get("origin")
+        osource["type"] = "SomethingElse"
+        with self.assertRaises(ValidationError):
+            NotifyActor(osource, validation_context=Properties.ORIGIN)
+
+        source = AnnounceEndorsementFixtureFactory.source()
+        source["origin"]["type"] = "SomethingElse"
+        with self.assertRaises(ValidationError):
+            AnnounceEndorsement(source)
+
 

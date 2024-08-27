@@ -1,5 +1,7 @@
+from urllib.parse import urlparse
 import re
 
+REQUIRED_MESSAGE = "`{x}` is a required field"
 
 class Validator:
     def __init__(self, rules):
@@ -15,14 +17,19 @@ class Validator:
         return default
 
 
-REQUIRED_MESSAGE = "`{x}` is a required field"
+#############################################
+## URI validator
 
 URI_RE = r'^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'
 SCHEME = re.compile(r'^[a-zA-Z][a-zA-Z0-9+\-.]*$')
+IPv6 = re.compile(r"(?:^|(?<=\s))\[{0,1}(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))]{0,1}(?=\s|$)")
+
 HOSTPORT = re.compile(
         r'^(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
         r'localhost|' #localhost...
-        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})' # ...or ipv4
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|' # ...or ipv4
+        r"(?:^|(?<=\s))(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(?=\s|$)"
+        r')' 
         r'(?::\d+)?$', # optional port
         re.IGNORECASE)
 
@@ -37,17 +44,15 @@ FREE = re.compile("^[" + URIC + "]+$")
 
 USERINFO = re.compile("^[" + UNRESERVED + "%;:&=+$,]*$")
 
-IPv6 = re.compile(r"(?:^|(?<=\s))(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(?=\s|$)")
-
 
 def absolute_uri(uri):
     m = re.match(URI_RE, uri)
     if m is None:
         raise ValueError("Invalid URI")
 
-    # Recommend that we require a scheme for the URI
-    # if m.group(2) is None:
-    #     raise ValueError("URI requires a scheme (this may be a relative rather than absolute URI)")
+    # URI must be absolute, so requires a scheme
+    if m.group(2) is None:
+        raise ValueError("URI requires a scheme (this may be a relative rather than absolute URI)")
 
     scheme = m.group(2)
     authority = m.group(4)
@@ -68,9 +73,22 @@ def absolute_uri(uri):
         if userinfo is not None:
             if not USERINFO.match(userinfo):
                 raise ValueError(f"Invalid URI authority `{authority}`")
-        if hostport.startswith("[") and hostport.endswith("]"):
-            if not IPv6.match(hostport[1:-1]):
+        # determine if the domain is ipv6
+        if hostport.startswith("["):    # ipv6 with an optional port
+            port_separator = hostport.rfind("]:")
+            port = None
+            if port_separator != -1:
+                port = hostport[port_separator+2:]
+                host = hostport[1:port_separator]
+            else:
+                host = hostport[1:-1]
+            if not IPv6.match(host):
                 raise ValueError(f"Invalid URI authority `{authority}`")
+            if port is not None:
+                try:
+                    int(port)
+                except ValueError:
+                    raise ValueError(f"Invalid URI port `{port}`")
         else:
             if not HOSTPORT.match(hostport):
                 raise ValueError(f"Invalid URI authority `{authority}`")
@@ -89,14 +107,21 @@ def absolute_uri(uri):
 
     return True
 
+###############################################
 
-def url(uri):
+
+def url(url):
+    absolute_uri(url)
+    o = urlparse(url)
+    if o.scheme not in ["http", "https"]:
+        raise ValueError("URL scheme must be http or https")
+    if o.netloc is None or o.netloc == "":
+        raise ValueError("Does not appear to be a valid URL")
     return True
 
 
 def one_of(values):
     def validate(x):
-        return True
         if x not in values:
             raise ValueError(f"`{x}` is not one of the valid values: {values}")
         return True
@@ -105,7 +130,6 @@ def one_of(values):
 
 def contains(value):
     def validate(x):
-        return True
         if value not in x:
             raise ValueError(f"`{x}` does not contain the required value: {value}")
         return True

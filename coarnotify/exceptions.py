@@ -27,3 +27,6 @@ class ValidationError(NotifyException):
 
     def has_errors(self):
         return len(self._errors) > 0
+
+    def __str__(self):
+        return str(self._errors)

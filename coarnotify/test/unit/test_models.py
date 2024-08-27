@@ -43,7 +43,7 @@ class TestModels(TestCase):
         assert n.context is None
 
         # now check the setters
-        n.id = "whatever"
+        n.id = "urn:whatever"
         n.type = "Other"
 
         origin = NotifyService()
@@ -66,14 +66,14 @@ class TestModels(TestCase):
         assert actor.type == actor.DEFAULT_TYPE
         n.actor = actor
 
-        n.in_reply_to = "irt"
+        n.in_reply_to = "urn:irt"
 
         context = NotifyObject()
         assert context.id is not None
         assert context.type is None
         n.context = context
 
-        assert n.id == "whatever"
+        assert n.id == "urn:whatever"
         assert n.type == "Other"
         assert n.origin.id == origin.id
         assert n.origin.type == origin.DEFAULT_TYPE
@@ -85,7 +85,7 @@ class TestModels(TestCase):
         assert n.object.type is None
         assert n.actor.id == actor.id
         assert n.actor.type == actor.DEFAULT_TYPE
-        assert n.in_reply_to == "irt"
+        assert n.in_reply_to == "urn:irt"
         assert n.context.id == context.id
         assert n.context.type is None
 
@@ -111,9 +111,9 @@ class TestModels(TestCase):
         assert n.context.item.id == source["context"]["ietf:item"]["id"]
 
         # now check we can rewrite some properties
-        n.id = "whatever"
+        n.id = "urn:whatever"
         n.type = "Other"
-        assert n.id == "whatever"
+        assert n.id == "urn:whatever"
         assert n.type == "Other"
 
     def test_03_notify_operations(self):

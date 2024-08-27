@@ -15,18 +15,14 @@ class NotifyProperties(ConstantList):
     ITEM = ("ietf:item", NOTIFY_NAMESPACE)
 
 
-# VALIDATORS = {
-#     Properties.ID: validate.absolute_uri,
-#     Properties.ID[0]: validate.absolute_uri,
-# }
-
-CONTEXT_VALIDATORS = {
+VALIDATION_RULES = {
     Properties.ID: {
         "default": validate.absolute_uri,
         "context": {
-            Properties.OBJECT: {
-                "default": validate.url     # For AnnounceEndorsement, AnnounceServiceResult this is not specified clearly, AnnounceRelationship says URI
-            },
+            # In some places this is a URI and in others an HTTP URI - unclear of the requirement
+            # Properties.OBJECT: {
+            #     "default": validate.url     # For AnnounceEndorsement, AnnounceServiceResult this is not specified clearly, AnnounceRelationship says URI
+            # },
             Properties.CONTEXT: {
                 "default": validate.url
             },
@@ -81,7 +77,7 @@ CONTEXT_VALIDATORS = {
     }
 }
 
-VALIDATORS = validate.Validator(CONTEXT_VALIDATORS)
+VALIDATORS = validate.Validator(VALIDATION_RULES)
 
 
 class NotifyBase:
@@ -159,6 +155,9 @@ class NotifyBase:
 
         if self.type is None:
             ve.add_error(Properties.TYPE, validate.REQUIRED_MESSAGE.format(x=Properties.TYPE[0]))
+        else:
+            self.register_property_validation_error(ve, Properties.TYPE, self.type)
+
         if ve.has_errors():
             raise ve
         return True
@@ -331,6 +330,21 @@ class NotifyDocument(NotifyBase):
                 self.object.validate()
             except ValidationError as subve:
                 ve.add_nested_errors(Properties.OBJECT, subve)
+
+        if self.actor is not None:
+            try:
+                self.actor.validate()
+            except ValidationError as subve:
+                ve.add_nested_errors(Properties.ACTOR, subve)
+
+        if self.in_reply_to is not None:
+            self.register_property_validation_error(ve, Properties.IN_REPLY_TO, self.in_reply_to)
+
+        if self.context is not None:
+            try:
+                self.context.validate()
+            except ValidationError as subve:
+                ve.add_nested_errors(Properties.CONTEXT, subve)
 
         if ve.has_errors():
             raise ve

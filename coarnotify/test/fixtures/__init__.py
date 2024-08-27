@@ -6,3 +6,4 @@ from coarnotify.test.fixtures.announce_review import AnnounceReviewFixtureFactor
 from coarnotify.test.fixtures.announce_service_result import AnnounceServiceResultFixtureFactory
 from coarnotify.test.fixtures.reject import RejectFixtureFactory
 from coarnotify.test.fixtures.request_endorsement import RequestEndorsementFixtureFactory
+from coarnotify.test.fixtures.uris import URIFixtureFactory
