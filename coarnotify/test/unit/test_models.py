@@ -12,7 +12,8 @@ from coarnotify.models import (
     AnnounceReview,
     AnnounceServiceResult,
     Reject,
-    RequestEndorsement
+    RequestEndorsement,
+    RequestIngest
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -23,7 +24,8 @@ from coarnotify.test.fixtures import (
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
-    RequestEndorsementFixtureFactory
+    RequestEndorsementFixtureFactory,
+    RequestIngestFixtureFactory
 )
 
 
@@ -372,7 +374,7 @@ class TestModels(TestCase):
         assert rej.type == "Reject"
 
     def test_11_request_endorsement(self):
-        re = Reject()
+        re = RequestEndorsement()
 
         source = RequestEndorsementFixtureFactory.source()
         compare = deepcopy(source)
@@ -402,3 +404,36 @@ class TestModels(TestCase):
         assert re.target.type == "Service"
 
         assert re.type == ["Offer", "coar-notify:EndorsementAction"]
+
+    def test_12_request_ingest(self):
+        ri = RequestIngest()
+
+        source = RequestIngestFixtureFactory.source()
+        compare = deepcopy(source)
+        ri = RequestIngest(source)
+
+        assert ri.validate() is True
+        assert ri.to_jsonld() == compare
+
+        assert ri.actor.id == "https://overlay-journal.com"
+        assert ri.actor.name == "Overlay Journal"
+        assert ri.actor.type == "Service"
+
+        assert ri.id == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+
+        obj = ri.object
+        assert obj.id == "https://research-organisation.org/repository/preprint/201203/421/"
+        assert obj.cite_as == "https://doi.org/10.5555/12345680"
+        assert obj.type == "sorg:AboutPage"
+        assert obj.item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
+        assert obj.item.media_type == "application/pdf"
+        assert obj.item.type == ["Article", "sorg:ScholarlyArticle"]
+
+        assert ri.origin.id == "https://overlay-journal.com/system"
+        assert ri.origin.inbox == "https://overlay-journal.com/inbox/"
+        assert ri.origin.type == "Service"
+
+        assert ri.target.id == "https://research-organisation.org/repository"
+        assert ri.target.inbox == "https://research-organisation.org/inbox/"
+        assert ri.target.type == "Service"
+

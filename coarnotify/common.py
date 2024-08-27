@@ -8,7 +8,8 @@ from coarnotify.models import (
     AnnounceReview,
     AnnounceServiceResult,
     Reject,
-    RequestEndorsement
+    RequestEndorsement,
+    RequestIngest
 )
 from coarnotify.exceptions import NotifyException
 
@@ -23,7 +24,8 @@ class COARNotifyFactory:
         AnnounceReview,
         AnnounceServiceResult,
         Reject,
-        RequestEndorsement
+        RequestEndorsement,
+        RequestIngest
     ]
 
     @classmethod

@@ -14,3 +14,4 @@ TODO
 8. Add a unit test for the new model in `coarnotify.test.unit.test_models`, and confirm it works
 9. Add a unit test for the model factory in `coarnotify.test.unit.test_factory`, and confirm it works
 10. Add an integration test for the new model in `coarnotify.test.integration.test_client`, and confirm it works
+11. Add validation tests for the new model in `coarnotify.test.unit.test_validate`, and confirm they work

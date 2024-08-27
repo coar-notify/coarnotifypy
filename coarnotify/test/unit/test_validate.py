@@ -175,7 +175,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValueError):
             validate.url("http://example.com/path^wrong")
 
-    def test_one_of(self):
+    def test_08_one_of(self):
         values = ["a", "b", "c"]
         validator = validate.one_of(values)
         assert validator("a") is True
@@ -200,7 +200,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValidationError):
             AnnounceEndorsement(source)
 
-    def test_contains(self):
+    def test_09_contains(self):
         validator = validate.contains("a")
         assert validator(["a", "b", "c"]) is True
 
@@ -218,4 +218,9 @@ class TestValidate(TestCase):
         with self.assertRaises(ValidationError):
             AnnounceEndorsement(source)
 
+    ########################################
+    ## validation methods for specific patterns
+
+    def test_accept_validate(self):
+        pass
 
