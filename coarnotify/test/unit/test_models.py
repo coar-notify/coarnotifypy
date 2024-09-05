@@ -13,7 +13,8 @@ from coarnotify.models import (
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestIngest
+    RequestIngest,
+    RequestReview
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -25,7 +26,8 @@ from coarnotify.test.fixtures import (
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
-    RequestIngestFixtureFactory
+    RequestIngestFixtureFactory,
+    RequestReviewFixtureFactory
 )
 
 
@@ -436,4 +438,38 @@ class TestModels(TestCase):
         assert ri.target.id == "https://research-organisation.org/repository"
         assert ri.target.inbox == "https://research-organisation.org/inbox/"
         assert ri.target.type == "Service"
+
+    def test_13_request_review(self):
+        ri = RequestReview()
+
+        source = RequestReviewFixtureFactory.source()
+        compare = deepcopy(source)
+        ri = RequestReview(source)
+
+        assert ri.validate() is True
+        assert ri.to_jsonld() == compare
+
+        assert ri.actor.id == "https://orcid.org/0000-0002-1825-0097"
+        assert ri.actor.name == "Josiah Carberry"
+        assert ri.actor.type == "Person"
+
+        assert ri.id == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
+
+        obj = ri.object
+        assert obj.id == "https://research-organisation.org/repository/preprint/201203/421/"
+        assert obj.cite_as == "https://doi.org/10.5555/12345680"
+        assert obj.type == "sorg:AboutPage"
+        assert obj.item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
+        assert obj.item.media_type == "application/pdf"
+        assert obj.item.type == ["Article", "sorg:ScholarlyArticle"]
+
+        assert ri.origin.id == "https://research-organisation.org/repository"
+        assert ri.origin.inbox == "https://research-organisation.org/inbox/"
+        assert ri.origin.type == "Service"
+
+        assert ri.target.id == "https://review-service.com/system"
+        assert ri.target.inbox == "https://review-service.com/inbox/"
+        assert ri.target.type == "Service"
+
+        assert ri.type == ["Offer", "coar-notify:ReviewAction"]
 

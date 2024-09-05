@@ -10,7 +10,8 @@ from coarnotify.models import (
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestIngest
+    RequestIngest,
+    RequestReview
 )
 
 from coarnotify.test.fixtures import (
@@ -22,7 +23,8 @@ from coarnotify.test.fixtures import (
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
-    RequestIngestFixtureFactory
+    RequestIngestFixtureFactory,
+    RequestReviewFixtureFactory
 )
 
 INBOX = "http://localhost:5005/inbox"
@@ -102,6 +104,15 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_08_request_ingest(self):
+        client = COARNotifyClient(INBOX)
+        source = RequestIngestFixtureFactory.source()
+        ae = RequestIngest(source)
+        resp = client.send(ae)
+        assert resp.action == resp.CREATED
+        assert resp.location is not None
+        print(resp.location)
+
+    def test_09_request_review(self):
         client = COARNotifyClient(INBOX)
         source = RequestIngestFixtureFactory.source()
         ae = RequestIngest(source)

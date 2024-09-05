@@ -9,3 +9,4 @@ from coarnotify.test.fixtures.reject import RejectFixtureFactory
 from coarnotify.test.fixtures.request_endorsement import RequestEndorsementFixtureFactory
 from coarnotify.test.fixtures.uris import URIFixtureFactory
 from coarnotify.test.fixtures.request_ingest import RequestIngestFixtureFactory
+from coarnotify.test.fixtures.request_review import RequestReviewFixtureFactory

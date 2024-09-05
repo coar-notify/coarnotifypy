@@ -9,7 +9,8 @@ from coarnotify.models import (
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestIngest
+    RequestIngest,
+    RequestReview
 )
 from coarnotify.common import COARNotifyFactory
 
@@ -22,7 +23,8 @@ from coarnotify.test.fixtures import (
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
-    RequestIngestFixtureFactory
+    RequestIngestFixtureFactory,
+    RequestReviewFixtureFactory
 )
 
 
@@ -107,12 +109,22 @@ class TestFactory(TestCase):
 
         assert ar.id == source["id"]
 
-    def test_09_request_endorsement(self):
+    def test_09_request_ingest(self):
         ar = COARNotifyFactory.get_by_types(RequestIngest.TYPE)
         assert ar == RequestIngest
 
         source = RequestIngestFixtureFactory.source()
         ar = COARNotifyFactory.get_by_object(source)
         assert isinstance(ar, RequestIngest)
+
+        assert ar.id == source["id"]
+
+    def test_10_request_review(self):
+        ar = COARNotifyFactory.get_by_types(RequestReview.TYPE)
+        assert ar == RequestReview
+
+        source = RequestReviewFixtureFactory.source()
+        ar = COARNotifyFactory.get_by_object(source)
+        assert isinstance(ar, RequestReview)
 
         assert ar.id == source["id"]

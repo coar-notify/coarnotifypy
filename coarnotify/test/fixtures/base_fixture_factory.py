@@ -12,16 +12,19 @@ class BaseFixtureFactory:
         source["type"] = "NotAValidType"
         return source
 
+    @classmethod
     def _actor_invalid(self, source):
         source["actor"]["id"] = "not a uri"
         source["actor"]["type"] = "NotAValidType"
         return source
 
+    @classmethod
     def _object_invalid(self, source):
         source["object"]["id"] = "not a uri"
         source["object"]["cite_as"] = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
         return source
 
+    @classmethod
     def _context_invalid(self, source):
         source["context"]["id"] = "not a uri"
         source["context"]["type"] = "NotAValidType"
