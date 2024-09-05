@@ -1,3 +1,4 @@
+from coarnotify.test.fixtures.base_fixture_factory import BaseFixtureFactory
 from coarnotify.test.fixtures.accept import AcceptFixtureFactory
 from coarnotify.test.fixtures.announce_endorsement import AnnounceEndorsementFixtureFactory
 from coarnotify.test.fixtures.announce_ingest import AnnounceIngestFixtureFactory

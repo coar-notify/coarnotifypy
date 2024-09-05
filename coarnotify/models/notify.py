@@ -38,14 +38,14 @@ VALIDATION_RULES = {
         }
     },
     Properties.TYPE: {
-        "default": None,
+        "default": validate.type_checker,
         "context": {
-            Properties.ACTOR: {
-                "default": validate.one_of(["Service", "Application", "Group", "Organization", "Person"])   # is this a MUST or a SHOULD?
-            },
-            Properties.OBJECT: {
-                "default": validate.contains("sorg:AboutPage"),
-            },
+            # Properties.ACTOR: {
+            #     "default": validate.one_of(["Service", "Application", "Group", "Organization", "Person"])   # is this a MUST or a SHOULD?
+            # },
+            # Properties.OBJECT: {
+            #     "default": validate.contains("sorg:AboutPage"),
+            # },
             Properties.ORIGIN: {
                 "default": validate.contains("Service")
             },
@@ -169,7 +169,7 @@ class NotifyBase:
             validator = self.validators.get(prop_name, self._validation_context)
             if validator is not None:
                 try:
-                    validator(value)
+                    validator(self, value)
                 except ValueError as ve:
                     if raise_error:
                         raise ve
@@ -422,11 +422,11 @@ class NotifyObject(NotifyDocumentPart):
 
     @property
     def cite_as(self) -> str:
-        return self.get_property("ietf:cite-as")
+        return self.get_property(NotifyProperties.CITE_AS)
 
     @cite_as.setter
     def cite_as(self, value: str):
-        self.set_property("ietf:cite-as", value)
+        self.set_property(NotifyProperties.CITE_AS, value)
 
     @property
     def item(self) -> Union["NotifyItem", None]:

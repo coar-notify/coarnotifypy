@@ -164,26 +164,26 @@ class TestValidate(TestCase):
 
         for url in urls:
             # print(url)
-            assert validate.url(url) is True
+            assert validate.url(None, url) is True
 
         with self.assertRaises(ValueError):
-            validate.url("ftp://example.com")
+            validate.url(None, "ftp://example.com")
         with self.assertRaises(ValueError):
-            validate.url("http:/example.com")
+            validate.url(None, "http:/example.com")
         with self.assertRaises(ValueError):
-            validate.url("http://domain/path")
+            validate.url(None, "http://domain/path")
         with self.assertRaises(ValueError):
-            validate.url("http://example.com/path^wrong")
+            validate.url(None, "http://example.com/path^wrong")
 
     def test_08_one_of(self):
         values = ["a", "b", "c"]
         validator = validate.one_of(values)
-        assert validator("a") is True
-        assert validator("b") is True
-        assert validator("c") is True
+        assert validator(None, "a") is True
+        assert validator(None, "b") is True
+        assert validator(None, "c") is True
 
         with self.assertRaises(ValueError):
-            validator("d")
+            validator(None, "d")
 
         actor = NotifyActor()
         with self.assertRaises(ValueError):
@@ -202,10 +202,10 @@ class TestValidate(TestCase):
 
     def test_09_contains(self):
         validator = validate.contains("a")
-        assert validator(["a", "b", "c"]) is True
+        assert validator(None, ["a", "b", "c"]) is True
 
         with self.assertRaises(ValueError):
-            validator(["b", "c", "d"])
+            validator(None, ["b", "c", "d"])
 
         source = AnnounceEndorsementFixtureFactory.source()
         osource = source.get("origin")
@@ -221,6 +221,89 @@ class TestValidate(TestCase):
     ########################################
     ## validation methods for specific patterns
 
-    def test_accept_validate(self):
-        pass
+    def _base_validate(self, a):
+        # now try to apply invalid values to it
+        with self.assertRaises(ValueError):
+            a.id = "not a uri"
 
+        with self.assertRaises(ValueError):
+            a.in_reply_to = "not a uri"
+
+        with self.assertRaises(ValueError):
+            # not an HTTP URI
+            a.origin.id = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
+
+        with self.assertRaises(ValueError):
+            a.origin.inbox = "not a uri"
+
+        with self.assertRaises(ValueError):
+            a.origin.type = "NotAValidType"
+
+        with self.assertRaises(ValueError):
+            # not an HTTP URI
+            a.target.id = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
+
+        with self.assertRaises(ValueError):
+            a.target.inbox = "not a uri"
+
+        with self.assertRaises(ValueError):
+            a.target.type = "NotAValidType"
+
+        with self.assertRaises(ValueError):
+            a.type = "NotAValidType"
+
+    def _actor_validate(self, a):
+        with self.assertRaises(ValueError):
+            a.actor.id = "not a uri"
+
+        with self.assertRaises(ValueError):
+            a.actor.type = "NotAValidType"
+
+    def _object_validate(self, a):
+        with self.assertRaises(ValueError):
+            a.object.id = "not a uri"
+
+        with self.assertRaises(ValueError):
+            a.object.cite_as = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
+
+    def _context_validate(self, a):
+        with self.assertRaises(ValueError):
+            a.context.id = "not a uri"
+
+        with self.assertRaises(ValueError):
+            a.context.type = "NotAValidType"
+
+        with self.assertRaises(ValueError):
+            a.context.cite_as = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
+
+    def test_10_accept_validate(self):
+        # make a valid one
+        source = AcceptFixtureFactory.source()
+        a = Accept(source)
+
+        self._base_validate(a)
+
+        # now make one with fully invalid data
+        isource = AcceptFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = Accept(isource)
+
+    def test_11_announce_endorsement_validate(self):
+        # make a valid one
+        source = AnnounceEndorsementFixtureFactory.source()
+        a = AnnounceEndorsement(source)
+
+        self._base_validate(a)
+
+        with self.assertRaises(ValueError):
+            # one of the required types, but not both of them
+            a.type = "Announce"
+
+        self._actor_validate(a)
+        self._object_validate(a)
+        self._context_validate(a)
+
+        # now make one with fully invalid data
+        isource = AnnounceEndorsementFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = AnnounceEndorsement(isource)

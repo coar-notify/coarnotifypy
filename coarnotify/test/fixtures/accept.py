@@ -1,10 +1,17 @@
 from copy import deepcopy
+from coarnotify.test.fixtures import BaseFixtureFactory
 
 
-class AcceptFixtureFactory:
+class AcceptFixtureFactory(BaseFixtureFactory):
     @classmethod
     def source(cls):
         return deepcopy(ACCEPT)
+
+    @classmethod
+    def invalid(cls):
+        source = cls.source()
+        cls._base_invalid(source)
+        return source
 
 
 ACCEPT = {
@@ -23,12 +30,12 @@ ACCEPT = {
     # awaiting confirmation on the use of object in Reject
     "object": {
         "id": "urn:uuid:4fb3af44-1111-4226-9475-2d09c2d8d9e0",
-        "type": "Offer"
+        "type": "sorg:AboutPage"
     },
     "target": {
         "id": "https://some-organisation.org",
         "inbox": "https://some-organisation.org/inbox/",
-        "type": "Organization"
+        "type": ["Organization", "Service"]
     },
     "type": "Accept"
 }

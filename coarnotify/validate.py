@@ -45,7 +45,7 @@ FREE = re.compile("^[" + URIC + "]+$")
 USERINFO = re.compile("^[" + UNRESERVED + "%;:&=+$,]*$")
 
 
-def absolute_uri(uri):
+def absolute_uri(obj, uri):
     m = re.match(URI_RE, uri)
     if m is None:
         raise ValueError("Invalid URI")
@@ -110,8 +110,8 @@ def absolute_uri(uri):
 ###############################################
 
 
-def url(url):
-    absolute_uri(url)
+def url(obj, url):
+    absolute_uri(obj, url)
     o = urlparse(url)
     if o.scheme not in ["http", "https"]:
         raise ValueError("URL scheme must be http or https")
@@ -121,7 +121,7 @@ def url(url):
 
 
 def one_of(values):
-    def validate(x):
+    def validate(obj, x):
         if x not in values:
             raise ValueError(f"`{x}` is not one of the valid values: {values}")
         return True
@@ -129,8 +129,33 @@ def one_of(values):
 
 
 def contains(value):
-    def validate(x):
-        if value not in x:
-            raise ValueError(f"`{x}` does not contain the required value: {value}")
+    values = value
+    if not isinstance(values, list):
+        values = [values]
+    values = set(values)
+
+    def validate(obj, x):
+        if not isinstance(x, list):
+            x = [x]
+        x = set(x)
+
+        intersection = x.intersection(values)
+        if intersection != values:
+            raise ValueError(f"`{x}` does not contain the required value(s): {values}")
         return True
+
     return validate
+
+
+def type_checker(obj, value):
+    if hasattr(obj, "ALLOWED_TYPES"):
+        allowed = obj.ALLOWED_TYPES
+        if len(allowed) == 0:
+            return True
+        validator = one_of(allowed)
+        validator(obj, value)
+    elif hasattr(obj, "TYPE"):
+        ty = obj.TYPE
+        validator = contains(ty)
+        validator(obj, value)
+    return True

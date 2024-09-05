@@ -1,10 +1,19 @@
 from copy import deepcopy
+from coarnotify.test.fixtures import BaseFixtureFactory
 
 
-class AnnounceEndorsementFixtureFactory:
+class AnnounceEndorsementFixtureFactory(BaseFixtureFactory):
     @classmethod
     def source(cls):
         return deepcopy(ANNOUNCE_ENDORSEMENT)
+
+    @classmethod
+    def invalid(cls):
+        source = cls.source()
+
+        cls._base_invalid(source)
+
+        return source
 
 
 ANNOUNCE_ENDORSEMENT = {
