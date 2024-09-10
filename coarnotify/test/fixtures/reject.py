@@ -22,7 +22,7 @@ REJECT = {
     "target": {
         "id": "https://some-organisation.org",
         "inbox": "https://some-organisation.org/inbox/",
-        "type": "Organization"
+        "type": ["Organization", "Service"]
     },
     "type": "Reject",
     # FIXME: this is not part of the spec, added to pass validation checks,

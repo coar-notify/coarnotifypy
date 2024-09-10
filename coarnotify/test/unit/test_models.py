@@ -48,6 +48,7 @@ class TestModels(TestCase):
 
         # now check the setters
         n.id = "urn:whatever"
+        n.ALLOWED_TYPES = ["Object", "Other"]   # this is a hack to test the setter
         n.type = "Other"
 
         origin = NotifyService()
@@ -116,6 +117,7 @@ class TestModels(TestCase):
 
         # now check we can rewrite some properties
         n.id = "urn:whatever"
+        n.ALLOWED_TYPES = ["Object", "Other"]  # this is a hack to test the setter
         n.type = "Other"
         assert n.id == "urn:whatever"
         assert n.type == "Other"
@@ -149,11 +151,11 @@ class TestModels(TestCase):
         assert a.origin.type == "Service"
 
         assert a.object.id == "urn:uuid:4fb3af44-1111-4226-9475-2d09c2d8d9e0"
-        assert a.object.type == "Offer"
+        assert a.object.type == "sorg:AboutPage"
 
         assert a.target.id == "https://some-organisation.org"
         assert a.target.inbox == "https://some-organisation.org/inbox/"
-        assert a.target.type == "Organization"
+        assert a.target.type == ["Organization", "Service"]
 
         assert a.type == "Accept"
 
@@ -371,7 +373,7 @@ class TestModels(TestCase):
 
         assert rej.target.id == "https://some-organisation.org"
         assert rej.target.inbox == "https://some-organisation.org/inbox/"
-        assert rej.target.type == "Organization"
+        assert rej.target.type == ["Organization", "Service"]
 
         assert rej.type == "Reject"
 

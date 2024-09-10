@@ -1,4 +1,4 @@
-from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties
+from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties, ActivityStreamsTypes
 from coarnotify.constants import ConstantList
 from coarnotify import validate
 from coarnotify.exceptions import ValidationError
@@ -13,7 +13,17 @@ class NotifyProperties(ConstantList):
     INBOX = ("inbox", NOTIFY_NAMESPACE)
     CITE_AS = ("ietf:cite-as", NOTIFY_NAMESPACE)
     ITEM = ("ietf:item", NOTIFY_NAMESPACE)
+    NAME = "name"
+    MEDIA_TYPE = "mediaType"
 
+
+class NotifyTypes(ConstantList):
+    ENDORSMENT_ACTION = "coar-notify:EndorsementAction"
+    INGEST_ACTION = "coar-notify:IngestAction"
+    RELATIONSHIP_ACTION = "coar-notify:RelationshipAction"
+    REVIEW_ACTION = "coar-notify:ReviewAction"
+
+    ABOUT_PAGE = "sorg:AboutPage"
 
 VALIDATION_RULES = {
     Properties.ID: {
@@ -47,13 +57,13 @@ VALIDATION_RULES = {
             #     "default": validate.contains("sorg:AboutPage"),
             # },
             Properties.ORIGIN: {
-                "default": validate.contains("Service")
+                "default": validate.contains(ActivityStreamsTypes.SERVICE)
             },
             Properties.TARGET: {
-                "default": validate.contains("Service")
+                "default": validate.contains(ActivityStreamsTypes.SERVICE)
             },
             Properties.CONTEXT: {
-                "default": validate.contains("sorg:AboutPage")
+                "default": validate.contains(NotifyTypes.ABOUT_PAGE)
             }
         }
     },
@@ -187,7 +197,7 @@ class NotifyBase:
 
 
 class NotifyDocument(NotifyBase):
-    TYPE = "Object"
+    TYPE = ActivityStreamsTypes.OBJECT
 
     def __init__(self, stream: Union[ActivityStream, dict] = None,
                  validate_stream_on_construct=True,
@@ -391,7 +401,7 @@ class NotifyDocumentPart(NotifyBase):
 
 
 class NotifyService(NotifyDocumentPart):
-    DEFAULT_TYPE = "Service"
+    DEFAULT_TYPE = ActivityStreamsTypes.SERVICE
     ALLOWED_TYPES = [DEFAULT_TYPE]
 
     @property
@@ -430,53 +440,58 @@ class NotifyObject(NotifyDocumentPart):
 
     @property
     def item(self) -> Union["NotifyItem", None]:
-        i = self.get_property("ietf:item")
+        i = self.get_property(NotifyProperties.ITEM)
         if i is not None:
             return NotifyItem(deepcopy(i),
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
                                  validators=self.validators,
-                                 validation_context="ietf:item")
+                                 validation_context=NotifyProperties.ITEM)
         return None
 
     @item.setter
     def item(self, value: "NotifyItem"):
-        self.set_property("ietf:item", value)
+        self.set_property(NotifyProperties.ITEM, value)
 
     @property
     def triple(self) -> tuple[str, str, str]:
-        obj = self.get_property("as:object")
-        rel = self.get_property("as:relationship")
-        subj = self.get_property("as:subject")
+        obj = self.get_property(Properties.OBJECT_TRIPLE)
+        rel = self.get_property(Properties.RELATIONSHIP_TRIPLE)
+        subj = self.get_property(Properties.SUBJECT_TRIPLE)
         return obj, rel, subj
 
     @triple.setter
     def triple(self, value: tuple[str, str, str]):
         obj, rel, subj = value
-        self.set_property("as:object", obj)
-        self.set_property("as:relationship", rel)
-        self.set_property("as:subject", subj)
+        self.set_property(Properties.OBJECT_TRIPLE, obj)
+        self.set_property(Properties.RELATIONSHIP_TRIPLE, rel)
+        self.set_property(Properties.SUBJECT_TRIPLE, subj)
 
 
 class NotifyActor(NotifyDocumentPart):
-    DEFAULT_TYPE = "Service"
-    ALLOWED_TYPES = [DEFAULT_TYPE, "Application", "Group", "Organization", "Person"]
+    DEFAULT_TYPE = ActivityStreamsTypes.SERVICE
+    ALLOWED_TYPES = [DEFAULT_TYPE,
+                     ActivityStreamsTypes.APPLICATION,
+                     ActivityStreamsTypes.GROUP,
+                     ActivityStreamsTypes.ORGANIZATION,
+                     ActivityStreamsTypes.PERSON
+                     ]
 
     @property
     def name(self) -> str:
-        return self.get_property("name")
+        return self.get_property(NotifyProperties.NAME)
 
     @name.setter
     def name(self, value: str):
-        self.set_property("name", value)
+        self.set_property(NotifyProperties.NAME, value)
 
 
 class NotifyItem(NotifyDocumentPart):
 
     @property
     def media_type(self) -> str:
-        return self.get_property("mediaType")
+        return self.get_property(NotifyProperties.MEDIA_TYPE)
 
     @media_type.setter
     def media_type(self, value: str):
-        self.set_property("mediaType", value)
+        self.set_property(NotifyProperties.MEDIA_TYPE, value)

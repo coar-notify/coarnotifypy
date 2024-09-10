@@ -1,5 +1,5 @@
-from coarnotify.models.notify import NotifyDocument
-
+from coarnotify.models.notify import NotifyDocument, NotifyTypes
+from coarnotify.activitystreams2.activitystreams2 import ActivityStreamsTypes
 
 class AnnounceEndorsement(NotifyDocument):
-    TYPE = ["Announce", "coar-notify:EndorsementAction"]
+    TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.ENDORSMENT_ACTION]

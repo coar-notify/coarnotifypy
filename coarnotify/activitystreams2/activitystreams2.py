@@ -19,6 +19,19 @@ class Properties(ConstantList):
     OBJECT_TRIPLE = ("as:object", ACTIVITY_STREAMS_NAMESPACE)
     RELATIONSHIP_TRIPLE = ("as:relationship", ACTIVITY_STREAMS_NAMESPACE)
 
+class ActivityStreamsTypes(ConstantList):
+    ACCEPT = "Accept"
+    ANNOUNCE = "Announce"
+    REJECT = "Reject"
+    OFFER = "Offer"
+
+    SERVICE = "Service"
+    OBJECT = "Object"
+    APPLICATION = "Application"
+    GROUP = "Group"
+    ORGANIZATION = "Organization"
+    PERSON = "Person"
+
 
 class ActivityStream:
     def __init__(self, raw=None):
