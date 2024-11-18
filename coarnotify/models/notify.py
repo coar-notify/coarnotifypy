@@ -1,4 +1,6 @@
-from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties, ActivityStreamsTypes
+from setuptools.config.pyprojecttoml import validate
+
+from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties, ActivityStreamsTypes, ACTIVITY_STREAMS_OBJECTS
 from coarnotify.constants import ConstantList
 from coarnotify import validate
 from coarnotify.exceptions import ValidationError
@@ -6,7 +8,7 @@ from typing import Union
 import uuid
 from copy import deepcopy
 
-NOTIFY_NAMESPACE = "https://purl.org/coar/notify"
+NOTIFY_NAMESPACE = "https://coar-notify.net"
 
 
 class NotifyProperties(ConstantList):
@@ -25,14 +27,11 @@ class NotifyTypes(ConstantList):
 
     ABOUT_PAGE = "sorg:AboutPage"
 
+
 VALIDATION_RULES = {
     Properties.ID: {
         "default": validate.absolute_uri,
         "context": {
-            # In some places this is a URI and in others an HTTP URI - unclear of the requirement
-            # Properties.OBJECT: {
-            #     "default": validate.url     # For AnnounceEndorsement, AnnounceServiceResult this is not specified clearly, AnnounceRelationship says URI
-            # },
             Properties.CONTEXT: {
                 "default": validate.url
             },
@@ -50,20 +49,36 @@ VALIDATION_RULES = {
     Properties.TYPE: {
         "default": validate.type_checker,
         "context": {
-            # Properties.ACTOR: {
-            #     "default": validate.one_of(["Service", "Application", "Group", "Organization", "Person"])   # is this a MUST or a SHOULD?
-            # },
-            # Properties.OBJECT: {
-            #     "default": validate.contains("sorg:AboutPage"),
-            # },
-            Properties.ORIGIN: {
-                "default": validate.contains(ActivityStreamsTypes.SERVICE)
+            Properties.ACTOR: {
+                "default": validate.one_of([
+                    ActivityStreamsTypes.SERVICE,
+                    ActivityStreamsTypes.APPLICATION,
+                    ActivityStreamsTypes.GROUP,
+                    ActivityStreamsTypes.ORGANIZATION,
+                    ActivityStreamsTypes.PERSON
+                ])
             },
-            Properties.TARGET: {
-                "default": validate.contains(ActivityStreamsTypes.SERVICE)
+
+            Properties.OBJECT: {
+                "default": validate.at_least_one_of(ACTIVITY_STREAMS_OBJECTS) #validate.contains("sorg:AboutPage"),
             },
+
+            # Requirements say SHOULD, so will not validate at this stage
+            # Properties.ORIGIN: {
+            #     "default": validate.contains(ActivityStreamsTypes.SERVICE)
+            # },
+
+            # Requirements say SHOULD, so will not validate at this stage
+            # Properties.TARGET: {
+            #     "default": validate.contains(ActivityStreamsTypes.SERVICE)
+            # },
+
             Properties.CONTEXT: {
-                "default": validate.contains(NotifyTypes.ABOUT_PAGE)
+                "default": validate.at_least_one_of(ACTIVITY_STREAMS_OBJECTS) #validate.contains("sorg:AboutPage"),
+            },
+
+            NotifyProperties.ITEM: {
+                "default": validate.at_least_one_of(ACTIVITY_STREAMS_OBJECTS) #validate.contains("sorg:AboutPage"),
             }
         }
     },
@@ -158,15 +173,9 @@ class NotifyBase:
 
     def validate(self):
         ve = ValidationError()
-        if self.id is None:
-            ve.add_error(Properties.ID, validate.REQUIRED_MESSAGE.format(x=Properties.ID[0]))
-        else:
-            self.register_property_validation_error(ve, Properties.ID, self.id)
 
-        if self.type is None:
-            ve.add_error(Properties.TYPE, validate.REQUIRED_MESSAGE.format(x=Properties.TYPE[0]))
-        else:
-            self.register_property_validation_error(ve, Properties.TYPE, self.type)
+        self.required_and_validate(ve, Properties.ID, self.id)
+        self.required_and_validate(ve, Properties.TYPE, self.type)
 
         if ve.has_errors():
             raise ve
@@ -187,16 +196,44 @@ class NotifyBase:
                         return False, str(ve)
         return True, ""
 
-    def register_property_validation_error(self, ve: ValidationError, prop_name: str, value):
+    def register_property_validation_error(self, ve: ValidationError, prop_name: Union[str, tuple], value):
         e, msg = self.validate_property(prop_name, value, force_validate=True, raise_error=False)
         if not e:
             ve.add_error(prop_name, msg)
+
+    def required(self, ve: ValidationError, prop_name: Union[str, tuple], value):
+        if value is None:
+            pn = prop_name if not isinstance(prop_name, tuple) else prop_name[0]
+            ve.add_error(prop_name, validate.REQUIRED_MESSAGE.format(x=pn))
+
+    def required_and_validate(self, ve: ValidationError, prop_name: Union[str, tuple], value):
+        if value is None:
+            pn = prop_name if not isinstance(prop_name, tuple) else prop_name[0]
+            ve.add_error(prop_name, validate.REQUIRED_MESSAGE.format(x=pn))
+        else:
+            if isinstance(value, NotifyBase):
+                try:
+                    value.validate()
+                except ValidationError as subve:
+                    ve.add_nested_errors(prop_name, subve)
+            else:
+                self.register_property_validation_error(ve, prop_name, value)
+
+    def optional_and_validate(self, ve: ValidationError, prop_name: Union[str, tuple], value):
+        if value is not None:
+            if isinstance(value, NotifyBase):
+                try:
+                    value.validate()
+                except ValidationError as subve:
+                    ve.add_nested_errors(prop_name, subve)
+            else:
+                self.register_property_validation_error(ve, prop_name, value)
 
     def to_jsonld(self):
         return self._stream.to_jsonld()
 
 
-class NotifyDocument(NotifyBase):
+class NotifyPattern(NotifyBase):
     TYPE = ActivityStreamsTypes.OBJECT
 
     def __init__(self, stream: Union[ActivityStream, dict] = None,
@@ -204,11 +241,11 @@ class NotifyDocument(NotifyBase):
                  validate_properties=True,
                  validators=None,
                  validation_context=None):
-        super(NotifyDocument, self).__init__(stream=stream,
-                                             validate_stream_on_construct=validate_stream_on_construct,
-                                             validate_properties=validate_properties,
-                                             validators=validators,
-                                             validation_context=validation_context)
+        super(NotifyPattern, self).__init__(stream=stream,
+                                            validate_stream_on_construct=validate_stream_on_construct,
+                                            validate_properties=validate_properties,
+                                            validators=validators,
+                                            validation_context=validation_context)
         self._ensure_type_contains(self.TYPE)
 
     def _ensure_type_contains(self, types: Union[str, list[str]]):
@@ -313,48 +350,16 @@ class NotifyDocument(NotifyBase):
     def validate(self):
         ve = ValidationError()
         try:
-            super(NotifyDocument, self).validate()
+            super(NotifyPattern, self).validate()
         except ValidationError as superve:
             ve = superve
 
-        if self.origin is None:
-            ve.add_error(Properties.ORIGIN, validate.REQUIRED_MESSAGE.format(x=Properties.ORIGIN[0]))
-        else:
-            try:
-                self.origin.validate()
-            except ValidationError as subve:
-                ve.add_nested_errors(Properties.ORIGIN, subve)
-
-        if self.target is None:
-            ve.add_error(Properties.TARGET, validate.REQUIRED_MESSAGE.format(x=Properties.TARGET[0]))
-        else:
-            try:
-                self.target.validate()
-            except ValidationError as subve:
-                ve.add_nested_errors(Properties.TARGET, subve)
-
-        if self.object is None:
-            ve.add_error(Properties.OBJECT, validate.REQUIRED_MESSAGE.format(x=Properties.OBJECT[0]))
-        else:
-            try:
-                self.object.validate()
-            except ValidationError as subve:
-                ve.add_nested_errors(Properties.OBJECT, subve)
-
-        if self.actor is not None:
-            try:
-                self.actor.validate()
-            except ValidationError as subve:
-                ve.add_nested_errors(Properties.ACTOR, subve)
-
-        if self.in_reply_to is not None:
-            self.register_property_validation_error(ve, Properties.IN_REPLY_TO, self.in_reply_to)
-
-        if self.context is not None:
-            try:
-                self.context.validate()
-            except ValidationError as subve:
-                ve.add_nested_errors(Properties.CONTEXT, subve)
+        self.required_and_validate(ve, Properties.ORIGIN, self.origin)
+        self.required_and_validate(ve, Properties.TARGET, self.target)
+        self.required_and_validate(ve, Properties.OBJECT, self.object)
+        self.optional_and_validate(ve, Properties.ACTOR, self.actor)
+        self.optional_and_validate(ve, Properties.IN_REPLY_TO, self.in_reply_to)
+        self.optional_and_validate(ve, Properties.CONTEXT, self.context)
 
         if ve.has_errors():
             raise ve
@@ -362,7 +367,7 @@ class NotifyDocument(NotifyBase):
         return True
 
 
-class NotifyDocumentPart(NotifyBase):
+class NotifyPatternPart(NotifyBase):
     DEFAULT_TYPE = None
     ALLOWED_TYPES = []
 
@@ -371,11 +376,11 @@ class NotifyDocumentPart(NotifyBase):
                  validate_properties=True,
                  validators=None,
                  validation_context=None):
-        super(NotifyDocumentPart, self).__init__(stream=stream,
-                                                 validate_stream_on_construct=validate_stream_on_construct,
-                                                 validate_properties=validate_properties,
-                                                 validators=validators,
-                                                 validation_context=validation_context)
+        super(NotifyPatternPart, self).__init__(stream=stream,
+                                                validate_stream_on_construct=validate_stream_on_construct,
+                                                validate_properties=validate_properties,
+                                                validators=validators,
+                                                validation_context=validation_context)
         if self.DEFAULT_TYPE is not None and self.type is None:
             self.type = self.DEFAULT_TYPE
 
@@ -400,9 +405,8 @@ class NotifyDocumentPart(NotifyBase):
         return self._stream.doc
 
 
-class NotifyService(NotifyDocumentPart):
+class NotifyService(NotifyPatternPart):
     DEFAULT_TYPE = ActivityStreamsTypes.SERVICE
-    ALLOWED_TYPES = [DEFAULT_TYPE]
 
     @property
     def inbox(self) -> str:
@@ -419,8 +423,7 @@ class NotifyService(NotifyDocumentPart):
         except ValidationError as superve:
             ve = superve
 
-        if self.inbox is None:
-            ve.add_error(NotifyProperties.INBOX, validate.REQUIRED_MESSAGE.format(x=NotifyProperties.INBOX[0]))
+        self.required_and_validate(ve, NotifyProperties.INBOX, self.inbox)
 
         if ve.has_errors():
             raise ve
@@ -428,7 +431,10 @@ class NotifyService(NotifyDocumentPart):
         return True
 
 
-class NotifyObject(NotifyDocumentPart):
+class NotifyObject(NotifyPatternPart):
+    """
+    Can be used to represent an `object` or a `context`
+    """
 
     @property
     def cite_as(self) -> str:
@@ -467,8 +473,19 @@ class NotifyObject(NotifyDocumentPart):
         self.set_property(Properties.RELATIONSHIP_TRIPLE, rel)
         self.set_property(Properties.SUBJECT_TRIPLE, subj)
 
+    def validate(self):
+        # Object does not require `type`, so we override the base validator to just validate
+        # the id
+        ve = ValidationError()
 
-class NotifyActor(NotifyDocumentPart):
+        self.required_and_validate(ve, Properties.ID, self.id)
+
+        if ve.has_errors():
+            raise ve
+        return True
+
+
+class NotifyActor(NotifyPatternPart):
     DEFAULT_TYPE = ActivityStreamsTypes.SERVICE
     ALLOWED_TYPES = [DEFAULT_TYPE,
                      ActivityStreamsTypes.APPLICATION,
@@ -486,7 +503,7 @@ class NotifyActor(NotifyDocumentPart):
         self.set_property(NotifyProperties.NAME, value)
 
 
-class NotifyItem(NotifyDocumentPart):
+class NotifyItem(NotifyPatternPart):
 
     @property
     def media_type(self) -> str:
@@ -495,3 +512,13 @@ class NotifyItem(NotifyDocumentPart):
     @media_type.setter
     def media_type(self, value: str):
         self.set_property(NotifyProperties.MEDIA_TYPE, value)
+
+    def validate(self):
+        # Item does not always require a type, so override the base validator
+        ve = ValidationError()
+
+        self.required_and_validate(ve, Properties.ID, self.id)
+
+        if ve.has_errors():
+            raise ve
+        return True

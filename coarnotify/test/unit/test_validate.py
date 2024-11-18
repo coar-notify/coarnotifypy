@@ -1,11 +1,10 @@
 from unittest import TestCase
 from copy import deepcopy
 
-from coarnotify.models import NotifyDocument, NotifyService, NotifyObject, NotifyActor, NotifyItem
+from coarnotify.models import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
-    AnnounceIngest,
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
@@ -15,7 +14,6 @@ from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
     AcceptFixtureFactory,
     AnnounceEndorsementFixtureFactory,
-    AnnounceIngestFixtureFactory,
     AnnounceRelationshipFixtureFactory,
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
@@ -31,7 +29,7 @@ from coarnotify import validate
 
 class TestValidate(TestCase):
     def test_01_structural_empty(self):
-        n = NotifyDocument()
+        n = NotifyPattern()
         n.id = None     # these are automatically set, so remove them to trigger validation
         n.type = None
         with self.assertRaises(ValidationError) as ve:
@@ -45,7 +43,7 @@ class TestValidate(TestCase):
         assert Properties.ORIGIN in errors
 
     def test_02_structural_basic(self):
-        n = NotifyDocument()
+        n = NotifyPattern()
         with self.assertRaises(ValidationError) as ve:
             n.validate()
 
@@ -57,7 +55,7 @@ class TestValidate(TestCase):
         assert Properties.ORIGIN in errors
 
     def test_03_structural_valid_document(self):
-        n = NotifyDocument()
+        n = NotifyPattern()
         n.target = NotifyFixtureFactory.target()
         n.origin = NotifyFixtureFactory.origin()
         n.object = NotifyFixtureFactory.object()
@@ -65,7 +63,7 @@ class TestValidate(TestCase):
         assert n.validate() is True
 
     def test_04_structural_invalid_nested(self):
-        n = NotifyDocument()
+        n = NotifyPattern()
         n.target = NotifyService({"whatever": "value"}, validate_stream_on_construct=False)
         n.origin = NotifyService({"another": "junk"}, validate_stream_on_construct=False)
         n.object = NotifyObject({"yet": "more"}, validate_stream_on_construct=False)
@@ -76,7 +74,7 @@ class TestValidate(TestCase):
         errors = ve.exception.errors
         assert Properties.ID not in errors
         assert Properties.TYPE not in errors
-        assert Properties.OBJECT in errors
+        assert Properties.OBJECT not in errors  # the object is present, and will acquire an id, so will not be in the errors
         assert Properties.TARGET in errors
         assert Properties.ORIGIN in errors
 
@@ -90,29 +88,24 @@ class TestValidate(TestCase):
         assert origin.get("nested") is not None
         assert NotifyProperties.INBOX in origin.get("nested")
 
-        object = errors[Properties.OBJECT]
-        assert len(object.get("errors")) == 0
-        assert object.get("nested") is not None
-        assert Properties.TYPE in object.get("nested")
-
     def test_05_validation_modes(self):
         valid = NotifyFixtureFactory.source()
-        n = NotifyDocument(stream=valid, validate_stream_on_construct=True)
+        n = NotifyPattern(stream=valid, validate_stream_on_construct=True)
 
         invalid = NotifyFixtureFactory.source()
         invalid["id"] = "http://example.com/^path"
         with self.assertRaises(ValidationError) as ve:
-            n = NotifyDocument(stream=invalid, validate_stream_on_construct=True)
+            n = NotifyPattern(stream=invalid, validate_stream_on_construct=True)
         assert ve.exception.errors.get(Properties.ID) is not None
 
         valid = NotifyFixtureFactory.source()
-        n = NotifyDocument(stream=valid, validate_stream_on_construct=False)
+        n = NotifyPattern(stream=valid, validate_stream_on_construct=False)
 
         invalid = NotifyFixtureFactory.source()
         invalid["id"] = "http://example.com/^path"
-        n = NotifyDocument(stream=invalid, validate_stream_on_construct=False)
+        n = NotifyPattern(stream=invalid, validate_stream_on_construct=False)
 
-        n = NotifyDocument(validate_properties=False)
+        n = NotifyPattern(validate_properties=False)
         n.id = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"  # valid
         n.id = "http://example.com/^path"   # invalid
 
@@ -121,7 +114,7 @@ class TestValidate(TestCase):
         assert ve.exception.errors.get(Properties.ID) is not None
 
     def test_06_validate_id_property(self):
-        n = NotifyDocument()
+        n = NotifyPattern()
         # test the various ways it can fail:
         with self.assertRaises(ValueError) as ve:
             n.id = "9whatever:none"
@@ -187,20 +180,9 @@ class TestValidate(TestCase):
         with self.assertRaises(ValueError):
             validator(None, "d")
 
-        actor = NotifyActor()
         with self.assertRaises(ValueError):
-            actor.type = "SomethingElse"
-
-        source = AnnounceEndorsementFixtureFactory.source()
-        asource = source.get("actor")
-        asource["type"] = "SomethingElse"
-        with self.assertRaises(ValidationError):
-            NotifyActor(asource, validation_context=Properties.ACTOR)
-
-        source = AnnounceEndorsementFixtureFactory.source()
-        source["actor"]["type"] = "SomethingElse"
-        with self.assertRaises(ValidationError):
-            AnnounceEndorsement(source)
+            # one_of expects a singular value, it does not do lists
+            validator(None, ["a", "b"])
 
     def test_09_contains(self):
         validator = validate.contains("a")
@@ -209,16 +191,18 @@ class TestValidate(TestCase):
         with self.assertRaises(ValueError):
             validator(None, ["b", "c", "d"])
 
-        source = AnnounceEndorsementFixtureFactory.source()
-        osource = source.get("origin")
-        osource["type"] = "SomethingElse"
-        with self.assertRaises(ValidationError):
-            NotifyActor(osource, validation_context=Properties.ORIGIN)
+    def test_12_at_least_one_of(self):
+        values = ["a", "b", "c"]
+        validator = validate.at_least_one_of(values)
+        assert validator(None, "a") is True
+        assert validator(None, "b") is True
+        assert validator(None, "c") is True
 
-        source = AnnounceEndorsementFixtureFactory.source()
-        source["origin"]["type"] = "SomethingElse"
-        with self.assertRaises(ValidationError):
-            AnnounceEndorsement(source)
+        with self.assertRaises(ValueError):
+            validator(None, "d")
+
+        # at_least_one_of can take a list and validate each one against the global criteria
+        assert validator(None, ["a", "d"]) is True
 
     ########################################
     ## validation methods for specific patterns
@@ -239,17 +223,11 @@ class TestValidate(TestCase):
             a.origin.inbox = "not a uri"
 
         with self.assertRaises(ValueError):
-            a.origin.type = "NotAValidType"
-
-        with self.assertRaises(ValueError):
             # not an HTTP URI
             a.target.id = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
 
         with self.assertRaises(ValueError):
             a.target.inbox = "not a uri"
-
-        with self.assertRaises(ValueError):
-            a.target.type = "NotAValidType"
 
         with self.assertRaises(ValueError):
             a.type = "NotAValidType"

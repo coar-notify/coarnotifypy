@@ -20,18 +20,66 @@ class Properties(ConstantList):
     RELATIONSHIP_TRIPLE = ("as:relationship", ACTIVITY_STREAMS_NAMESPACE)
 
 class ActivityStreamsTypes(ConstantList):
+    # Activities
     ACCEPT = "Accept"
     ANNOUNCE = "Announce"
     REJECT = "Reject"
     OFFER = "Offer"
 
-    SERVICE = "Service"
-    OBJECT = "Object"
+    # Objects
+    ACTIVITY = "Activity"
     APPLICATION = "Application"
+    ARTICLE = "Article"
+    AUDIO = "Audio"
+    COLLECTION = "Collection"
+    COLLECTION_PAGE = "CollectionPage"
+    RELATIONSHIP = "Relationship"
+    DOCUMENT = "Document"
+    EVENT = "Event"
     GROUP = "Group"
+    IMAGE = "Image"
+    INTRANSITIVE_ACTIVITY = "IntransitiveActivity"
+    NOTE = "Note"
+    OBJECT = "Object"
+    ORDERED_COLLECTION = "OrderedCollection"
+    ORDERED_COLLECTION_PAGE = "OrderedCollectionPage"
     ORGANIZATION = "Organization"
+    PAGE = "Page"
     PERSON = "Person"
+    PLACE = "Place"
+    PROFILE = "Profile"
+    QUESTION = "Question"
+    SERVICE = "Service"
+    TOMBSTONE = "Tombstone"
+    VIDEO = "Video"
 
+ACTIVITY_STREAMS_OBJECTS = [
+    ActivityStreamsTypes.ACTIVITY,
+    ActivityStreamsTypes.APPLICATION,
+    ActivityStreamsTypes.ARTICLE,
+    ActivityStreamsTypes.AUDIO,
+    ActivityStreamsTypes.COLLECTION,
+    ActivityStreamsTypes.COLLECTION_PAGE,
+    ActivityStreamsTypes.RELATIONSHIP,
+    ActivityStreamsTypes.DOCUMENT,
+    ActivityStreamsTypes.EVENT,
+    ActivityStreamsTypes.GROUP,
+    ActivityStreamsTypes.IMAGE,
+    ActivityStreamsTypes.INTRANSITIVE_ACTIVITY,
+    ActivityStreamsTypes.NOTE,
+    ActivityStreamsTypes.OBJECT,
+    ActivityStreamsTypes.ORDERED_COLLECTION,
+    ActivityStreamsTypes.ORDERED_COLLECTION_PAGE,
+    ActivityStreamsTypes.ORGANIZATION,
+    ActivityStreamsTypes.PAGE,
+    ActivityStreamsTypes.PERSON,
+    ActivityStreamsTypes.PLACE,
+    ActivityStreamsTypes.PROFILE,
+    ActivityStreamsTypes.QUESTION,
+    ActivityStreamsTypes.SERVICE,
+    ActivityStreamsTypes.TOMBSTONE,
+    ActivityStreamsTypes.VIDEO
+]
 
 class ActivityStream:
     def __init__(self, raw=None):

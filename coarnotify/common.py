@@ -3,13 +3,11 @@ from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Propert
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
-    AnnounceIngest,
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestIngest,
     RequestReview
 )
 from coarnotify.exceptions import NotifyException
@@ -20,13 +18,11 @@ class COARNotifyFactory:
     MODELS = [
         Accept,
         AnnounceEndorsement,
-        AnnounceIngest,
         AnnounceRelationship,
         AnnounceReview,
         AnnounceServiceResult,
         Reject,
         RequestEndorsement,
-        RequestIngest,
         RequestReview
     ]
 

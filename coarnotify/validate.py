@@ -127,6 +127,20 @@ def one_of(values):
         return True
     return validate
 
+def at_least_one_of(values):
+    def validate(obj, x):
+        if not isinstance(x, list):
+            x = [x]
+
+        for entry in x:
+            if entry in values:
+                return True
+
+        # if we don't find one of the document values in the list of "at least one of" values,
+        # raise an exception
+        raise ValueError(f"`{x}` is not one of the valid values: {values}")
+
+    return validate
 
 def contains(value):
     values = value

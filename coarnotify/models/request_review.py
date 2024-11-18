@@ -1,5 +1,52 @@
-from coarnotify.models.notify import NotifyDocument, NotifyTypes
-from coarnotify.activitystreams2.activitystreams2 import ActivityStreamsTypes
+from coarnotify.models.notify import NotifyPattern, NotifyTypes, NotifyObject, NotifyItem, NotifyProperties
+from coarnotify.activitystreams2.activitystreams2 import ActivityStreamsTypes, Properties
+from coarnotify.exceptions import ValidationError
 
-class RequestReview(NotifyDocument):
+from typing import Union
+from copy import deepcopy
+
+class RequestReview(NotifyPattern):
     TYPE = [ActivityStreamsTypes.OFFER, NotifyTypes.REVIEW_ACTION]
+
+    @property
+    def object(self) -> Union[NotifyObject, None]:
+        o = self.get_property(Properties.OBJECT)
+        if o is not None:
+            return RequestReviewObject(deepcopy(o),
+                                        validate_stream_on_construct=False,
+                                        validate_properties=self.validate_properties,
+                                        validators=self.validators,
+                                        validation_context=Properties.OBJECT)
+        return None
+
+
+class RequestReviewObject(NotifyObject):
+    @property
+    def item(self) -> Union[NotifyItem, None]:
+        i = self.get_property(NotifyProperties.ITEM)
+        if i is not None:
+            return RequestReviewItem(deepcopy(i),
+                              validate_stream_on_construct=False,
+                              validate_properties=self.validate_properties,
+                              validators=self.validators,
+                              validation_context=NotifyProperties.ITEM)
+        return None
+
+
+class RequestReviewItem(NotifyItem):
+
+    def validate(self):
+        # Object does not require `type`, so we override the base validator to just validate
+        # the id
+        ve = ValidationError()
+        try:
+            super(RequestReviewItem, self).validate()
+        except ValidationError as superve:
+            ve = superve
+
+        self.required_and_validate(ve, Properties.TYPE, self.type)
+        self.required(ve, NotifyProperties.MEDIA_TYPE, self.media_type)
+
+        if ve.has_errors():
+            raise ve
+        return True

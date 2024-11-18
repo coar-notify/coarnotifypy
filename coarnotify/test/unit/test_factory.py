@@ -3,13 +3,11 @@ from unittest import TestCase
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
-    AnnounceIngest,
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestIngest,
     RequestReview
 )
 from coarnotify.common import COARNotifyFactory
@@ -17,13 +15,11 @@ from coarnotify.common import COARNotifyFactory
 from coarnotify.test.fixtures import (
     AcceptFixtureFactory,
     AnnounceEndorsementFixtureFactory,
-    AnnounceIngestFixtureFactory,
     AnnounceRelationshipFixtureFactory,
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
-    RequestIngestFixtureFactory,
     RequestReviewFixtureFactory
 )
 
@@ -48,16 +44,6 @@ class TestFactory(TestCase):
         assert isinstance(ae, AnnounceEndorsement)
 
         assert ae.id == source["id"]
-
-    def test_03_announce_ingest(self):
-        ai = COARNotifyFactory.get_by_types(AnnounceIngest.TYPE)
-        assert ai == AnnounceIngest
-
-        source = AnnounceIngestFixtureFactory.source()
-        ai = COARNotifyFactory.get_by_object(source)
-        assert isinstance(ai, AnnounceIngest)
-
-        assert ai.id == source["id"]
 
     def test_04_announce_relationship(self):
         ar = COARNotifyFactory.get_by_types(AnnounceRelationship.TYPE)
@@ -106,16 +92,6 @@ class TestFactory(TestCase):
         source = RequestEndorsementFixtureFactory.source()
         ar = COARNotifyFactory.get_by_object(source)
         assert isinstance(ar, RequestEndorsement)
-
-        assert ar.id == source["id"]
-
-    def test_09_request_ingest(self):
-        ar = COARNotifyFactory.get_by_types(RequestIngest.TYPE)
-        assert ar == RequestIngest
-
-        source = RequestIngestFixtureFactory.source()
-        ar = COARNotifyFactory.get_by_object(source)
-        assert isinstance(ar, RequestIngest)
 
         assert ar.id == source["id"]
 

@@ -3,42 +3,38 @@ from copy import deepcopy
 
 from coarnotify.exceptions import ValidationError
 
-from coarnotify.models import NotifyDocument, NotifyService, NotifyObject, NotifyActor, NotifyItem
+from coarnotify.models import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
-    AnnounceIngest,
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestIngest,
     RequestReview
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
     AcceptFixtureFactory,
     AnnounceEndorsementFixtureFactory,
-    AnnounceIngestFixtureFactory,
     AnnounceRelationshipFixtureFactory,
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
-    RequestIngestFixtureFactory,
     RequestReviewFixtureFactory
 )
 
 
 class TestModels(TestCase):
     def test_01_notify_manual_construct(self):
-        n = NotifyDocument()
+        n = NotifyPattern()
 
         # check the default properties
         assert n.id is not None
         assert n.id.startswith("urn:uuid:")
-        assert n.type == NotifyDocument.TYPE
+        assert n.type == NotifyPattern.TYPE
         assert n.origin is None
         assert n.target is None
         assert n.object is None
@@ -96,7 +92,7 @@ class TestModels(TestCase):
 
     def test_02_notify_from_fixture(self):
         source = NotifyFixtureFactory.source()
-        n = NotifyDocument(source)
+        n = NotifyPattern(source)
 
         # now check we've got all the source properties
         assert n.id == source["id"]
@@ -123,14 +119,14 @@ class TestModels(TestCase):
         assert n.type == "Other"
 
     def test_03_notify_operations(self):
-        n = NotifyDocument()
+        n = NotifyPattern()
         with self.assertRaises(ValidationError):
             n.validate()
         assert n.to_jsonld() is not None
 
         source = NotifyFixtureFactory.source()
         compare = deepcopy(source)
-        n = NotifyDocument(source)
+        n = NotifyPattern(source)
         assert n.validate() is True
         assert n.to_jsonld() == compare
 
@@ -195,47 +191,6 @@ class TestModels(TestCase):
         assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
         assert item.media_type == "application/pdf"
         assert item.type == ["Article", "sorg:ScholarlyArticle"]
-
-    def test_06_announce_ingest(self):
-        ai = AnnounceIngest()
-
-        source = AnnounceIngestFixtureFactory.source()
-        compare = deepcopy(source)
-        ai = AnnounceIngest(source)
-        assert ai.validate() is True
-        assert ai.to_jsonld() == compare
-
-        assert ai.actor.id == "https://research-organisation.org"
-        assert ai.actor.name == "Research Organisation"
-        assert ai.actor.type == "Organization"
-
-        assert ai.context.id == "https://research-organisation.org/repository/preprint/201203/421/"
-        assert ai.context.cite_as == "https://doi.org/10.5555/12345680"
-        assert ai.context.type == "sorg:AboutPage"
-        item = ai.context.item
-        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
-        assert item.media_type == "application/pdf"
-        assert item.type == ["Article", "sorg:ScholarlyArticle"]
-
-        assert ai.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
-        assert ai.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-
-        assert ai.object.id == "https://research-organisation.org/repository/preprint/201203/421/"
-        assert ai.object.cite_as == "https://doi.org/10.5555/12345680"
-        item = ai.object.item
-        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
-        assert item.media_type == "application/pdf"
-        assert item.type == ["Article", "sorg:ScholarlyArticle"]
-
-        assert ai.origin.id == "https://research-organisation.org/repository"
-        assert ai.origin.inbox == "https://research-organisation.org/inbox/"
-        assert ai.origin.type == "Service"
-
-        assert ai.target.id == "https://overlay-journal.com/system"
-        assert ai.target.inbox == "https://overlay-journal.com/inbox/"
-        assert ai.target.type == "Service"
-
-        assert ai.type == ["Announce", "coar-notify:IngestAction"]
 
     def test_07_announce_relationship(self):
         ae = AnnounceRelationship()
@@ -373,7 +328,7 @@ class TestModels(TestCase):
 
         assert rej.target.id == "https://some-organisation.org"
         assert rej.target.inbox == "https://some-organisation.org/inbox/"
-        assert rej.target.type == ["Organization", "Service"]
+        assert rej.target.type == "Service"
 
         assert rej.type == "Reject"
 
@@ -408,38 +363,6 @@ class TestModels(TestCase):
         assert re.target.type == "Service"
 
         assert re.type == ["Offer", "coar-notify:EndorsementAction"]
-
-    def test_12_request_ingest(self):
-        ri = RequestIngest()
-
-        source = RequestIngestFixtureFactory.source()
-        compare = deepcopy(source)
-        ri = RequestIngest(source)
-
-        assert ri.validate() is True
-        assert ri.to_jsonld() == compare
-
-        assert ri.actor.id == "https://overlay-journal.com"
-        assert ri.actor.name == "Overlay Journal"
-        assert ri.actor.type == "Service"
-
-        assert ri.id == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-
-        obj = ri.object
-        assert obj.id == "https://research-organisation.org/repository/preprint/201203/421/"
-        assert obj.cite_as == "https://doi.org/10.5555/12345680"
-        assert obj.type == "sorg:AboutPage"
-        assert obj.item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
-        assert obj.item.media_type == "application/pdf"
-        assert obj.item.type == ["Article", "sorg:ScholarlyArticle"]
-
-        assert ri.origin.id == "https://overlay-journal.com/system"
-        assert ri.origin.inbox == "https://overlay-journal.com/inbox/"
-        assert ri.origin.type == "Service"
-
-        assert ri.target.id == "https://research-organisation.org/repository"
-        assert ri.target.inbox == "https://research-organisation.org/inbox/"
-        assert ri.target.type == "Service"
 
     def test_13_request_review(self):
         ri = RequestReview()

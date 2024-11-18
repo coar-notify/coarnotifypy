@@ -4,26 +4,22 @@ from coarnotify.client import COARNotifyClient
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
-    AnnounceIngest,
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestIngest,
     RequestReview
 )
 
 from coarnotify.test.fixtures import (
     AcceptFixtureFactory,
     AnnounceEndorsementFixtureFactory,
-    AnnounceIngestFixtureFactory,
     AnnounceRelationshipFixtureFactory,
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
-    RequestIngestFixtureFactory,
     RequestReviewFixtureFactory
 )
 
@@ -44,15 +40,6 @@ class TestClient(TestCase):
         client = COARNotifyClient(INBOX)
         source = AnnounceEndorsementFixtureFactory.source()
         ae = AnnounceEndorsement(source)
-        resp = client.send(ae)
-        assert resp.action == resp.CREATED
-        assert resp.location is not None
-        print(resp.location)
-
-    def test_03_announce_ingest(self):
-        client = COARNotifyClient(INBOX)
-        source = AnnounceIngestFixtureFactory.source()
-        ae = AnnounceIngest(source)
         resp = client.send(ae)
         assert resp.action == resp.CREATED
         assert resp.location is not None
@@ -98,15 +85,6 @@ class TestClient(TestCase):
         client = COARNotifyClient(INBOX)
         source = RequestEndorsementFixtureFactory.source()
         ae = RequestEndorsement(source)
-        resp = client.send(ae)
-        assert resp.action == resp.CREATED
-        assert resp.location is not None
-        print(resp.location)
-
-    def test_08_request_ingest(self):
-        client = COARNotifyClient(INBOX)
-        source = RequestIngestFixtureFactory.source()
-        ae = RequestIngest(source)
         resp = client.send(ae)
         assert resp.action == resp.CREATED
         assert resp.location is not None
