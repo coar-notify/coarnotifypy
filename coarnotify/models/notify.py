@@ -401,10 +401,6 @@ class NotifyPatternPart(NotifyBase):
 
         self.set_property(Properties.TYPE, types)
 
-    def to_dict(self):
-        return self._stream.doc
-
-
 class NotifyService(NotifyPatternPart):
     DEFAULT_TYPE = ActivityStreamsTypes.SERVICE
 

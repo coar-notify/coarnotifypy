@@ -5,6 +5,14 @@ from coarnotify.exceptions import ValidationError
 class Reject(NotifyPattern):
     TYPE = ActivityStreamsTypes.REJECT
 
+    @property
+    def summary(self) -> str:
+        return self.get_property(Properties.SUMMARY)
+
+    @summary.setter
+    def summary(self, summary: str):
+        self.set_property(Properties.SUMMARY, summary)
+
     def validate(self):
         ve = ValidationError()
         try:

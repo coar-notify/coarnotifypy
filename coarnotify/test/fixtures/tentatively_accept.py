@@ -2,19 +2,28 @@ from copy import deepcopy
 from coarnotify.test.fixtures import BaseFixtureFactory
 
 
-class AcceptFixtureFactory(BaseFixtureFactory):
+class TentativelyAcceptFixtureFactory(BaseFixtureFactory):
     @classmethod
     def source(cls):
-        return deepcopy(ACCEPT)
+        return deepcopy(TENTATIVELY_ACCEPT)
 
     @classmethod
     def invalid(cls):
         source = cls.source()
         cls._base_invalid(source)
+        cls._actor_invalid(source)
+        cls._object_invalid(source)
         return source
 
+    @classmethod
+    def expected_value(cls, path):
+        bits = path.split(".")
+        node = TENTATIVELY_ACCEPT
+        for bit in bits:
+            node = node[bit]
+        return node
 
-ACCEPT = {
+TENTATIVELY_ACCEPT = {
     "@context": [
         "https://www.w3.org/ns/activitystreams",
         "https://coar-notify.net"
@@ -62,14 +71,15 @@ ACCEPT = {
         ]
     },
     "origin": {
-        "id": "https://generic-service-1.com/origin-system",
-        "inbox": "https://generic-service-1.com/origin-system/inbox/",
+        "id": "https://generic-service.com/system",
+        "inbox": "https://generic-service.com/system/inbox/",
         "type": "Service"
     },
+    "summary": "The offer has been tentatively accepted, subject to further review.",
     "target": {
-        "id": "https://generic-service-2.com/target-system",
-        "inbox": "https://generic-service-2.com/target-system/inbox/",
+        "id": "https://some-organisation.org",
+        "inbox": "https://some-organisation.org/inbox/",
         "type": "Service"
     },
-    "type": "Accept"
+    "type": "TentativeAccept"
 }

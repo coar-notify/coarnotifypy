@@ -6,5 +6,6 @@ from coarnotify.models.announce_service_result import AnnounceServiceResult
 from coarnotify.models.reject import Reject
 from coarnotify.models.request_endorsement import RequestEndorsement
 from coarnotify.models.request_review import RequestReview
+from coarnotify.models.tentatively_accept import TentativelyAccept
 
 from coarnotify.models.notify import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem, NotifyProperties

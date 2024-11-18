@@ -25,6 +25,7 @@ class ActivityStreamsTypes(ConstantList):
     ANNOUNCE = "Announce"
     REJECT = "Reject"
     OFFER = "Offer"
+    TENTATIVE_ACCEPT = "TentativeAccept"
 
     # Objects
     ACTIVITY = "Activity"

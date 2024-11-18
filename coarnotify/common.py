@@ -8,7 +8,8 @@ from coarnotify.models import (
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestReview
+    RequestReview,
+    TentativelyAccept
 )
 from coarnotify.exceptions import NotifyException
 
@@ -23,7 +24,8 @@ class COARNotifyFactory:
         AnnounceServiceResult,
         Reject,
         RequestEndorsement,
-        RequestReview
+        RequestReview,
+        TentativelyAccept
     ]
 
     @classmethod
@@ -56,7 +58,7 @@ class COARNotifyFactory:
         return candidate
 
     @classmethod
-    def get_by_object(cls, data):
+    def get_by_object(cls, data, *args, **kwargs):
         stream = ActivityStream(data)
 
         types = stream.get_property(Properties.TYPE)
@@ -65,6 +67,6 @@ class COARNotifyFactory:
 
         klazz = cls.get_by_types(types)
 
-        inst = klazz(data)
+        inst = klazz(data, *args, **kwargs)
         return inst
 

@@ -8,7 +8,8 @@ from coarnotify.models import (
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestReview
+    RequestReview,
+    TentativelyAccept
 )
 from coarnotify.common import COARNotifyFactory
 
@@ -20,7 +21,8 @@ from coarnotify.test.fixtures import (
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
-    RequestReviewFixtureFactory
+    RequestReviewFixtureFactory,
+    TentativelyAcceptFixtureFactory
 )
 
 
@@ -102,5 +104,15 @@ class TestFactory(TestCase):
         source = RequestReviewFixtureFactory.source()
         ar = COARNotifyFactory.get_by_object(source)
         assert isinstance(ar, RequestReview)
+
+        assert ar.id == source["id"]
+
+    def test_11_tentatively_accept(self):
+        ar = COARNotifyFactory.get_by_types(TentativelyAccept.TYPE)
+        assert ar == TentativelyAccept
+
+        source = TentativelyAcceptFixtureFactory.source()
+        ar = COARNotifyFactory.get_by_object(source)
+        assert isinstance(ar, TentativelyAccept)
 
         assert ar.id == source["id"]

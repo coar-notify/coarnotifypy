@@ -12,7 +12,8 @@ from coarnotify.models import (
     AnnounceServiceResult,
     Reject,
     RequestEndorsement,
-    RequestReview
+    RequestReview,
+    TentativelyAccept
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -23,7 +24,8 @@ from coarnotify.test.fixtures import (
     AnnounceServiceResultFixtureFactory,
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
-    RequestReviewFixtureFactory
+    RequestReviewFixtureFactory,
+    TentativelyAcceptFixtureFactory
 )
 
 
@@ -398,3 +400,54 @@ class TestModels(TestCase):
 
         assert ri.type == ["Offer", "coar-notify:ReviewAction"]
 
+    def test_14_tentatively_accept(self):
+        ta = TentativelyAccept()
+
+        source = TentativelyAcceptFixtureFactory.source()
+        compare = deepcopy(source)
+        ta = TentativelyAccept(source)
+
+        assert ta.validate() is True
+        assert ta.to_jsonld() == compare
+
+        def expand(node, path):
+            paths = []
+            for k, v in node.items():
+                if isinstance(v, dict):
+                    paths += expand(v, f"{path}.{k}")
+                else:
+                    paths.append(f"{path}.{k}")
+            paths = [p[1:] if p.startswith(".") else p for p in paths if "@context" not in p]  # strip the leading "."
+            return paths
+
+        obj_properties = expand(compare, "")
+        prop_map = {
+            "inReplyTo": "in_reply_to",
+            "object.object.ietf:cite-as": "object.object.cite_as",
+            "object.object.ietf:item.id": "object.object.item.id",
+            "object.object.ietf:item.mediaType": "object.object.item.media_type",
+            "object.object.ietf:item.type": "object.object.item.type",
+        }
+        proptest = [p if p not in prop_map else (prop_map[p], p) for p in obj_properties]
+
+        def get_prop(source, prop):
+            p = prop
+            if isinstance(prop, tuple):
+                p = prop[1]
+            bits = p.split(".")
+            for bit in bits:
+                source = getattr(source, bit)
+            return source
+
+        for prop in proptest:
+            if isinstance(prop, tuple):
+                oprop = prop[0]
+                fprop = prop[1]
+            else:
+                oprop = prop
+                fprop = prop
+
+            print(oprop, fprop)
+            oval = get_prop(ta, oprop)
+            eval = TentativelyAcceptFixtureFactory.expected_value(fprop)
+            assert oval == eval, f"{oprop}:{oval} - {fprop}:{eval}"
