@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API Reference" href="autoapi/index.html" />
-    <link rel="prev" title="Installation" href="install.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -63,6 +63,40 @@
 <li><p>Add validation tests for the new model in <cite>coarnotify.test.unit.test_validate</cite>, and confirm they work</p></li>
 </ol>
 </section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
+<section id="unit">
+<h3>Unit<a class="headerlink" href="#unit" title="Link to this heading">¶</a></h3>
+<p>Unit tests are located in <cite>coarnotify.test.unit</cite> and can be run with the following command (or your preferred test runner):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pytest coarnotify/test/unit</span>
+</pre></div>
+</div>
+</section>
+<section id="integration">
+<h3>Integration<a class="headerlink" href="#integration" title="Link to this heading">¶</a></h3>
+<p>Integration tests require a notify inbox to be available</p>
+<p>This can be done by starting the test inbox server.  To do this you will first need to configure your local settings for the server.</p>
+<p>Default configuration is in <cite>coarnotify/test/server/settings.py</cite> and can be overridden by providing your own settings file as an environment variable <cite>COARNOTIFY_SETTINGS</cite>.</p>
+<p>The main things you may wish to override are:</p>
+<ul class="simple">
+<li><p>STORE_DIR: the directory to store the notifications.  You MUST supply your own path</p></li>
+<li><p>PORT: the port to run the server on.  Default is 5005</p></li>
+</ul>
+<p>Create a local config file called something like <cite>local.cfg</cite> containing those properties</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">STORE_DIR</span> <span class="o">=</span> <span class="s1">&#39;/path/to/store/notifications&#39;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="mi">5005</span>
+</pre></div>
+</div>
+<p>Then start the server with the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">COARNOTIFY_SETTINGS=local.cfg; python coarnotify/test/server/inbox.py</span>
+</pre></div>
+</div>
+<p>Integration tests are located in <cite>coarnotify/test/integration</cite> and can be run with the following command (or your preferred test runner):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pytest coarnotify/test/integration</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -93,9 +127,15 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Information for Developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#compiling-the-documentation">Compiling the documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-new-patterns">Adding new patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unit">Unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integration">Integration</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
@@ -105,7 +145,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
+      <li>Previous: <a href="quickstart.html" title="previous chapter">Quickstart</a></li>
       <li>Next: <a href="autoapi/index.html" title="next chapter">API Reference</a></li>
   </ul></li>
 </ul>

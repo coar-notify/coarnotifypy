@@ -82,6 +82,11 @@ Module Contents
 
 
 
+   .. py:attribute:: UNPROCESSABLE_NOTIFICATION
+      :value: 'coar-notify:UnprocessableNotification'
+
+
+
    .. py:attribute:: ABOUT_PAGE
       :value: 'sorg:AboutPage'
 

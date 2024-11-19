@@ -30,3 +30,50 @@ Adding new patterns
 9. Add a unit test for the model factory in `coarnotify.test.unit.test_factory`, and confirm it works
 10. Add an integration test for the new model in `coarnotify.test.integration.test_client`, and confirm it works
 11. Add validation tests for the new model in `coarnotify.test.unit.test_validate`, and confirm they work
+
+Testing
+-------
+
+Unit
+^^^^
+
+Unit tests are located in `coarnotify.test.unit` and can be run with the following command (or your preferred test runner):
+
+.. code-block:: console
+
+    pytest coarnotify/test/unit
+
+Integration
+^^^^^^^^^^^
+
+Integration tests require a notify inbox to be available
+
+This can be done by starting the test inbox server.  To do this you will first need to configure your local settings for the server.
+
+Default configuration is in `coarnotify/test/server/settings.py` and can be overridden by providing your own settings file as an environment variable `COARNOTIFY_SETTINGS`.
+
+The main things you may wish to override are:
+
+* STORE_DIR: the directory to store the notifications.  You MUST supply your own path
+* PORT: the port to run the server on.  Default is 5005
+
+Create a local config file called something like `local.cfg` containing those properties
+
+.. code-block:: python
+
+    STORE_DIR = '/path/to/store/notifications'
+    PORT = 5005
+
+
+Then start the server with the following command:
+
+.. code-block:: console
+
+    COARNOTIFY_SETTINGS=local.cfg; python coarnotify/test/server/inbox.py
+
+Integration tests are located in `coarnotify/test/integration` and can be run with the following command (or your preferred test runner):
+
+.. code-block:: console
+
+    pytest coarnotify/test/integration
+

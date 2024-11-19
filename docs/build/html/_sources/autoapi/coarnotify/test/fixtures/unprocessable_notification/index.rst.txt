@@ -1,0 +1,42 @@
+coarnotify.test.fixtures.unprocessable_notification
+===================================================
+
+.. py:module:: coarnotify.test.fixtures.unprocessable_notification
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.unprocessable_notification.UNPROCESSABLE_NOTIFICATION
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.unprocessable_notification.UnprocessableNotificationFixtureFactory
+
+
+Module Contents
+---------------
+
+.. py:class:: UnprocessableNotificationFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+.. py:data:: UNPROCESSABLE_NOTIFICATION
+

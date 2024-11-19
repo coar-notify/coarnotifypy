@@ -22,6 +22,7 @@ Submodules
    /autoapi/coarnotify/test/fixtures/request_review/index
    /autoapi/coarnotify/test/fixtures/tentatively_accept/index
    /autoapi/coarnotify/test/fixtures/tentatively_reject/index
+   /autoapi/coarnotify/test/fixtures/unprocessable_notification/index
    /autoapi/coarnotify/test/fixtures/uris/index
 
 
@@ -42,6 +43,7 @@ Classes
    coarnotify.test.fixtures.RequestReviewFixtureFactory
    coarnotify.test.fixtures.TentativelyAcceptFixtureFactory
    coarnotify.test.fixtures.TentativelyRejectFixtureFactory
+   coarnotify.test.fixtures.UnprocessableNotificationFixtureFactory
 
 
 Package Contents
@@ -189,6 +191,21 @@ Package Contents
 
 
 .. py:class:: TentativelyRejectFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+.. py:class:: UnprocessableNotificationFixtureFactory
 
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 

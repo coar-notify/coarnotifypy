@@ -1,0 +1,28 @@
+coarnotify.models.unprocessable_notification
+============================================
+
+.. py:module:: coarnotify.models.unprocessable_notification
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.models.unprocessable_notification.UnprocessableNotification
+
+
+Module Contents
+---------------
+
+.. py:class:: UnprocessableNotification(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: validate()
+
+

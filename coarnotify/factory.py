@@ -1,8 +1,8 @@
 """
-
+Factory for producing the correct model based on the type or data within a payload
 """
 
-from typing import List
+from typing import List, Callable, Union
 from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties
 from coarnotify.models import (
     Accept,
@@ -15,12 +15,15 @@ from coarnotify.models import (
     RequestReview,
     TentativelyAccept,
     TentativelyReject,
-    UnprocessableNotification
+    UnprocessableNotification, NotifyPattern
 )
 from coarnotify.exceptions import NotifyException
 
 
 class COARNotifyFactory:
+    """
+    Factory for producing the correct model based on the type or data within a payload
+    """
 
     MODELS = [
         Accept,
@@ -35,9 +38,24 @@ class COARNotifyFactory:
         TentativelyReject,
         UnprocessableNotification
     ]
+    """The list of model classes recognised by this factory"""
 
     @classmethod
-    def get_by_types(cls, incoming_types:List[str]):
+    def get_by_types(cls, incoming_types:Union[str, List[str]]) -> Union[Callable, None]:
+        """
+        Get the model class based on the supplied types.  The returned callable is the class, not an instance.
+
+        This is achieved by inspecting all of the known types in `MODELS`, and performing the following
+        calculation:
+
+        1. If the supplied types are a subset of the model types, then this is a candidate, keep a reference to it
+        2. If the candidate fit is exact (supplied types and model types are the same), return the class
+        3. If the class is a better fit than the last candidate, update the candidate.  If the fit is exact, return the class
+        4. Once we have run out of models to check, return the best candidate (or None if none found)
+
+        :param incoming_types: a single type or list of types.  If a list is provided, ALL types must match a candidate
+        :return:    A class representing the best fit for the supplied types, or `None` if no match
+        """
         if not isinstance(incoming_types, list):
             incoming_types = [incoming_types]
 
@@ -66,7 +84,20 @@ class COARNotifyFactory:
         return candidate
 
     @classmethod
-    def get_by_object(cls, data, *args, **kwargs):
+    def get_by_object(cls, data: dict, *args, **kwargs) -> NotifyPattern:
+        """
+        Get an instance of a model based on the data provided.
+
+        Internally this calls `get_by_types` to determine the class to instantiate, and then creates an instance of that
+        Using the supplied args and kwargs.
+
+        If a model cannot be found that matches the data, a NotifyException is raised.
+
+        :param data: The raw stream data to parse and instantiate around
+        :param args: any args to pass to the object constructor
+        :param kwargs: any kwargs to pass to the object constructor
+        :return: A NotifyPattern of the correct type, wrapping the data
+        """
         stream = ActivityStream(data)
 
         types = stream.get_property(Properties.TYPE)

@@ -36,12 +36,13 @@
             
   <section id="module-coarnotify.factory">
 <span id="coarnotify-factory"></span><h1>coarnotify.factory<a class="headerlink" href="#module-coarnotify.factory" title="Link to this heading">¶</a></h1>
+<p>Factory for producing the correct model based on the type or data within a payload</p>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.factory.COARNotifyFactory" title="coarnotify.factory.COARNotifyFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COARNotifyFactory</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Factory for producing the correct model based on the type or data within a payload</p></td>
 </tr>
 </tbody>
 </table>
@@ -51,20 +52,55 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="coarnotify.factory.COARNotifyFactory">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.factory.</span></span><span class="sig-name descname"><span class="pre">COARNotifyFactory</span></span><a class="headerlink" href="#coarnotify.factory.COARNotifyFactory" title="Link to this definition">¶</a></dt>
-<dd><dl class="py attribute">
+<dd><p>Factory for producing the correct model based on the type or data within a payload</p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.factory.COARNotifyFactory.MODELS">
 <span class="sig-name descname"><span class="pre">MODELS</span></span><a class="headerlink" href="#coarnotify.factory.COARNotifyFactory.MODELS" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The list of model classes recognised by this factory</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.factory.COARNotifyFactory.get_by_types">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_by_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">incoming_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.factory.COARNotifyFactory.get_by_types" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_by_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">incoming_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.factory.COARNotifyFactory.get_by_types" title="Link to this definition">¶</a></dt>
+<dd><p>Get the model class based on the supplied types.  The returned callable is the class, not an instance.</p>
+<p>This is achieved by inspecting all of the known types in <cite>MODELS</cite>, and performing the following
+calculation:</p>
+<ol class="arabic simple">
+<li><p>If the supplied types are a subset of the model types, then this is a candidate, keep a reference to it</p></li>
+<li><p>If the candidate fit is exact (supplied types and model types are the same), return the class</p></li>
+<li><p>If the class is a better fit than the last candidate, update the candidate.  If the fit is exact, return the class</p></li>
+<li><p>Once we have run out of models to check, return the best candidate (or None if none found)</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>incoming_types</strong> – a single type or list of types.  If a list is provided, ALL types must match a candidate</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A class representing the best fit for the supplied types, or <cite>None</cite> if no match</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.factory.COARNotifyFactory.get_by_object">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_by_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.factory.COARNotifyFactory.get_by_object" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_by_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/index.html#coarnotify.models.NotifyPattern" title="coarnotify.models.NotifyPattern"><span class="pre">coarnotify.models.NotifyPattern</span></a></span></span><a class="headerlink" href="#coarnotify.factory.COARNotifyFactory.get_by_object" title="Link to this definition">¶</a></dt>
+<dd><p>Get an instance of a model based on the data provided.</p>
+<p>Internally this calls <cite>get_by_types</cite> to determine the class to instantiate, and then creates an instance of that
+Using the supplied args and kwargs.</p>
+<p>If a model cannot be found that matches the data, a NotifyException is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – The raw stream data to parse and instantiate around</p></li>
+<li><p><strong>args</strong> – any args to pass to the object constructor</p></li>
+<li><p><strong>kwargs</strong> – any kwargs to pass to the object constructor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A NotifyPattern of the correct type, wrapping the data</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
