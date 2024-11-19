@@ -14,7 +14,7 @@ which covers the following aspects of the protocol:
 * Send notifications to a target inbox
 * Provides a simple server-side binding to easily integrate notifications into your application
 
-In addition it provides:
+In addition, it provides:
 
 * A comprehensive test suite demonstrating the use of the library
 * A simple inbox which can be run locally for testing
@@ -28,3 +28,4 @@ Contents
 
 .. toctree::
     install
+    dev

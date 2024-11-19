@@ -10,7 +10,8 @@ from coarnotify.models import (
     Reject,
     RequestEndorsement,
     RequestReview,
-    TentativelyAccept
+    TentativelyAccept,
+    TentativelyReject
 )
 
 from coarnotify.test.fixtures import (
@@ -22,7 +23,8 @@ from coarnotify.test.fixtures import (
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
     RequestReviewFixtureFactory,
-    TentativelyAcceptFixtureFactory
+    TentativelyAcceptFixtureFactory,
+    TentativelyRejectFixtureFactory
 )
 
 INBOX = "http://localhost:5005/inbox"
@@ -105,6 +107,15 @@ class TestClient(TestCase):
         client = COARNotifyClient(INBOX)
         source = TentativelyAcceptFixtureFactory.source()
         ae = TentativelyAccept(source)
+        resp = client.send(ae)
+        assert resp.action == resp.CREATED
+        assert resp.location is not None
+        print(resp.location)
+
+    def test_11_tentatively_reject(self):
+        client = COARNotifyClient(INBOX)
+        source = TentativelyRejectFixtureFactory.source()
+        ae = TentativelyReject(source)
         resp = client.send(ae)
         assert resp.action == resp.CREATED
         assert resp.location is not None

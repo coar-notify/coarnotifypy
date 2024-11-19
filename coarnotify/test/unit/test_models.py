@@ -13,7 +13,8 @@ from coarnotify.models import (
     Reject,
     RequestEndorsement,
     RequestReview,
-    TentativelyAccept
+    TentativelyAccept,
+    TentativelyReject
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -25,7 +26,8 @@ from coarnotify.test.fixtures import (
     RejectFixtureFactory,
     RequestEndorsementFixtureFactory,
     RequestReviewFixtureFactory,
-    TentativelyAcceptFixtureFactory
+    TentativelyAcceptFixtureFactory,
+    TentativelyRejectFixtureFactory
 )
 
 
@@ -316,3 +318,16 @@ class TestModels(TestCase):
 
         proptest = self._get_testable_properties(compare)
         self._apply_property_test(proptest, ta, TentativelyAcceptFixtureFactory)
+
+    def test_15_tentatively_reject(self):
+        ta = TentativelyReject()
+
+        source = TentativelyRejectFixtureFactory.source()
+        compare = deepcopy(source)
+        ta = TentativelyReject(source)
+
+        assert ta.validate() is True
+        assert ta.to_jsonld() == compare
+
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, ta, TentativelyRejectFixtureFactory)

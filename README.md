@@ -1,26 +1,24 @@
-# COAR Notify
+# coarnotifypy
 
-TODO
+https://coar-notify.net/
 
-## Adding a new model
+The COAR Notify Protocol is a set of profiles, constraints and conventions around the use of W3C Linked Data Notifications (LDN) to integrate repository systems with relevant services in a distributed, resilient and web-native architecture.
 
-1. Create a new module for the model in `coarnotify.models` (for example `coarnotify.models.announce_ingest`)
-2. Create the new model class in the new module (for example, `AnnounceIngest`) and implement as needed
-3. Review the validation requirements of the new model and ensure validation is updated (update the model spreadsheet)
-4. Add the new model to `coarnotify.models.__init__.py` so it can be imported from `coarnotify.models`
-5. Add the new model to the factory list of models in `coarnotify.common.COARNotifyFactory.MODELS`
-6. Create a fixture and fixture factory in `coarnotify.test.fixtures` (for example, `coarnotify.test.fixtures.announce_ingest`)
-7. Import the new fixture in `coarnotify.test.fixtures.__init__.py`
-8. Add a unit test for the new model in `coarnotify.test.unit.test_models`, and confirm it works
-9. Add a unit test for the model factory in `coarnotify.test.unit.test_factory`, and confirm it works
-10. Add an integration test for the new model in `coarnotify.test.integration.test_client`, and confirm it works
-11. Add validation tests for the new model in `coarnotify.test.unit.test_validate`, and confirm they work
+This library provides a Python implementation of the COAR Notify Protocol version 1.0.0 (https://coar-notify.net/specification/1.0.0/),
+which covers the following aspects of the protocol:
 
+* A set of model objects which can be used to represent the core Patterns
+* Built-in validation for Patterns and over values passed to the model APIs
+* Parse and serialise to JSON-LD
+* Send notifications to a target inbox
+* Provides a simple server-side binding to easily integrate notifications into your application
 
-## Building documentation
+In addition, it provides:
 
-To build the documentation, run the following command:
+* A comprehensive test suite demonstrating the use of the library
+* A simple inbox which can be run locally for testing
+* A simple set of integration tests for sending notifications to an inbox
+* A customisable HTTP layer to allow you to use your own, or to build in custom authentication routines
+* Detailed API documentation
 
-```bash
-sphinx-build -M html docs/source/ docs/build/
-```
+Full documentation here: https://cottagelabs.github.io/coarnotifypy/build/html/index.html

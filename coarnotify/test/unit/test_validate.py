@@ -1,14 +1,16 @@
 from unittest import TestCase
 from copy import deepcopy
 
-from coarnotify.models import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem, TentativelyAccept
+from coarnotify.models import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
-    RequestReview
+    RequestReview,
+    TentativelyAccept,
+    TentativelyReject
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -18,7 +20,9 @@ from coarnotify.test.fixtures import (
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
     RequestReviewFixtureFactory,
-    URIFixtureFactory, TentativelyAcceptFixtureFactory
+    URIFixtureFactory,
+    TentativelyAcceptFixtureFactory,
+    TentativelyRejectFixtureFactory
 )
 
 from coarnotify.exceptions import ValidationError
@@ -301,7 +305,22 @@ class TestValidate(TestCase):
         # now make one with fully invalid data
         isource = TentativelyAcceptFixtureFactory.invalid()
         with self.assertRaises(ValidationError) as ve:
-            a = AnnounceEndorsement(isource)
+            a = TentativelyAccept(isource)
+
+    def test_13_tentative_reject_validate(self):
+        # make a valid one
+        source = TentativelyRejectFixtureFactory.source()
+        a = TentativelyReject(source)
+
+        self._base_validate(a)
+        self._actor_validate(a)
+        # omit object validation, as the nested object here is a full notification in its own right
+        # self._object_validate(a)
+
+        # now make one with fully invalid data
+        isource = TentativelyRejectFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = TentativelyReject(isource)
 
     def test_19_announce_review_validate(self):
         # make a valid one
