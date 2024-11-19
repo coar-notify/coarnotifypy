@@ -1,23 +1,50 @@
+"""
+This module contains all the client-specific code for sending notifications
+to an inbox and receiving the responses it may return
+"""
+
 import json
+from typing import Union
+
+from coarnotify.exceptions import NotifyException
 from coarnotify.http import RequestsHttpLayer, HttpLayer
 from coarnotify.models.notify import NotifyPattern
-from coarnotify.exceptions import NotifyException
 
 
 class NotifyResponse:
+    """
+    An object representing the response from a COAR Notify inbox.
+
+    This contains the action that was carried out on the server:
+
+    * CREATED - a new resource was created
+
+    * ACCEPTED - the request was accepted, but the resource was not yet created
+
+    In the event that the resource is created, then there will also be a location
+    URL which will give you access to the resource
+    """
     CREATED = "created"
     ACCEPTED = "accepted"
 
     def __init__(self, action, location=None):
+        """
+        Construct a new NotifyResponse object with the action (created or accepted) and the location URL (optional)
+
+        :param action: The action which the server said it took
+        :param location: The HTTP URI for the resource that was created (if present)
+        """
         self._action = action
         self._location = location
 
     @property
-    def action(self):
+    def action(self) -> str:
+        """The action that was taken, will be one of the constants CREATED or ACCEPTED"""
         return self._action
 
     @property
-    def location(self):
+    def location(self) -> Union[str, None]:
+        """The HTTP URI of the created resource, if present"""
         return self._location
 
 
@@ -27,29 +54,35 @@ class COARNotifyClient:
     """
     def __init__(self, inbox_url: str = None, http_layer: HttpLayer = None):
         """
-        Construct an instance of the client
+        Construct an instance of the client.  If you do not supply an inbox URL at construction you will
+        need to supply it via the `inbox_url` setter, or when you send a notification
 
-        :param inbox_url:
-        :param http_layer:
+        :param inbox_url:   HTTP URI of the inbox to communicate with by default
+        :param http_layer:  An implementation of the HttpLayer interface to use for sending HTTP requests.
+                            If not provided, the default implementation will be used based on `requests`
         """
         self._inbox_url = inbox_url
         self._http = http_layer if http_layer is not None else RequestsHttpLayer()
 
     @property
-    def inbox_url(self):
+    def inbox_url(self) -> Union[str, None]:
+        """The HTTP URI of the inbox to communicate with by default"""
         return self._inbox_url
 
     @inbox_url.setter
-    def inbox_url(self, value):
+    def inbox_url(self, value: str):
+        """Set the HTTP URI of the inbox to communicate with by default"""
         self._inbox_url = value
 
-    def discover(self, target_url: str):
-        # resp = self._http.head(target_url, headers={"Accept": "application/ld+json"})
-        # resp = self._http.get(target_url, headers={"Accept": "application/ld+json"})
-        # resp = self._http.get(target_url, headers={"Accept": "text/html"})
-        pass
-
     def send(self, notification: NotifyPattern, inbox_url: str = None, validate: bool = True) -> NotifyResponse:
+        """
+        Send the given notification to the inbox.  If no inbox URL is provided, the default inbox URL will be used.
+
+        :param notification: The notification object (from the models provided, or a subclass you have made of the NotifyPattern class)
+        :param inbox_url: The HTTP URI to send the notification to.  Omit if using the default inbox_url supplied in the constructor
+        :param validate: Whether to validate the notification before sending.  If you are sure the notification is valid, you can set this to False
+        :return: a NotifyResponse object representing the response from the server
+        """
         if inbox_url is None:
             inbox_url = self._inbox_url
         if inbox_url is None:

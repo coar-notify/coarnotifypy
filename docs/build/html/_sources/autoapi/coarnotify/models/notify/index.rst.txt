@@ -99,18 +99,6 @@ Module Contents
 
 .. py:class:: NotifyBase(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
-   .. py:attribute:: _validate_stream_on_construct
-
-
-   .. py:attribute:: _validate_properties
-
-
-   .. py:attribute:: _validators
-
-
-   .. py:attribute:: _validation_context
-
-
    .. py:property:: validate_properties
 
 
@@ -166,9 +154,6 @@ Module Contents
 
 
    .. py:attribute:: TYPE
-
-
-   .. py:method:: _ensure_type_contains(types: Union[str, list[str]])
 
 
    .. py:property:: origin

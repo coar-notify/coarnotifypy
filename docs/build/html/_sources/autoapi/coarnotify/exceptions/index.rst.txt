@@ -32,9 +32,6 @@ Module Contents
    Common base class for all non-exit exceptions.
 
 
-   .. py:attribute:: _errors
-
-
    .. py:property:: errors
 
 
@@ -45,11 +42,5 @@ Module Contents
 
 
    .. py:method:: has_errors()
-
-
-   .. py:method:: __str__()
-
-      Return str(self).
-
 
 

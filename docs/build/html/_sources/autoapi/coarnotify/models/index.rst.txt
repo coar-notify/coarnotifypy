@@ -176,9 +176,6 @@ Package Contents
    .. py:attribute:: TYPE
 
 
-   .. py:method:: _ensure_type_contains(types: Union[str, list[str]])
-
-
    .. py:property:: origin
       :type: Union[NotifyService, None]
 

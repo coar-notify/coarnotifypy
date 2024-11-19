@@ -54,9 +54,6 @@ Module Contents
 
 .. py:class:: Validator(rules)
 
-   .. py:attribute:: _rules
-
-
    .. py:method:: get(property, context=None)
 
 

@@ -36,12 +36,14 @@
             
   <section id="module-coarnotify.client">
 <span id="coarnotify-client"></span><h1>coarnotify.client<a class="headerlink" href="#module-coarnotify.client" title="Link to this heading">¶</a></h1>
+<p>This module contains all the client-specific code for sending notifications
+to an inbox and receiving the responses it may return</p>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.client.NotifyResponse" title="coarnotify.client.NotifyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyResponse</span></code></a></p></td>
-<td><p></p></td>
+<td><p>An object representing the response from a COAR Notify inbox.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.client.COARNotifyClient" title="coarnotify.client.COARNotifyClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COARNotifyClient</span></code></a></p></td>
 <td><p>The COAR Notify Client, which is the mechanism through which you will interact with external inboxes.</p></td>
@@ -54,7 +56,15 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="coarnotify.client.NotifyResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.client.</span></span><span class="sig-name descname"><span class="pre">NotifyResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.client.NotifyResponse" title="Link to this definition">¶</a></dt>
-<dd><dl class="py attribute">
+<dd><p>An object representing the response from a COAR Notify inbox.</p>
+<p>This contains the action that was carried out on the server:</p>
+<ul class="simple">
+<li><p>CREATED - a new resource was created</p></li>
+<li><p>ACCEPTED - the request was accepted, but the resource was not yet created</p></li>
+</ul>
+<p>In the event that the resource is created, then there will also be a location
+URL which will give you access to the resource</p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.client.NotifyResponse.CREATED">
 <span class="sig-name descname"><span class="pre">CREATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'created'</span></em><a class="headerlink" href="#coarnotify.client.NotifyResponse.CREATED" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -64,25 +74,17 @@
 <span class="sig-name descname"><span class="pre">ACCEPTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'accepted'</span></em><a class="headerlink" href="#coarnotify.client.NotifyResponse.ACCEPTED" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.client.NotifyResponse._action">
-<span class="sig-name descname"><span class="pre">_action</span></span><a class="headerlink" href="#coarnotify.client.NotifyResponse._action" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.client.NotifyResponse._location">
-<span class="sig-name descname"><span class="pre">_location</span></span><a class="headerlink" href="#coarnotify.client.NotifyResponse._location" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.client.NotifyResponse.action">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action</span></span><a class="headerlink" href="#coarnotify.client.NotifyResponse.action" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.client.NotifyResponse.action" title="Link to this definition">¶</a></dt>
+<dd><p>The action that was taken, will be one of the constants CREATED or ACCEPTED</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.client.NotifyResponse.location">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#coarnotify.client.NotifyResponse.location" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.client.NotifyResponse.location" title="Link to this definition">¶</a></dt>
+<dd><p>The HTTP URI of the created resource, if present</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -90,30 +92,29 @@
 <dt class="sig sig-object py" id="coarnotify.client.COARNotifyClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.client.</span></span><span class="sig-name descname"><span class="pre">COARNotifyClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inbox_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">http_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../http/index.html#coarnotify.http.HttpLayer" title="coarnotify.http.HttpLayer"><span class="pre">coarnotify.http.HttpLayer</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.client.COARNotifyClient" title="Link to this definition">¶</a></dt>
 <dd><p>The COAR Notify Client, which is the mechanism through which you will interact with external inboxes.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.client.COARNotifyClient._inbox_url">
-<span class="sig-name descname"><span class="pre">_inbox_url</span></span><a class="headerlink" href="#coarnotify.client.COARNotifyClient._inbox_url" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.client.COARNotifyClient._http">
-<span class="sig-name descname"><span class="pre">_http</span></span><a class="headerlink" href="#coarnotify.client.COARNotifyClient._http" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.client.COARNotifyClient.inbox_url">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inbox_url</span></span><a class="headerlink" href="#coarnotify.client.COARNotifyClient.inbox_url" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.client.COARNotifyClient.discover">
-<span class="sig-name descname"><span class="pre">discover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.client.COARNotifyClient.discover" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inbox_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.client.COARNotifyClient.inbox_url" title="Link to this definition">¶</a></dt>
+<dd><p>The HTTP URI of the inbox to communicate with by default</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.client.COARNotifyClient.send">
 <span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/notify/index.html#coarnotify.models.notify.NotifyPattern" title="coarnotify.models.notify.NotifyPattern"><span class="pre">coarnotify.models.notify.NotifyPattern</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">inbox_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.client.NotifyResponse" title="coarnotify.client.NotifyResponse"><span class="pre">NotifyResponse</span></a></span></span><a class="headerlink" href="#coarnotify.client.COARNotifyClient.send" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Send the given notification to the inbox.  If no inbox URL is provided, the default inbox URL will be used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>notification</strong> – The notification object (from the models provided, or a subclass you have made of the NotifyPattern class)</p></li>
+<li><p><strong>inbox_url</strong> – The HTTP URI to send the notification to.  Omit if using the default inbox_url supplied in the constructor</p></li>
+<li><p><strong>validate</strong> – Whether to validate the notification before sending.  If you are sure the notification is valid, you can set this to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a NotifyResponse object representing the response from the server</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -147,6 +148,7 @@
 </search>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">coarnotify</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
@@ -157,17 +159,12 @@
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.client.NotifyResponse"><code class="docutils literal notranslate"><span class="pre">NotifyResponse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.NotifyResponse.CREATED"><code class="docutils literal notranslate"><span class="pre">NotifyResponse.CREATED</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.NotifyResponse.ACCEPTED"><code class="docutils literal notranslate"><span class="pre">NotifyResponse.ACCEPTED</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.NotifyResponse._action"><code class="docutils literal notranslate"><span class="pre">NotifyResponse._action</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.NotifyResponse._location"><code class="docutils literal notranslate"><span class="pre">NotifyResponse._location</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.NotifyResponse.action"><code class="docutils literal notranslate"><span class="pre">NotifyResponse.action</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.NotifyResponse.location"><code class="docutils literal notranslate"><span class="pre">NotifyResponse.location</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.client.COARNotifyClient"><code class="docutils literal notranslate"><span class="pre">COARNotifyClient</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.COARNotifyClient._inbox_url"><code class="docutils literal notranslate"><span class="pre">COARNotifyClient._inbox_url</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.COARNotifyClient._http"><code class="docutils literal notranslate"><span class="pre">COARNotifyClient._http</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.COARNotifyClient.inbox_url"><code class="docutils literal notranslate"><span class="pre">COARNotifyClient.inbox_url</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.COARNotifyClient.discover"><code class="docutils literal notranslate"><span class="pre">COARNotifyClient.discover()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.client.COARNotifyClient.send"><code class="docutils literal notranslate"><span class="pre">COARNotifyClient.send()</span></code></a></li>
 </ul>
 </li>

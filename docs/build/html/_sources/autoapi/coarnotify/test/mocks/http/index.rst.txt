@@ -21,12 +21,6 @@ Module Contents
    Bases: :py:obj:`coarnotify.http.HttpLayer`
 
 
-   .. py:attribute:: _status_code
-
-
-   .. py:attribute:: _location
-
-
    .. py:method:: post(url, data, headers=None, *args, **kwargs)
 
 
@@ -43,12 +37,6 @@ Module Contents
 .. py:class:: MockHttpResponse(status_code=200, location=None)
 
    Bases: :py:obj:`coarnotify.http.HttpResponse`
-
-
-   .. py:attribute:: _status_code
-
-
-   .. py:attribute:: _location
 
 
    .. py:method:: header(header_name)

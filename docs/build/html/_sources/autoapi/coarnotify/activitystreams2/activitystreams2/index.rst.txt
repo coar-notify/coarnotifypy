@@ -230,21 +230,10 @@ Module Contents
 
 .. py:class:: ActivityStream(raw=None)
 
-   .. py:attribute:: _doc
-
-
-   .. py:attribute:: _context
-      :value: []
-
-
-
    .. py:property:: doc
 
 
    .. py:property:: context
-
-
-   .. py:method:: _register_namespace(namespace: Union[str, tuple[str, str]])
 
 
    .. py:method:: set_property(property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]], value)

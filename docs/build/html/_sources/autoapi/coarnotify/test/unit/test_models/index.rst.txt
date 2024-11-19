@@ -52,12 +52,6 @@ Module Contents
        attribute so can be configured by individual tests if required.
 
 
-   .. py:method:: _get_testable_properties(source, prop_map=None)
-
-
-   .. py:method:: _apply_property_test(proptest, obj, fixtures)
-
-
    .. py:method:: test_01_notify_manual_construct()
 
 

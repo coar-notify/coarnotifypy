@@ -15,7 +15,8 @@ setup(
     classifiers=[],
     extras_require={
         'docs': [
-            'sphinx'
+            'sphinx',
+            'sphinx-autoapi'
         ],
         'test': [
             "Flask>3.0.0"

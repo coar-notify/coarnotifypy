@@ -66,9 +66,6 @@ Module Contents
    Bases: :py:obj:`HttpResponse`
 
 
-   .. py:attribute:: _resp
-
-
    .. py:method:: header(header_name)
 
 
