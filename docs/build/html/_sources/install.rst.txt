@@ -1,7 +1,7 @@
 Installation
 ============
 
-To install using `pip` simply run the following command:
+To install using `pip` run the following command:
 
 .. code-block:: console
 

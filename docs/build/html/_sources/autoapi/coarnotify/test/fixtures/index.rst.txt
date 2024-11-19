@@ -21,6 +21,7 @@ Submodules
    /autoapi/coarnotify/test/fixtures/request_endorsement/index
    /autoapi/coarnotify/test/fixtures/request_review/index
    /autoapi/coarnotify/test/fixtures/tentatively_accept/index
+   /autoapi/coarnotify/test/fixtures/tentatively_reject/index
    /autoapi/coarnotify/test/fixtures/uris/index
 
 
@@ -40,6 +41,7 @@ Classes
    coarnotify.test.fixtures.URIFixtureFactory
    coarnotify.test.fixtures.RequestReviewFixtureFactory
    coarnotify.test.fixtures.TentativelyAcceptFixtureFactory
+   coarnotify.test.fixtures.TentativelyRejectFixtureFactory
 
 
 Package Contents
@@ -172,6 +174,21 @@ Package Contents
 
 
 .. py:class:: TentativelyAcceptFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+.. py:class:: TentativelyRejectFixtureFactory
 
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 

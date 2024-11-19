@@ -32,9 +32,6 @@ Module Contents
 
 .. py:class:: Properties
 
-   Bases: :py:obj:`coarnotify.constants.ConstantList`
-
-
    .. py:attribute:: ID
 
 
@@ -73,9 +70,6 @@ Module Contents
 
 .. py:class:: ActivityStreamsTypes
 
-   Bases: :py:obj:`coarnotify.constants.ConstantList`
-
-
    .. py:attribute:: ACCEPT
       :value: 'Accept'
 
@@ -98,6 +92,11 @@ Module Contents
 
    .. py:attribute:: TENTATIVE_ACCEPT
       :value: 'TentativeAccept'
+
+
+
+   .. py:attribute:: TENTATIVE_REJECT
+      :value: 'TentativeReject'
 
 
 

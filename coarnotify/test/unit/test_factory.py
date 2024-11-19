@@ -12,7 +12,7 @@ from coarnotify.models import (
     TentativelyAccept,
     TentativelyReject
 )
-from coarnotify.common import COARNotifyFactory
+from coarnotify.factory import COARNotifyFactory
 
 from coarnotify.test.fixtures import (
     AcceptFixtureFactory,

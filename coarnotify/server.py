@@ -1,5 +1,5 @@
 from coarnotify.models import NotifyPattern
-from coarnotify.common import COARNotifyFactory
+from coarnotify.factory import COARNotifyFactory
 
 
 class COARNotifyReceipt:

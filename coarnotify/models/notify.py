@@ -1,7 +1,6 @@
 from setuptools.config.pyprojecttoml import validate
 
 from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties, ActivityStreamsTypes, ACTIVITY_STREAMS_OBJECTS
-from coarnotify.constants import ConstantList
 from coarnotify import validate
 from coarnotify.exceptions import ValidationError
 from typing import Union
@@ -11,7 +10,7 @@ from copy import deepcopy
 NOTIFY_NAMESPACE = "https://coar-notify.net"
 
 
-class NotifyProperties(ConstantList):
+class NotifyProperties:
     INBOX = ("inbox", NOTIFY_NAMESPACE)
     CITE_AS = ("ietf:cite-as", NOTIFY_NAMESPACE)
     ITEM = ("ietf:item", NOTIFY_NAMESPACE)
@@ -19,7 +18,7 @@ class NotifyProperties(ConstantList):
     MEDIA_TYPE = "mediaType"
 
 
-class NotifyTypes(ConstantList):
+class NotifyTypes:
     ENDORSMENT_ACTION = "coar-notify:EndorsementAction"
     INGEST_ACTION = "coar-notify:IngestAction"
     RELATIONSHIP_ACTION = "coar-notify:RelationshipAction"
@@ -528,7 +527,7 @@ class NestedPatternObjectMixin(object):
     def object(self) -> Union[NotifyPattern, NotifyObject, None]:
         o = self.get_property(Properties.OBJECT)
         if o is not None:
-            from coarnotify.common import COARNotifyFactory  # late import to avoid circular dependency
+            from coarnotify.factory import COARNotifyFactory  # late import to avoid circular dependency
             nested = COARNotifyFactory.get_by_object(deepcopy(o),
                                                      validate_stream_on_construct=False,
                                                      validate_properties=self.validate_properties,

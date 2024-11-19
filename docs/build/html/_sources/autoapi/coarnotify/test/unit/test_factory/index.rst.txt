@@ -79,3 +79,6 @@ Module Contents
    .. py:method:: test_11_tentatively_accept()
 
 
+   .. py:method:: test_12_tentatively_reject()
+
+

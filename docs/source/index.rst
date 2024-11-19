@@ -28,4 +28,5 @@ Contents
 
 .. toctree::
     install
+    quickstart
     dev

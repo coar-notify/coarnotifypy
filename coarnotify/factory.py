@@ -1,3 +1,7 @@
+"""
+
+"""
+
 from typing import List
 from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties
 from coarnotify.models import (

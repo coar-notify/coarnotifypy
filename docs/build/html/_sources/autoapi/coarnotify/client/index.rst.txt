@@ -80,7 +80,8 @@ Module Contents
       Send the given notification to the inbox.  If no inbox URL is provided, the default inbox URL will be used.
 
       :param notification: The notification object (from the models provided, or a subclass you have made of the NotifyPattern class)
-      :param inbox_url: The HTTP URI to send the notification to.  Omit if using the default inbox_url supplied in the constructor
+      :param inbox_url: The HTTP URI to send the notification to.  Omit if using the default inbox_url supplied in the constructor.
+                          If it is omitted, and no value is passed here then we will also look in the `target.inbox` property of the notification
       :param validate: Whether to validate the notification before sending.  If you are sure the notification is valid, you can set this to False
       :return: a NotifyResponse object representing the response from the server
 

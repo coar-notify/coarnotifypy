@@ -20,6 +20,7 @@ Submodules
    /autoapi/coarnotify/models/request_endorsement/index
    /autoapi/coarnotify/models/request_review/index
    /autoapi/coarnotify/models/tentatively_accept/index
+   /autoapi/coarnotify/models/tentatively_reject/index
 
 
 Classes
@@ -36,6 +37,7 @@ Classes
    coarnotify.models.RequestEndorsement
    coarnotify.models.RequestReview
    coarnotify.models.TentativelyAccept
+   coarnotify.models.TentativelyReject
    coarnotify.models.NotifyPattern
    coarnotify.models.NotifyService
    coarnotify.models.NotifyObject
@@ -168,6 +170,17 @@ Package Contents
    .. py:method:: validate()
 
 
+.. py:class:: TentativelyReject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: validate()
+
+
 .. py:class:: NotifyPattern(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyBase`
@@ -281,9 +294,6 @@ Package Contents
 
 
 .. py:class:: NotifyProperties
-
-   Bases: :py:obj:`coarnotify.constants.ConstantList`
-
 
    .. py:attribute:: INBOX
 

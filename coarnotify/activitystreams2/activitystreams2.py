@@ -1,11 +1,10 @@
-from coarnotify.constants import ConstantList
 from typing import Union
 
 
 ACTIVITY_STREAMS_NAMESPACE = "https://www.w3.org/ns/activitystreams"
 
 
-class Properties(ConstantList):
+class Properties:
     ID = ("id", ACTIVITY_STREAMS_NAMESPACE)
     TYPE = ("type", ACTIVITY_STREAMS_NAMESPACE)
     ORIGIN = ("origin", ACTIVITY_STREAMS_NAMESPACE)
@@ -19,7 +18,7 @@ class Properties(ConstantList):
     OBJECT_TRIPLE = ("as:object", ACTIVITY_STREAMS_NAMESPACE)
     RELATIONSHIP_TRIPLE = ("as:relationship", ACTIVITY_STREAMS_NAMESPACE)
 
-class ActivityStreamsTypes(ConstantList):
+class ActivityStreamsTypes:
     # Activities
     ACCEPT = "Accept"
     ANNOUNCE = "Announce"

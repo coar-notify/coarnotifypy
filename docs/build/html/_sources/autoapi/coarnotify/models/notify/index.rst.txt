@@ -41,9 +41,6 @@ Module Contents
 
 .. py:class:: NotifyProperties
 
-   Bases: :py:obj:`coarnotify.constants.ConstantList`
-
-
    .. py:attribute:: INBOX
 
 
@@ -64,9 +61,6 @@ Module Contents
 
 
 .. py:class:: NotifyTypes
-
-   Bases: :py:obj:`coarnotify.constants.ConstantList`
-
 
    .. py:attribute:: ENDORSMENT_ACTION
       :value: 'coar-notify:EndorsementAction'
