@@ -46,7 +46,7 @@ Finally, we create a `COARNotifyClient` object and send the notification to the 
     target.inbox = "https://example.com/inbox"
 
     announcement.actor = actor
-    announcement.object = object
+    announcement.object = obj
     announcement.origin = origin
     announcement.target = target
 
