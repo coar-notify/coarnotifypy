@@ -4,8 +4,10 @@ from coarnotify.test.fixtures import BaseFixtureFactory
 
 class TentativelyAcceptFixtureFactory(BaseFixtureFactory):
     @classmethod
-    def source(cls):
-        return deepcopy(TENTATIVELY_ACCEPT)
+    def source(cls, copy=True):
+        if copy:
+            return deepcopy(TENTATIVELY_ACCEPT)
+        return TENTATIVELY_ACCEPT
 
     @classmethod
     def invalid(cls):
@@ -15,13 +17,13 @@ class TentativelyAcceptFixtureFactory(BaseFixtureFactory):
         cls._object_invalid(source)
         return source
 
-    @classmethod
-    def expected_value(cls, path):
-        bits = path.split(".")
-        node = TENTATIVELY_ACCEPT
-        for bit in bits:
-            node = node[bit]
-        return node
+    # @classmethod
+    # def expected_value(cls, path):
+    #     bits = path.split(".")
+    #     node = TENTATIVELY_ACCEPT
+    #     for bit in bits:
+    #         node = node[bit]
+    #     return node
 
 TENTATIVELY_ACCEPT = {
     "@context": [

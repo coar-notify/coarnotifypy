@@ -1,10 +1,14 @@
 from copy import deepcopy
 
+from coarnotify.test.fixtures import BaseFixtureFactory
 
-class RejectFixtureFactory:
+
+class RejectFixtureFactory(BaseFixtureFactory):
     @classmethod
-    def source(cls):
-        return deepcopy(REJECT)
+    def source(cls, copy=True):
+        if copy:
+            return deepcopy(REJECT)
+        return REJECT
 
 
 REJECT = {

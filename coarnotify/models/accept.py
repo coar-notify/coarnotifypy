@@ -1,17 +1,9 @@
-from coarnotify.models.notify import NotifyPattern
+from coarnotify.models.notify import NotifyPattern, NestedPatternObjectMixin, SummaryMixin
 from coarnotify.activitystreams2.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
-class Accept(NotifyPattern):
+class Accept(NestedPatternObjectMixin, NotifyPattern):
     TYPE = ActivityStreamsTypes.ACCEPT
-
-    @property
-    def summary(self) -> str:
-        return self.get_property(Properties.SUMMARY)
-
-    @summary.setter
-    def summary(self, summary: str):
-        self.set_property(Properties.SUMMARY, summary)
 
     def validate(self):
         ve = ValidationError()

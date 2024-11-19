@@ -518,3 +518,43 @@ class NotifyItem(NotifyPatternPart):
         if ve.has_errors():
             raise ve
         return True
+
+
+## Mixins
+##########################################################
+
+class NestedPatternObjectMixin(object):
+    @property
+    def object(self) -> Union[NotifyPattern, NotifyObject, None]:
+        o = self.get_property(Properties.OBJECT)
+        if o is not None:
+            from coarnotify.common import COARNotifyFactory  # late import to avoid circular dependency
+            nested = COARNotifyFactory.get_by_object(deepcopy(o),
+                                                     validate_stream_on_construct=False,
+                                                     validate_properties=self.validate_properties,
+                                                     validators=self.validators,
+                                                     validation_context=None)  # don't supply a validation context, as these objects are not typical nested objects
+            if nested is not None:
+                return nested
+
+            # if we are unable to construct the typed nested object, just return a generic object
+            return NotifyObject(deepcopy(o),
+                                validate_stream_on_construct=False,
+                                validate_properties=self.validate_properties,
+                                validators=self.validators,
+                                validation_context=Properties.OBJECT)
+        return None
+
+    @object.setter
+    def object(self, value: Union[NotifyObject, NotifyPattern]):
+        self.set_property(Properties.OBJECT, value.doc)
+
+
+class SummaryMixin(object):
+    @property
+    def summary(self) -> str:
+        return self.get_property(Properties.SUMMARY)
+
+    @summary.setter
+    def summary(self, summary: str):
+        self.set_property(Properties.SUMMARY, summary)

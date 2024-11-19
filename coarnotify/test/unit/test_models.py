@@ -30,6 +30,79 @@ from coarnotify.test.fixtures import (
 
 
 class TestModels(TestCase):
+
+    def _get_testable_properties(self, source, prop_map=None):
+        def expand(node, path):
+            paths = []
+            for k, v in node.items():
+                if isinstance(v, dict):
+                    paths += expand(v, f"{path}.{k}")
+                else:
+                    paths.append(f"{path}.{k}")
+            paths = [p[1:] if p.startswith(".") else p for p in paths if "@context" not in p]  # strip the leading "."
+            return paths
+
+        obj_properties = expand(source, "")
+
+        if prop_map is None:
+            prop_map = {
+                "inReplyTo": "in_reply_to",
+                "context.ietf:cite-as": "context.cite_as",
+                "context.ietf:item.id": "context.item.id",
+                "context.ietf:item.mediaType": "context.item.media_type",
+                "context.ietf:item.type": "context.item.type",
+                "object.as:subject": "object.triple[2]",
+                "object.as:relationship": "object.triple[1]",
+                "object.as:object": "object.triple[0]",
+                "object.ietf:cite-as": "object.cite_as",
+                "object.ietf:item.id": "object.item.id",
+                "object.ietf:item.mediaType": "object.item.media_type",
+                "object.ietf:item.type": "object.item.type",
+                "object.object.ietf:cite-as": "object.object.cite_as",
+                "object.object.ietf:item.id": "object.object.item.id",
+                "object.object.ietf:item.mediaType": "object.object.item.media_type",
+                "object.object.ietf:item.type": "object.object.item.type",
+            }
+
+        proptest = [p if p not in prop_map else (prop_map[p], p) for p in obj_properties]
+        return proptest
+
+    def _apply_property_test(self, proptest, obj, fixtures):
+        def get_prop(source, prop):
+            p = prop
+            if isinstance(prop, tuple):
+                p = prop[1]
+            bits = p.split(".")
+            for bit in bits:
+                idx = None
+                if "[" in bit:
+                    bit, idx = bit.split("[")
+                    idx = int(idx[:-1])
+                source = getattr(source, bit)
+                if idx is not None:
+                    source = source[idx]
+            return source
+
+        for prop in proptest:
+            if isinstance(prop, tuple):
+                oprop = prop[0]
+                fprop = prop[1]
+            else:
+                oprop = prop
+                fprop = prop
+
+            print(oprop, fprop)
+            oval = get_prop(obj, oprop)
+            eval = fixtures.expected_value(fprop)
+
+            # allow a single value to be equivalent to a list containing a single value
+            if isinstance(oval, list) and len(oval) == 1:
+                oval = oval[0]
+            if isinstance(eval, list) and len(eval) == 1:
+                eval = eval[0]
+
+            assert oval == eval, f"{oprop}:{oval} - {fprop}:{eval}"
+
     def test_01_notify_manual_construct(self):
         n = NotifyPattern()
 
@@ -141,21 +214,8 @@ class TestModels(TestCase):
         assert a.validate() is True
         assert a.to_jsonld() == compare
 
-        assert a.id == "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
-        assert a.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-
-        assert a.origin.id == "https://generic-service.com/system"
-        assert a.origin.inbox == "https://generic-service.com/system/inbox/"
-        assert a.origin.type == "Service"
-
-        assert a.object.id == "urn:uuid:4fb3af44-1111-4226-9475-2d09c2d8d9e0"
-        assert a.object.type == "sorg:AboutPage"
-
-        assert a.target.id == "https://some-organisation.org"
-        assert a.target.inbox == "https://some-organisation.org/inbox/"
-        assert a.target.type == ["Organization", "Service"]
-
-        assert a.type == "Accept"
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, a, AcceptFixtureFactory)
 
     def test_05_announce_endorsement(self):
         ae = AnnounceEndorsement()
@@ -165,34 +225,8 @@ class TestModels(TestCase):
         assert ae.validate() is True
         assert ae.to_jsonld() == compare
 
-        assert ae.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
-        assert ae.type == ["Announce", "coar-notify:EndorsementAction"]
-
-        assert ae.origin.id == "https://overlay-journal.com/system"
-        assert ae.origin.inbox == "https://overlay-journal.com/inbox/"
-        assert ae.origin.type == "Service"
-
-        assert ae.object.id == "https://overlay-journal.com/articles/00001/"
-        assert ae.object.cite_as == "https://overlay-journal.com/articles/00001/"
-        assert ae.object.type == ["Page", "sorg:WebPage"]
-
-        assert ae.target.id == "https://research-organisation.org/repository"
-        assert ae.target.inbox == "https://research-organisation.org/inbox/"
-        assert ae.target.type == "Service"
-
-        assert ae.actor.id == "https://overlay-journal.com"
-        assert ae.actor.name == "Overlay Journal"
-        assert ae.actor.type == "Service"
-
-        assert ae.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-        assert ae.context.id == "https://research-organisation.org/repository/preprint/201203/421/"
-        assert ae.context.cite_as == "https://doi.org/10.5555/12345680"
-        assert ae.context.type == "sorg:AboutPage"
-
-        item = ae.context.item
-        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
-        assert item.media_type == "application/pdf"
-        assert item.type == ["Article", "sorg:ScholarlyArticle"]
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, ae, AnnounceEndorsementFixtureFactory)
 
     def test_07_announce_relationship(self):
         ae = AnnounceRelationship()
@@ -203,35 +237,8 @@ class TestModels(TestCase):
         assert ae.validate() is True
         assert ae.to_jsonld() == compare
 
-        # now test we are properly reading the fixture
-        assert ae.actor.id == "https://research-organisation.org"
-        assert ae.actor.name == "Research Organisation"
-        assert ae.actor.type == "Organization"
-
-        assert ae.context.id == "https://another-research-organisation.org/repository/datasets/item/201203421/"
-        assert ae.context.cite_as == "https://doi.org/10.5555/999555666"
-        item = ae.context.item
-        assert item.id == "https://another-research-organisation.org/repository/datasets/item/201203421/data_archive.zip"
-        assert item.media_type == "application/zip"
-        assert item.type == ["Article", "sorg:Dataset"]
-
-        assert ae.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
-        assert ae.type == ["Announce", "coar-notify:RelationshipAction"]
-
-        assert ae.object.id == "urn:uuid:74FFB356-0632-44D9-B176-888DA85758DC"
-        assert ae.object.type == "Relationship"
-        triple = ae.object.triple
-        assert triple[0] == "https://another-research-organisation.org/repository/datasets/item/201203421/"
-        assert triple[1] == "http://purl.org/vocab/frbr/core#supplement"
-        assert triple[2] == "https://research-organisation.org/repository/item/201203/421/"
-
-        assert ae.origin.id == "https://research-organisation.org/repository"
-        assert ae.origin.inbox == "https://research-organisation.org/inbox/"
-        assert ae.origin.type == "Service"
-
-        assert ae.target.id == "https://another-research-organisation.org/repository"
-        assert ae.target.inbox == "https://another-research-organisation.org/inbox/"
-        assert ae.target.type == "Service"
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, ae, AnnounceRelationshipFixtureFactory)
 
     def test_08_announce_review(self):
         ar = AnnounceReview()
@@ -242,74 +249,22 @@ class TestModels(TestCase):
         assert ar.validate() is True
         assert ar.to_jsonld() == compare
 
-        # now test we are properly reading the fixture
-        assert ar.actor.id == "https://review-service.com"
-        assert ar.actor.name == "Review Service"
-        assert ar.actor.type == "Service"
-
-        assert ar.context.id == "https://research-organisation.org/repository/preprint/201203/421/"
-        assert ar.context.cite_as == "https://doi.org/10.5555/12345680"
-        assert ar.context.type == "sorg:AboutPage"
-        item = ar.context.item
-        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
-        assert item.media_type == "application/pdf"
-        assert item.type == ["Article", "sorg:ScholarlyArticle"]
-
-        assert ar.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
-        assert ar.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-
-        assert ar.object.id == "https://review-service.com/review/geo/202103/0021"
-        assert ar.object.cite_as == "https://doi.org/10.3214/987654"
-        assert ar.object.type == ["Document", "sorg:Review"]
-
-        assert ar.origin.id == "https://review-service.com/system"
-        assert ar.origin.inbox == "https://review-service.com/inbox/"
-        assert ar.origin.type == "Service"
-
-        assert ar.target.id == "https://generic-service.com/system"
-        assert ar.target.inbox == "https://generic-service.com/system/inbox/"
-        assert ar.target.type == "Service"
-
-        assert ar.type == ["Announce", "coar-notify:ReviewAction"]
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, ar, AnnounceReviewFixtureFactory)
 
     def test_09_announce_service_result(self):
         asr = AnnounceServiceResult()
 
         source = AnnounceServiceResultFixtureFactory.source()
         compare = deepcopy(source)
+        compare["type"] = compare["type"][0]    # because it's a single field, but is a list in the fixture
         asr = AnnounceServiceResult(source)
+
         assert asr.validate() is True
         assert asr.to_jsonld() == compare
 
-        # now test we are properly reading the fixture
-        assert asr.actor.id == "https://overlay-journal.com"
-        assert asr.actor.name == "Overlay Journal"
-        assert asr.actor.type == "Service"
-
-        assert asr.context.id == "https://research-organisation.org/repository/preprint/201203/421/"
-        assert asr.context.cite_as == "https://doi.org/10.5555/12345680"
-        assert asr.context.type == "sorg:AboutPage"
-
-        item = asr.context.item
-        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
-        assert item.media_type == "application/pdf"
-        assert item.type == ["Article", "sorg:ScholarlyArticle"]
-
-        assert asr.id == "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f"
-        assert asr.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-
-        assert asr.object.id == "https://overlay-journal.com/information-page"
-        assert asr.object.type == ["Page", "sorg:WebPage"]
-
-        assert asr.origin.id == "https://overlay-journal.com/system"
-        assert asr.origin.inbox == "https://overlay-journal.com/inbox/"
-        assert asr.origin.type == "Service"
-
-        assert asr.target.id == "https://generic-service.com/system"
-        assert asr.target.inbox == "https://generic-service.com/system/inbox/"
-        assert asr.target.type == "Service"
-
-        assert asr.type == "Announce"
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, asr, AnnounceServiceResultFixtureFactory)
 
     def test_10_reject(self):
         rej = Reject()
@@ -320,19 +275,8 @@ class TestModels(TestCase):
         assert rej.validate() is True
         assert rej.to_jsonld() == compare
 
-        # now test we are properly reading the fixture
-        assert rej.id == "urn:uuid:668f26e0-2c8d-4117-a0d2-ee713523bcb1"
-        assert rej.in_reply_to == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-
-        assert rej.origin.id == "https://generic-service.com/system"
-        assert rej.origin.inbox == "https://generic-service.com/system/inbox/"
-        assert rej.origin.type == "Service"
-
-        assert rej.target.id == "https://some-organisation.org"
-        assert rej.target.inbox == "https://some-organisation.org/inbox/"
-        assert rej.target.type == "Service"
-
-        assert rej.type == "Reject"
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, rej, RejectFixtureFactory)
 
     def test_11_request_endorsement(self):
         re = RequestEndorsement()
@@ -340,31 +284,12 @@ class TestModels(TestCase):
         source = RequestEndorsementFixtureFactory.source()
         compare = deepcopy(source)
         re = RequestEndorsement(source)
+
         assert re.validate() is True
         assert re.to_jsonld() == compare
 
-        assert re.actor.id == "https://orcid.org/0000-0002-1825-0097"
-        assert re.actor.name == "Josiah Carberry"
-        assert re.actor.type == "Person"
-
-        assert re.id == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-        assert re.object.id == "https://research-organisation.org/repository/preprint/201203/421/"
-        assert re.object.cite_as == "https://doi.org/10.5555/12345680"
-        item = re.object.item
-        assert item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
-        assert item.media_type == "application/pdf"
-        assert item.type == ["Article", "sorg:ScholarlyArticle"]
-        assert re.object.type == "sorg:AboutPage"
-
-        assert re.origin.id == "https://research-organisation.org/repository"
-        assert re.origin.inbox == "https://research-organisation.org/inbox/"
-        assert re.origin.type == "Service"
-
-        assert re.target.id == "https://overlay-journal.com/system"
-        assert re.target.inbox == "https://overlay-journal.com/inbox/"
-        assert re.target.type == "Service"
-
-        assert re.type == ["Offer", "coar-notify:EndorsementAction"]
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, re, RequestEndorsementFixtureFactory)
 
     def test_13_request_review(self):
         ri = RequestReview()
@@ -376,29 +301,8 @@ class TestModels(TestCase):
         assert ri.validate() is True
         assert ri.to_jsonld() == compare
 
-        assert ri.actor.id == "https://orcid.org/0000-0002-1825-0097"
-        assert ri.actor.name == "Josiah Carberry"
-        assert ri.actor.type == "Person"
-
-        assert ri.id == "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd"
-
-        obj = ri.object
-        assert obj.id == "https://research-organisation.org/repository/preprint/201203/421/"
-        assert obj.cite_as == "https://doi.org/10.5555/12345680"
-        assert obj.type == "sorg:AboutPage"
-        assert obj.item.id == "https://research-organisation.org/repository/preprint/201203/421/content.pdf"
-        assert obj.item.media_type == "application/pdf"
-        assert obj.item.type == ["Article", "sorg:ScholarlyArticle"]
-
-        assert ri.origin.id == "https://research-organisation.org/repository"
-        assert ri.origin.inbox == "https://research-organisation.org/inbox/"
-        assert ri.origin.type == "Service"
-
-        assert ri.target.id == "https://review-service.com/system"
-        assert ri.target.inbox == "https://review-service.com/inbox/"
-        assert ri.target.type == "Service"
-
-        assert ri.type == ["Offer", "coar-notify:ReviewAction"]
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, ri, RequestReviewFixtureFactory)
 
     def test_14_tentatively_accept(self):
         ta = TentativelyAccept()
@@ -410,44 +314,5 @@ class TestModels(TestCase):
         assert ta.validate() is True
         assert ta.to_jsonld() == compare
 
-        def expand(node, path):
-            paths = []
-            for k, v in node.items():
-                if isinstance(v, dict):
-                    paths += expand(v, f"{path}.{k}")
-                else:
-                    paths.append(f"{path}.{k}")
-            paths = [p[1:] if p.startswith(".") else p for p in paths if "@context" not in p]  # strip the leading "."
-            return paths
-
-        obj_properties = expand(compare, "")
-        prop_map = {
-            "inReplyTo": "in_reply_to",
-            "object.object.ietf:cite-as": "object.object.cite_as",
-            "object.object.ietf:item.id": "object.object.item.id",
-            "object.object.ietf:item.mediaType": "object.object.item.media_type",
-            "object.object.ietf:item.type": "object.object.item.type",
-        }
-        proptest = [p if p not in prop_map else (prop_map[p], p) for p in obj_properties]
-
-        def get_prop(source, prop):
-            p = prop
-            if isinstance(prop, tuple):
-                p = prop[1]
-            bits = p.split(".")
-            for bit in bits:
-                source = getattr(source, bit)
-            return source
-
-        for prop in proptest:
-            if isinstance(prop, tuple):
-                oprop = prop[0]
-                fprop = prop[1]
-            else:
-                oprop = prop
-                fprop = prop
-
-            print(oprop, fprop)
-            oval = get_prop(ta, oprop)
-            eval = TentativelyAcceptFixtureFactory.expected_value(fprop)
-            assert oval == eval, f"{oprop}:{oval} - {fprop}:{eval}"
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, ta, TentativelyAcceptFixtureFactory)

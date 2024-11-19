@@ -1,5 +1,20 @@
 class BaseFixtureFactory:
     @classmethod
+    def source(cls, copy=True):
+        raise NotImplementedError()
+
+    @classmethod
+    def invalid(cls):
+        source = cls.source()
+        cls._base_invalid(source)
+        return source
+
+    @classmethod
+    def expected_value(cls, path):
+        source = cls.source(copy=False) # we're only reading the value, so no need to clone it
+        return cls._value_from_dict(path, source)
+
+    @classmethod
     def _base_invalid(cls, source):
         source["id"] = "not a uri"
         source["inReplyTo"] = "not a uri"
@@ -30,3 +45,11 @@ class BaseFixtureFactory:
         source["context"]["type"] = "NotAValidType"
         source["context"]["cite_as"] = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
         return source
+
+    @classmethod
+    def _value_from_dict(cls, path, dictionary):
+        bits = path.split(".")
+        node = dictionary
+        for bit in bits:
+            node = node[bit]
+        return node

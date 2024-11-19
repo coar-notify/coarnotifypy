@@ -1,16 +1,18 @@
 from copy import deepcopy
+from coarnotify.test.fixtures import BaseFixtureFactory
 
-
-class AnnounceRelationshipFixtureFactory:
+class AnnounceRelationshipFixtureFactory(BaseFixtureFactory):
     @classmethod
-    def source(cls):
-        return deepcopy(ANNOUNCE_RELATIONSHIP)
+    def source(cls, copy=True):
+        if copy:
+            return deepcopy(ANNOUNCE_RELATIONSHIP)
+        return ANNOUNCE_RELATIONSHIP
 
 
 ANNOUNCE_RELATIONSHIP = {
     "@context": [
         "https://www.w3.org/ns/activitystreams",
-        "https://purl.org/coar/notify"
+        "https://coar-notify.net"
     ],
     "actor": {
         "id": "https://research-organisation.org",
@@ -24,11 +26,14 @@ ANNOUNCE_RELATIONSHIP = {
             "id": "https://another-research-organisation.org/repository/datasets/item/201203421/data_archive.zip",
             "mediaType": "application/zip",
             "type": [
-                "Article",
+                "Object",
                 "sorg:Dataset"
             ]
         },
-        "type": "sorg:AboutPage"
+        "type": [
+            "Page",
+            "sorg:AboutPage"
+        ]
     },
     "id": "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f",
     "object": {

@@ -4,8 +4,10 @@ from coarnotify.test.fixtures import BaseFixtureFactory
 
 class RequestReviewFixtureFactory(BaseFixtureFactory):
     @classmethod
-    def source(cls):
-        return deepcopy(REQUEST_REVIEW)
+    def source(cls, copy=True):
+        if copy:
+            return deepcopy(REQUEST_REVIEW)
+        return REQUEST_REVIEW
 
     @classmethod
     def invalid(cls):
@@ -19,7 +21,7 @@ class RequestReviewFixtureFactory(BaseFixtureFactory):
 REQUEST_REVIEW = {
     "@context": [
         "https://www.w3.org/ns/activitystreams",
-        "https://purl.org/coar/notify"
+        "https://coar-notify.net"
     ],
     "actor": {
         "id": "https://orcid.org/0000-0002-1825-0097",
@@ -38,7 +40,10 @@ REQUEST_REVIEW = {
                 "sorg:ScholarlyArticle"
             ]
         },
-        "type": "sorg:AboutPage"
+        "type": [
+            "Page",
+            "sorg:AboutPage"
+        ]
     },
     "origin": {
         "id": "https://research-organisation.org/repository",

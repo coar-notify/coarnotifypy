@@ -4,8 +4,10 @@ from coarnotify.test.fixtures import BaseFixtureFactory
 
 class AcceptFixtureFactory(BaseFixtureFactory):
     @classmethod
-    def source(cls):
-        return deepcopy(ACCEPT)
+    def source(cls, copy=True):
+        if copy:
+            return deepcopy(ACCEPT)
+        return ACCEPT
 
     @classmethod
     def invalid(cls):
