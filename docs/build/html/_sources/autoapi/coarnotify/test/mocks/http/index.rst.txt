@@ -1,0 +1,59 @@
+coarnotify.test.mocks.http
+==========================
+
+.. py:module:: coarnotify.test.mocks.http
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.test.mocks.http.MockHttpLayer
+   coarnotify.test.mocks.http.MockHttpResponse
+
+
+Module Contents
+---------------
+
+.. py:class:: MockHttpLayer(status_code=200, location=None)
+
+   Bases: :py:obj:`coarnotify.http.HttpLayer`
+
+
+   .. py:attribute:: _status_code
+
+
+   .. py:attribute:: _location
+
+
+   .. py:method:: post(url, data, headers=None, *args, **kwargs)
+
+
+   .. py:method:: get(url, headers=None, *args, **kwargs)
+      :abstractmethod:
+
+
+
+   .. py:method:: head(url, headers=None, *args, **kwargs)
+      :abstractmethod:
+
+
+
+.. py:class:: MockHttpResponse(status_code=200, location=None)
+
+   Bases: :py:obj:`coarnotify.http.HttpResponse`
+
+
+   .. py:attribute:: _status_code
+
+
+   .. py:attribute:: _location
+
+
+   .. py:method:: header(header_name)
+
+
+   .. py:property:: status_code
+
+

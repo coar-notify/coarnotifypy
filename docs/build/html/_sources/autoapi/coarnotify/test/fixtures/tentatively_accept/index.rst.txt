@@ -1,0 +1,42 @@
+coarnotify.test.fixtures.tentatively_accept
+===========================================
+
+.. py:module:: coarnotify.test.fixtures.tentatively_accept
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.tentatively_accept.TENTATIVELY_ACCEPT
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.tentatively_accept.TentativelyAcceptFixtureFactory
+
+
+Module Contents
+---------------
+
+.. py:class:: TentativelyAcceptFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+.. py:data:: TENTATIVELY_ACCEPT
+

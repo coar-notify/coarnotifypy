@@ -1,0 +1,53 @@
+coarnotify.models.request_endorsement
+=====================================
+
+.. py:module:: coarnotify.models.request_endorsement
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.models.request_endorsement.RequestEndorsement
+   coarnotify.models.request_endorsement.RequestEndorsementObject
+   coarnotify.models.request_endorsement.RequestEndorsementItem
+
+
+Module Contents
+---------------
+
+.. py:class:: RequestEndorsement(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: RequestEndorsementObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyObject`
+
+
+   Can be used to represent an `object` or a `context`
+
+
+   .. py:property:: item
+      :type: Union[coarnotify.models.notify.NotifyItem, None]
+
+
+
+.. py:class:: RequestEndorsementItem(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyItem`
+
+
+   .. py:method:: validate()
+
+

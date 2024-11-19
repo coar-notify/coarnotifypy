@@ -22,7 +22,16 @@ class NotifyResponse:
 
 
 class COARNotifyClient:
+    """
+    The COAR Notify Client, which is the mechanism through which you will interact with external inboxes.
+    """
     def __init__(self, inbox_url: str = None, http_layer: HttpLayer = None):
+        """
+        Construct an instance of the client
+
+        :param inbox_url:
+        :param http_layer:
+        """
         self._inbox_url = inbox_url
         self._http = http_layer if http_layer is not None else RequestsHttpLayer()
 

@@ -1,0 +1,61 @@
+coarnotify.test.server.settings
+===============================
+
+.. py:module:: coarnotify.test.server.settings
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.test.server.settings.STORE_DIR
+   coarnotify.test.server.settings.DEBUG_PYCHARM
+   coarnotify.test.server.settings.DEBUG
+   coarnotify.test.server.settings.DEBUG_PYCHARM_SERVER
+   coarnotify.test.server.settings.DEBUG_PYCHARM_PORT
+   coarnotify.test.server.settings.HOST
+   coarnotify.test.server.settings.PORT
+   coarnotify.test.server.settings.RESPONSE_STATUS
+   coarnotify.test.server.settings.VALIDATE_INCOMING
+
+
+Module Contents
+---------------
+
+.. py:data:: STORE_DIR
+   :value: '/home/richard/tmp/coarnotify'
+
+
+.. py:data:: DEBUG_PYCHARM
+   :value: False
+
+
+.. py:data:: DEBUG
+   :value: True
+
+
+.. py:data:: DEBUG_PYCHARM_SERVER
+   :value: 'localhost'
+
+
+.. py:data:: DEBUG_PYCHARM_PORT
+   :value: 6000
+
+
+.. py:data:: HOST
+   :value: 'localhost'
+
+
+.. py:data:: PORT
+   :value: 5005
+
+
+.. py:data:: RESPONSE_STATUS
+   :value: 201
+
+
+.. py:data:: VALIDATE_INCOMING
+   :value: True
+
+

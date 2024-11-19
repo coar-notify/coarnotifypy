@@ -1,0 +1,16 @@
+coarnotify.test.server
+======================
+
+.. py:module:: coarnotify.test.server
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/coarnotify/test/server/inbox/index
+   /autoapi/coarnotify/test/server/settings/index
+
+

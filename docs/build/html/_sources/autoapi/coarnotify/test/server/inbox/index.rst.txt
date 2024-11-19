@@ -1,0 +1,59 @@
+coarnotify.test.server.inbox
+============================
+
+.. py:module:: coarnotify.test.server.inbox
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.test.server.inbox.app
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.test.server.inbox.COARNotifyServiceTestImpl
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   coarnotify.test.server.inbox.create_app
+   coarnotify.test.server.inbox.inbox
+   coarnotify.test.server.inbox.run_server
+
+
+Module Contents
+---------------
+
+.. py:function:: create_app()
+
+.. py:data:: app
+
+.. py:class:: COARNotifyServiceTestImpl
+
+   Bases: :py:obj:`coarnotify.server.COARNotifyServiceBinding`
+
+
+   .. py:method:: notification_received(notification)
+
+
+.. py:function:: inbox()
+
+.. py:function:: run_server(host=None, port=None, fake_https=False)
+
+   :param host:
+   :param port:
+   :param fake_https:
+       if fake_https is True, develop can use https:// to access the server
+       that can help for debugging Plausible
+   :return:
+
+

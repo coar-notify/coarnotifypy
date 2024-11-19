@@ -1,0 +1,55 @@
+coarnotify.exceptions
+=====================
+
+.. py:module:: coarnotify.exceptions
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   coarnotify.exceptions.NotifyException
+   coarnotify.exceptions.ValidationError
+
+
+Module Contents
+---------------
+
+.. py:exception:: NotifyException
+
+   Bases: :py:obj:`Exception`
+
+
+   Common base class for all non-exit exceptions.
+
+
+.. py:exception:: ValidationError(errors: dict = None)
+
+   Bases: :py:obj:`NotifyException`
+
+
+   Common base class for all non-exit exceptions.
+
+
+   .. py:attribute:: _errors
+
+
+   .. py:property:: errors
+
+
+   .. py:method:: add_error(key, value)
+
+
+   .. py:method:: add_nested_errors(key, subve: ValidationError)
+
+
+   .. py:method:: has_errors()
+
+
+   .. py:method:: __str__()
+
+      Return str(self).
+
+
+

@@ -1,0 +1,258 @@
+coarnotify.activitystreams2.activitystreams2
+============================================
+
+.. py:module:: coarnotify.activitystreams2.activitystreams2
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.activitystreams2.activitystreams2.ACTIVITY_STREAMS_NAMESPACE
+   coarnotify.activitystreams2.activitystreams2.ACTIVITY_STREAMS_OBJECTS
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.activitystreams2.activitystreams2.Properties
+   coarnotify.activitystreams2.activitystreams2.ActivityStreamsTypes
+   coarnotify.activitystreams2.activitystreams2.ActivityStream
+
+
+Module Contents
+---------------
+
+.. py:data:: ACTIVITY_STREAMS_NAMESPACE
+   :value: 'https://www.w3.org/ns/activitystreams'
+
+
+.. py:class:: Properties
+
+   Bases: :py:obj:`coarnotify.constants.ConstantList`
+
+
+   .. py:attribute:: ID
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:attribute:: ORIGIN
+
+
+   .. py:attribute:: OBJECT
+
+
+   .. py:attribute:: TARGET
+
+
+   .. py:attribute:: ACTOR
+
+
+   .. py:attribute:: IN_REPLY_TO
+
+
+   .. py:attribute:: CONTEXT
+
+
+   .. py:attribute:: SUMMARY
+
+
+   .. py:attribute:: SUBJECT_TRIPLE
+
+
+   .. py:attribute:: OBJECT_TRIPLE
+
+
+   .. py:attribute:: RELATIONSHIP_TRIPLE
+
+
+.. py:class:: ActivityStreamsTypes
+
+   Bases: :py:obj:`coarnotify.constants.ConstantList`
+
+
+   .. py:attribute:: ACCEPT
+      :value: 'Accept'
+
+
+
+   .. py:attribute:: ANNOUNCE
+      :value: 'Announce'
+
+
+
+   .. py:attribute:: REJECT
+      :value: 'Reject'
+
+
+
+   .. py:attribute:: OFFER
+      :value: 'Offer'
+
+
+
+   .. py:attribute:: TENTATIVE_ACCEPT
+      :value: 'TentativeAccept'
+
+
+
+   .. py:attribute:: ACTIVITY
+      :value: 'Activity'
+
+
+
+   .. py:attribute:: APPLICATION
+      :value: 'Application'
+
+
+
+   .. py:attribute:: ARTICLE
+      :value: 'Article'
+
+
+
+   .. py:attribute:: AUDIO
+      :value: 'Audio'
+
+
+
+   .. py:attribute:: COLLECTION
+      :value: 'Collection'
+
+
+
+   .. py:attribute:: COLLECTION_PAGE
+      :value: 'CollectionPage'
+
+
+
+   .. py:attribute:: RELATIONSHIP
+      :value: 'Relationship'
+
+
+
+   .. py:attribute:: DOCUMENT
+      :value: 'Document'
+
+
+
+   .. py:attribute:: EVENT
+      :value: 'Event'
+
+
+
+   .. py:attribute:: GROUP
+      :value: 'Group'
+
+
+
+   .. py:attribute:: IMAGE
+      :value: 'Image'
+
+
+
+   .. py:attribute:: INTRANSITIVE_ACTIVITY
+      :value: 'IntransitiveActivity'
+
+
+
+   .. py:attribute:: NOTE
+      :value: 'Note'
+
+
+
+   .. py:attribute:: OBJECT
+      :value: 'Object'
+
+
+
+   .. py:attribute:: ORDERED_COLLECTION
+      :value: 'OrderedCollection'
+
+
+
+   .. py:attribute:: ORDERED_COLLECTION_PAGE
+      :value: 'OrderedCollectionPage'
+
+
+
+   .. py:attribute:: ORGANIZATION
+      :value: 'Organization'
+
+
+
+   .. py:attribute:: PAGE
+      :value: 'Page'
+
+
+
+   .. py:attribute:: PERSON
+      :value: 'Person'
+
+
+
+   .. py:attribute:: PLACE
+      :value: 'Place'
+
+
+
+   .. py:attribute:: PROFILE
+      :value: 'Profile'
+
+
+
+   .. py:attribute:: QUESTION
+      :value: 'Question'
+
+
+
+   .. py:attribute:: SERVICE
+      :value: 'Service'
+
+
+
+   .. py:attribute:: TOMBSTONE
+      :value: 'Tombstone'
+
+
+
+   .. py:attribute:: VIDEO
+      :value: 'Video'
+
+
+
+.. py:data:: ACTIVITY_STREAMS_OBJECTS
+
+.. py:class:: ActivityStream(raw=None)
+
+   .. py:attribute:: _doc
+
+
+   .. py:attribute:: _context
+      :value: []
+
+
+
+   .. py:property:: doc
+
+
+   .. py:property:: context
+
+
+   .. py:method:: _register_namespace(namespace: Union[str, tuple[str, str]])
+
+
+   .. py:method:: set_property(property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]], value)
+
+
+   .. py:method:: get_property(property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]])
+
+
+   .. py:method:: to_jsonld()
+
+

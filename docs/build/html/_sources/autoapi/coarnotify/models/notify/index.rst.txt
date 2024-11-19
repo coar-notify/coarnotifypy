@@ -1,0 +1,312 @@
+coarnotify.models.notify
+========================
+
+.. py:module:: coarnotify.models.notify
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.models.notify.NOTIFY_NAMESPACE
+   coarnotify.models.notify.VALIDATION_RULES
+   coarnotify.models.notify.VALIDATORS
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.models.notify.NotifyProperties
+   coarnotify.models.notify.NotifyTypes
+   coarnotify.models.notify.NotifyBase
+   coarnotify.models.notify.NotifyPattern
+   coarnotify.models.notify.NotifyPatternPart
+   coarnotify.models.notify.NotifyService
+   coarnotify.models.notify.NotifyObject
+   coarnotify.models.notify.NotifyActor
+   coarnotify.models.notify.NotifyItem
+   coarnotify.models.notify.NestedPatternObjectMixin
+   coarnotify.models.notify.SummaryMixin
+
+
+Module Contents
+---------------
+
+.. py:data:: NOTIFY_NAMESPACE
+   :value: 'https://coar-notify.net'
+
+
+.. py:class:: NotifyProperties
+
+   Bases: :py:obj:`coarnotify.constants.ConstantList`
+
+
+   .. py:attribute:: INBOX
+
+
+   .. py:attribute:: CITE_AS
+
+
+   .. py:attribute:: ITEM
+
+
+   .. py:attribute:: NAME
+      :value: 'name'
+
+
+
+   .. py:attribute:: MEDIA_TYPE
+      :value: 'mediaType'
+
+
+
+.. py:class:: NotifyTypes
+
+   Bases: :py:obj:`coarnotify.constants.ConstantList`
+
+
+   .. py:attribute:: ENDORSMENT_ACTION
+      :value: 'coar-notify:EndorsementAction'
+
+
+
+   .. py:attribute:: INGEST_ACTION
+      :value: 'coar-notify:IngestAction'
+
+
+
+   .. py:attribute:: RELATIONSHIP_ACTION
+      :value: 'coar-notify:RelationshipAction'
+
+
+
+   .. py:attribute:: REVIEW_ACTION
+      :value: 'coar-notify:ReviewAction'
+
+
+
+   .. py:attribute:: ABOUT_PAGE
+      :value: 'sorg:AboutPage'
+
+
+
+.. py:data:: VALIDATION_RULES
+
+.. py:data:: VALIDATORS
+
+.. py:class:: NotifyBase(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   .. py:attribute:: _validate_stream_on_construct
+
+
+   .. py:attribute:: _validate_properties
+
+
+   .. py:attribute:: _validators
+
+
+   .. py:attribute:: _validation_context
+
+
+   .. py:property:: validate_properties
+
+
+   .. py:property:: validate_stream_on_construct
+
+
+   .. py:property:: validators
+
+
+   .. py:property:: doc
+
+
+   .. py:property:: id
+      :type: str
+
+
+
+   .. py:property:: type
+      :type: Union[str, list[str]]
+
+
+
+   .. py:method:: get_property(prop_name)
+
+
+   .. py:method:: set_property(prop_name, value)
+
+
+   .. py:method:: validate()
+
+
+   .. py:method:: validate_property(prop_name: str, value, force_validate=False, raise_error=True)
+
+
+   .. py:method:: register_property_validation_error(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
+
+
+   .. py:method:: required(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
+
+
+   .. py:method:: required_and_validate(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
+
+
+   .. py:method:: optional_and_validate(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
+
+
+   .. py:method:: to_jsonld()
+
+
+.. py:class:: NotifyPattern(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyBase`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: _ensure_type_contains(types: Union[str, list[str]])
+
+
+   .. py:property:: origin
+      :type: Union[NotifyService, None]
+
+
+
+   .. py:property:: target
+      :type: Union[NotifyService, None]
+
+
+
+   .. py:property:: object
+      :type: Union[NotifyObject, None]
+
+
+
+   .. py:property:: in_reply_to
+      :type: str
+
+
+
+   .. py:property:: actor
+      :type: Union[NotifyActor, None]
+
+
+
+   .. py:property:: context
+      :type: Union[NotifyObject, None]
+
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NotifyPatternPart(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyBase`
+
+
+   .. py:attribute:: DEFAULT_TYPE
+      :value: None
+
+
+
+   .. py:attribute:: ALLOWED_TYPES
+      :value: []
+
+
+
+.. py:class:: NotifyService(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyPatternPart`
+
+
+   .. py:attribute:: DEFAULT_TYPE
+
+
+   .. py:property:: inbox
+      :type: str
+
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NotifyObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyPatternPart`
+
+
+   Can be used to represent an `object` or a `context`
+
+
+   .. py:property:: cite_as
+      :type: str
+
+
+
+   .. py:property:: item
+      :type: Union[NotifyItem, None]
+
+
+
+   .. py:property:: triple
+      :type: tuple[str, str, str]
+
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NotifyActor(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyPatternPart`
+
+
+   .. py:attribute:: DEFAULT_TYPE
+
+
+   .. py:attribute:: ALLOWED_TYPES
+
+
+   .. py:property:: name
+      :type: str
+
+
+
+.. py:class:: NotifyItem(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyPatternPart`
+
+
+   .. py:property:: media_type
+      :type: str
+
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NestedPatternObjectMixin
+
+   Bases: :py:obj:`object`
+
+
+   .. py:property:: object
+      :type: Union[NotifyPattern, NotifyObject, None]
+
+
+
+.. py:class:: SummaryMixin
+
+   Bases: :py:obj:`object`
+
+
+   .. py:property:: summary
+      :type: str
+
+
+

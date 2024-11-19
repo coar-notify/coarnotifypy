@@ -1,0 +1,24 @@
+coarnotify
+==========
+
+.. py:module:: coarnotify
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/coarnotify/activitystreams2/index
+   /autoapi/coarnotify/client/index
+   /autoapi/coarnotify/common/index
+   /autoapi/coarnotify/constants/index
+   /autoapi/coarnotify/exceptions/index
+   /autoapi/coarnotify/http/index
+   /autoapi/coarnotify/models/index
+   /autoapi/coarnotify/server/index
+   /autoapi/coarnotify/test/index
+   /autoapi/coarnotify/validate/index
+
+

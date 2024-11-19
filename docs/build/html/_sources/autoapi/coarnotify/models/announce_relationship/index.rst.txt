@@ -1,0 +1,42 @@
+coarnotify.models.announce_relationship
+=======================================
+
+.. py:module:: coarnotify.models.announce_relationship
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.models.announce_relationship.AnnounceRelationship
+   coarnotify.models.announce_relationship.AnnounceRelationshipObject
+
+
+Module Contents
+---------------
+
+.. py:class:: AnnounceRelationship(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: AnnounceRelationshipObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyObject`
+
+
+   Can be used to represent an `object` or a `context`
+
+
+   .. py:method:: validate()
+
+

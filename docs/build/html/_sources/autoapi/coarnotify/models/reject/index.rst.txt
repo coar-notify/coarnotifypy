@@ -1,0 +1,28 @@
+coarnotify.models.reject
+========================
+
+.. py:module:: coarnotify.models.reject
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.models.reject.Reject
+
+
+Module Contents
+---------------
+
+.. py:class:: Reject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: validate()
+
+

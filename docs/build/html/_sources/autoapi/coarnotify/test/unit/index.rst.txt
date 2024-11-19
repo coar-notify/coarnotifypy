@@ -1,0 +1,19 @@
+coarnotify.test.unit
+====================
+
+.. py:module:: coarnotify.test.unit
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/coarnotify/test/unit/test_activitystreams/index
+   /autoapi/coarnotify/test/unit/test_client/index
+   /autoapi/coarnotify/test/unit/test_factory/index
+   /autoapi/coarnotify/test/unit/test_models/index
+   /autoapi/coarnotify/test/unit/test_validate/index
+
+

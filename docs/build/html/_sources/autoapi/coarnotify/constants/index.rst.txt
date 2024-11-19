@@ -1,0 +1,24 @@
+coarnotify.constants
+====================
+
+.. py:module:: coarnotify.constants
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.constants.ConstantList
+
+
+Module Contents
+---------------
+
+.. py:class:: ConstantList
+
+   .. py:method:: all_constants()
+      :classmethod:
+
+
+

@@ -1,0 +1,32 @@
+coarnotify.common
+=================
+
+.. py:module:: coarnotify.common
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.common.COARNotifyFactory
+
+
+Module Contents
+---------------
+
+.. py:class:: COARNotifyFactory
+
+   .. py:attribute:: MODELS
+
+
+   .. py:method:: get_by_types(incoming_types: List[str])
+      :classmethod:
+
+
+
+   .. py:method:: get_by_object(data, *args, **kwargs)
+      :classmethod:
+
+
+

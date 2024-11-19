@@ -1,0 +1,309 @@
+coarnotify.models
+=================
+
+.. py:module:: coarnotify.models
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/coarnotify/models/accept/index
+   /autoapi/coarnotify/models/announce_endorsement/index
+   /autoapi/coarnotify/models/announce_relationship/index
+   /autoapi/coarnotify/models/announce_review/index
+   /autoapi/coarnotify/models/announce_service_result/index
+   /autoapi/coarnotify/models/notify/index
+   /autoapi/coarnotify/models/reject/index
+   /autoapi/coarnotify/models/request_endorsement/index
+   /autoapi/coarnotify/models/request_review/index
+   /autoapi/coarnotify/models/tentatively_accept/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.models.Accept
+   coarnotify.models.AnnounceEndorsement
+   coarnotify.models.AnnounceRelationship
+   coarnotify.models.AnnounceReview
+   coarnotify.models.AnnounceServiceResult
+   coarnotify.models.Reject
+   coarnotify.models.RequestEndorsement
+   coarnotify.models.RequestReview
+   coarnotify.models.TentativelyAccept
+   coarnotify.models.NotifyPattern
+   coarnotify.models.NotifyService
+   coarnotify.models.NotifyObject
+   coarnotify.models.NotifyActor
+   coarnotify.models.NotifyItem
+   coarnotify.models.NotifyProperties
+
+
+Package Contents
+----------------
+
+.. py:class:: Accept(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: AnnounceEndorsement(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: context
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: AnnounceRelationship(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: AnnounceReview(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+   .. py:property:: context
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+   .. py:property:: context
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: Reject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: RequestEndorsement(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: RequestReview(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: TentativelyAccept(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NotifyPattern(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyBase`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: _ensure_type_contains(types: Union[str, list[str]])
+
+
+   .. py:property:: origin
+      :type: Union[NotifyService, None]
+
+
+
+   .. py:property:: target
+      :type: Union[NotifyService, None]
+
+
+
+   .. py:property:: object
+      :type: Union[NotifyObject, None]
+
+
+
+   .. py:property:: in_reply_to
+      :type: str
+
+
+
+   .. py:property:: actor
+      :type: Union[NotifyActor, None]
+
+
+
+   .. py:property:: context
+      :type: Union[NotifyObject, None]
+
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NotifyService(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyPatternPart`
+
+
+   .. py:attribute:: DEFAULT_TYPE
+
+
+   .. py:property:: inbox
+      :type: str
+
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NotifyObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyPatternPart`
+
+
+   Can be used to represent an `object` or a `context`
+
+
+   .. py:property:: cite_as
+      :type: str
+
+
+
+   .. py:property:: item
+      :type: Union[NotifyItem, None]
+
+
+
+   .. py:property:: triple
+      :type: tuple[str, str, str]
+
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NotifyActor(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyPatternPart`
+
+
+   .. py:attribute:: DEFAULT_TYPE
+
+
+   .. py:attribute:: ALLOWED_TYPES
+
+
+   .. py:property:: name
+      :type: str
+
+
+
+.. py:class:: NotifyItem(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`NotifyPatternPart`
+
+
+   .. py:property:: media_type
+      :type: str
+
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: NotifyProperties
+
+   Bases: :py:obj:`coarnotify.constants.ConstantList`
+
+
+   .. py:attribute:: INBOX
+
+
+   .. py:attribute:: CITE_AS
+
+
+   .. py:attribute:: ITEM
+
+
+   .. py:attribute:: NAME
+      :value: 'name'
+
+
+
+   .. py:attribute:: MEDIA_TYPE
+      :value: 'mediaType'
+
+
+

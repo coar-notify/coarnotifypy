@@ -1,0 +1,62 @@
+coarnotify.client
+=================
+
+.. py:module:: coarnotify.client
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.client.NotifyResponse
+   coarnotify.client.COARNotifyClient
+
+
+Module Contents
+---------------
+
+.. py:class:: NotifyResponse(action, location=None)
+
+   .. py:attribute:: CREATED
+      :value: 'created'
+
+
+
+   .. py:attribute:: ACCEPTED
+      :value: 'accepted'
+
+
+
+   .. py:attribute:: _action
+
+
+   .. py:attribute:: _location
+
+
+   .. py:property:: action
+
+
+   .. py:property:: location
+
+
+.. py:class:: COARNotifyClient(inbox_url: str = None, http_layer: coarnotify.http.HttpLayer = None)
+
+   The COAR Notify Client, which is the mechanism through which you will interact with external inboxes.
+
+
+   .. py:attribute:: _inbox_url
+
+
+   .. py:attribute:: _http
+
+
+   .. py:property:: inbox_url
+
+
+   .. py:method:: discover(target_url: str)
+
+
+   .. py:method:: send(notification: coarnotify.models.notify.NotifyPattern, inbox_url: str = None, validate: bool = True) -> NotifyResponse
+
+

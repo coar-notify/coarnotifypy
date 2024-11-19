@@ -1,0 +1,77 @@
+coarnotify.http
+===============
+
+.. py:module:: coarnotify.http
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.http.HttpLayer
+   coarnotify.http.HttpResponse
+   coarnotify.http.RequestsHttpLayer
+   coarnotify.http.RequestsHttpResponse
+
+
+Module Contents
+---------------
+
+.. py:class:: HttpLayer
+
+   .. py:method:: post(url, data, headers=None, *args, **kwargs)
+      :abstractmethod:
+
+
+
+   .. py:method:: get(url, headers=None, *args, **kwargs)
+      :abstractmethod:
+
+
+
+   .. py:method:: head(url, headers=None, *args, **kwargs)
+      :abstractmethod:
+
+
+
+.. py:class:: HttpResponse
+
+   .. py:method:: header(header_name)
+      :abstractmethod:
+
+
+
+   .. py:property:: status_code
+      :abstractmethod:
+
+
+
+.. py:class:: RequestsHttpLayer
+
+   Bases: :py:obj:`HttpLayer`
+
+
+   .. py:method:: post(url, data, headers=None, *args, **kwargs)
+
+
+   .. py:method:: get(url, headers=None, *args, **kwargs)
+
+
+   .. py:method:: head(url, headers=None, *args, **kwargs)
+
+
+.. py:class:: RequestsHttpResponse(resp)
+
+   Bases: :py:obj:`HttpResponse`
+
+
+   .. py:attribute:: _resp
+
+
+   .. py:method:: header(header_name)
+
+
+   .. py:property:: status_code
+
+

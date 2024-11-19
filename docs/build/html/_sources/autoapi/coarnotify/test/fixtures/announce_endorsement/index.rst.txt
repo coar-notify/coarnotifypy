@@ -1,0 +1,42 @@
+coarnotify.test.fixtures.announce_endorsement
+=============================================
+
+.. py:module:: coarnotify.test.fixtures.announce_endorsement
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.announce_endorsement.ANNOUNCE_ENDORSEMENT
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.announce_endorsement.AnnounceEndorsementFixtureFactory
+
+
+Module Contents
+---------------
+
+.. py:class:: AnnounceEndorsementFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+.. py:data:: ANNOUNCE_ENDORSEMENT
+

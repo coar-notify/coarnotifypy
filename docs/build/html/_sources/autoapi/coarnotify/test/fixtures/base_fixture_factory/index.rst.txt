@@ -1,0 +1,61 @@
+coarnotify.test.fixtures.base_fixture_factory
+=============================================
+
+.. py:module:: coarnotify.test.fixtures.base_fixture_factory
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory
+
+
+Module Contents
+---------------
+
+.. py:class:: BaseFixtureFactory
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+      :abstractmethod:
+
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+   .. py:method:: expected_value(path)
+      :classmethod:
+
+
+
+   .. py:method:: _base_invalid(source)
+      :classmethod:
+
+
+
+   .. py:method:: _actor_invalid(source)
+      :classmethod:
+
+
+
+   .. py:method:: _object_invalid(source)
+      :classmethod:
+
+
+
+   .. py:method:: _context_invalid(source)
+      :classmethod:
+
+
+
+   .. py:method:: _value_from_dict(path, dictionary)
+      :classmethod:
+
+
+

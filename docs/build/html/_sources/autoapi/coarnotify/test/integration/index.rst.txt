@@ -1,0 +1,15 @@
+coarnotify.test.integration
+===========================
+
+.. py:module:: coarnotify.test.integration
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/coarnotify/test/integration/test_client/index
+
+

@@ -14,7 +14,9 @@ setup(
     license="Apache2",
     classifiers=[],
     extras_require={
-        'docs': [],
+        'docs': [
+            'sphinx'
+        ],
         'test': [
             "Flask>3.0.0"
         ],

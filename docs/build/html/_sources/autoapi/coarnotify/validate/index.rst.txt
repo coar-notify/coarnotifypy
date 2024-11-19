@@ -1,0 +1,104 @@
+coarnotify.validate
+===================
+
+.. py:module:: coarnotify.validate
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.validate.REQUIRED_MESSAGE
+   coarnotify.validate.URI_RE
+   coarnotify.validate.SCHEME
+   coarnotify.validate.IPv6
+   coarnotify.validate.HOSTPORT
+   coarnotify.validate.MARK
+   coarnotify.validate.UNRESERVED
+   coarnotify.validate.PCHARS
+   coarnotify.validate.PATH
+   coarnotify.validate.RESERVED
+   coarnotify.validate.URIC
+   coarnotify.validate.FREE
+   coarnotify.validate.USERINFO
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.validate.Validator
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   coarnotify.validate.absolute_uri
+   coarnotify.validate.url
+   coarnotify.validate.one_of
+   coarnotify.validate.at_least_one_of
+   coarnotify.validate.contains
+   coarnotify.validate.type_checker
+
+
+Module Contents
+---------------
+
+.. py:data:: REQUIRED_MESSAGE
+   :value: '`{x}` is a required field'
+
+
+.. py:class:: Validator(rules)
+
+   .. py:attribute:: _rules
+
+
+   .. py:method:: get(property, context=None)
+
+
+.. py:data:: URI_RE
+   :value: '^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?'
+
+
+.. py:data:: SCHEME
+
+.. py:data:: IPv6
+
+.. py:data:: HOSTPORT
+
+.. py:data:: MARK
+   :value: "-_.!~*'()"
+
+
+.. py:data:: UNRESERVED
+
+.. py:data:: PCHARS
+
+.. py:data:: PATH
+
+.. py:data:: RESERVED
+   :value: ';/?:@&=+$,'
+
+
+.. py:data:: URIC
+
+.. py:data:: FREE
+
+.. py:data:: USERINFO
+
+.. py:function:: absolute_uri(obj, uri)
+
+.. py:function:: url(obj, url)
+
+.. py:function:: one_of(values)
+
+.. py:function:: at_least_one_of(values)
+
+.. py:function:: contains(value)
+
+.. py:function:: type_checker(obj, value)
+

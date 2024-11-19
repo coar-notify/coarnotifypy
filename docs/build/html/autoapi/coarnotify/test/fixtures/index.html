@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>coarnotify.test.fixtures &#8212; COAR Notify 1.0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../../_static/documentation_options.js?v=8ec03999"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="coarnotify.test.fixtures.accept" href="accept/index.html" />
+    <link rel="prev" title="coarnotify.test" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-coarnotify.test.fixtures">
+<span id="coarnotify-test-fixtures"></span><h1>coarnotify.test.fixtures<a class="headerlink" href="#module-coarnotify.test.fixtures" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accept/index.html">coarnotify.test.fixtures.accept</a></li>
+<li class="toctree-l1"><a class="reference internal" href="announce_endorsement/index.html">coarnotify.test.fixtures.announce_endorsement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="announce_relationship/index.html">coarnotify.test.fixtures.announce_relationship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="announce_review/index.html">coarnotify.test.fixtures.announce_review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="announce_service_result/index.html">coarnotify.test.fixtures.announce_service_result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base_fixture_factory/index.html">coarnotify.test.fixtures.base_fixture_factory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notify/index.html">coarnotify.test.fixtures.notify</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reject/index.html">coarnotify.test.fixtures.reject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="request_endorsement/index.html">coarnotify.test.fixtures.request_endorsement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="request_review/index.html">coarnotify.test.fixtures.request_review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tentatively_accept/index.html">coarnotify.test.fixtures.tentatively_accept</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uris/index.html">coarnotify.test.fixtures.uris</a></li>
+</ul>
+</div>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.AcceptFixtureFactory" title="coarnotify.test.fixtures.AcceptFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AcceptFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory" title="coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnnounceEndorsementFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory" title="coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnnounceRelationshipFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceReviewFixtureFactory" title="coarnotify.test.fixtures.AnnounceReviewFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnnounceReviewFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory" title="coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnnounceServiceResultFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.RejectFixtureFactory" title="coarnotify.test.fixtures.RejectFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RejectFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.RequestEndorsementFixtureFactory" title="coarnotify.test.fixtures.RequestEndorsementFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RequestEndorsementFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.URIFixtureFactory" title="coarnotify.test.fixtures.URIFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">URIFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.RequestReviewFixtureFactory" title="coarnotify.test.fixtures.RequestReviewFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RequestReviewFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.fixtures.TentativelyAcceptFixtureFactory" title="coarnotify.test.fixtures.TentativelyAcceptFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TentativelyAcceptFixtureFactory</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">BaseFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Abstractmethod<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory.invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invalid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory.invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory.expected_value">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expected_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory.expected_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory._base_invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_base_invalid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory._base_invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory._actor_invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_actor_invalid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory._actor_invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory._object_invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_object_invalid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory._object_invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory._context_invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_context_invalid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory._context_invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.BaseFixtureFactory._value_from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_value_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.BaseFixtureFactory._value_from_dict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AcceptFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">AcceptFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.AcceptFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AcceptFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.AcceptFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AcceptFixtureFactory.invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invalid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.AcceptFixtureFactory.invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">AnnounceEndorsementFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory.invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invalid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory.invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">AnnounceRelationshipFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceReviewFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">AnnounceReviewFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceReviewFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceReviewFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceReviewFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">AnnounceServiceResultFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.RejectFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">RejectFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.RejectFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.RejectFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.RejectFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.RequestEndorsementFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">RequestEndorsementFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.RequestEndorsementFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.RequestEndorsementFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.RequestEndorsementFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.URIFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">URIFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.URIFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.URIFixtureFactory.generate">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schemes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hosts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ports</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.URIFixtureFactory.generate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.URIFixtureFactory.generate_uri">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scheme</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.URIFixtureFactory.generate_uri" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.RequestReviewFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">RequestReviewFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.RequestReviewFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.RequestReviewFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.RequestReviewFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.RequestReviewFixtureFactory.invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invalid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.RequestReviewFixtureFactory.invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.TentativelyAcceptFixtureFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.</span></span><span class="sig-name descname"><span class="pre">TentativelyAcceptFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.TentativelyAcceptFixtureFactory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory" title="coarnotify.test.fixtures.BaseFixtureFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.BaseFixtureFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.TentativelyAcceptFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.TentativelyAcceptFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.TentativelyAcceptFixtureFactory.invalid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invalid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.TentativelyAcceptFixtureFactory.invalid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">COAR Notify</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">coarnotify</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../activitystreams2/index.html">coarnotify.activitystreams2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../client/index.html">coarnotify.client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../common/index.html">coarnotify.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../constants/index.html">coarnotify.constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../exceptions/index.html">coarnotify.exceptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../http/index.html">coarnotify.http</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models/index.html">coarnotify.models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../server/index.html">coarnotify.server</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">coarnotify.test</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l6 current"><a class="current reference internal" href="#">coarnotify.test.fixtures</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="accept/index.html">coarnotify.test.fixtures.accept</a></li>
+<li class="toctree-l8"><a class="reference internal" href="announce_endorsement/index.html">coarnotify.test.fixtures.announce_endorsement</a></li>
+<li class="toctree-l8"><a class="reference internal" href="announce_relationship/index.html">coarnotify.test.fixtures.announce_relationship</a></li>
+<li class="toctree-l8"><a class="reference internal" href="announce_review/index.html">coarnotify.test.fixtures.announce_review</a></li>
+<li class="toctree-l8"><a class="reference internal" href="announce_service_result/index.html">coarnotify.test.fixtures.announce_service_result</a></li>
+<li class="toctree-l8"><a class="reference internal" href="base_fixture_factory/index.html">coarnotify.test.fixtures.base_fixture_factory</a></li>
+<li class="toctree-l8"><a class="reference internal" href="notify/index.html">coarnotify.test.fixtures.notify</a></li>
+<li class="toctree-l8"><a class="reference internal" href="reject/index.html">coarnotify.test.fixtures.reject</a></li>
+<li class="toctree-l8"><a class="reference internal" href="request_endorsement/index.html">coarnotify.test.fixtures.request_endorsement</a></li>
+<li class="toctree-l8"><a class="reference internal" href="request_review/index.html">coarnotify.test.fixtures.request_review</a></li>
+<li class="toctree-l8"><a class="reference internal" href="tentatively_accept/index.html">coarnotify.test.fixtures.tentatively_accept</a></li>
+<li class="toctree-l8"><a class="reference internal" href="uris/index.html">coarnotify.test.fixtures.uris</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory.source()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory.invalid()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory.expected_value"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory.expected_value()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory._base_invalid"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory._base_invalid()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory._actor_invalid"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory._actor_invalid()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory._object_invalid"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory._object_invalid()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory._context_invalid"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory._context_invalid()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.BaseFixtureFactory._value_from_dict"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory._value_from_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.AcceptFixtureFactory"><code class="docutils literal notranslate"><span class="pre">AcceptFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.AcceptFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">AcceptFixtureFactory.source()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.AcceptFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">AcceptFixtureFactory.invalid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsementFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsementFixtureFactory.source()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsementFixtureFactory.invalid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory"><code class="docutils literal notranslate"><span class="pre">AnnounceRelationshipFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">AnnounceRelationshipFixtureFactory.source()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceReviewFixtureFactory"><code class="docutils literal notranslate"><span class="pre">AnnounceReviewFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceReviewFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">AnnounceReviewFixtureFactory.source()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResultFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResultFixtureFactory.source()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.RejectFixtureFactory"><code class="docutils literal notranslate"><span class="pre">RejectFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.RejectFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">RejectFixtureFactory.source()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.RequestEndorsementFixtureFactory"><code class="docutils literal notranslate"><span class="pre">RequestEndorsementFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.RequestEndorsementFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">RequestEndorsementFixtureFactory.source()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.URIFixtureFactory"><code class="docutils literal notranslate"><span class="pre">URIFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.URIFixtureFactory.generate"><code class="docutils literal notranslate"><span class="pre">URIFixtureFactory.generate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.URIFixtureFactory.generate_uri"><code class="docutils literal notranslate"><span class="pre">URIFixtureFactory.generate_uri()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.RequestReviewFixtureFactory"><code class="docutils literal notranslate"><span class="pre">RequestReviewFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.RequestReviewFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">RequestReviewFixtureFactory.source()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.RequestReviewFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">RequestReviewFixtureFactory.invalid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.test.fixtures.TentativelyAcceptFixtureFactory"><code class="docutils literal notranslate"><span class="pre">TentativelyAcceptFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.TentativelyAcceptFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">TentativelyAcceptFixtureFactory.source()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.test.fixtures.TentativelyAcceptFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">TentativelyAcceptFixtureFactory.invalid()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../integration/index.html">coarnotify.test.integration</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../mocks/index.html">coarnotify.test.mocks</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../server/index.html">coarnotify.test.server</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../unit/index.html">coarnotify.test.unit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../validate/index.html">coarnotify.validate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">API Reference</a><ul>
+  <li><a href="../../index.html">coarnotify</a><ul>
+  <li><a href="../index.html">coarnotify.test</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">coarnotify.test</a></li>
+      <li>Next: <a href="accept/index.html" title="next chapter">coarnotify.test.fixtures.accept</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Cottage Labs.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../../_sources/autoapi/coarnotify/test/fixtures/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

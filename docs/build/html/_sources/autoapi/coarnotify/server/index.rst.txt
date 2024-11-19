@@ -1,0 +1,86 @@
+coarnotify.server
+=================
+
+.. py:module:: coarnotify.server
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   coarnotify.server.COARNotifyServerError
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.server.COARNotifyReceipt
+   coarnotify.server.COARNotifyServiceBinding
+   coarnotify.server.COARNotifyServer
+
+
+Module Contents
+---------------
+
+.. py:class:: COARNotifyReceipt(status, location=None)
+
+   .. py:attribute:: CREATED
+      :value: 201
+
+
+
+   .. py:attribute:: ACCEPTED
+      :value: 202
+
+
+
+   .. py:attribute:: _status
+
+
+   .. py:attribute:: _location
+
+
+   .. py:property:: status
+
+
+   .. py:property:: location
+
+
+.. py:class:: COARNotifyServiceBinding
+
+   .. py:method:: notification_received(notification: coarnotify.models.NotifyPattern) -> COARNotifyReceipt
+      :abstractmethod:
+
+
+
+.. py:exception:: COARNotifyServerError(status, msg)
+
+   Bases: :py:obj:`Exception`
+
+
+   Common base class for all non-exit exceptions.
+
+
+   .. py:attribute:: _status
+
+
+   .. py:attribute:: _msg
+
+
+   .. py:property:: status
+
+
+   .. py:property:: message
+
+
+.. py:class:: COARNotifyServer(service_impl)
+
+   .. py:attribute:: _service_impl
+
+
+   .. py:method:: receive(raw, validate=True)
+
+

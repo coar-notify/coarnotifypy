@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>coarnotify.models.notify &#8212; COAR Notify 1.0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../../../_static/documentation_options.js?v=8ec03999"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="coarnotify.models.reject" href="../reject/index.html" />
+    <link rel="prev" title="coarnotify.models.announce_service_result" href="../announce_service_result/index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-coarnotify.models.notify">
+<span id="coarnotify-models-notify"></span><h1>coarnotify.models.notify<a class="headerlink" href="#module-coarnotify.models.notify" title="Link to this heading">¶</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.notify.NOTIFY_NAMESPACE" title="coarnotify.models.notify.NOTIFY_NAMESPACE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NOTIFY_NAMESPACE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.notify.VALIDATION_RULES" title="coarnotify.models.notify.VALIDATION_RULES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VALIDATION_RULES</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.notify.VALIDATORS" title="coarnotify.models.notify.VALIDATORS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VALIDATORS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyProperties" title="coarnotify.models.notify.NotifyProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyProperties</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyTypes" title="coarnotify.models.notify.NotifyTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyTypes</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyBase" title="coarnotify.models.notify.NotifyBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyBase</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern" title="coarnotify.models.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyPatternPart" title="coarnotify.models.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyService" title="coarnotify.models.notify.NotifyService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyService</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyObject" title="coarnotify.models.notify.NotifyObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyObject</span></code></a></p></td>
+<td><p>Can be used to represent an <cite>object</cite> or a <cite>context</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyActor" title="coarnotify.models.notify.NotifyActor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyActor</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.notify.NotifyItem" title="coarnotify.models.notify.NotifyItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyItem</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.notify.NestedPatternObjectMixin" title="coarnotify.models.notify.NestedPatternObjectMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NestedPatternObjectMixin</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.notify.SummaryMixin" title="coarnotify.models.notify.SummaryMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SummaryMixin</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NOTIFY_NAMESPACE">
+<span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NOTIFY_NAMESPACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://coar-notify.net'</span></em><a class="headerlink" href="#coarnotify.models.notify.NOTIFY_NAMESPACE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyProperties">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyProperties</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyProperties" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../constants/index.html#coarnotify.constants.ConstantList" title="coarnotify.constants.ConstantList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.constants.ConstantList</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyProperties.INBOX">
+<span class="sig-name descname"><span class="pre">INBOX</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyProperties.INBOX" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyProperties.CITE_AS">
+<span class="sig-name descname"><span class="pre">CITE_AS</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyProperties.CITE_AS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyProperties.ITEM">
+<span class="sig-name descname"><span class="pre">ITEM</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyProperties.ITEM" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyProperties.NAME">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'name'</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyProperties.NAME" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyProperties.MEDIA_TYPE">
+<span class="sig-name descname"><span class="pre">MEDIA_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mediaType'</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyProperties.MEDIA_TYPE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyTypes</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyTypes" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../constants/index.html#coarnotify.constants.ConstantList" title="coarnotify.constants.ConstantList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.constants.ConstantList</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyTypes.ENDORSMENT_ACTION">
+<span class="sig-name descname"><span class="pre">ENDORSMENT_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:EndorsementAction'</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyTypes.ENDORSMENT_ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyTypes.INGEST_ACTION">
+<span class="sig-name descname"><span class="pre">INGEST_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:IngestAction'</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyTypes.INGEST_ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyTypes.RELATIONSHIP_ACTION">
+<span class="sig-name descname"><span class="pre">RELATIONSHIP_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:RelationshipAction'</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyTypes.RELATIONSHIP_ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyTypes.REVIEW_ACTION">
+<span class="sig-name descname"><span class="pre">REVIEW_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:ReviewAction'</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyTypes.REVIEW_ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyTypes.ABOUT_PAGE">
+<span class="sig-name descname"><span class="pre">ABOUT_PAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sorg:AboutPage'</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyTypes.ABOUT_PAGE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="coarnotify.models.notify.VALIDATION_RULES">
+<span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">VALIDATION_RULES</span></span><a class="headerlink" href="#coarnotify.models.notify.VALIDATION_RULES" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="coarnotify.models.notify.VALIDATORS">
+<span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">VALIDATORS</span></span><a class="headerlink" href="#coarnotify.models.notify.VALIDATORS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStream" title="coarnotify.activitystreams2.activitystreams2.ActivityStream"><span class="pre">coarnotify.activitystreams2.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase" title="Link to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase._validate_stream_on_construct">
+<span class="sig-name descname"><span class="pre">_validate_stream_on_construct</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase._validate_stream_on_construct" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase._validate_properties">
+<span class="sig-name descname"><span class="pre">_validate_properties</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase._validate_properties" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase._validators">
+<span class="sig-name descname"><span class="pre">_validators</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase._validators" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase._validation_context">
+<span class="sig-name descname"><span class="pre">_validation_context</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase._validation_context" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.validate_properties">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_properties</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.validate_properties" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.validate_stream_on_construct">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_stream_on_construct</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.validate_stream_on_construct" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.validators">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validators</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.validators" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.doc">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">doc</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.doc" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.get_property">
+<span class="sig-name descname"><span class="pre">get_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prop_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.get_property" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.set_property">
+<span class="sig-name descname"><span class="pre">set_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prop_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.set_property" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.validate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.validate_property">
+<span class="sig-name descname"><span class="pre">validate_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.validate_property" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.register_property_validation_error">
+<span class="sig-name descname"><span class="pre">register_property_validation_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.register_property_validation_error" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.required">
+<span class="sig-name descname"><span class="pre">required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.required" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.required_and_validate">
+<span class="sig-name descname"><span class="pre">required_and_validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.required_and_validate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.optional_and_validate">
+<span class="sig-name descname"><span class="pre">optional_and_validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.optional_and_validate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyBase.to_jsonld">
+<span class="sig-name descname"><span class="pre">to_jsonld</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyBase.to_jsonld" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyPattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStream" title="coarnotify.activitystreams2.activitystreams2.ActivityStream"><span class="pre">coarnotify.activitystreams2.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.models.notify.NotifyBase" title="coarnotify.models.notify.NotifyBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyBase</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern.TYPE">
+<span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern.TYPE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern._ensure_type_contains">
+<span class="sig-name descname"><span class="pre">_ensure_type_contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern._ensure_type_contains" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern.origin">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.models.notify.NotifyService" title="coarnotify.models.notify.NotifyService"><span class="pre">NotifyService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern.origin" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern.target">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.models.notify.NotifyService" title="coarnotify.models.notify.NotifyService"><span class="pre">NotifyService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern.target" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern.object">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.models.notify.NotifyObject" title="coarnotify.models.notify.NotifyObject"><span class="pre">NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern.object" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern.in_reply_to">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">in_reply_to</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern.in_reply_to" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern.actor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.models.notify.NotifyActor" title="coarnotify.models.notify.NotifyActor"><span class="pre">NotifyActor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern.actor" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern.context">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.models.notify.NotifyObject" title="coarnotify.models.notify.NotifyObject"><span class="pre">NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern.context" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPattern.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyPattern.validate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPatternPart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyPatternPart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStream" title="coarnotify.activitystreams2.activitystreams2.ActivityStream"><span class="pre">coarnotify.activitystreams2.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyPatternPart" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.models.notify.NotifyBase" title="coarnotify.models.notify.NotifyBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyBase</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPatternPart.DEFAULT_TYPE">
+<span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyPatternPart.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyPatternPart.ALLOWED_TYPES">
+<span class="sig-name descname"><span class="pre">ALLOWED_TYPES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyPatternPart.ALLOWED_TYPES" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStream" title="coarnotify.activitystreams2.activitystreams2.ActivityStream"><span class="pre">coarnotify.activitystreams2.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyService" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.models.notify.NotifyPatternPart" title="coarnotify.models.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyService.DEFAULT_TYPE">
+<span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyService.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyService.inbox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inbox</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyService.inbox" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyService.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyService.validate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStream" title="coarnotify.activitystreams2.activitystreams2.ActivityStream"><span class="pre">coarnotify.activitystreams2.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyObject" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.models.notify.NotifyPatternPart" title="coarnotify.models.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
+<p>Can be used to represent an <cite>object</cite> or a <cite>context</cite></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyObject.cite_as">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cite_as</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyObject.cite_as" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyObject.item">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">item</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.models.notify.NotifyItem" title="coarnotify.models.notify.NotifyItem"><span class="pre">NotifyItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyObject.item" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyObject.triple">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">triple</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyObject.triple" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyObject.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyObject.validate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyActor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyActor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStream" title="coarnotify.activitystreams2.activitystreams2.ActivityStream"><span class="pre">coarnotify.activitystreams2.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyActor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.models.notify.NotifyPatternPart" title="coarnotify.models.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyActor.DEFAULT_TYPE">
+<span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyActor.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyActor.ALLOWED_TYPES">
+<span class="sig-name descname"><span class="pre">ALLOWED_TYPES</span></span><a class="headerlink" href="#coarnotify.models.notify.NotifyActor.ALLOWED_TYPES" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyActor.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyActor.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStream" title="coarnotify.activitystreams2.activitystreams2.ActivityStream"><span class="pre">coarnotify.activitystreams2.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyItem" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.models.notify.NotifyPatternPart" title="coarnotify.models.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyItem.media_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.models.notify.NotifyItem.media_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NotifyItem.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.notify.NotifyItem.validate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NestedPatternObjectMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">NestedPatternObjectMixin</span></span><a class="headerlink" href="#coarnotify.models.notify.NestedPatternObjectMixin" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.models.notify.NestedPatternObjectMixin.object" title="coarnotify.models.notify.NestedPatternObjectMixin.object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.NestedPatternObjectMixin.object">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern" title="coarnotify.models.notify.NotifyPattern"><span class="pre">NotifyPattern</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.models.notify.NotifyObject" title="coarnotify.models.notify.NotifyObject"><span class="pre">NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.models.notify.NestedPatternObjectMixin.object" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.notify.SummaryMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.notify.</span></span><span class="sig-name descname"><span class="pre">SummaryMixin</span></span><a class="headerlink" href="#coarnotify.models.notify.SummaryMixin" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.models.notify.SummaryMixin.summary">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">summary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.models.notify.SummaryMixin.summary" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">COAR Notify</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">coarnotify</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../activitystreams2/index.html">coarnotify.activitystreams2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../client/index.html">coarnotify.client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../common/index.html">coarnotify.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../constants/index.html">coarnotify.constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../exceptions/index.html">coarnotify.exceptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../http/index.html">coarnotify.http</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">coarnotify.models</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="../accept/index.html">coarnotify.models.accept</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../announce_endorsement/index.html">coarnotify.models.announce_endorsement</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../announce_relationship/index.html">coarnotify.models.announce_relationship</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../announce_review/index.html">coarnotify.models.announce_review</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../announce_service_result/index.html">coarnotify.models.announce_service_result</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">coarnotify.models.notify</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NOTIFY_NAMESPACE"><code class="docutils literal notranslate"><span class="pre">NOTIFY_NAMESPACE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyProperties"><code class="docutils literal notranslate"><span class="pre">NotifyProperties</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyProperties.INBOX"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.INBOX</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyProperties.CITE_AS"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.CITE_AS</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyProperties.ITEM"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.ITEM</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyProperties.NAME"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.NAME</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyProperties.MEDIA_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.MEDIA_TYPE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyTypes"><code class="docutils literal notranslate"><span class="pre">NotifyTypes</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyTypes.ENDORSMENT_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.ENDORSMENT_ACTION</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyTypes.INGEST_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.INGEST_ACTION</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyTypes.RELATIONSHIP_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.RELATIONSHIP_ACTION</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyTypes.REVIEW_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.REVIEW_ACTION</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyTypes.ABOUT_PAGE"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.ABOUT_PAGE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.VALIDATION_RULES"><code class="docutils literal notranslate"><span class="pre">VALIDATION_RULES</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.VALIDATORS"><code class="docutils literal notranslate"><span class="pre">VALIDATORS</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase"><code class="docutils literal notranslate"><span class="pre">NotifyBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase._validate_stream_on_construct"><code class="docutils literal notranslate"><span class="pre">NotifyBase._validate_stream_on_construct</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase._validate_properties"><code class="docutils literal notranslate"><span class="pre">NotifyBase._validate_properties</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase._validators"><code class="docutils literal notranslate"><span class="pre">NotifyBase._validators</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase._validation_context"><code class="docutils literal notranslate"><span class="pre">NotifyBase._validation_context</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.validate_properties"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_properties</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.validate_stream_on_construct"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_stream_on_construct</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.validators"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validators</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.doc"><code class="docutils literal notranslate"><span class="pre">NotifyBase.doc</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.id"><code class="docutils literal notranslate"><span class="pre">NotifyBase.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.type"><code class="docutils literal notranslate"><span class="pre">NotifyBase.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.get_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.get_property()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.set_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.set_property()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.validate_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_property()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.register_property_validation_error"><code class="docutils literal notranslate"><span class="pre">NotifyBase.register_property_validation_error()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.required"><code class="docutils literal notranslate"><span class="pre">NotifyBase.required()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.required_and_validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.required_and_validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.optional_and_validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.optional_and_validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyBase.to_jsonld"><code class="docutils literal notranslate"><span class="pre">NotifyBase.to_jsonld()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern"><code class="docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern.TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern._ensure_type_contains"><code class="docutils literal notranslate"><span class="pre">NotifyPattern._ensure_type_contains()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern.origin"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.origin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern.target"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.target</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern.object"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.object</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern.in_reply_to"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.in_reply_to</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern.actor"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.actor</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern.context"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.context</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPattern.validate"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyPatternPart"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPatternPart.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart.DEFAULT_TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyPatternPart.ALLOWED_TYPES"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart.ALLOWED_TYPES</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyService"><code class="docutils literal notranslate"><span class="pre">NotifyService</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyService.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyService.DEFAULT_TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyService.inbox"><code class="docutils literal notranslate"><span class="pre">NotifyService.inbox</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyService.validate"><code class="docutils literal notranslate"><span class="pre">NotifyService.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyObject"><code class="docutils literal notranslate"><span class="pre">NotifyObject</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyObject.cite_as"><code class="docutils literal notranslate"><span class="pre">NotifyObject.cite_as</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyObject.item"><code class="docutils literal notranslate"><span class="pre">NotifyObject.item</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyObject.triple"><code class="docutils literal notranslate"><span class="pre">NotifyObject.triple</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyObject.validate"><code class="docutils literal notranslate"><span class="pre">NotifyObject.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyActor"><code class="docutils literal notranslate"><span class="pre">NotifyActor</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyActor.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyActor.DEFAULT_TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyActor.ALLOWED_TYPES"><code class="docutils literal notranslate"><span class="pre">NotifyActor.ALLOWED_TYPES</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyActor.name"><code class="docutils literal notranslate"><span class="pre">NotifyActor.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NotifyItem"><code class="docutils literal notranslate"><span class="pre">NotifyItem</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyItem.media_type"><code class="docutils literal notranslate"><span class="pre">NotifyItem.media_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NotifyItem.validate"><code class="docutils literal notranslate"><span class="pre">NotifyItem.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.NestedPatternObjectMixin"><code class="docutils literal notranslate"><span class="pre">NestedPatternObjectMixin</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.NestedPatternObjectMixin.object"><code class="docutils literal notranslate"><span class="pre">NestedPatternObjectMixin.object</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.models.notify.SummaryMixin"><code class="docutils literal notranslate"><span class="pre">SummaryMixin</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.models.notify.SummaryMixin.summary"><code class="docutils literal notranslate"><span class="pre">SummaryMixin.summary</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../reject/index.html">coarnotify.models.reject</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../request_endorsement/index.html">coarnotify.models.request_endorsement</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../request_review/index.html">coarnotify.models.request_review</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../tentatively_accept/index.html">coarnotify.models.tentatively_accept</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../index.html#classes">Classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../server/index.html">coarnotify.server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../test/index.html">coarnotify.test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../validate/index.html">coarnotify.validate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">API Reference</a><ul>
+  <li><a href="../../index.html">coarnotify</a><ul>
+  <li><a href="../index.html">coarnotify.models</a><ul>
+      <li>Previous: <a href="../announce_service_result/index.html" title="previous chapter">coarnotify.models.announce_service_result</a></li>
+      <li>Next: <a href="../reject/index.html" title="next chapter">coarnotify.models.reject</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Cottage Labs.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../../../_sources/autoapi/coarnotify/models/notify/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

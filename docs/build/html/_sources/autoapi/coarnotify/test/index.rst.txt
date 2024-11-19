@@ -1,0 +1,19 @@
+coarnotify.test
+===============
+
+.. py:module:: coarnotify.test
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/coarnotify/test/fixtures/index
+   /autoapi/coarnotify/test/integration/index
+   /autoapi/coarnotify/test/mocks/index
+   /autoapi/coarnotify/test/server/index
+   /autoapi/coarnotify/test/unit/index
+
+

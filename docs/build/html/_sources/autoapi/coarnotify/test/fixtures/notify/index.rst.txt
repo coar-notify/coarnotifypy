@@ -1,0 +1,49 @@
+coarnotify.test.fixtures.notify
+===============================
+
+.. py:module:: coarnotify.test.fixtures.notify
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.notify.BASE_NOTIFY
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.notify.NotifyFixtureFactory
+
+
+Module Contents
+---------------
+
+.. py:class:: NotifyFixtureFactory
+
+   .. py:method:: source()
+      :classmethod:
+
+
+
+   .. py:method:: target()
+      :classmethod:
+
+
+
+   .. py:method:: origin()
+      :classmethod:
+
+
+
+   .. py:method:: object()
+      :classmethod:
+
+
+
+.. py:data:: BASE_NOTIFY
+
