@@ -14,7 +14,8 @@ from coarnotify.models import (
     RequestEndorsement,
     RequestReview,
     TentativelyAccept,
-    TentativelyReject
+    TentativelyReject,
+    UnprocessableNotification
 )
 from coarnotify.exceptions import NotifyException
 
@@ -31,7 +32,8 @@ class COARNotifyFactory:
         RequestEndorsement,
         RequestReview,
         TentativelyAccept,
-        TentativelyReject
+        TentativelyReject,
+        UnprocessableNotification
     ]
 
     @classmethod

@@ -10,7 +10,8 @@ from coarnotify.models import (
     RequestEndorsement,
     RequestReview,
     TentativelyAccept,
-    TentativelyReject
+    TentativelyReject,
+    UnprocessableNotification
 )
 from coarnotify.factory import COARNotifyFactory
 
@@ -24,7 +25,8 @@ from coarnotify.test.fixtures import (
     RequestEndorsementFixtureFactory,
     RequestReviewFixtureFactory,
     TentativelyAcceptFixtureFactory,
-    TentativelyRejectFixtureFactory
+    TentativelyRejectFixtureFactory,
+    UnprocessableNotificationFixtureFactory
 )
 
 
@@ -126,5 +128,15 @@ class TestFactory(TestCase):
         source = TentativelyRejectFixtureFactory.source()
         ar = COARNotifyFactory.get_by_object(source)
         assert isinstance(ar, TentativelyReject)
+
+        assert ar.id == source["id"]
+
+    def test_13_unprocessable_notification(self):
+        ar = COARNotifyFactory.get_by_types(UnprocessableNotification.TYPE)
+        assert ar == UnprocessableNotification
+
+        source = UnprocessableNotificationFixtureFactory.source()
+        ar = COARNotifyFactory.get_by_object(source)
+        assert isinstance(ar, UnprocessableNotification)
 
         assert ar.id == source["id"]

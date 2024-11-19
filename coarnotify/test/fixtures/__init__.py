@@ -10,3 +10,4 @@ from coarnotify.test.fixtures.uris import URIFixtureFactory
 from coarnotify.test.fixtures.request_review import RequestReviewFixtureFactory
 from coarnotify.test.fixtures.tentatively_accept import TentativelyAcceptFixtureFactory
 from coarnotify.test.fixtures.tentatively_reject import TentativelyRejectFixtureFactory
+from coarnotify.test.fixtures.unprocessable_notification import UnprocessableNotificationFixtureFactory

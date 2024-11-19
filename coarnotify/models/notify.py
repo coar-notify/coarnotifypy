@@ -23,6 +23,7 @@ class NotifyTypes:
     INGEST_ACTION = "coar-notify:IngestAction"
     RELATIONSHIP_ACTION = "coar-notify:RelationshipAction"
     REVIEW_ACTION = "coar-notify:ReviewAction"
+    UNPROCESSABLE_NOTIFICATION = "coar-notify:UnprocessableNotification"
 
     ABOUT_PAGE = "sorg:AboutPage"
 

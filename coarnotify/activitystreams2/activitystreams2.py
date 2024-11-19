@@ -26,6 +26,7 @@ class ActivityStreamsTypes:
     OFFER = "Offer"
     TENTATIVE_ACCEPT = "TentativeAccept"
     TENTATIVE_REJECT = "TentativeReject"
+    FLAG = "Flag"
 
     # Objects
     ACTIVITY = "Activity"
