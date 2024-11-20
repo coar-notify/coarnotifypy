@@ -12,7 +12,8 @@ from coarnotify.models import (
     RequestReview,
     TentativelyAccept,
     TentativelyReject,
-    UnprocessableNotification
+    UnprocessableNotification,
+    UndoOffer
 )
 
 from coarnotify.test.fixtures import (
@@ -26,7 +27,8 @@ from coarnotify.test.fixtures import (
     RequestReviewFixtureFactory,
     TentativelyAcceptFixtureFactory,
     TentativelyRejectFixtureFactory,
-    UnprocessableNotificationFixtureFactory
+    UnprocessableNotificationFixtureFactory,
+    UndoOfferFixtureFactory
 )
 
 INBOX = "http://localhost:5005/inbox"
@@ -127,6 +129,15 @@ class TestClient(TestCase):
         client = COARNotifyClient(INBOX)
         source = UnprocessableNotificationFixtureFactory.source()
         ae = UnprocessableNotification(source)
+        resp = client.send(ae)
+        assert resp.action == resp.CREATED
+        assert resp.location is not None
+        print(resp.location)
+
+    def test_13_undo_offer(self):
+        client = COARNotifyClient(INBOX)
+        source = UndoOfferFixtureFactory.source()
+        ae = UndoOffer(source)
         resp = client.send(ae)
         assert resp.action == resp.CREATED
         assert resp.location is not None

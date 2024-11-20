@@ -11,7 +11,8 @@ from coarnotify.models import (
     RequestReview,
     TentativelyAccept,
     TentativelyReject,
-    UnprocessableNotification
+    UnprocessableNotification,
+    UndoOffer
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -24,7 +25,8 @@ from coarnotify.test.fixtures import (
     URIFixtureFactory,
     TentativelyAcceptFixtureFactory,
     TentativelyRejectFixtureFactory,
-    UnprocessableNotificationFixtureFactory
+    UnprocessableNotificationFixtureFactory,
+    UndoOfferFixtureFactory
 )
 
 from coarnotify.exceptions import ValidationError
@@ -335,6 +337,20 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = UnprocessableNotificationFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = UnprocessableNotification(isource)
+
+    def test_15_undo_offer_validate(self):
+        # make a valid one
+        source = UndoOfferFixtureFactory.source()
+        a = UndoOffer(source)
+
+        self._base_validate(a)
+        self._actor_validate(a)
+        # self._object_validate(a)
+
+        # now make one with fully invalid data
+        isource = UndoOfferFixtureFactory.invalid()
         with self.assertRaises(ValidationError) as ve:
             a = UnprocessableNotification(isource)
 

@@ -15,7 +15,9 @@ from coarnotify.models import (
     RequestReview,
     TentativelyAccept,
     TentativelyReject,
-    UnprocessableNotification, NotifyPattern
+    UnprocessableNotification,
+    NotifyPattern,
+    UndoOffer
 )
 from coarnotify.exceptions import NotifyException
 
@@ -36,7 +38,8 @@ class COARNotifyFactory:
         RequestReview,
         TentativelyAccept,
         TentativelyReject,
-        UnprocessableNotification
+        UnprocessableNotification,
+        UndoOffer
     ]
     """The list of model classes recognised by this factory"""
 

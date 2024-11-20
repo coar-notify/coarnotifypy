@@ -15,7 +15,8 @@ from coarnotify.models import (
     RequestReview,
     TentativelyAccept,
     TentativelyReject,
-    UnprocessableNotification
+    UnprocessableNotification,
+    UndoOffer
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -29,7 +30,8 @@ from coarnotify.test.fixtures import (
     RequestReviewFixtureFactory,
     TentativelyAcceptFixtureFactory,
     TentativelyRejectFixtureFactory,
-    UnprocessableNotificationFixtureFactory
+    UnprocessableNotificationFixtureFactory,
+    UndoOfferFixtureFactory
 )
 
 
@@ -346,3 +348,16 @@ class TestModels(TestCase):
 
         proptest = self._get_testable_properties(compare)
         self._apply_property_test(proptest, ta, UnprocessableNotificationFixtureFactory)
+
+    def test_17_undo_offer(self):
+        ta = UndoOffer()
+
+        source = UndoOfferFixtureFactory.source()
+        compare = deepcopy(source)
+        ta = UndoOffer(source)
+
+        assert ta.validate() is True
+        assert ta.to_jsonld() == compare
+
+        proptest = self._get_testable_properties(compare)
+        self._apply_property_test(proptest, ta, UndoOfferFixtureFactory)

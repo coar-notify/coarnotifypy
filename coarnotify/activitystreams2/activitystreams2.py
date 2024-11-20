@@ -27,6 +27,7 @@ class ActivityStreamsTypes:
     TENTATIVE_ACCEPT = "TentativeAccept"
     TENTATIVE_REJECT = "TentativeReject"
     FLAG = "Flag"
+    UNDO = "Undo"
 
     # Objects
     ACTIVITY = "Activity"
