@@ -3,6 +3,11 @@ coarnotify.server
 
 .. py:module:: coarnotify.server
 
+.. autoapi-nested-parse::
+
+   Supporting classes for COAR Notify server implementations
+
+
 
 Exceptions
 ----------
@@ -25,10 +30,22 @@ Classes
 Module Contents
 ---------------
 
-.. py:class:: COARNotifyReceipt(status, location=None)
+.. py:class:: COARNotifyReceipt(status: int, location: str = None)
+
+   An object representing the response from a COAR Notify server.
+
+   Server implementations should construct and return this object with the appropriate properties
+   when implementing the :py:meth:`COARNotifyServiceBinding.notification_received` binding
+
+   :param status: the HTTP status code, should be one of the constants ``CREATED`` (201) or ``ACCEPTED`` (202)
+   :param location: the HTTP URI for the resource that was created (if present)
+
 
    .. py:attribute:: CREATED
       :value: 201
+
+
+      The status code for a created resource
 
 
 
@@ -36,36 +53,108 @@ Module Contents
       :value: 202
 
 
+      The status code for an accepted request
+
+
 
    .. py:property:: status
+      :type: int
+
+
+      The status code of the response.  Should be one of the constants ``CREATED`` (201) or ``ACCEPTED`` (202)
+
 
 
    .. py:property:: location
+      :type: Union[str, None]
+
+
+      The HTTP URI of the created resource, if present
+
 
 
 .. py:class:: COARNotifyServiceBinding
+
+   Interface for implementing a COAR Notify server binding.
+
+   Server implementation should extend this class and implement the :py:meth:`notification_received` method
+
+   That method will receive a :py:class:`NotifyPattern` object, which will be one of the known types
+   and should return a :py:class:`COARNotifyReceipt` object with the appropriate status code and location URL
+
 
    .. py:method:: notification_received(notification: coarnotify.models.NotifyPattern) -> COARNotifyReceipt
       :abstractmethod:
 
 
+      Process the receipt of the given notification, and respond with an appropriate receipt object
 
-.. py:exception:: COARNotifyServerError(status, msg)
+      :param notification: the notification object received
+      :return: the receipt object to send back to the client
+
+
+
+.. py:exception:: COARNotifyServerError(status: int, msg: str)
 
    Bases: :py:obj:`Exception`
 
 
-   Common base class for all non-exit exceptions.
+   An exception class for server errors in the COAR Notify server implementation.
+
+   The web layer of your server implementation should be able to intercept this from the
+   :py:meth:`COARNotifyServer.receive` method and return the appropriate HTTP status code and message to the
+   user in its standard way.
+
+   :param status: HTTP Status code to respond to the client with
+   :param msg: Message to send back to the client
 
 
    .. py:property:: status
+      :type: int
+
+
+      HTTP status code for the error
+
 
 
    .. py:property:: message
+      :type: str
 
 
-.. py:class:: COARNotifyServer(service_impl)
+      The error message
 
-   .. py:method:: receive(raw, validate=True)
+
+
+.. py:class:: COARNotifyServer(service_impl: COARNotifyServiceBinding)
+
+   The main entrypoint to the COAR Notify server implementation.
+
+   The web layer of your application should pass the json/raw payload of any incoming notification to the
+   :py:meth:`receive` method, which will parse the payload and pass it to the :py:meth:`COARNotifyServiceBinding.notification_received`
+   method of your service implementation
+
+   This object should be constructed with your service implementation passed to it, for example
+
+   .. code-block:: python
+
+       server = COARNotifyServer(MyServiceBinding())
+       try:
+           response = server.receive(request.json)
+           return jsonify(response)
+       except COARNotifyServerError as e:
+           abort(e.status, e.message)
+
+   :param service_impl: Your service implementation
+
+
+   .. py:method:: receive(raw: Union[dict, str], validate: bool = True) -> COARNotifyReceipt
+
+      Receive an incoming notification as JSON, parse and validate (optional) and then pass to the
+      service implementation
+
+      :param raw: The JSON representation of the data, either as a string or a dictionary
+      :param validate:    Whether to validate the notification before passing to the service implementation
+      :return:   The COARNotifyReceipt response from the service implementation
+
 
 

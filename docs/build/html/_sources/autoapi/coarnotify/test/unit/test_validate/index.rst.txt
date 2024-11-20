@@ -79,27 +79,30 @@ Module Contents
    .. py:method:: test_09_contains()
 
 
-   .. py:method:: test_12_at_least_one_of()
+   .. py:method:: test_10_at_least_one_of()
 
 
-   .. py:method:: test_10_accept_validate()
+   .. py:method:: test_11_accept_validate()
 
 
-   .. py:method:: test_11_announce_endorsement_validate()
+   .. py:method:: test_12_announce_endorsement_validate()
 
 
-   .. py:method:: test_12_tentative_accept_validate()
+   .. py:method:: test_13_tentative_accept_validate()
 
 
-   .. py:method:: test_13_tentative_reject_validate()
+   .. py:method:: test_14_tentative_reject_validate()
 
 
-   .. py:method:: test_14_unprocessable_notification_validate()
+   .. py:method:: test_15_unprocessable_notification_validate()
 
 
-   .. py:method:: test_15_undo_offer_validate()
+   .. py:method:: test_16_undo_offer_validate()
 
 
-   .. py:method:: test_19_announce_review_validate()
+   .. py:method:: test_17_announce_review_validate()
+
+
+   .. py:method:: test_18_request_endorsement_validate()
 
 

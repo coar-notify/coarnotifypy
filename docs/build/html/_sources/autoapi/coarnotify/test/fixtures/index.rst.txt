@@ -150,6 +150,11 @@ Package Contents
 
 
 
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
 .. py:class:: URIFixtureFactory
 
    .. py:method:: generate(schemes=None, hosts=None, ports=None, paths=None, queries=None, fragments=None)

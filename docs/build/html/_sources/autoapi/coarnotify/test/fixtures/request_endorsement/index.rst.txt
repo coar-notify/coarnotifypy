@@ -33,5 +33,10 @@ Module Contents
 
 
 
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
 .. py:data:: REQUEST_ENDORSEMENT
 

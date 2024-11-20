@@ -42,7 +42,21 @@ Module Contents
    Bases: :py:obj:`coarnotify.server.COARNotifyServiceBinding`
 
 
+   Interface for implementing a COAR Notify server binding.
+
+   Server implementation should extend this class and implement the :py:meth:`notification_received` method
+
+   That method will receive a :py:class:`NotifyPattern` object, which will be one of the known types
+   and should return a :py:class:`COARNotifyReceipt` object with the appropriate status code and location URL
+
+
    .. py:method:: notification_received(notification)
+
+      Process the receipt of the given notification, and respond with an appropriate receipt object
+
+      :param notification: the notification object received
+      :return: the receipt object to send back to the client
+
 
 
 .. py:function:: inbox()

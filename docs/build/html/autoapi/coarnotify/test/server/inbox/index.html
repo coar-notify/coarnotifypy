@@ -51,7 +51,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl" title="coarnotify.test.server.inbox.COARNotifyServiceTestImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COARNotifyServiceTestImpl</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Interface for implementing a COAR Notify server binding.</p></td>
 </tr>
 </tbody>
 </table>
@@ -88,10 +88,23 @@
 <dt class="sig sig-object py" id="coarnotify.test.server.inbox.COARNotifyServiceTestImpl">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.inbox.</span></span><span class="sig-name descname"><span class="pre">COARNotifyServiceTestImpl</span></span><a class="headerlink" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../server/index.html#coarnotify.server.COARNotifyServiceBinding" title="coarnotify.server.COARNotifyServiceBinding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.server.COARNotifyServiceBinding</span></code></a></p>
+<p>Interface for implementing a COAR Notify server binding.</p>
+<p>Server implementation should extend this class and implement the <a class="reference internal" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received" title="coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">notification_received()</span></code></a> method</p>
+<p>That method will receive a <code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyPattern</span></code> object, which will be one of the known types
+and should return a <code class="xref py py-class docutils literal notranslate"><span class="pre">COARNotifyReceipt</span></code> object with the appropriate status code and location URL</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received">
 <span class="sig-name descname"><span class="pre">notification_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notification</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Process the receipt of the given notification, and respond with an appropriate receipt object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>notification</strong> – the notification object received</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the receipt object to send back to the client</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

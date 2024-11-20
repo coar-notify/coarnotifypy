@@ -36,12 +36,13 @@
             
   <section id="module-coarnotify.server">
 <span id="coarnotify-server"></span><h1>coarnotify.server<a class="headerlink" href="#module-coarnotify.server" title="Link to this heading">¶</a></h1>
+<p>Supporting classes for COAR Notify server implementations</p>
 <section id="exceptions">
 <h2>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.server.COARNotifyServerError" title="coarnotify.server.COARNotifyServerError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COARNotifyServerError</span></code></a></p></td>
-<td><p>Common base class for all non-exit exceptions.</p></td>
+<td><p>An exception class for server errors in the COAR Notify server implementation.</p></td>
 </tr>
 </tbody>
 </table>
@@ -51,13 +52,13 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.server.COARNotifyReceipt" title="coarnotify.server.COARNotifyReceipt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COARNotifyReceipt</span></code></a></p></td>
-<td><p></p></td>
+<td><p>An object representing the response from a COAR Notify server.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.server.COARNotifyServiceBinding" title="coarnotify.server.COARNotifyServiceBinding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COARNotifyServiceBinding</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Interface for implementing a COAR Notify server binding.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.server.COARNotifyServer" title="coarnotify.server.COARNotifyServer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COARNotifyServer</span></code></a></p></td>
-<td><p></p></td>
+<td><p>The main entrypoint to the COAR Notify server implementation.</p></td>
 </tr>
 </tbody>
 </table>
@@ -66,63 +67,135 @@
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyReceipt">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.server.</span></span><span class="sig-name descname"><span class="pre">COARNotifyReceipt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.server.COARNotifyReceipt" title="Link to this definition">¶</a></dt>
-<dd><dl class="py attribute">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.server.</span></span><span class="sig-name descname"><span class="pre">COARNotifyReceipt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.server.COARNotifyReceipt" title="Link to this definition">¶</a></dt>
+<dd><p>An object representing the response from a COAR Notify server.</p>
+<p>Server implementations should construct and return this object with the appropriate properties
+when implementing the <a class="reference internal" href="#coarnotify.server.COARNotifyServiceBinding.notification_received" title="coarnotify.server.COARNotifyServiceBinding.notification_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">COARNotifyServiceBinding.notification_received()</span></code></a> binding</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>status</strong> – the HTTP status code, should be one of the constants <code class="docutils literal notranslate"><span class="pre">CREATED</span></code> (201) or <code class="docutils literal notranslate"><span class="pre">ACCEPTED</span></code> (202)</p></li>
+<li><p><strong>location</strong> – the HTTP URI for the resource that was created (if present)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyReceipt.CREATED">
 <span class="sig-name descname"><span class="pre">CREATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">201</span></em><a class="headerlink" href="#coarnotify.server.COARNotifyReceipt.CREATED" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The status code for a created resource</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyReceipt.ACCEPTED">
 <span class="sig-name descname"><span class="pre">ACCEPTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">202</span></em><a class="headerlink" href="#coarnotify.server.COARNotifyReceipt.ACCEPTED" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The status code for an accepted request</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyReceipt.status">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#coarnotify.server.COARNotifyReceipt.status" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#coarnotify.server.COARNotifyReceipt.status" title="Link to this definition">¶</a></dt>
+<dd><p>The status code of the response.  Should be one of the constants <code class="docutils literal notranslate"><span class="pre">CREATED</span></code> (201) or <code class="docutils literal notranslate"><span class="pre">ACCEPTED</span></code> (202)</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyReceipt.location">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#coarnotify.server.COARNotifyReceipt.location" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.server.COARNotifyReceipt.location" title="Link to this definition">¶</a></dt>
+<dd><p>The HTTP URI of the created resource, if present</p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyServiceBinding">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.server.</span></span><span class="sig-name descname"><span class="pre">COARNotifyServiceBinding</span></span><a class="headerlink" href="#coarnotify.server.COARNotifyServiceBinding" title="Link to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Interface for implementing a COAR Notify server binding.</p>
+<p>Server implementation should extend this class and implement the <a class="reference internal" href="#coarnotify.server.COARNotifyServiceBinding.notification_received" title="coarnotify.server.COARNotifyServiceBinding.notification_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">notification_received()</span></code></a> method</p>
+<p>That method will receive a <code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyPattern</span></code> object, which will be one of the known types
+and should return a <a class="reference internal" href="#coarnotify.server.COARNotifyReceipt" title="coarnotify.server.COARNotifyReceipt"><code class="xref py py-class docutils literal notranslate"><span class="pre">COARNotifyReceipt</span></code></a> object with the appropriate status code and location URL</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyServiceBinding.notification_received">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">notification_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/index.html#coarnotify.models.NotifyPattern" title="coarnotify.models.NotifyPattern"><span class="pre">coarnotify.models.NotifyPattern</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.server.COARNotifyReceipt" title="coarnotify.server.COARNotifyReceipt"><span class="pre">COARNotifyReceipt</span></a></span></span><a class="headerlink" href="#coarnotify.server.COARNotifyServiceBinding.notification_received" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Process the receipt of the given notification, and respond with an appropriate receipt object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>notification</strong> – the notification object received</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the receipt object to send back to the client</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyServerError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.server.</span></span><span class="sig-name descname"><span class="pre">COARNotifyServerError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.server.COARNotifyServerError" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.server.</span></span><span class="sig-name descname"><span class="pre">COARNotifyServerError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.server.COARNotifyServerError" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>Common base class for all non-exit exceptions.</p>
+<p>An exception class for server errors in the COAR Notify server implementation.</p>
+<p>The web layer of your server implementation should be able to intercept this from the
+<a class="reference internal" href="#coarnotify.server.COARNotifyServer.receive" title="coarnotify.server.COARNotifyServer.receive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">COARNotifyServer.receive()</span></code></a> method and return the appropriate HTTP status code and message to the
+user in its standard way.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>status</strong> – HTTP Status code to respond to the client with</p></li>
+<li><p><strong>msg</strong> – Message to send back to the client</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyServerError.status">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#coarnotify.server.COARNotifyServerError.status" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#coarnotify.server.COARNotifyServerError.status" title="Link to this definition">¶</a></dt>
+<dd><p>HTTP status code for the error</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyServerError.message">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#coarnotify.server.COARNotifyServerError.message" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.server.COARNotifyServerError.message" title="Link to this definition">¶</a></dt>
+<dd><p>The error message</p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyServer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.server.</span></span><span class="sig-name descname"><span class="pre">COARNotifyServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_impl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.server.COARNotifyServer" title="Link to this definition">¶</a></dt>
-<dd><dl class="py method">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.server.</span></span><span class="sig-name descname"><span class="pre">COARNotifyServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_impl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#coarnotify.server.COARNotifyServiceBinding" title="coarnotify.server.COARNotifyServiceBinding"><span class="pre">COARNotifyServiceBinding</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.server.COARNotifyServer" title="Link to this definition">¶</a></dt>
+<dd><p>The main entrypoint to the COAR Notify server implementation.</p>
+<p>The web layer of your application should pass the json/raw payload of any incoming notification to the
+<a class="reference internal" href="#coarnotify.server.COARNotifyServer.receive" title="coarnotify.server.COARNotifyServer.receive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">receive()</span></code></a> method, which will parse the payload and pass it to the <a class="reference internal" href="#coarnotify.server.COARNotifyServiceBinding.notification_received" title="coarnotify.server.COARNotifyServiceBinding.notification_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">COARNotifyServiceBinding.notification_received()</span></code></a>
+method of your service implementation</p>
+<p>This object should be constructed with your service implementation passed to it, for example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="o">=</span> <span class="n">COARNotifyServer</span><span class="p">(</span><span class="n">MyServiceBinding</span><span class="p">())</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">receive</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">COARNotifyServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">abort</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>service_impl</strong> – Your service implementation</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.server.COARNotifyServer.receive">
-<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.server.COARNotifyServer.receive" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.server.COARNotifyReceipt" title="coarnotify.server.COARNotifyReceipt"><span class="pre">COARNotifyReceipt</span></a></span></span><a class="headerlink" href="#coarnotify.server.COARNotifyServer.receive" title="Link to this definition">¶</a></dt>
+<dd><p>Receive an incoming notification as JSON, parse and validate (optional) and then pass to the
+service implementation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>raw</strong> – The JSON representation of the data, either as a string or a dictionary</p></li>
+<li><p><strong>validate</strong> – Whether to validate the notification before passing to the service implementation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The COARNotifyReceipt response from the service implementation</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

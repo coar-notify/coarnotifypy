@@ -83,6 +83,76 @@ for the key parts of the notification, and attach them to the <code class="docut
 </pre></div>
 </div>
 </section>
+<section id="parse-a-raw-notification">
+<h2>Parse a raw notification<a class="headerlink" href="#parse-a-raw-notification" title="Link to this heading">¶</a></h2>
+<p>We can receive and parse a raw notification using the object factory <a class="reference internal" href="autoapi/coarnotify/factory/index.html#module-coarnotify.factory" title="coarnotify.factory"><code class="xref py py-mod docutils literal notranslate"><span class="pre">coarnotify.factory</span></code></a>.</p>
+<p>Suppose we have a basic notification which consists of the following string:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://www.w3.org/ns/activitystreams&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://coar-notify.net&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;object&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://research-organisation.org/repository/preprint/201203/421/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ietf:item&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://research-organisation.org/repository/preprint/201203/421/content.pdf&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;mediaType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/pdf&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;Article&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;sorg:ScholarlyArticle&quot;</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;Page&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;sorg:AboutPage&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;origin&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://research-organisation.org/repository&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;inbox&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://research-organisation.org/inbox/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Service&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://overlay-journal.com/system&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;inbox&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://overlay-journal.com/inbox/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Service&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Offer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;coar-notify:EndorsementAction&quot;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We can parse this notification as follows</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">coarnotify.factory</span> <span class="kn">import</span> <span class="n">COARNotifyFactory</span>
+
+<span class="n">raw</span> <span class="o">=</span> <span class="s2">&quot;{@context  ...}&quot;</span> <span class="c1"># the raw payload shown above</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+<span class="n">notification</span> <span class="o">=</span> <span class="n">COARNotifyFactory</span><span class="o">.</span><span class="n">get_by_object</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># confirm that the payload has been parsed into the correct object</span>
+<span class="kn">from</span> <span class="nn">coarnotify.models</span> <span class="kn">import</span> <span class="n">RequestEndorsement</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">notification</span><span class="p">,</span> <span class="n">RequestEndorsement</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can also access the correct model objects via the type of the notification and construct it ourselves:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">coarnotify.factory</span> <span class="kn">import</span> <span class="n">COARNotifyFactory</span>
+
+<span class="n">raw</span> <span class="o">=</span> <span class="s2">&quot;{@context  ...}&quot;</span> <span class="c1"># the raw payload shown above</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+<span class="n">klazz</span> <span class="o">=</span> <span class="n">COARNotifyFactory</span><span class="o">.</span><span class="n">get_by_type</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">])</span>
+<span class="n">notification</span> <span class="o">=</span> <span class="n">klazz</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># confirm that the detected class is the correct one</span>
+<span class="kn">from</span> <span class="nn">coarnotify.models</span> <span class="kn">import</span> <span class="n">RequestEndorsement</span>
+<span class="k">assert</span> <span class="n">klazz</span> <span class="o">==</span> <span class="n">RequestEndorsement</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -115,6 +185,7 @@ for the key parts of the notification, and attach them to the <code class="docut
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#construct-and-send-a-notification">Construct and send a notification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parse-a-raw-notification">Parse a raw notification</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="http_layer.html">Creating your own HTTP Layer</a></li>

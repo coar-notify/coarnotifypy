@@ -52,3 +52,80 @@ Finally, we create a ``COARNotifyClient`` object and send the notification to th
 
     client = COARNotifyClient()
     response = client.send(announcement, target.inbox)
+
+Parse a raw notification
+------------------------
+
+We can receive and parse a raw notification using the object factory :py:mod:`coarnotify.factory`.
+
+Suppose we have a basic notification which consists of the following string:
+
+.. code-block:: json
+
+    {
+      "@context": [
+        "https://www.w3.org/ns/activitystreams",
+        "https://coar-notify.net"
+      ],
+      "id": "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd",
+      "object": {
+        "id": "https://research-organisation.org/repository/preprint/201203/421/",
+        "ietf:item": {
+          "id": "https://research-organisation.org/repository/preprint/201203/421/content.pdf",
+          "mediaType": "application/pdf",
+          "type": [
+            "Article",
+            "sorg:ScholarlyArticle"
+          ]
+        },
+        "type": [
+          "Page",
+          "sorg:AboutPage"
+        ]
+      },
+      "origin": {
+        "id": "https://research-organisation.org/repository",
+        "inbox": "https://research-organisation.org/inbox/",
+        "type": "Service"
+      },
+      "target": {
+        "id": "https://overlay-journal.com/system",
+        "inbox": "https://overlay-journal.com/inbox/",
+        "type": "Service"
+      },
+      "type": [
+        "Offer",
+        "coar-notify:EndorsementAction"
+      ]
+    }
+
+We can parse this notification as follows
+
+.. code-block:: python
+
+    import json
+    from coarnotify.factory import COARNotifyFactory
+
+    raw = "{@context  ...}" # the raw payload shown above
+    data = json.loads(raw)
+    notification = COARNotifyFactory.get_by_object(data)
+
+    # confirm that the payload has been parsed into the correct object
+    from coarnotify.models import RequestEndorsement
+    assert isinstance(notification, RequestEndorsement)
+
+We can also access the correct model objects via the type of the notification and construct it ourselves:
+
+.. code-block:: python
+
+    import json
+    from coarnotify.factory import COARNotifyFactory
+
+    raw = "{@context  ...}" # the raw payload shown above
+    data = json.loads(raw)
+    klazz = COARNotifyFactory.get_by_type(data['type'])
+    notification = klazz(data)
+
+    # confirm that the detected class is the correct one
+    from coarnotify.models import RequestEndorsement
+    assert klazz == RequestEndorsement
