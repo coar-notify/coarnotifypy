@@ -10,6 +10,14 @@ class RequestEndorsementFixtureFactory(BaseFixtureFactory):
             return deepcopy(REQUEST_ENDORSEMENT)
         return REQUEST_ENDORSEMENT
 
+    @classmethod
+    def invalid(cls):
+        source = cls.source()
+        cls._base_invalid(source)
+        cls._actor_invalid(source)
+        cls._object_invalid(source)
+        return source
+
 
 REQUEST_ENDORSEMENT = {
     "@context": [

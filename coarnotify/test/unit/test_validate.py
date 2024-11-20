@@ -8,6 +8,7 @@ from coarnotify.models import (
     AnnounceRelationship,
     AnnounceReview,
     AnnounceServiceResult,
+    RequestEndorsement,
     RequestReview,
     TentativelyAccept,
     TentativelyReject,
@@ -22,6 +23,7 @@ from coarnotify.test.fixtures import (
     AnnounceReviewFixtureFactory,
     AnnounceServiceResultFixtureFactory,
     RequestReviewFixtureFactory,
+    RequestEndorsementFixtureFactory,
     URIFixtureFactory,
     TentativelyAcceptFixtureFactory,
     TentativelyRejectFixtureFactory,
@@ -199,7 +201,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValueError):
             validator(None, ["b", "c", "d"])
 
-    def test_12_at_least_one_of(self):
+    def test_10_at_least_one_of(self):
         values = ["a", "b", "c"]
         validator = validate.at_least_one_of(values)
         assert validator(None, "a") is True
@@ -264,7 +266,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValueError):
             a.context.cite_as = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
 
-    def test_10_accept_validate(self):
+    def test_11_accept_validate(self):
         # make a valid one
         source = AcceptFixtureFactory.source()
         a = Accept(source)
@@ -276,7 +278,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValidationError) as ve:
             a = Accept(isource)
 
-    def test_11_announce_endorsement_validate(self):
+    def test_12_announce_endorsement_validate(self):
         # make a valid one
         source = AnnounceEndorsementFixtureFactory.source()
         a = AnnounceEndorsement(source)
@@ -296,7 +298,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValidationError) as ve:
             a = AnnounceEndorsement(isource)
 
-    def test_12_tentative_accept_validate(self):
+    def test_13_tentative_accept_validate(self):
         # make a valid one
         source = TentativelyAcceptFixtureFactory.source()
         a = TentativelyAccept(source)
@@ -311,7 +313,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValidationError) as ve:
             a = TentativelyAccept(isource)
 
-    def test_13_tentative_reject_validate(self):
+    def test_14_tentative_reject_validate(self):
         # make a valid one
         source = TentativelyRejectFixtureFactory.source()
         a = TentativelyReject(source)
@@ -326,7 +328,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValidationError) as ve:
             a = TentativelyReject(isource)
 
-    def test_14_unprocessable_notification_validate(self):
+    def test_15_unprocessable_notification_validate(self):
         # make a valid one
         source = UnprocessableNotificationFixtureFactory.source()
         a = UnprocessableNotification(source)
@@ -340,7 +342,7 @@ class TestValidate(TestCase):
         with self.assertRaises(ValidationError) as ve:
             a = UnprocessableNotification(isource)
 
-    def test_15_undo_offer_validate(self):
+    def test_16_undo_offer_validate(self):
         # make a valid one
         source = UndoOfferFixtureFactory.source()
         a = UndoOffer(source)
@@ -355,7 +357,7 @@ class TestValidate(TestCase):
             a = UnprocessableNotification(isource)
 
 
-    def test_19_announce_review_validate(self):
+    def test_17_announce_review_validate(self):
         # make a valid one
         source = RequestReviewFixtureFactory.source()
         a = RequestReview(source)
@@ -373,3 +375,21 @@ class TestValidate(TestCase):
         isource = RequestReviewFixtureFactory.invalid()
         with self.assertRaises(ValidationError) as ve:
             a = RequestReview(isource)
+
+    def test_18_request_endorsement_validate(self):
+        # make a valid one
+        source = RequestEndorsementFixtureFactory.source()
+        a = RequestEndorsement(source)
+
+        self._base_validate(a)
+        self._actor_validate(a)
+        self._object_validate(a)
+
+        with self.assertRaises(ValueError):
+            # one of the required types, but not both of them
+            a.type = "Offer"
+
+        # now make one with fully invalid data
+        isource = RequestEndorsementFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = RequestEndorsement(isource)
