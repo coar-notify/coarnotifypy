@@ -32,4 +32,5 @@ Contents
     install
     quickstart
     http_layer
+    test_server
     dev

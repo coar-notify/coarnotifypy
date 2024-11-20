@@ -35,58 +35,15 @@
             
   <section id="module-coarnotify.validate">
 <span id="coarnotify-validate"></span><h1>coarnotify.validate<a class="headerlink" href="#module-coarnotify.validate" title="Link to this heading">¶</a></h1>
-<section id="attributes">
-<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.REQUIRED_MESSAGE" title="coarnotify.validate.REQUIRED_MESSAGE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">REQUIRED_MESSAGE</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.URI_RE" title="coarnotify.validate.URI_RE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">URI_RE</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.SCHEME" title="coarnotify.validate.SCHEME"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCHEME</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.IPv6" title="coarnotify.validate.IPv6"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPv6</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.HOSTPORT" title="coarnotify.validate.HOSTPORT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HOSTPORT</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.MARK" title="coarnotify.validate.MARK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MARK</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.UNRESERVED" title="coarnotify.validate.UNRESERVED"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNRESERVED</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.PCHARS" title="coarnotify.validate.PCHARS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PCHARS</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.PATH" title="coarnotify.validate.PATH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PATH</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.RESERVED" title="coarnotify.validate.RESERVED"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESERVED</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.URIC" title="coarnotify.validate.URIC"><code class="xref py py-obj docutils literal notranslate"><span class="pre">URIC</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.FREE" title="coarnotify.validate.FREE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FREE</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.USERINFO" title="coarnotify.validate.USERINFO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">USERINFO</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-</section>
+<p>This module provides a set of validation functions that can be used to validate properties on objects.
+It also contains a <code class="docutils literal notranslate"><span class="pre">Validator</span></code> class which is used to wrap the protocol-wide validation rules which
+are shared across all objects.</p>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.Validator" title="coarnotify.validate.Validator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Validator</span></code></a></p></td>
-<td><p></p></td>
+<td><p>A wrapper around a set of validation rules which can be used to select the appropriate validator</p></td>
 </tr>
 </tbody>
 </table>
@@ -95,133 +52,202 @@
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.absolute_uri" title="coarnotify.validate.absolute_uri"><code class="xref py py-obj docutils literal notranslate"><span class="pre">absolute_uri</span></code></a>(obj, uri)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.absolute_uri" title="coarnotify.validate.absolute_uri"><code class="xref py py-obj docutils literal notranslate"><span class="pre">absolute_uri</span></code></a>(→ bool)</p></td>
+<td><p>Validate that the given string is an absolute URI</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.url" title="coarnotify.validate.url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">url</span></code></a>(obj, url)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.url" title="coarnotify.validate.url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">url</span></code></a>(→ bool)</p></td>
+<td><p>Validate that the given string is an absolute HTTP URI (i.e. a URL)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.one_of" title="coarnotify.validate.one_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">one_of</span></code></a>(values)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.one_of" title="coarnotify.validate.one_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">one_of</span></code></a>(→ Callable)</p></td>
+<td><p>Closure that returns a validation function that checks that the value is one of the given values</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.at_least_one_of" title="coarnotify.validate.at_least_one_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">at_least_one_of</span></code></a>(values)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.at_least_one_of" title="coarnotify.validate.at_least_one_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">at_least_one_of</span></code></a>(→ Callable)</p></td>
+<td><p>Closure that returns a validation function that checks that a list of values contains at least one</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.contains" title="coarnotify.validate.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contains</span></code></a>(value)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.contains" title="coarnotify.validate.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contains</span></code></a>(→ Callable)</p></td>
+<td><p>Closure that returns a validation function that checks the provided values contain the required value</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.type_checker" title="coarnotify.validate.type_checker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type_checker</span></code></a>(obj, value)</p></td>
-<td><p></p></td>
+<td><p>Validate that the given value is of the correct type for the object.  The exact behaviour of this function</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.REQUIRED_MESSAGE">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">REQUIRED_MESSAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'`{x}`</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">required</span> <span class="pre">field'</span></em><a class="headerlink" href="#coarnotify.validate.REQUIRED_MESSAGE" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="coarnotify.validate.Validator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">Validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.Validator" title="Link to this definition">¶</a></dt>
-<dd><dl class="py method">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">Validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.Validator" title="Link to this definition">¶</a></dt>
+<dd><p>A wrapper around a set of validation rules which can be used to select the appropriate validator
+in a given context.</p>
+<p>The validation rules are structured as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;&lt;property&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">default_validator_function</span>
+        <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;&lt;context&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">default_validator_function</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">&lt;property&gt;</span></code> key is the name of the property being validated, which may be a string (the property name)
+or a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> of strings (the property name and the namespace for the property name).</p>
+<p>If a <code class="docutils literal notranslate"><span class="pre">context</span></code> is provided, then if the top level property is being validated, and it appears inside a field
+present in the <code class="docutils literal notranslate"><span class="pre">context</span></code> then the <code class="docutils literal notranslate"><span class="pre">default</span></code> validator at the top level is overridden by the <code class="docutils literal notranslate"><span class="pre">default</span></code> validator
+in the <code class="docutils literal notranslate"><span class="pre">context</span></code>.</p>
+<p>For example, consider the following rules:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">Properties</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">validate</span><span class="o">.</span><span class="n">type_checker</span><span class="p">,</span>
+        <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">Properties</span><span class="o">.</span><span class="n">ACTOR</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">validate</span><span class="o">.</span><span class="n">one_of</span><span class="p">([</span>
+                    <span class="n">ActivityStreamsTypes</span><span class="o">.</span><span class="n">SERVICE</span><span class="p">,</span>
+                    <span class="n">ActivityStreamsTypes</span><span class="o">.</span><span class="n">APPLICATION</span>
+                <span class="p">])</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This tells us that the <code class="docutils literal notranslate"><span class="pre">TYPE</span></code> property should be validated with <code class="docutils literal notranslate"><span class="pre">validate.type_checker</span></code> by default.  But if
+we are looking at that <code class="docutils literal notranslate"><span class="pre">TYPE</span></code> property inside an <code class="docutils literal notranslate"><span class="pre">ACTOR</span></code> object, then instead we should use <code class="docutils literal notranslate"><span class="pre">validate.one_of</span></code>.</p>
+<p>When the <a class="reference internal" href="#coarnotify.validate.Validator.get" title="coarnotify.validate.Validator.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a> method is called, the <code class="docutils literal notranslate"><span class="pre">context</span></code> parameter can be used to specify the context in which the
+property is being validated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rules</strong> – The rules to use for validation</p>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.validate.Validator.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.Validator.get" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#coarnotify.validate.Validator.get" title="Link to this definition">¶</a></dt>
+<dd><p>Get the validation function for the given property in the given context</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>property</strong> – the property to get the validation function for</p></li>
+<li><p><strong>context</strong> – the context in which the property is being validated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a function which can be used to validate the property</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.URI_RE">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">URI_RE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?'</span></em><a class="headerlink" href="#coarnotify.validate.URI_RE" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.SCHEME">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">SCHEME</span></span><a class="headerlink" href="#coarnotify.validate.SCHEME" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.IPv6">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">IPv6</span></span><a class="headerlink" href="#coarnotify.validate.IPv6" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.HOSTPORT">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">HOSTPORT</span></span><a class="headerlink" href="#coarnotify.validate.HOSTPORT" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.MARK">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">MARK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;-_.!~*'()&quot;</span></em><a class="headerlink" href="#coarnotify.validate.MARK" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.UNRESERVED">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">UNRESERVED</span></span><a class="headerlink" href="#coarnotify.validate.UNRESERVED" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.PCHARS">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">PCHARS</span></span><a class="headerlink" href="#coarnotify.validate.PCHARS" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.PATH">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">PATH</span></span><a class="headerlink" href="#coarnotify.validate.PATH" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.RESERVED">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">RESERVED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">';/?:&#64;&amp;=+$,'</span></em><a class="headerlink" href="#coarnotify.validate.RESERVED" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.URIC">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">URIC</span></span><a class="headerlink" href="#coarnotify.validate.URIC" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.FREE">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">FREE</span></span><a class="headerlink" href="#coarnotify.validate.FREE" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.validate.USERINFO">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">USERINFO</span></span><a class="headerlink" href="#coarnotify.validate.USERINFO" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.validate.absolute_uri">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">absolute_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.absolute_uri" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">absolute_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.validate.absolute_uri" title="Link to this definition">¶</a></dt>
+<dd><p>Validate that the given string is an absolute URI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – The Notify object to which the property being validated belongs.</p></li>
+<li><p><strong>uri</strong> – The string that claims to be an absolute URI</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the URI is valid, otherwise ValueError is raised</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.validate.url">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.url" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.validate.url" title="Link to this definition">¶</a></dt>
+<dd><p>Validate that the given string is an absolute HTTP URI (i.e. a URL)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – The Notify object to which the property being validated belongs.</p></li>
+<li><p><strong>uri</strong> – The string that claims to be an HTTP URI</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the URI is valid, otherwise ValueError is raised</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.validate.one_of">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">one_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.one_of" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">one_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#coarnotify.validate.one_of" title="Link to this definition">¶</a></dt>
+<dd><p>Closure that returns a validation function that checks that the value is one of the given values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> – The list of values to choose from.  When the returned function is run, the value passed to it
+must be one of these values</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a validation function</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.validate.at_least_one_of">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">at_least_one_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.at_least_one_of" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">at_least_one_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#coarnotify.validate.at_least_one_of" title="Link to this definition">¶</a></dt>
+<dd><p>Closure that returns a validation function that checks that a list of values contains at least one
+of the given values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> – The list of values to choose from.  When the returned function is run, the values (plural) passed to it
+must contain at least one of these values</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a validation function</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.validate.contains">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.contains" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#coarnotify.validate.contains" title="Link to this definition">¶</a></dt>
+<dd><p>Closure that returns a validation function that checks the provided values contain the required value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – The value that must be present. When the returned function is run, the value(s) passed to it
+must contain this value</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a validation function</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.validate.type_checker">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">type_checker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.type_checker" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Validate that the given value is of the correct type for the object.  The exact behaviour of this function
+depends on the object provided:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>If the object has an <code class="docutils literal notranslate"><span class="pre">ALLOWED_TYPES</span></code> attribute which is not an empty list, then the value must be one of</dt><dd><p>the types in that list</p>
+</dd>
+</dl>
+</li>
+<li><p>If the object has a <code class="docutils literal notranslate"><span class="pre">TYPE</span></code> attribute, then the value must be, or contain, that type</p></li>
+<li><p>In all other cases, type validation will succeed</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – the notify object being validated</p></li>
+<li><p><strong>value</strong> – the type being validated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the type is valid, otherwise ValueError is raised</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>
@@ -256,6 +282,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../http_layer.html">Creating your own HTTP Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_server.html">Test Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dev.html">Information for Developers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">coarnotify</a><ul class="current">
@@ -269,27 +296,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../test/index.html">coarnotify.test</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">coarnotify.validate</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.REQUIRED_MESSAGE"><code class="docutils literal notranslate"><span class="pre">REQUIRED_MESSAGE</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.Validator"><code class="docutils literal notranslate"><span class="pre">Validator</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.validate.Validator.get"><code class="docutils literal notranslate"><span class="pre">Validator.get()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.URI_RE"><code class="docutils literal notranslate"><span class="pre">URI_RE</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.SCHEME"><code class="docutils literal notranslate"><span class="pre">SCHEME</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.IPv6"><code class="docutils literal notranslate"><span class="pre">IPv6</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.HOSTPORT"><code class="docutils literal notranslate"><span class="pre">HOSTPORT</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.MARK"><code class="docutils literal notranslate"><span class="pre">MARK</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.UNRESERVED"><code class="docutils literal notranslate"><span class="pre">UNRESERVED</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.PCHARS"><code class="docutils literal notranslate"><span class="pre">PCHARS</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.PATH"><code class="docutils literal notranslate"><span class="pre">PATH</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.RESERVED"><code class="docutils literal notranslate"><span class="pre">RESERVED</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.URIC"><code class="docutils literal notranslate"><span class="pre">URIC</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.FREE"><code class="docutils literal notranslate"><span class="pre">FREE</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.USERINFO"><code class="docutils literal notranslate"><span class="pre">USERINFO</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.absolute_uri"><code class="docutils literal notranslate"><span class="pre">absolute_uri()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.url"><code class="docutils literal notranslate"><span class="pre">url()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.one_of"><code class="docutils literal notranslate"><span class="pre">one_of()</span></code></a></li>

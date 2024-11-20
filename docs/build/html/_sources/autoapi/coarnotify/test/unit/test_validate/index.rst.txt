@@ -106,3 +106,9 @@ Module Contents
    .. py:method:: test_18_request_endorsement_validate()
 
 
+   .. py:method:: test_19_request_review_validate()
+
+
+   .. py:method:: test_20_reject_validate()
+
+

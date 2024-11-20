@@ -73,6 +73,11 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l2"><a class="reference internal" href="http_layer.html#implementing-http-layer-with-alternative-library">Implementing HTTP layer with alternative library</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="test_server.html">Test Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_server.html#configuring-the-test-server">Configuring the Test Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_server.html#running-and-using-the-test-server">Running and using the Test Server</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dev.html">Information for Developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev.html#compiling-the-documentation">Compiling the documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev.html#adding-new-patterns">Adding new patterns</a></li>
@@ -1153,6 +1158,8 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_16_undo_offer_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_16_undo_offer_validate()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_17_announce_review_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_17_announce_review_validate()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_18_request_endorsement_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_18_request_endorsement_validate()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_19_request_review_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_19_request_review_validate()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_20_reject_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_20_reject_validate()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1168,27 +1175,13 @@ which covers the following aspects of the protocol:</p>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="autoapi/coarnotify/validate/index.html">coarnotify.validate</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#attributes">Attributes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#classes">Classes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#functions">Functions</a></li>
 <li class="toctree-l5"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#module-contents">Module Contents</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.REQUIRED_MESSAGE"><code class="docutils literal notranslate"><span class="pre">REQUIRED_MESSAGE</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.Validator"><code class="docutils literal notranslate"><span class="pre">Validator</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.Validator.get"><code class="docutils literal notranslate"><span class="pre">Validator.get()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.URI_RE"><code class="docutils literal notranslate"><span class="pre">URI_RE</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.SCHEME"><code class="docutils literal notranslate"><span class="pre">SCHEME</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.IPv6"><code class="docutils literal notranslate"><span class="pre">IPv6</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.HOSTPORT"><code class="docutils literal notranslate"><span class="pre">HOSTPORT</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.MARK"><code class="docutils literal notranslate"><span class="pre">MARK</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.UNRESERVED"><code class="docutils literal notranslate"><span class="pre">UNRESERVED</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.PCHARS"><code class="docutils literal notranslate"><span class="pre">PCHARS</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.PATH"><code class="docutils literal notranslate"><span class="pre">PATH</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.RESERVED"><code class="docutils literal notranslate"><span class="pre">RESERVED</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.URIC"><code class="docutils literal notranslate"><span class="pre">URIC</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.FREE"><code class="docutils literal notranslate"><span class="pre">FREE</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.USERINFO"><code class="docutils literal notranslate"><span class="pre">USERINFO</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.absolute_uri"><code class="docutils literal notranslate"><span class="pre">absolute_uri()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.url"><code class="docutils literal notranslate"><span class="pre">url()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/validate/index.html#coarnotify.validate.one_of"><code class="docutils literal notranslate"><span class="pre">one_of()</span></code></a></li>
@@ -1240,6 +1233,7 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="http_layer.html">Creating your own HTTP Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_server.html">Test Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev.html">Information for Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
 </ul>

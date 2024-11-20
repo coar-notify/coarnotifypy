@@ -24,7 +24,7 @@ Module Contents
 ---------------
 
 .. py:data:: STORE_DIR
-   :value: '/home/richard/tmp/coarnotify'
+   :value: '/your/store/dir'
 
 
 .. py:data:: DEBUG_PYCHARM

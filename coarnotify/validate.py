@@ -1,13 +1,87 @@
+"""
+This module provides a set of validation functions that can be used to validate properties on objects.
+It also contains a ``Validator`` class which is used to wrap the protocol-wide validation rules which
+are shared across all objects.
+"""
+
 from urllib.parse import urlparse
 import re
+from typing import Union, Tuple, Callable, List
+
+# mostly to help us with generating the correct documentation
+__all__ = ('Validator', 'absolute_uri', 'url', 'one_of', 'at_least_one_of', 'contains', 'type_checker')
 
 REQUIRED_MESSAGE = "`{x}` is a required field"
 
 class Validator:
-    def __init__(self, rules):
+    """
+    A wrapper around a set of validation rules which can be used to select the appropriate validator
+    in a given context.
+
+    The validation rules are structured as follows:
+
+    .. code-block:: python
+
+        {
+            "<property>": {
+                "default": default_validator_function
+                "context": {
+                    "<context>": {
+                        "default": default_validator_function
+                    }
+                }
+            }
+        }
+
+    Here the ``<property>`` key is the name of the property being validated, which may be a string (the property name)
+    or a ``tuple`` of strings (the property name and the namespace for the property name).
+
+    If a ``context`` is provided, then if the top level property is being validated, and it appears inside a field
+    present in the ``context`` then the ``default`` validator at the top level is overridden by the ``default`` validator
+    in the ``context``.
+
+    For example, consider the following rules:
+
+    .. code-block:: python
+
+        {
+            Properties.TYPE: {
+                "default": validate.type_checker,
+                "context": {
+                    Properties.ACTOR: {
+                        "default": validate.one_of([
+                            ActivityStreamsTypes.SERVICE,
+                            ActivityStreamsTypes.APPLICATION
+                        ])
+                    }
+                }
+            }
+        }
+
+    This tells us that the ``TYPE`` property should be validated with ``validate.type_checker`` by default.  But if
+    we are looking at that ``TYPE`` property inside an ``ACTOR`` object, then instead we should use ``validate.one_of``.
+
+    When the :py:meth:`get` method is called, the ``context`` parameter can be used to specify the context in which the
+    property is being validated.
+
+    :param rules: The rules to use for validation
+    """
+    def __init__(self, rules: dict):
+        """
+        Create a new validator with the given rules
+
+        :param rules: The rules to use for validation
+        """
         self._rules = rules
 
-    def get(self, property, context=None):
+    def get(self, property: Union[str, Tuple[str, str]], context: Union[str, Tuple[str, str]]=None) -> Callable:
+        """
+        Get the validation function for the given property in the given context
+
+        :param property: the property to get the validation function for
+        :param context: the context in which the property is being validated
+        :return: a function which can be used to validate the property
+        """
         default = self._rules.get(property, {}).get("default", None)
         if context is not None:
             # FIXME: down the line this might need to become recursive
@@ -45,7 +119,14 @@ FREE = re.compile("^[" + URIC + "]+$")
 USERINFO = re.compile("^[" + UNRESERVED + "%;:&=+$,]*$")
 
 
-def absolute_uri(obj, uri):
+def absolute_uri(obj, uri: str) -> bool:
+    """
+    Validate that the given string is an absolute URI
+
+    :param obj: The Notify object to which the property being validated belongs.
+    :param uri: The string that claims to be an absolute URI
+    :return: ``True`` if the URI is valid, otherwise ValueError is raised
+    """
     m = re.match(URI_RE, uri)
     if m is None:
         raise ValueError("Invalid URI")
@@ -110,7 +191,14 @@ def absolute_uri(obj, uri):
 ###############################################
 
 
-def url(obj, url):
+def url(obj, url:str) -> bool:
+    """
+    Validate that the given string is an absolute HTTP URI (i.e. a URL)
+
+    :param obj: The Notify object to which the property being validated belongs.
+    :param uri: The string that claims to be an HTTP URI
+    :return: ``True`` if the URI is valid, otherwise ValueError is raised
+    """
     absolute_uri(obj, url)
     o = urlparse(url)
     if o.scheme not in ["http", "https"]:
@@ -120,14 +208,29 @@ def url(obj, url):
     return True
 
 
-def one_of(values):
+def one_of(values: List[str]) -> Callable:
+    """
+    Closure that returns a validation function that checks that the value is one of the given values
+
+    :param values: The list of values to choose from.  When the returned function is run, the value passed to it
+        must be one of these values
+    :return: a validation function
+    """
     def validate(obj, x):
         if x not in values:
             raise ValueError(f"`{x}` is not one of the valid values: {values}")
         return True
     return validate
 
-def at_least_one_of(values):
+def at_least_one_of(values: List[str]) -> Callable:
+    """
+    Closure that returns a validation function that checks that a list of values contains at least one
+    of the given values
+
+    :param values: The list of values to choose from.  When the returned function is run, the values (plural) passed to it
+        must contain at least one of these values
+    :return: a validation function
+    """
     def validate(obj, x):
         if not isinstance(x, list):
             x = [x]
@@ -142,7 +245,14 @@ def at_least_one_of(values):
 
     return validate
 
-def contains(value):
+def contains(value: str) -> Callable:
+    """
+    Closure that returns a validation function that checks the provided values contain the required value
+
+    :param value: The value that must be present. When the returned function is run, the value(s) passed to it
+        must contain this value
+    :return: a validation function
+    """
     values = value
     if not isinstance(values, list):
         values = [values]
@@ -160,8 +270,20 @@ def contains(value):
 
     return validate
 
-
 def type_checker(obj, value):
+    """
+    Validate that the given value is of the correct type for the object.  The exact behaviour of this function
+    depends on the object provided:
+
+    * If the object has an ``ALLOWED_TYPES`` attribute which is not an empty list, then the value must be one of
+        the types in that list
+    * If the object has a ``TYPE`` attribute, then the value must be, or contain, that type
+    * In all other cases, type validation will succeed
+
+    :param obj: the notify object being validated
+    :param value: the type being validated
+    :return: ``True`` if the type is valid, otherwise ValueError is raised
+    """
     if hasattr(obj, "ALLOWED_TYPES"):
         allowed = obj.ALLOWED_TYPES
         if len(allowed) == 0:

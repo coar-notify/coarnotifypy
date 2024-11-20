@@ -10,7 +10,6 @@ def create_app():
     app.config.from_envvar("COARNOTIFY_SETTINGS", silent=True)
     return app
 
-
 app = create_app()
 
 
@@ -70,6 +69,14 @@ def run_server(host=None, port=None, fake_https=False):
         pydevd.settrace(app.config.get('DEBUG_PYCHARM_SERVER', 'localhost'),
                         port=app.config.get('DEBUG_PYCHARM_PORT', 6000),
                         stdoutToServer=True, stderrToServer=True)
+
+    # check the store directory exists
+    store = app.config.get("STORE_DIR")
+    if not os.path.exists(store):
+        print(f"Store directory {store} does not exist, you must create it manually")
+        exit(1)
+    else:
+        print(f"Store directory: {store}")
 
     run_kwargs = {}
     if fake_https:
