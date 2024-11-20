@@ -13,7 +13,8 @@ from coarnotify.models import (
     TentativelyAccept,
     TentativelyReject,
     UnprocessableNotification,
-    UndoOffer
+    UndoOffer,
+    Reject
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -28,7 +29,8 @@ from coarnotify.test.fixtures import (
     TentativelyAcceptFixtureFactory,
     TentativelyRejectFixtureFactory,
     UnprocessableNotificationFixtureFactory,
-    UndoOfferFixtureFactory
+    UndoOfferFixtureFactory,
+    RejectFixtureFactory
 )
 
 from coarnotify.exceptions import ValidationError
@@ -359,8 +361,8 @@ class TestValidate(TestCase):
 
     def test_17_announce_review_validate(self):
         # make a valid one
-        source = RequestReviewFixtureFactory.source()
-        a = RequestReview(source)
+        source = AnnounceReviewFixtureFactory.source()
+        a = AnnounceReview(source)
 
         self._base_validate(a)
 
@@ -372,9 +374,9 @@ class TestValidate(TestCase):
         self._object_validate(a)
 
         # now make one with fully invalid data
-        isource = RequestReviewFixtureFactory.invalid()
+        isource = AnnounceReviewFixtureFactory.invalid()
         with self.assertRaises(ValidationError) as ve:
-            a = RequestReview(isource)
+            a = AnnounceReview(isource)
 
     def test_18_request_endorsement_validate(self):
         # make a valid one
@@ -393,3 +395,35 @@ class TestValidate(TestCase):
         isource = RequestEndorsementFixtureFactory.invalid()
         with self.assertRaises(ValidationError) as ve:
             a = RequestEndorsement(isource)
+
+    def test_19_request_review_validate(self):
+        # make a valid one
+        source = RequestReviewFixtureFactory.source()
+        a = RequestReview(source)
+
+        self._base_validate(a)
+        self._actor_validate(a)
+        self._object_validate(a)
+
+        with self.assertRaises(ValueError):
+            # one of the required types, but not both of them
+            a.type = "Offer"
+
+        # now make one with fully invalid data
+        isource = RequestReviewFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = RequestReview(isource)
+
+    def test_20_reject_validate(self):
+        # make a valid one
+        source = RejectFixtureFactory.source()
+        a = Reject(source)
+
+        self._base_validate(a)
+        self._actor_validate(a)
+        # self._object_validate(a)
+
+        # now make one with fully invalid data
+        isource = RejectFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = Reject(isource)
