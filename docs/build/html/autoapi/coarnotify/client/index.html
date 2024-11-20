@@ -92,6 +92,17 @@ URL which will give you access to the resource</p>
 <dt class="sig sig-object py" id="coarnotify.client.COARNotifyClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.client.</span></span><span class="sig-name descname"><span class="pre">COARNotifyClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inbox_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">http_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../http/index.html#coarnotify.http.HttpLayer" title="coarnotify.http.HttpLayer"><span class="pre">coarnotify.http.HttpLayer</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.client.COARNotifyClient" title="Link to this definition">¶</a></dt>
 <dd><p>The COAR Notify Client, which is the mechanism through which you will interact with external inboxes.</p>
+<p>If you do not supply an inbox URL at construction you will
+need to supply it via the <code class="docutils literal notranslate"><span class="pre">inbox_url</span></code> setter, or when you send a notification</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inbox_url</strong> – HTTP URI of the inbox to communicate with by default</p></li>
+<li><p><strong>http_layer</strong> – An implementation of the HttpLayer interface to use for sending HTTP requests.
+If not provided, the default implementation will be used based on <code class="docutils literal notranslate"><span class="pre">requests</span></code></p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.client.COARNotifyClient.inbox_url">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inbox_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.client.COARNotifyClient.inbox_url" title="Link to this definition">¶</a></dt>
@@ -107,7 +118,7 @@ URL which will give you access to the resource</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>notification</strong> – The notification object (from the models provided, or a subclass you have made of the NotifyPattern class)</p></li>
 <li><p><strong>inbox_url</strong> – The HTTP URI to send the notification to.  Omit if using the default inbox_url supplied in the constructor.
-If it is omitted, and no value is passed here then we will also look in the <cite>target.inbox</cite> property of the notification</p></li>
+If it is omitted, and no value is passed here then we will also look in the <code class="docutils literal notranslate"><span class="pre">target.inbox</span></code> property of the notification</p></li>
 <li><p><strong>validate</strong> – Whether to validate the notification before sending.  If you are sure the notification is valid, you can set this to False</p></li>
 </ul>
 </dd>
@@ -151,6 +162,7 @@ If it is omitted, and no value is passed here then we will also look in the <cit
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../http_layer.html">Creating your own HTTP Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dev.html">Information for Developers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">coarnotify</a><ul class="current">

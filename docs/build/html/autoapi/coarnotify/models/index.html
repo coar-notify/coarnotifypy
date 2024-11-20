@@ -51,6 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="request_review/index.html">coarnotify.models.request_review</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tentatively_accept/index.html">coarnotify.models.tentatively_accept</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tentatively_reject/index.html">coarnotify.models.tentatively_reject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undo_offer/index.html">coarnotify.models.undo_offer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unprocessable_notification/index.html">coarnotify.models.unprocessable_notification</a></li>
 </ul>
 </div>
@@ -92,22 +93,25 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.UnprocessableNotification" title="coarnotify.models.UnprocessableNotification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnprocessableNotification</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.NotifyPattern" title="coarnotify.models.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.UndoOffer" title="coarnotify.models.UndoOffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UndoOffer</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.NotifyService" title="coarnotify.models.NotifyService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyService</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.NotifyPattern" title="coarnotify.models.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.NotifyObject" title="coarnotify.models.NotifyObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyObject</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.NotifyService" title="coarnotify.models.NotifyService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyService</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.NotifyObject" title="coarnotify.models.NotifyObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyObject</span></code></a></p></td>
 <td><p>Can be used to represent an <cite>object</cite> or a <cite>context</cite></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.NotifyActor" title="coarnotify.models.NotifyActor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyActor</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.NotifyActor" title="coarnotify.models.NotifyActor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyActor</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.NotifyItem" title="coarnotify.models.NotifyItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyItem</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.NotifyItem" title="coarnotify.models.NotifyItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyItem</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.NotifyProperties" title="coarnotify.models.NotifyProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyProperties</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.models.NotifyProperties" title="coarnotify.models.NotifyProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyProperties</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -297,6 +301,22 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.models.UnprocessableNotification.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.UnprocessableNotification.validate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.models.UndoOffer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.</span></span><span class="sig-name descname"><span class="pre">UndoOffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStream" title="coarnotify.activitystreams2.activitystreams2.ActivityStream"><span class="pre">coarnotify.activitystreams2.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.UndoOffer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="notify/index.html#coarnotify.models.notify.NestedPatternObjectMixin" title="coarnotify.models.notify.NestedPatternObjectMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.models.notify.NestedPatternObjectMixin</span></code></a>, <a class="reference internal" href="notify/index.html#coarnotify.models.notify.NotifyPattern" title="coarnotify.models.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.models.notify.NotifyPattern</span></code></a>, <a class="reference internal" href="notify/index.html#coarnotify.models.notify.SummaryMixin" title="coarnotify.models.notify.SummaryMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.models.notify.SummaryMixin</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.models.UndoOffer.TYPE">
+<span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.models.UndoOffer.TYPE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.models.UndoOffer.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.UndoOffer.validate" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -494,6 +514,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../http_layer.html">Creating your own HTTP Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dev.html">Information for Developers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">coarnotify</a><ul class="current">
@@ -516,6 +537,7 @@
 <li class="toctree-l6"><a class="reference internal" href="request_review/index.html">coarnotify.models.request_review</a></li>
 <li class="toctree-l6"><a class="reference internal" href="tentatively_accept/index.html">coarnotify.models.tentatively_accept</a></li>
 <li class="toctree-l6"><a class="reference internal" href="tentatively_reject/index.html">coarnotify.models.tentatively_reject</a></li>
+<li class="toctree-l6"><a class="reference internal" href="undo_offer/index.html">coarnotify.models.undo_offer</a></li>
 <li class="toctree-l6"><a class="reference internal" href="unprocessable_notification/index.html">coarnotify.models.unprocessable_notification</a></li>
 </ul>
 </li>
@@ -576,6 +598,11 @@
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.models.UnprocessableNotification"><code class="docutils literal notranslate"><span class="pre">UnprocessableNotification</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.models.UnprocessableNotification.TYPE"><code class="docutils literal notranslate"><span class="pre">UnprocessableNotification.TYPE</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.models.UnprocessableNotification.validate"><code class="docutils literal notranslate"><span class="pre">UnprocessableNotification.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#coarnotify.models.UndoOffer"><code class="docutils literal notranslate"><span class="pre">UndoOffer</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.models.UndoOffer.TYPE"><code class="docutils literal notranslate"><span class="pre">UndoOffer.TYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.models.UndoOffer.validate"><code class="docutils literal notranslate"><span class="pre">UndoOffer.validate()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.models.NotifyPattern"><code class="docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a><ul>

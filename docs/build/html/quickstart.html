@@ -15,7 +15,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Information for Developers" href="dev.html" />
+    <link rel="next" title="Creating your own HTTP Layer" href="http_layer.html" />
     <link rel="prev" title="Installation" href="install.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -40,12 +40,12 @@
 <h2>Construct and send a notification<a class="headerlink" href="#construct-and-send-a-notification" title="Link to this heading">¶</a></h2>
 <p>We can combine the general object models for the notify patterns with the client module to construct
 and then send a notification.</p>
-<p>The following code example constructs an <cite>Announce Review</cite> notification with some basic information.
+<p>The following code example constructs an <code class="docutils literal notranslate"><span class="pre">Announce</span> <span class="pre">Review</span></code> notification with some basic information.
 See <a class="reference external" href="https://coar-notify.net/specification/1.0.0/announce-review/">https://coar-notify.net/specification/1.0.0/announce-review/</a> for the specification of this
 notification.</p>
-<p>We create the <cite>AnnounceReview</cite> object, and then create the <cite>NotifyActor</cite>, <cite>NotifyObject</cite>, <cite>NotifyService</cite> objects
-for the key parts of the notification, and attach them to the <cite>AnnounceReview</cite> object.</p>
-<p>Finally, we create a <cite>COARNotifyClient</cite> object and send the notification to the target inbox.</p>
+<p>We create the <code class="docutils literal notranslate"><span class="pre">AnnounceReview</span></code> object, and then create the <code class="docutils literal notranslate"><span class="pre">NotifyActor</span></code>, <code class="docutils literal notranslate"><span class="pre">NotifyObject</span></code>, <code class="docutils literal notranslate"><span class="pre">NotifyService</span></code> objects
+for the key parts of the notification, and attach them to the <code class="docutils literal notranslate"><span class="pre">AnnounceReview</span></code> object.</p>
+<p>Finally, we create a <code class="docutils literal notranslate"><span class="pre">COARNotifyClient</span></code> object and send the notification to the target inbox.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">coarnotify.client</span> <span class="kn">import</span> <span class="n">COARNotifyClient</span>
 <span class="kn">from</span> <span class="nn">coarnotify.models</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AnnounceReview</span><span class="p">,</span>
@@ -117,6 +117,7 @@ for the key parts of the notification, and attach them to the <cite>AnnounceRevi
 <li class="toctree-l2"><a class="reference internal" href="#construct-and-send-a-notification">Construct and send a notification</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="http_layer.html">Creating your own HTTP Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev.html">Information for Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
 </ul>
@@ -126,7 +127,7 @@ for the key parts of the notification, and attach them to the <cite>AnnounceRevi
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
-      <li>Next: <a href="dev.html" title="next chapter">Information for Developers</a></li>
+      <li>Next: <a href="http_layer.html" title="next chapter">Creating your own HTTP Layer</a></li>
   </ul></li>
 </ul>
 </div>

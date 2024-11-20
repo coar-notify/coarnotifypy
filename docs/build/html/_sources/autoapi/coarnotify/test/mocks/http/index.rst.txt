@@ -21,11 +21,39 @@ Module Contents
    Bases: :py:obj:`coarnotify.http.HttpLayer`
 
 
+   Interface for the HTTP layer
+
+   This defines the methods which need to be implemented in order for the client to fully operate
+
+
    .. py:method:: post(url, data, headers=None, *args, **kwargs)
+
+      Make an HTTP POST request to the supplied URL with the given body data, and headers
+
+      `args` and `kwargs` can be used to pass implementation-specific parameters
+
+      :param url: the request URL
+      :param data: the body data
+      :param headers: HTTP headers as a dict to include in the request
+      :param args: argument list to pass on to the implementation
+      :param kwargs: keyword arguments to pass on to the implementation
+      :return: HttpResponse
+
 
 
    .. py:method:: get(url, headers=None, *args, **kwargs)
       :abstractmethod:
+
+
+      Make an HTTP GET request to the supplied URL with the given headers
+
+      `args` and `kwargs` can be used to pass implementation-specific parameters
+
+      :param url: the request URL
+      :param headers: HTTP headers as a dict to include in the request
+      :param args: argument list to pass on to the implementation
+      :param kwargs: keyword arguments to pass on to the implementation
+      :return: HttpResponse
 
 
 
@@ -39,9 +67,25 @@ Module Contents
    Bases: :py:obj:`coarnotify.http.HttpResponse`
 
 
+   Interface for the HTTP response object
+
+   This defines the methods which need to be implemented in order for the client to fully operate
+
+
    .. py:method:: header(header_name)
+
+      Get the value of a header from the response
+
+      :param header_name: the name of the header
+      :return: the header value
+
 
 
    .. py:property:: status_code
+
+      Get the status code of the response
+
+      :return: the status code
+
 
 

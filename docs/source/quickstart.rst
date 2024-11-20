@@ -7,14 +7,14 @@ Construct and send a notification
 We can combine the general object models for the notify patterns with the client module to construct
 and then send a notification.
 
-The following code example constructs an `Announce Review` notification with some basic information.
+The following code example constructs an ``Announce Review`` notification with some basic information.
 See https://coar-notify.net/specification/1.0.0/announce-review/ for the specification of this
 notification.
 
-We create the `AnnounceReview` object, and then create the `NotifyActor`, `NotifyObject`, `NotifyService` objects
-for the key parts of the notification, and attach them to the `AnnounceReview` object.
+We create the ``AnnounceReview`` object, and then create the ``NotifyActor``, ``NotifyObject``, ``NotifyService`` objects
+for the key parts of the notification, and attach them to the ``AnnounceReview`` object.
 
-Finally, we create a `COARNotifyClient` object and send the notification to the target inbox.
+Finally, we create a ``COARNotifyClient`` object and send the notification to the target inbox.
 
 .. code-block:: python
 

@@ -3,6 +3,11 @@ coarnotify.http
 
 .. py:module:: coarnotify.http
 
+.. autoapi-nested-parse::
+
+   HTTP layer interface and default implementation using requests lib
+
+
 
 Classes
 -------
@@ -20,30 +25,71 @@ Module Contents
 
 .. py:class:: HttpLayer
 
-   .. py:method:: post(url, data, headers=None, *args, **kwargs)
+   Interface for the HTTP layer
+
+   This defines the methods which need to be implemented in order for the client to fully operate
+
+
+   .. py:method:: post(url: str, data: str, headers: dict = None, *args, **kwargs) -> HttpResponse
       :abstractmethod:
 
 
+      Make an HTTP POST request to the supplied URL with the given body data, and headers
 
-   .. py:method:: get(url, headers=None, *args, **kwargs)
+      `args` and `kwargs` can be used to pass implementation-specific parameters
+
+      :param url: the request URL
+      :param data: the body data
+      :param headers: HTTP headers as a dict to include in the request
+      :param args: argument list to pass on to the implementation
+      :param kwargs: keyword arguments to pass on to the implementation
+      :return: HttpResponse
+
+
+
+   .. py:method:: get(url: str, headers: dict = None, *args, **kwargs) -> HttpResponse
       :abstractmethod:
 
 
+      Make an HTTP GET request to the supplied URL with the given headers
 
-   .. py:method:: head(url, headers=None, *args, **kwargs)
-      :abstractmethod:
+      `args` and `kwargs` can be used to pass implementation-specific parameters
+
+      :param url: the request URL
+      :param headers: HTTP headers as a dict to include in the request
+      :param args: argument list to pass on to the implementation
+      :param kwargs: keyword arguments to pass on to the implementation
+      :return: HttpResponse
 
 
 
 .. py:class:: HttpResponse
 
-   .. py:method:: header(header_name)
+   Interface for the HTTP response object
+
+   This defines the methods which need to be implemented in order for the client to fully operate
+
+
+   .. py:method:: header(header_name: str) -> str
       :abstractmethod:
+
+
+      Get the value of a header from the response
+
+      :param header_name: the name of the header
+      :return: the header value
 
 
 
    .. py:property:: status_code
+      :type: int
+
       :abstractmethod:
+
+
+      Get the status code of the response
+
+      :return: the status code
 
 
 
@@ -52,23 +98,77 @@ Module Contents
    Bases: :py:obj:`HttpLayer`
 
 
-   .. py:method:: post(url, data, headers=None, *args, **kwargs)
+   Implementation of the HTTP layer using the requests library.  This is the default implementation
+   used when no other implementation is supplied
 
 
-   .. py:method:: get(url, headers=None, *args, **kwargs)
+   .. py:method:: post(url: str, data: str, headers: dict = None, *args, **kwargs) -> RequestsHttpResponse
+
+      Make an HTTP POST request to the supplied URL with the given body data, and headers
+
+      `args` and `kwargs` can be used to pass additional parameters to the `requests.post` method,
+      such as authentication credentials, etc.
+
+      :param url: the request URL
+      :param data: the body data
+      :param headers: HTTP headers as a dict to include in the request
+      :param args: argument list to pass on to requests.post
+      :param kwargs: keyword arguments to pass on to requests.post
+      :return: RequestsHttpResponse
 
 
-   .. py:method:: head(url, headers=None, *args, **kwargs)
+
+   .. py:method:: get(url: str, headers: dict = None, *args, **kwargs) -> RequestsHttpResponse
+
+      Make an HTTP GET request to the supplied URL with the given headers
+
+      `args` and `kwargs` can be used to pass additional parameters to the `requests.get` method,
+      such as authentication credentials, etc.
+
+      :param url: the request URL
+      :param headers: HTTP headers as a dict to include in the request
+      :param args: argument list to pass on to requests.get
+      :param kwargs: keyword arguments to pass on to requests.get
+      :return: HttpResponse
 
 
-.. py:class:: RequestsHttpResponse(resp)
+
+.. py:class:: RequestsHttpResponse(resp: requests.Response)
 
    Bases: :py:obj:`HttpResponse`
 
 
-   .. py:method:: header(header_name)
+   Implementation fo the HTTP response object using the requests library
+
+   This wraps the requests response object and provides the interface required by the client
+
+   :param resp: response object from the requests library
+
+
+   .. py:method:: header(header_name: str) -> str
+
+      Get the value of a header from the response
+
+      :param header_name: the name of the header
+      :return: the header value
+
 
 
    .. py:property:: status_code
+      :type: int
+
+
+      Get the status code of the response
+
+      :return: the status code
+
+
+
+   .. py:property:: requests_response
+      :type: requests.Response
+
+
+      Get the original requests response object
+
 
 

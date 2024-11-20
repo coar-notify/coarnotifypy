@@ -41,10 +41,10 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.mocks.http.MockHttpLayer" title="coarnotify.test.mocks.http.MockHttpLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockHttpLayer</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Interface for the HTTP layer</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.mocks.http.MockHttpResponse" title="coarnotify.test.mocks.http.MockHttpResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockHttpResponse</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Interface for the HTTP response object</p></td>
 </tr>
 </tbody>
 </table>
@@ -55,15 +55,48 @@
 <dt class="sig sig-object py" id="coarnotify.test.mocks.http.MockHttpLayer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.mocks.http.</span></span><span class="sig-name descname"><span class="pre">MockHttpLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.mocks.http.MockHttpLayer" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../http/index.html#coarnotify.http.HttpLayer" title="coarnotify.http.HttpLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.http.HttpLayer</span></code></a></p>
+<p>Interface for the HTTP layer</p>
+<p>This defines the methods which need to be implemented in order for the client to fully operate</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.test.mocks.http.MockHttpLayer.post">
 <span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.mocks.http.MockHttpLayer.post" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Make an HTTP POST request to the supplied URL with the given body data, and headers</p>
+<p><cite>args</cite> and <cite>kwargs</cite> can be used to pass implementation-specific parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> – the request URL</p></li>
+<li><p><strong>data</strong> – the body data</p></li>
+<li><p><strong>headers</strong> – HTTP headers as a dict to include in the request</p></li>
+<li><p><strong>args</strong> – argument list to pass on to the implementation</p></li>
+<li><p><strong>kwargs</strong> – keyword arguments to pass on to the implementation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.test.mocks.http.MockHttpLayer.get">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.mocks.http.MockHttpLayer.get" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Make an HTTP GET request to the supplied URL with the given headers</p>
+<p><cite>args</cite> and <cite>kwargs</cite> can be used to pass implementation-specific parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> – the request URL</p></li>
+<li><p><strong>headers</strong> – HTTP headers as a dict to include in the request</p></li>
+<li><p><strong>args</strong> – argument list to pass on to the implementation</p></li>
+<li><p><strong>kwargs</strong> – keyword arguments to pass on to the implementation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.test.mocks.http.MockHttpLayer.head">
@@ -76,15 +109,32 @@
 <dt class="sig sig-object py" id="coarnotify.test.mocks.http.MockHttpResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.mocks.http.</span></span><span class="sig-name descname"><span class="pre">MockHttpResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.mocks.http.MockHttpResponse" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../http/index.html#coarnotify.http.HttpResponse" title="coarnotify.http.HttpResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.http.HttpResponse</span></code></a></p>
+<p>Interface for the HTTP response object</p>
+<p>This defines the methods which need to be implemented in order for the client to fully operate</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.test.mocks.http.MockHttpResponse.header">
 <span class="sig-name descname"><span class="pre">header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.mocks.http.MockHttpResponse.header" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the value of a header from the response</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>header_name</strong> – the name of the header</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the header value</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.test.mocks.http.MockHttpResponse.status_code">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status_code</span></span><a class="headerlink" href="#coarnotify.test.mocks.http.MockHttpResponse.status_code" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the status code of the response</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the status code</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -120,6 +170,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../http_layer.html">Creating your own HTTP Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../dev.html">Information for Developers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">coarnotify</a><ul class="current">

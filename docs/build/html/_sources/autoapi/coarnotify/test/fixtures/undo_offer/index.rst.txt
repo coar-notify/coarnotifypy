@@ -1,0 +1,42 @@
+coarnotify.test.fixtures.undo_offer
+===================================
+
+.. py:module:: coarnotify.test.fixtures.undo_offer
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.undo_offer.UNDO_OFFER
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.test.fixtures.undo_offer.UndoOfferFixtureFactory
+
+
+Module Contents
+---------------
+
+.. py:class:: UndoOfferFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+.. py:data:: UNDO_OFFER
+

@@ -105,6 +105,11 @@ Module Contents
 
 
 
+   .. py:attribute:: UNDO
+      :value: 'Undo'
+
+
+
    .. py:attribute:: ACTIVITY
       :value: 'Activity'
 

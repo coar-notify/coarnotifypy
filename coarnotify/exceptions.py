@@ -13,6 +13,9 @@ class ValidationError(NotifyException):
     """
     Exception class for validation errors.
 
+    :param errors: a dictionary of errors to construct the exception around.  See below for the details
+        of its structure
+
     This class is designed to be thrown and caught and to collect validation errors
     as it passed through the validation pipeline.
 
@@ -70,7 +73,6 @@ class ValidationError(NotifyException):
 
     """
     def __init__(self, errors: dict=None):
-        """Construct a blank ValidationError object"""
         super().__init__()
         self._errors = errors if errors is not None else {}
 
@@ -81,7 +83,7 @@ class ValidationError(NotifyException):
 
     def add_error(self, key: str, value: str):
         """
-        Record an error on the supplied `key` with the message `value`
+        Record an error on the supplied ``key`` with the message ``value``
 
         :param key: the key for which an error is to be recorded
         :param value:   the error message

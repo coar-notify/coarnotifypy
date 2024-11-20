@@ -64,6 +64,12 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.exceptions.</span></span><span class="sig-name descname"><span class="pre">ValidationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.exceptions.ValidationError" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#coarnotify.exceptions.NotifyException" title="coarnotify.exceptions.NotifyException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyException</span></code></a></p>
 <p>Exception class for validation errors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>errors</strong> – a dictionary of errors to construct the exception around.  See below for the details
+of its structure</p>
+</dd>
+</dl>
 <p>This class is designed to be thrown and caught and to collect validation errors
 as it passed through the validation pipeline.</p>
 <p>For example an object validator may do something like this:</p>
@@ -121,7 +127,7 @@ for each key there are two possible keys:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.exceptions.ValidationError.add_error">
 <span class="sig-name descname"><span class="pre">add_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.exceptions.ValidationError.add_error" title="Link to this definition">¶</a></dt>
-<dd><p>Record an error on the supplied <cite>key</cite> with the message <cite>value</cite></p>
+<dd><p>Record an error on the supplied <code class="docutils literal notranslate"><span class="pre">key</span></code> with the message <code class="docutils literal notranslate"><span class="pre">value</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -192,6 +198,7 @@ for each key there are two possible keys:</p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../http_layer.html">Creating your own HTTP Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dev.html">Information for Developers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">coarnotify</a><ul class="current">

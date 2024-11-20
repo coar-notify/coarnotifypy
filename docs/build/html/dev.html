@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API Reference" href="autoapi/index.html" />
-    <link rel="prev" title="Quickstart" href="quickstart.html" />
+    <link rel="prev" title="Creating your own HTTP Layer" href="http_layer.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -42,7 +42,7 @@
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sphinx-build -M html docs/source/ docs/build/</span>
 </pre></div>
 </div>
-<p>or in <cite>docs</cite>:</p>
+<p>or in <code class="docutils literal notranslate"><span class="pre">docs</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make html</span>
 </pre></div>
 </div>
@@ -50,24 +50,24 @@
 <section id="adding-new-patterns">
 <h2>Adding new patterns<a class="headerlink" href="#adding-new-patterns" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
-<li><p>Create a new module for the model in <cite>coarnotify.models</cite> (for example <cite>coarnotify.models.announce_ingest</cite>)</p></li>
-<li><p>Create the new model class in the new module (for example, <cite>AnnounceIngest</cite>) and implement as needed</p></li>
+<li><p>Create a new module for the model in <code class="docutils literal notranslate"><span class="pre">coarnotify.models</span></code> (for example <code class="docutils literal notranslate"><span class="pre">coarnotify.models.announce_ingest</span></code>)</p></li>
+<li><p>Create the new model class in the new module (for example, <code class="docutils literal notranslate"><span class="pre">AnnounceIngest</span></code>) and implement as needed</p></li>
 <li><p>Review the validation requirements of the new model and ensure validation is updated (update the model spreadsheet)</p></li>
-<li><p>Add the new model to <cite>coarnotify.models.__init__.py</cite> so it can be imported from <cite>coarnotify.models</cite></p></li>
-<li><p>Add the new model to the factory list of models in <cite>coarnotify.factory.COARNotifyFactory.MODELS</cite></p></li>
-<li><p>Create a fixture and fixture factory in <cite>coarnotify.test.fixtures</cite> (for example, <cite>coarnotify.test.fixtures.announce_ingest</cite>)</p></li>
-<li><p>Import the new fixture in <cite>coarnotify.test.fixtures.__init__.py</cite></p></li>
-<li><p>Add a unit test for the new model in <cite>coarnotify.test.unit.test_models</cite>, and confirm it works</p></li>
-<li><p>Add a unit test for the model factory in <cite>coarnotify.test.unit.test_factory</cite>, and confirm it works</p></li>
-<li><p>Add an integration test for the new model in <cite>coarnotify.test.integration.test_client</cite>, and confirm it works</p></li>
-<li><p>Add validation tests for the new model in <cite>coarnotify.test.unit.test_validate</cite>, and confirm they work</p></li>
+<li><p>Add the new model to <code class="docutils literal notranslate"><span class="pre">coarnotify.models.__init__.py</span></code> so it can be imported from <code class="docutils literal notranslate"><span class="pre">coarnotify.models</span></code></p></li>
+<li><p>Add the new model to the factory list of models in <code class="docutils literal notranslate"><span class="pre">coarnotify.factory.COARNotifyFactory.MODELS</span></code></p></li>
+<li><p>Create a fixture and fixture factory in <code class="docutils literal notranslate"><span class="pre">coarnotify.test.fixtures</span></code> (for example, <code class="docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.announce_ingest</span></code>)</p></li>
+<li><p>Import the new fixture in <code class="docutils literal notranslate"><span class="pre">coarnotify.test.fixtures.__init__.py</span></code></p></li>
+<li><p>Add a unit test for the new model in <code class="docutils literal notranslate"><span class="pre">coarnotify.test.unit.test_models</span></code>, and confirm it works</p></li>
+<li><p>Add a unit test for the model factory in <code class="docutils literal notranslate"><span class="pre">coarnotify.test.unit.test_factory</span></code>, and confirm it works</p></li>
+<li><p>Add an integration test for the new model in <code class="docutils literal notranslate"><span class="pre">coarnotify.test.integration.test_client</span></code>, and confirm it works</p></li>
+<li><p>Add validation tests for the new model in <code class="docutils literal notranslate"><span class="pre">coarnotify.test.unit.test_validate</span></code>, and confirm they work</p></li>
 </ol>
 </section>
 <section id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
 <section id="unit">
 <h3>Unit<a class="headerlink" href="#unit" title="Link to this heading">¶</a></h3>
-<p>Unit tests are located in <cite>coarnotify.test.unit</cite> and can be run with the following command (or your preferred test runner):</p>
+<p>Unit tests are located in <code class="docutils literal notranslate"><span class="pre">coarnotify.test.unit</span></code> and can be run with the following command (or your preferred test runner):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pytest coarnotify/test/unit</span>
 </pre></div>
 </div>
@@ -76,13 +76,13 @@
 <h3>Integration<a class="headerlink" href="#integration" title="Link to this heading">¶</a></h3>
 <p>Integration tests require a notify inbox to be available</p>
 <p>This can be done by starting the test inbox server.  To do this you will first need to configure your local settings for the server.</p>
-<p>Default configuration is in <cite>coarnotify/test/server/settings.py</cite> and can be overridden by providing your own settings file as an environment variable <cite>COARNOTIFY_SETTINGS</cite>.</p>
+<p>Default configuration is in <code class="docutils literal notranslate"><span class="pre">coarnotify/test/server/settings.py</span></code> and can be overridden by providing your own settings file as an environment variable <code class="docutils literal notranslate"><span class="pre">COARNOTIFY_SETTINGS</span></code>.</p>
 <p>The main things you may wish to override are:</p>
 <ul class="simple">
 <li><p>STORE_DIR: the directory to store the notifications.  You MUST supply your own path</p></li>
 <li><p>PORT: the port to run the server on.  Default is 5005</p></li>
 </ul>
-<p>Create a local config file called something like <cite>local.cfg</cite> containing those properties</p>
+<p>Create a local config file called something like <code class="docutils literal notranslate"><span class="pre">local.cfg</span></code> containing those properties</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">STORE_DIR</span> <span class="o">=</span> <span class="s1">&#39;/path/to/store/notifications&#39;</span>
 <span class="n">PORT</span> <span class="o">=</span> <span class="mi">5005</span>
 </pre></div>
@@ -91,7 +91,7 @@
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">COARNOTIFY_SETTINGS=local.cfg; python coarnotify/test/server/inbox.py</span>
 </pre></div>
 </div>
-<p>Integration tests are located in <cite>coarnotify/test/integration</cite> and can be run with the following command (or your preferred test runner):</p>
+<p>Integration tests are located in <code class="docutils literal notranslate"><span class="pre">coarnotify/test/integration</span></code> and can be run with the following command (or your preferred test runner):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pytest coarnotify/test/integration</span>
 </pre></div>
 </div>
@@ -128,6 +128,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http_layer.html">Creating your own HTTP Layer</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Information for Developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#compiling-the-documentation">Compiling the documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-new-patterns">Adding new patterns</a></li>
@@ -145,7 +146,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="quickstart.html" title="previous chapter">Quickstart</a></li>
+      <li>Previous: <a href="http_layer.html" title="previous chapter">Creating your own HTTP Layer</a></li>
       <li>Next: <a href="autoapi/index.html" title="next chapter">API Reference</a></li>
   </ul></li>
 </ul>

@@ -35,7 +35,8 @@
             
   <section id="coarnotifypy-documentation">
 <h1>coarnotifypy documentation<a class="headerlink" href="#coarnotifypy-documentation" title="Link to this heading">¶</a></h1>
-<p><a class="reference external" href="https://coar-notify.net/">https://coar-notify.net/</a></p>
+<p>The protocol: <a class="reference external" href="https://coar-notify.net/">https://coar-notify.net/</a></p>
+<p>The code: <a class="reference external" href="https://github.com/CottageLabs/coarnotifypy">https://github.com/CottageLabs/coarnotifypy</a></p>
 <p>The COAR Notify Protocol is a set of profiles, constraints and conventions around the use of W3C Linked Data Notifications (LDN) to integrate repository systems with relevant services in a distributed, resilient and web-native architecture.</p>
 <p>This library provides a Python implementation of the COAR Notify Protocol version 1.0.0 (<a class="reference external" href="https://coar-notify.net/specification/1.0.0/">https://coar-notify.net/specification/1.0.0/</a>),
 which covers the following aspects of the protocol:</p>
@@ -64,6 +65,11 @@ which covers the following aspects of the protocol:</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#construct-and-send-a-notification">Construct and send a notification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="http_layer.html">Creating your own HTTP Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="http_layer.html#implementing-http-layer-with-authentication">Implementing HTTP layer with authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_layer.html#implementing-http-layer-with-alternative-library">Implementing HTTP layer with alternative library</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dev.html">Information for Developers</a><ul>
@@ -109,6 +115,7 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStreamsTypes.TENTATIVE_ACCEPT"><code class="docutils literal notranslate"><span class="pre">ActivityStreamsTypes.TENTATIVE_ACCEPT</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStreamsTypes.TENTATIVE_REJECT"><code class="docutils literal notranslate"><span class="pre">ActivityStreamsTypes.TENTATIVE_REJECT</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStreamsTypes.FLAG"><code class="docutils literal notranslate"><span class="pre">ActivityStreamsTypes.FLAG</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStreamsTypes.UNDO"><code class="docutils literal notranslate"><span class="pre">ActivityStreamsTypes.UNDO</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStreamsTypes.ACTIVITY"><code class="docutils literal notranslate"><span class="pre">ActivityStreamsTypes.ACTIVITY</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStreamsTypes.APPLICATION"><code class="docutils literal notranslate"><span class="pre">ActivityStreamsTypes.APPLICATION</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/activitystreams2/activitystreams2/index.html#coarnotify.activitystreams2.activitystreams2.ActivityStreamsTypes.ARTICLE"><code class="docutils literal notranslate"><span class="pre">ActivityStreamsTypes.ARTICLE</span></code></a></li>
@@ -206,7 +213,6 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.HttpLayer"><code class="docutils literal notranslate"><span class="pre">HttpLayer</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.HttpLayer.post"><code class="docutils literal notranslate"><span class="pre">HttpLayer.post()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.HttpLayer.get"><code class="docutils literal notranslate"><span class="pre">HttpLayer.get()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.HttpLayer.head"><code class="docutils literal notranslate"><span class="pre">HttpLayer.head()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.HttpResponse"><code class="docutils literal notranslate"><span class="pre">HttpResponse</span></code></a><ul>
@@ -217,12 +223,12 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.RequestsHttpLayer"><code class="docutils literal notranslate"><span class="pre">RequestsHttpLayer</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.RequestsHttpLayer.post"><code class="docutils literal notranslate"><span class="pre">RequestsHttpLayer.post()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.RequestsHttpLayer.get"><code class="docutils literal notranslate"><span class="pre">RequestsHttpLayer.get()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.RequestsHttpLayer.head"><code class="docutils literal notranslate"><span class="pre">RequestsHttpLayer.head()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.RequestsHttpResponse"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.RequestsHttpResponse.header"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse.header()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.RequestsHttpResponse.status_code"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse.status_code</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/http/index.html#coarnotify.http.RequestsHttpResponse.requests_response"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse.requests_response</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -499,6 +505,18 @@ which covers the following aspects of the protocol:</p>
 </li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/models/undo_offer/index.html">coarnotify.models.undo_offer</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/models/undo_offer/index.html#classes">Classes</a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/models/undo_offer/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="autoapi/coarnotify/models/undo_offer/index.html#coarnotify.models.undo_offer.UndoOffer"><code class="docutils literal notranslate"><span class="pre">UndoOffer</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/models/undo_offer/index.html#coarnotify.models.undo_offer.UndoOffer.TYPE"><code class="docutils literal notranslate"><span class="pre">UndoOffer.TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/models/undo_offer/index.html#coarnotify.models.undo_offer.UndoOffer.validate"><code class="docutils literal notranslate"><span class="pre">UndoOffer.validate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/models/unprocessable_notification/index.html">coarnotify.models.unprocessable_notification</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/models/unprocessable_notification/index.html#classes">Classes</a></li>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/models/unprocessable_notification/index.html#module-contents">Module Contents</a><ul>
@@ -570,6 +588,11 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/models/index.html#coarnotify.models.UnprocessableNotification"><code class="docutils literal notranslate"><span class="pre">UnprocessableNotification</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/models/index.html#coarnotify.models.UnprocessableNotification.TYPE"><code class="docutils literal notranslate"><span class="pre">UnprocessableNotification.TYPE</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/models/index.html#coarnotify.models.UnprocessableNotification.validate"><code class="docutils literal notranslate"><span class="pre">UnprocessableNotification.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/models/index.html#coarnotify.models.UndoOffer"><code class="docutils literal notranslate"><span class="pre">UndoOffer</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/models/index.html#coarnotify.models.UndoOffer.TYPE"><code class="docutils literal notranslate"><span class="pre">UndoOffer.TYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="autoapi/coarnotify/models/index.html#coarnotify.models.UndoOffer.validate"><code class="docutils literal notranslate"><span class="pre">UndoOffer.validate()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="autoapi/coarnotify/models/index.html#coarnotify.models.NotifyPattern"><code class="docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a><ul>
@@ -815,6 +838,20 @@ which covers the following aspects of the protocol:</p>
 </li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/undo_offer/index.html">coarnotify.test.fixtures.undo_offer</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/undo_offer/index.html#attributes">Attributes</a></li>
+<li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/undo_offer/index.html#classes">Classes</a></li>
+<li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/undo_offer/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/undo_offer/index.html#coarnotify.test.fixtures.undo_offer.UndoOfferFixtureFactory"><code class="docutils literal notranslate"><span class="pre">UndoOfferFixtureFactory</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/undo_offer/index.html#coarnotify.test.fixtures.undo_offer.UndoOfferFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">UndoOfferFixtureFactory.source()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/undo_offer/index.html#coarnotify.test.fixtures.undo_offer.UndoOfferFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">UndoOfferFixtureFactory.invalid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/undo_offer/index.html#coarnotify.test.fixtures.undo_offer.UNDO_OFFER"><code class="docutils literal notranslate"><span class="pre">UNDO_OFFER</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/unprocessable_notification/index.html">coarnotify.test.fixtures.unprocessable_notification</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/unprocessable_notification/index.html#attributes">Attributes</a></li>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/unprocessable_notification/index.html#classes">Classes</a></li>
@@ -913,6 +950,11 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/index.html#coarnotify.test.fixtures.UnprocessableNotificationFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">UnprocessableNotificationFixtureFactory.invalid()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/index.html#coarnotify.test.fixtures.UndoOfferFixtureFactory"><code class="docutils literal notranslate"><span class="pre">UndoOfferFixtureFactory</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/index.html#coarnotify.test.fixtures.UndoOfferFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">UndoOfferFixtureFactory.source()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="autoapi/coarnotify/test/fixtures/index.html#coarnotify.test.fixtures.UndoOfferFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">UndoOfferFixtureFactory.invalid()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -936,6 +978,7 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/integration/test_client/index.html#coarnotify.test.integration.test_client.TestClient.test_10_tentatively_accept"><code class="docutils literal notranslate"><span class="pre">TestClient.test_10_tentatively_accept()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/integration/test_client/index.html#coarnotify.test.integration.test_client.TestClient.test_11_tentatively_reject"><code class="docutils literal notranslate"><span class="pre">TestClient.test_11_tentatively_reject()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/integration/test_client/index.html#coarnotify.test.integration.test_client.TestClient.test_12_unprocessable_notification"><code class="docutils literal notranslate"><span class="pre">TestClient.test_12_unprocessable_notification()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/integration/test_client/index.html#coarnotify.test.integration.test_client.TestClient.test_13_undo_offer"><code class="docutils literal notranslate"><span class="pre">TestClient.test_13_undo_offer()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1053,6 +1096,7 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_factory/index.html#coarnotify.test.unit.test_factory.TestFactory.test_11_tentatively_accept"><code class="docutils literal notranslate"><span class="pre">TestFactory.test_11_tentatively_accept()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_factory/index.html#coarnotify.test.unit.test_factory.TestFactory.test_12_tentatively_reject"><code class="docutils literal notranslate"><span class="pre">TestFactory.test_12_tentatively_reject()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_factory/index.html#coarnotify.test.unit.test_factory.TestFactory.test_13_unprocessable_notification"><code class="docutils literal notranslate"><span class="pre">TestFactory.test_13_unprocessable_notification()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_factory/index.html#coarnotify.test.unit.test_factory.TestFactory.test_14_undo_offer"><code class="docutils literal notranslate"><span class="pre">TestFactory.test_14_undo_offer()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1077,6 +1121,7 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_models/index.html#coarnotify.test.unit.test_models.TestModels.test_14_tentatively_accept"><code class="docutils literal notranslate"><span class="pre">TestModels.test_14_tentatively_accept()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_models/index.html#coarnotify.test.unit.test_models.TestModels.test_15_tentatively_reject"><code class="docutils literal notranslate"><span class="pre">TestModels.test_15_tentatively_reject()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_models/index.html#coarnotify.test.unit.test_models.TestModels.test_16_unprocessable_notification"><code class="docutils literal notranslate"><span class="pre">TestModels.test_16_unprocessable_notification()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_models/index.html#coarnotify.test.unit.test_models.TestModels.test_17_undo_offer"><code class="docutils literal notranslate"><span class="pre">TestModels.test_17_undo_offer()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1102,6 +1147,7 @@ which covers the following aspects of the protocol:</p>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_12_tentative_accept_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_12_tentative_accept_validate()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_13_tentative_reject_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_13_tentative_reject_validate()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_14_unprocessable_notification_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_14_unprocessable_notification_validate()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_15_undo_offer_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_15_undo_offer_validate()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="autoapi/coarnotify/test/unit/test_validate/index.html#coarnotify.test.unit.test_validate.TestValidate.test_19_announce_review_validate"><code class="docutils literal notranslate"><span class="pre">TestValidate.test_19_announce_review_validate()</span></code></a></li>
 </ul>
 </li>
@@ -1189,6 +1235,7 @@ which covers the following aspects of the protocol:</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http_layer.html">Creating your own HTTP Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev.html">Information for Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
 </ul>

@@ -21,6 +21,7 @@ Submodules
    /autoapi/coarnotify/models/request_review/index
    /autoapi/coarnotify/models/tentatively_accept/index
    /autoapi/coarnotify/models/tentatively_reject/index
+   /autoapi/coarnotify/models/undo_offer/index
    /autoapi/coarnotify/models/unprocessable_notification/index
 
 
@@ -40,6 +41,7 @@ Classes
    coarnotify.models.TentativelyAccept
    coarnotify.models.TentativelyReject
    coarnotify.models.UnprocessableNotification
+   coarnotify.models.UndoOffer
    coarnotify.models.NotifyPattern
    coarnotify.models.NotifyService
    coarnotify.models.NotifyObject
@@ -186,6 +188,17 @@ Package Contents
 .. py:class:: UnprocessableNotification(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: UndoOffer(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
 
 
    .. py:attribute:: TYPE

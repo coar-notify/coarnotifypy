@@ -51,16 +51,15 @@ class NotifyResponse:
 class COARNotifyClient:
     """
     The COAR Notify Client, which is the mechanism through which you will interact with external inboxes.
+
+    If you do not supply an inbox URL at construction you will
+    need to supply it via the ``inbox_url`` setter, or when you send a notification
+
+    :param inbox_url:   HTTP URI of the inbox to communicate with by default
+    :param http_layer:  An implementation of the HttpLayer interface to use for sending HTTP requests.
+                        If not provided, the default implementation will be used based on ``requests``
     """
     def __init__(self, inbox_url: str = None, http_layer: HttpLayer = None):
-        """
-        Construct an instance of the client.  If you do not supply an inbox URL at construction you will
-        need to supply it via the `inbox_url` setter, or when you send a notification
-
-        :param inbox_url:   HTTP URI of the inbox to communicate with by default
-        :param http_layer:  An implementation of the HttpLayer interface to use for sending HTTP requests.
-                            If not provided, the default implementation will be used based on `requests`
-        """
         self._inbox_url = inbox_url
         self._http = http_layer if http_layer is not None else RequestsHttpLayer()
 
@@ -80,7 +79,7 @@ class COARNotifyClient:
 
         :param notification: The notification object (from the models provided, or a subclass you have made of the NotifyPattern class)
         :param inbox_url: The HTTP URI to send the notification to.  Omit if using the default inbox_url supplied in the constructor.
-                            If it is omitted, and no value is passed here then we will also look in the `target.inbox` property of the notification
+                            If it is omitted, and no value is passed here then we will also look in the ``target.inbox`` property of the notification
         :param validate: Whether to validate the notification before sending.  If you are sure the notification is valid, you can set this to False
         :return: a NotifyResponse object representing the response from the server
         """
