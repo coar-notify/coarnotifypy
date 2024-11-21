@@ -361,3 +361,53 @@ class TestModels(TestCase):
 
         proptest = self._get_testable_properties(compare)
         self._apply_property_test(proptest, ta, UndoOfferFixtureFactory)
+
+    def test_18_by_ref(self):
+        # Create a basic NotifyPatter, and explcitly declare properties by reference to be true (the default)
+        n = NotifyPattern(properties_by_reference=True)
+
+        # create an object externally, and confirm that it does not have a specific id
+        obj = NotifyObject()
+        assert obj.id != "urn:whatever"
+
+        # assign the object to the pattern, then immediately retrieve it by the accessor, and set its
+        # id.  We then confirm that both the original object and the pattern's version of the object are
+        # *the same* object, and that the id is the same in both references
+        n.object = obj
+        n.object.id = "urn:whatever"
+        assert n.object.id == "urn:whatever"
+        assert obj.id == "urn:whatever"
+
+        # Now we confirm that retrieving the record by reference also works.  Create a pattern,
+        # and retrieve the object.  Set the ID of the object on the retrieved version, and confirm
+        # that the original object also has the same ID (because they are the same, by reference)
+        source = RequestReviewFixtureFactory.source()
+        n = RequestReview(source, properties_by_reference=True)
+        obj = n.object
+        obj.id = "urn:whatever"
+        assert n.object.id == "urn:whatever"
+
+    def test_19_by_value(self):
+        # Create a basic NotifyPatter, and explcitly declare properties by reference to be false.
+        # Object should now be copied and passed around by value, so updates to one do not affect
+        # the other
+        n = NotifyPattern(properties_by_reference=False)
+
+        # create an object externally, and confirm that it does not have a specific id
+        obj = NotifyObject()
+        assert obj.id != "urn:whatever"
+
+        # assign the object to the pattern, then subsequently update its id.  Retrieve the object
+        # from the pattern and confirm that the id change has not propagated
+        n.object = obj
+        obj.id = "urn:whatever"
+        assert n.object.id != "urn:whatever"
+        assert obj.id == "urn:whatever"
+
+        # Same test again, but this time pull the object from the pattern first
+        source = RequestReviewFixtureFactory.source()
+        n = RequestReview(source, properties_by_reference=False)
+        obj = n.object
+        obj.id = "urn:whatever"
+        assert n.object.id != "urn:whatever"
+

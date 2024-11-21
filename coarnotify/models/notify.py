@@ -110,11 +110,13 @@ class NotifyBase:
                  validate_stream_on_construct=True,
                  validate_properties=True,
                  validators=None,
-                 validation_context=None):
+                 validation_context=None,
+                 properties_by_reference=True):
         self._validate_stream_on_construct = validate_stream_on_construct
         self._validate_properties = validate_properties
         self._validators = validators if validators is not None else VALIDATORS
         self._validation_context = validation_context
+        self._properties_by_reference = properties_by_reference
         validate_now = False
 
         if stream is None:
@@ -164,11 +166,21 @@ class NotifyBase:
     def type(self, types: Union[str, list[str]]):
         self.set_property(Properties.TYPE, types)
 
-    def get_property(self, prop_name):
-        return self._stream.get_property(prop_name)
+    def get_property(self, prop_name, by_reference=None):
+        if by_reference is None:
+            by_reference = self._properties_by_reference
+        val = self._stream.get_property(prop_name)
+        if by_reference:
+            return val
+        else:
+            return deepcopy(val)
 
-    def set_property(self, prop_name, value):
+    def set_property(self, prop_name, value, by_reference=None):
+        if by_reference is None:
+            by_reference = self._properties_by_reference
         self.validate_property(prop_name, value)
+        if not by_reference:
+            value = deepcopy(value)
         self._stream.set_property(prop_name, value)
 
     def validate(self):
@@ -240,12 +252,14 @@ class NotifyPattern(NotifyBase):
                  validate_stream_on_construct=True,
                  validate_properties=True,
                  validators=None,
-                 validation_context=None):
+                 validation_context=None,
+                 properties_by_reference=True):
         super(NotifyPattern, self).__init__(stream=stream,
                                             validate_stream_on_construct=validate_stream_on_construct,
                                             validate_properties=validate_properties,
                                             validators=validators,
-                                            validation_context=validation_context)
+                                            validation_context=validation_context,
+                                            properties_by_reference=properties_by_reference)
         self._ensure_type_contains(self.TYPE)
 
     def _ensure_type_contains(self, types: Union[str, list[str]]):
@@ -268,11 +282,12 @@ class NotifyPattern(NotifyBase):
     def origin(self) -> Union["NotifyService", None]:
         o = self.get_property(Properties.ORIGIN)
         if o is not None:
-            return NotifyService(deepcopy(o),
+            return NotifyService(o,
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
                                  validators=self.validators,
-                                 validation_context=Properties.ORIGIN)
+                                 validation_context=Properties.ORIGIN,
+                                 properties_by_reference=self._properties_by_reference)
         return None
 
     @origin.setter
@@ -283,11 +298,12 @@ class NotifyPattern(NotifyBase):
     def target(self) -> Union["NotifyService", None]:
         t = self.get_property(Properties.TARGET)
         if t is not None:
-            return NotifyService(deepcopy(t),
+            return NotifyService(t,
                                  validate_stream_on_construct=False,
                                  validate_properties=self.validate_properties,
                                  validators=self.validators,
-                                 validation_context=Properties.TARGET)
+                                 validation_context=Properties.TARGET,
+                                 properties_by_reference=self._properties_by_reference)
         return None
 
     @target.setter
@@ -298,11 +314,12 @@ class NotifyPattern(NotifyBase):
     def object(self) -> Union["NotifyObject", None]:
         o = self.get_property(Properties.OBJECT)
         if o is not None:
-            return NotifyObject(deepcopy(o),
-                                 validate_stream_on_construct=False,
-                                 validate_properties=self.validate_properties,
-                                 validators=self.validators,
-                                 validation_context=Properties.OBJECT)
+            return NotifyObject(o,
+                            validate_stream_on_construct=False,
+                            validate_properties=self.validate_properties,
+                            validators=self.validators,
+                            validation_context=Properties.OBJECT,
+                            properties_by_reference=self._properties_by_reference)
         return None
 
     @object.setter
@@ -321,11 +338,12 @@ class NotifyPattern(NotifyBase):
     def actor(self) -> Union["NotifyActor", None]:
         a = self.get_property(Properties.ACTOR)
         if a is not None:
-            return NotifyActor(deepcopy(a),
-                                 validate_stream_on_construct=False,
-                                 validate_properties=self.validate_properties,
-                                 validators=self.validators,
-                                 validation_context=Properties.ACTOR)
+            return NotifyActor(a,
+                            validate_stream_on_construct=False,
+                            validate_properties=self.validate_properties,
+                            validators=self.validators,
+                            validation_context=Properties.ACTOR,
+                            properties_by_reference=self._properties_by_reference)
         return None
 
     @actor.setter
@@ -336,11 +354,12 @@ class NotifyPattern(NotifyBase):
     def context(self) -> Union["NotifyObject", None]:
         c = self.get_property(Properties.CONTEXT)
         if c is not None:
-            return NotifyObject(deepcopy(c),
-                                 validate_stream_on_construct=False,
-                                 validate_properties=self.validate_properties,
-                                 validators=self.validators,
-                                 validation_context=Properties.CONTEXT)
+            return NotifyObject(c,
+                            validate_stream_on_construct=False,
+                            validate_properties=self.validate_properties,
+                            validators=self.validators,
+                            validation_context=Properties.CONTEXT,
+                            properties_by_reference=self._properties_by_reference)
         return None
 
     @context.setter
@@ -375,12 +394,14 @@ class NotifyPatternPart(NotifyBase):
                  validate_stream_on_construct=True,
                  validate_properties=True,
                  validators=None,
-                 validation_context=None):
+                 validation_context=None,
+                 properties_by_reference=True):
         super(NotifyPatternPart, self).__init__(stream=stream,
                                                 validate_stream_on_construct=validate_stream_on_construct,
                                                 validate_properties=validate_properties,
                                                 validators=validators,
-                                                validation_context=validation_context)
+                                                validation_context=validation_context,
+                                                properties_by_reference=properties_by_reference)
         if self.DEFAULT_TYPE is not None and self.type is None:
             self.type = self.DEFAULT_TYPE
 
@@ -444,11 +465,12 @@ class NotifyObject(NotifyPatternPart):
     def item(self) -> Union["NotifyItem", None]:
         i = self.get_property(NotifyProperties.ITEM)
         if i is not None:
-            return NotifyItem(deepcopy(i),
-                                 validate_stream_on_construct=False,
-                                 validate_properties=self.validate_properties,
-                                 validators=self.validators,
-                                 validation_context=NotifyProperties.ITEM)
+            return NotifyItem(i,
+                            validate_stream_on_construct=False,
+                            validate_properties=self.validate_properties,
+                            validators=self.validators,
+                            validation_context=NotifyProperties.ITEM,
+                            properties_by_reference=self._properties_by_reference)
         return None
 
     @item.setter

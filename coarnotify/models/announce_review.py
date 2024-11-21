@@ -12,22 +12,24 @@ class AnnounceReview(NotifyPattern):
     def object(self) -> Union[NotifyObject, None]:
         o = self.get_property(Properties.OBJECT)
         if o is not None:
-            return AnnounceReviewObject(deepcopy(o),
+            return AnnounceReviewObject(o,
                                 validate_stream_on_construct=False,
                                 validate_properties=self.validate_properties,
                                 validators=self.validators,
-                                validation_context=Properties.OBJECT)
+                                validation_context=Properties.OBJECT,
+                                properties_by_reference=self._properties_by_reference)
         return None
 
     @property
     def context(self) -> Union[NotifyObject, None]:
         c = self.get_property(Properties.CONTEXT)
         if c is not None:
-            return AnnounceReviewContext(deepcopy(c),
-                                              validate_stream_on_construct=False,
-                                              validate_properties=self.validate_properties,
-                                              validators=self.validators,
-                                              validation_context=Properties.CONTEXT)
+            return AnnounceReviewContext(c,
+                                      validate_stream_on_construct=False,
+                                      validate_properties=self.validate_properties,
+                                      validators=self.validators,
+                                      validation_context=Properties.CONTEXT,
+                                      properties_by_reference=self._properties_by_reference)
         return None
 
 class AnnounceReviewContext(NotifyObject):
@@ -35,11 +37,12 @@ class AnnounceReviewContext(NotifyObject):
     def item(self) -> Union[NotifyItem, None]:
         i = self.get_property(NotifyProperties.ITEM)
         if i is not None:
-            return AnnounceReviewItem(deepcopy(i),
+            return AnnounceReviewItem(i,
                               validate_stream_on_construct=False,
                               validate_properties=self.validate_properties,
                               validators=self.validators,
-                              validation_context=NotifyProperties.ITEM)
+                              validation_context=NotifyProperties.ITEM,
+                              properties_by_reference=self._properties_by_reference)
         return None
 
 

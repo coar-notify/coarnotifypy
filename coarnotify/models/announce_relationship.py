@@ -12,11 +12,12 @@ class AnnounceRelationship(NotifyPattern):
     def object(self) -> Union[NotifyObject, None]:
         o = self.get_property(Properties.OBJECT)
         if o is not None:
-            return AnnounceRelationshipObject(deepcopy(o),
+            return AnnounceRelationshipObject(o,
                                 validate_stream_on_construct=False,
                                 validate_properties=self.validate_properties,
                                 validators=self.validators,
-                                validation_context=Properties.OBJECT)
+                                validation_context=Properties.OBJECT,
+                                properties_by_reference=self._properties_by_reference)
         return None
 
 

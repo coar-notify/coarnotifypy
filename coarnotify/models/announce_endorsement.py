@@ -13,11 +13,12 @@ class AnnounceEndorsement(NotifyPattern):
     def context(self) -> Union[NotifyObject, None]:
         c = self.get_property(Properties.CONTEXT)
         if c is not None:
-            return AnnounceEndorsementContext(deepcopy(c),
+            return AnnounceEndorsementContext(c,
                                 validate_stream_on_construct=False,
                                 validate_properties=self.validate_properties,
                                 validators=self.validators,
-                                validation_context=Properties.CONTEXT)
+                                validation_context=Properties.CONTEXT,
+                                properties_by_reference=self._properties_by_reference)
         return None
 
 
@@ -26,11 +27,12 @@ class AnnounceEndorsementContext(NotifyObject):
     def item(self) -> Union[NotifyItem, None]:
         i = self.get_property(NotifyProperties.ITEM)
         if i is not None:
-            return AnnounceEndorsementItem(deepcopy(i),
+            return AnnounceEndorsementItem(i,
                               validate_stream_on_construct=False,
                               validate_properties=self.validate_properties,
                               validators=self.validators,
-                              validation_context=NotifyProperties.ITEM)
+                              validation_context=NotifyProperties.ITEM,
+                              properties_by_reference=self._properties_by_reference)
         return None
 
 

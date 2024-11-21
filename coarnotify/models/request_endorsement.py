@@ -12,11 +12,12 @@ class RequestEndorsement(NotifyPattern):
     def object(self) -> Union[NotifyObject, None]:
         o = self.get_property(Properties.OBJECT)
         if o is not None:
-            return RequestEndorsementObject(deepcopy(o),
+            return RequestEndorsementObject(o,
                                         validate_stream_on_construct=False,
                                         validate_properties=self.validate_properties,
                                         validators=self.validators,
-                                        validation_context=Properties.OBJECT)
+                                        validation_context=Properties.OBJECT,
+                                        properties_by_reference=self._properties_by_reference)
         return None
 
 
@@ -25,11 +26,12 @@ class RequestEndorsementObject(NotifyObject):
     def item(self) -> Union[NotifyItem, None]:
         i = self.get_property(NotifyProperties.ITEM)
         if i is not None:
-            return RequestEndorsementItem(deepcopy(i),
+            return RequestEndorsementItem(i,
                               validate_stream_on_construct=False,
                               validate_properties=self.validate_properties,
                               validators=self.validators,
-                              validation_context=NotifyProperties.ITEM)
+                              validation_context=NotifyProperties.ITEM,
+                              properties_by_reference=self._properties_by_reference)
         return None
 
 
