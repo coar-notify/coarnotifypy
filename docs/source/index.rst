@@ -31,7 +31,8 @@ Contents
 .. toctree::
     install
     quickstart
+    pattern
+    server
     http_layer
     test_server
-    server
     dev

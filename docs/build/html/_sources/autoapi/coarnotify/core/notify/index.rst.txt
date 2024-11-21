@@ -540,9 +540,6 @@ Module Contents
 
 .. py:class:: NestedPatternObjectMixin
 
-   Bases: :py:obj:`object`
-
-
    A mixin to add to a pattern which can override the default object property to return a full
    nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
 
@@ -566,9 +563,6 @@ Module Contents
 
 
 .. py:class:: SummaryMixin
-
-   Bases: :py:obj:`object`
-
 
    Mixin to provide an API for setting and getting the ``summary`` property of a pattern
 

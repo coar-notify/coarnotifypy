@@ -90,6 +90,10 @@ class Validator:
                 return specific
         return default
 
+    def rules(self):
+        """The ruleset for this validator"""
+        return self._rules
+
 
 #############################################
 ## URI validator

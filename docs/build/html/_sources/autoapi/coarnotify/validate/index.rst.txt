@@ -99,6 +99,12 @@ Module Contents
 
 
 
+   .. py:method:: rules()
+
+      The ruleset for this validator
+
+
+
 .. py:function:: absolute_uri(obj, uri: str) -> bool
 
    Validate that the given string is an absolute URI
