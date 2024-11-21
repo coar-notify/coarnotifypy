@@ -1,9 +1,9 @@
-from coarnotify.models.notify import NotifyPattern, NotifyTypes, NotifyObject
+from coarnotify.core.notify import NotifyPattern, NotifyTypes, NotifyObject
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 from typing import Union
-from copy import deepcopy
+
 
 class AnnounceRelationship(NotifyPattern):
     TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.RELATIONSHIP_ACTION]

@@ -1,4 +1,4 @@
-from coarnotify.models.notify import NotifyPattern, SummaryMixin, NotifyTypes
+from coarnotify.core.notify import NotifyPattern, SummaryMixin, NotifyTypes
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 

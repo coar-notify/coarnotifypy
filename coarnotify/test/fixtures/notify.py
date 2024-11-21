@@ -1,5 +1,5 @@
 from copy import deepcopy
-from coarnotify.models import NotifyObject, NotifyService
+from coarnotify.core.notify import NotifyObject, NotifyService
 
 
 class NotifyFixtureFactory:

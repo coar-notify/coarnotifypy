@@ -53,7 +53,7 @@ makes its way back to your web framework to be returned to the client in whateve
 <p>This uses Flask as the web framework, and provides an <code class="docutils literal notranslate"><span class="pre">inbox</span></code> route as the target for notifications.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/inbox&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">inbox</span><span class="p">():</span>
-    <span class="c1"># retrieve the notification from the request</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve and process a notification&quot;&quot;&quot;</span>
     <span class="k">pass</span>
 </pre></div>
 </div>

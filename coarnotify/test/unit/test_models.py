@@ -3,7 +3,7 @@ from copy import deepcopy
 
 from coarnotify.exceptions import ValidationError
 
-from coarnotify.models import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem
+from coarnotify.core.notify import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,

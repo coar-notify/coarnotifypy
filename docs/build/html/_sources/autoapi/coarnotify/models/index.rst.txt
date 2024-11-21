@@ -15,7 +15,6 @@ Submodules
    /autoapi/coarnotify/models/announce_relationship/index
    /autoapi/coarnotify/models/announce_review/index
    /autoapi/coarnotify/models/announce_service_result/index
-   /autoapi/coarnotify/models/notify/index
    /autoapi/coarnotify/models/reject/index
    /autoapi/coarnotify/models/request_endorsement/index
    /autoapi/coarnotify/models/request_review/index
@@ -42,301 +41,379 @@ Classes
    coarnotify.models.TentativelyReject
    coarnotify.models.UnprocessableNotification
    coarnotify.models.UndoOffer
-   coarnotify.models.NotifyPattern
-   coarnotify.models.NotifyService
-   coarnotify.models.NotifyObject
-   coarnotify.models.NotifyActor
-   coarnotify.models.NotifyItem
-   coarnotify.models.NotifyProperties
 
 
 Package Contents
 ----------------
 
-.. py:class:: Accept(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: Accept(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
-   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`
+   Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`
+
+
+   A mixin to add to a pattern which can override the default object property to return a full
+   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
+
+   This mixin needs to be first on the inheritance list, as it overrides the object property
+   of the NotifyPattern class.
+
+   For example:
+
+   .. code-block:: python
+
+       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
+           pass
 
 
    .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+
 
 
    .. py:method:: validate()
 
+      Base validator for all notification patterns.  This extends the validate function on the superclass.
 
-.. py:class:: AnnounceEndorsement(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+      In addition to the base class's constraints, this applies the following validation:
 
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
+      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
 
-
-   .. py:attribute:: TYPE
-
-
-   .. py:property:: context
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
+      :py:class:`NotifyBase`
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
 
 
 
-.. py:class:: AnnounceRelationship(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceEndorsement(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
-
-
-   .. py:attribute:: TYPE
+   Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   .. py:property:: object
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
-
-
-
-.. py:class:: AnnounceReview(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+   Base class for all notification patterns
 
 
    .. py:attribute:: TYPE
 
-
-   .. py:property:: object
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
-
-
-
-   .. py:property:: context
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
-
-
-
-.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:property:: object
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
 
 
 
    .. py:property:: context
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the context property of the notification
 
 
 
-.. py:class:: Reject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceRelationship(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
-   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
-
-
-   .. py:attribute:: TYPE
+   Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   .. py:method:: validate()
-
-
-.. py:class:: RequestEndorsement(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+   Base class for all notification patterns
 
 
    .. py:attribute:: TYPE
 
-
-   .. py:property:: object
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
-
-
-
-.. py:class:: RequestReview(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:property:: object
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
-
-
-
-.. py:class:: TentativelyAccept(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:method:: validate()
-
-
-.. py:class:: TentativelyReject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:method:: validate()
-
-
-.. py:class:: UnprocessableNotification(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:method:: validate()
-
-
-.. py:class:: UndoOffer(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:method:: validate()
-
-
-.. py:class:: NotifyPattern(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`NotifyBase`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:property:: origin
-      :type: Union[NotifyService, None]
-
-
-
-   .. py:property:: target
-      :type: Union[NotifyService, None]
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
 
 
 
    .. py:property:: object
-      :type: Union[NotifyObject, None]
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the object property of the notification
 
 
 
-   .. py:property:: in_reply_to
-      :type: str
+.. py:class:: AnnounceReview(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
+
+
+   Base class for all notification patterns
+
+
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
 
 
 
-   .. py:property:: actor
-      :type: Union[NotifyActor, None]
+   .. py:property:: object
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the object property of the notification
 
 
 
    .. py:property:: context
-      :type: Union[NotifyObject, None]
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the context property of the notification
+
+
+
+.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
+
+
+   Base class for all notification patterns
+
+
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the object property of the notification
+
+
+
+   .. py:property:: context
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the context property of the notification
+
+
+
+.. py:class:: Reject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
+
+
+   A mixin to add to a pattern which can override the default object property to return a full
+   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
+
+   This mixin needs to be first on the inheritance list, as it overrides the object property
+   of the NotifyPattern class.
+
+   For example:
+
+   .. code-block:: python
+
+       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
+           pass
+
+
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
 
 
 
    .. py:method:: validate()
 
+      Base validator for all notification patterns.  This extends the validate function on the superclass.
 
-.. py:class:: NotifyService(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+      In addition to the base class's constraints, this applies the following validation:
 
-   Bases: :py:obj:`NotifyPatternPart`
+      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
+      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
+
+      :py:class:`NotifyBase`
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
 
 
-   .. py:attribute:: DEFAULT_TYPE
+
+.. py:class:: RequestEndorsement(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   .. py:property:: inbox
-      :type: str
+   Base class for all notification patterns
+
+
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the object property of the notification
+
+
+
+.. py:class:: RequestReview(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
+
+
+   Base class for all notification patterns
+
+
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the object property of the notification
+
+
+
+.. py:class:: TentativelyAccept(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
+
+
+   A mixin to add to a pattern which can override the default object property to return a full
+   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
+
+   This mixin needs to be first on the inheritance list, as it overrides the object property
+   of the NotifyPattern class.
+
+   For example:
+
+   .. code-block:: python
+
+       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
+           pass
+
+
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
 
 
 
    .. py:method:: validate()
 
+      Base validator for all notification patterns.  This extends the validate function on the superclass.
 
-.. py:class:: NotifyObject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+      In addition to the base class's constraints, this applies the following validation:
 
-   Bases: :py:obj:`NotifyPatternPart`
+      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
+      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
 
-
-   Can be used to represent an `object` or a `context`
-
-
-   .. py:property:: cite_as
-      :type: str
+      :py:class:`NotifyBase`
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
 
 
 
-   .. py:property:: item
-      :type: Union[NotifyItem, None]
+.. py:class:: TentativelyReject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
 
 
+   A mixin to add to a pattern which can override the default object property to return a full
+   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
 
-   .. py:property:: triple
-      :type: tuple[str, str, str]
+   This mixin needs to be first on the inheritance list, as it overrides the object property
+   of the NotifyPattern class.
 
+   For example:
 
+   .. code-block:: python
 
-   .. py:method:: validate()
-
-
-.. py:class:: NotifyActor(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`NotifyPatternPart`
-
-
-   .. py:attribute:: DEFAULT_TYPE
+       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
+           pass
 
 
-   .. py:attribute:: ALLOWED_TYPES
+   .. py:attribute:: TYPE
 
-
-   .. py:property:: name
-      :type: str
-
-
-
-.. py:class:: NotifyItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`NotifyPatternPart`
-
-
-   .. py:property:: media_type
-      :type: str
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
 
 
 
    .. py:method:: validate()
 
+      Base validator for all notification patterns.  This extends the validate function on the superclass.
 
-.. py:class:: NotifyProperties
+      In addition to the base class's constraints, this applies the following validation:
 
-   .. py:attribute:: INBOX
+      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
+      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
 
-
-   .. py:attribute:: CITE_AS
-
-
-   .. py:attribute:: ITEM
-
-
-   .. py:attribute:: NAME
-      :value: 'name'
+      :py:class:`NotifyBase`
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
 
 
 
-   .. py:attribute:: MEDIA_TYPE
-      :value: 'mediaType'
+.. py:class:: UnprocessableNotification(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
+
+
+   Base class for all notification patterns
+
+
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+
+
+
+   .. py:method:: validate()
+
+      Base validator for all notification patterns.  This extends the validate function on the superclass.
+
+      In addition to the base class's constraints, this applies the following validation:
+
+      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
+      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
+
+      :py:class:`NotifyBase`
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
+
+
+.. py:class:: UndoOffer(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
+
+
+   A mixin to add to a pattern which can override the default object property to return a full
+   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
+
+   This mixin needs to be first on the inheritance list, as it overrides the object property
+   of the NotifyPattern class.
+
+   For example:
+
+   .. code-block:: python
+
+       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
+           pass
+
+
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+
+
+
+   .. py:method:: validate()
+
+      Base validator for all notification patterns.  This extends the validate function on the superclass.
+
+      In addition to the base class's constraints, this applies the following validation:
+
+      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
+      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
+
+      :py:class:`NotifyBase`
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
 
 
 

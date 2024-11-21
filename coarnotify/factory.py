@@ -4,6 +4,7 @@ Factory for producing the correct model based on the type or data within a paylo
 
 from typing import List, Callable, Union
 from coarnotify.core.activitystreams2 import ActivityStream, Properties
+from coarnotify.core.notify import NotifyPattern
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
@@ -16,7 +17,6 @@ from coarnotify.models import (
     TentativelyAccept,
     TentativelyReject,
     UnprocessableNotification,
-    NotifyPattern,
     UndoOffer
 )
 from coarnotify.exceptions import NotifyException

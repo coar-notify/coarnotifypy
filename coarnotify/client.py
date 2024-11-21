@@ -8,7 +8,7 @@ from typing import Union
 
 from coarnotify.exceptions import NotifyException
 from coarnotify.http import RequestsHttpLayer, HttpLayer
-from coarnotify.models.notify import NotifyPattern
+from coarnotify.core.notify import NotifyPattern
 
 
 class NotifyResponse:

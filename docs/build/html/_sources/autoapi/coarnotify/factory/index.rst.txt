@@ -50,7 +50,7 @@ Module Contents
 
 
 
-   .. py:method:: get_by_object(data: dict, *args, **kwargs) -> coarnotify.models.NotifyPattern
+   .. py:method:: get_by_object(data: dict, *args, **kwargs) -> coarnotify.core.notify.NotifyPattern
       :classmethod:
 
 

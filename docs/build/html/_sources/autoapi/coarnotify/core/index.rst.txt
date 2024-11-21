@@ -3,6 +3,11 @@ coarnotify.core
 
 .. py:module:: coarnotify.core
 
+.. autoapi-nested-parse::
+
+   This module contains the central objects that form the basis for the COAR notify patterns
+
+
 
 Submodules
 ----------
@@ -11,5 +16,6 @@ Submodules
    :maxdepth: 1
 
    /autoapi/coarnotify/core/activitystreams2/index
+   /autoapi/coarnotify/core/notify/index
 
 

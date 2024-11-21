@@ -97,3 +97,9 @@ Module Contents
    .. py:method:: test_17_undo_offer()
 
 
+   .. py:method:: test_18_by_ref()
+
+
+   .. py:method:: test_19_by_value()
+
+

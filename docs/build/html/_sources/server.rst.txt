@@ -28,7 +28,7 @@ This uses Flask as the web framework, and provides an ``inbox`` route as the tar
 
     @app.route("/inbox", methods=["POST"])
     def inbox():
-        # retrieve the notification from the request
+        """Retrieve and process a notification"""
         pass
 
 In order to process a notification, you will need to implement a custom service binding class

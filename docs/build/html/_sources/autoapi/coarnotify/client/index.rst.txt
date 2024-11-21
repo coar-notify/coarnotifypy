@@ -82,7 +82,7 @@ Module Contents
 
 
 
-   .. py:method:: send(notification: coarnotify.models.notify.NotifyPattern, inbox_url: str = None, validate: bool = True) -> NotifyResponse
+   .. py:method:: send(notification: coarnotify.core.notify.NotifyPattern, inbox_url: str = None, validate: bool = True) -> NotifyResponse
 
       Send the given notification to the inbox.  If no inbox URL is provided, the default inbox URL will be used.
 

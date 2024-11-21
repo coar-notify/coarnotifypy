@@ -1,8 +1,7 @@
-from coarnotify.models.notify import NotifyPattern, NotifyItem, NotifyProperties, NotifyObject
+from coarnotify.core.notify import NotifyPattern, NotifyItem, NotifyProperties, NotifyObject
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
-from copy import deepcopy
 from typing import Union
 
 class AnnounceServiceResult(NotifyPattern):

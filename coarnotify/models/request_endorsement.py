@@ -1,9 +1,9 @@
-from coarnotify.models.notify import NotifyPattern, NotifyTypes, NotifyItem, NotifyProperties, NotifyObject
+from coarnotify.core.notify import NotifyPattern, NotifyTypes, NotifyItem, NotifyProperties, NotifyObject
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 from typing import Union
-from copy import deepcopy
+
 
 class RequestEndorsement(NotifyPattern):
     TYPE = [ActivityStreamsTypes.OFFER, NotifyTypes.ENDORSMENT_ACTION]

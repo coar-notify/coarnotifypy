@@ -11,4 +11,3 @@ from coarnotify.models.tentatively_reject import TentativelyReject
 from coarnotify.models.unprocessable_notification import UnprocessableNotification
 from coarnotify.models.undo_offer import UndoOffer
 
-from coarnotify.models.notify import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem, NotifyProperties

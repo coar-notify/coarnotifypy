@@ -41,7 +41,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.models.undo_offer.UndoOffer" title="coarnotify.models.undo_offer.UndoOffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UndoOffer</span></code></a></p></td>
-<td><p></p></td>
+<td><p>A mixin to add to a pattern which can override the default object property to return a full</p></td>
 </tr>
 </tbody>
 </table>
@@ -50,17 +50,35 @@
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="coarnotify.models.undo_offer.UndoOffer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.undo_offer.</span></span><span class="sig-name descname"><span class="pre">UndoOffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.undo_offer.UndoOffer" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../notify/index.html#coarnotify.models.notify.NestedPatternObjectMixin" title="coarnotify.models.notify.NestedPatternObjectMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.models.notify.NestedPatternObjectMixin</span></code></a>, <a class="reference internal" href="../notify/index.html#coarnotify.models.notify.NotifyPattern" title="coarnotify.models.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.models.notify.NotifyPattern</span></code></a>, <a class="reference internal" href="../notify/index.html#coarnotify.models.notify.SummaryMixin" title="coarnotify.models.notify.SummaryMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.models.notify.SummaryMixin</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.models.undo_offer.</span></span><span class="sig-name descname"><span class="pre">UndoOffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.undo_offer.UndoOffer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NestedPatternObjectMixin" title="coarnotify.core.notify.NestedPatternObjectMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NestedPatternObjectMixin</span></code></a>, <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a>, <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.SummaryMixin" title="coarnotify.core.notify.SummaryMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.SummaryMixin</span></code></a></p>
+<p>A mixin to add to a pattern which can override the default object property to return a full
+nested pattern from the <code class="docutils literal notranslate"><span class="pre">object</span></code> property, rather than the default <code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyObject</span></code></p>
+<p>This mixin needs to be first on the inheritance list, as it overrides the object property
+of the NotifyPattern class.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySpecialPattern</span><span class="p">(</span><span class="n">NestedPatternObjectMixin</span><span class="p">,</span> <span class="n">NotifyPattern</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.models.undo_offer.UndoOffer.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.models.undo_offer.UndoOffer.TYPE" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The type of the pattern.  This should be overridden by subclasses, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Object</span></code></p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.models.undo_offer.UndoOffer.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.models.undo_offer.UndoOffer.validate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Base validator for all notification patterns.  This extends the validate function on the superclass.</p>
+<p>In addition to the base class’s constraints, this applies the following validation:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">origin</span></code>, <code class="docutils literal notranslate"><span class="pre">target</span></code> and <code class="docutils literal notranslate"><span class="pre">object</span></code> properties are required and must be valid</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">actor</span></code> <code class="docutils literal notranslate"><span class="pre">inReplyTo</span></code> and <code class="docutils literal notranslate"><span class="pre">context</span></code> properties are optional, but if present must be valid</p></li>
+</ul>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyBase</span></code>
+:return: <code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
+</dd></dl>
 
 </dd></dl>
 
@@ -115,7 +133,6 @@
 <li class="toctree-l6"><a class="reference internal" href="../announce_relationship/index.html">coarnotify.models.announce_relationship</a></li>
 <li class="toctree-l6"><a class="reference internal" href="../announce_review/index.html">coarnotify.models.announce_review</a></li>
 <li class="toctree-l6"><a class="reference internal" href="../announce_service_result/index.html">coarnotify.models.announce_service_result</a></li>
-<li class="toctree-l6"><a class="reference internal" href="../notify/index.html">coarnotify.models.notify</a></li>
 <li class="toctree-l6"><a class="reference internal" href="../reject/index.html">coarnotify.models.reject</a></li>
 <li class="toctree-l6"><a class="reference internal" href="../request_endorsement/index.html">coarnotify.models.request_endorsement</a></li>
 <li class="toctree-l6"><a class="reference internal" href="../request_review/index.html">coarnotify.models.request_review</a></li>

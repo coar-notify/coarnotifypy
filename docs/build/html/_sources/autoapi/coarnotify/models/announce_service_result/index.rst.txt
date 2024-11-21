@@ -18,53 +18,92 @@ Classes
 Module Contents
 ---------------
 
-.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+   Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
+
+
+   Base class for all notification patterns
 
 
    .. py:attribute:: TYPE
 
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+
+
 
    .. py:property:: object
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the object property of the notification
 
 
 
    .. py:property:: context
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
+      :type: Union[coarnotify.core.notify.NotifyObject, None]
+
+
+      Get the context property of the notification
 
 
 
-.. py:class:: AnnounceServiceResultContext(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceServiceResultContext(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
-   Bases: :py:obj:`coarnotify.models.notify.NotifyObject`
+   Bases: :py:obj:`coarnotify.core.notify.NotifyObject`
 
 
-   Can be used to represent an `object` or a `context`
+   Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for ``object`` or ``context`` properties
+   in notify patterns
+
+   Specific patterns may need to extend this class to provide their specific behaviours and validation
 
 
    .. py:property:: item
-      :type: Union[coarnotify.models.notify.NotifyItem, None]
+      :type: Union[coarnotify.core.notify.NotifyItem, None]
+
+
+      Get the ``ietf:item`` property of the object
 
 
 
-.. py:class:: AnnounceServiceResultItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceServiceResultItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
-   Bases: :py:obj:`coarnotify.models.notify.NotifyItem`
+   Bases: :py:obj:`coarnotify.core.notify.NotifyItem`
+
+
+   Defult class to represent an item in the COAR Notify pattern.
+   Items are used to represent the ``ietf:item`` property in the notification patterns
+
+   Specific patterns may need to extend this class to provide their specific behaviours and validation
 
 
    .. py:method:: validate()
 
+      Validate the item.  This overrides the base validation, as objects only absolutely require an ``id`` property,
+      so the base requirement for a ``type`` is relaxed.
 
-.. py:class:: AnnounceServiceResultObject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NotifyObject`
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
 
 
-   Can be used to represent an `object` or a `context`
+
+.. py:class:: AnnounceServiceResultObject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NotifyObject`
+
+
+   Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for ``object`` or ``context`` properties
+   in notify patterns
+
+   Specific patterns may need to extend this class to provide their specific behaviours and validation
 
 
    .. py:method:: validate()
+
+      Validate the object.  This overrides the base validation, as objects only absolutely require an ``id`` property,
+      so the base requirement for a ``type`` is relaxed.
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
 
 
