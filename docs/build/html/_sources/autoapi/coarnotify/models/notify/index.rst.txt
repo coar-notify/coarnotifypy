@@ -96,7 +96,7 @@ Module Contents
 
 .. py:data:: VALIDATORS
 
-.. py:class:: NotifyBase(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyBase(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    .. py:property:: validate_properties
 
@@ -147,7 +147,7 @@ Module Contents
    .. py:method:: to_jsonld()
 
 
-.. py:class:: NotifyPattern(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyPattern(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyBase`
 
@@ -188,7 +188,7 @@ Module Contents
    .. py:method:: validate()
 
 
-.. py:class:: NotifyPatternPart(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyPatternPart(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyBase`
 
@@ -203,7 +203,7 @@ Module Contents
 
 
 
-.. py:class:: NotifyService(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyService(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyPatternPart`
 
@@ -219,7 +219,7 @@ Module Contents
    .. py:method:: validate()
 
 
-.. py:class:: NotifyObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyObject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyPatternPart`
 
@@ -245,7 +245,7 @@ Module Contents
    .. py:method:: validate()
 
 
-.. py:class:: NotifyActor(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyActor(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyPatternPart`
 
@@ -261,7 +261,7 @@ Module Contents
 
 
 
-.. py:class:: NotifyItem(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyPatternPart`
 

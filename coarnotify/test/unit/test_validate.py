@@ -1,7 +1,6 @@
 from unittest import TestCase
-from copy import deepcopy
 
-from coarnotify.models import NotifyPattern, NotifyService, NotifyObject, NotifyActor, NotifyItem
+from coarnotify.models import NotifyPattern, NotifyService, NotifyObject
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,
@@ -34,7 +33,7 @@ from coarnotify.test.fixtures import (
 )
 
 from coarnotify.exceptions import ValidationError
-from coarnotify.activitystreams2.activitystreams2 import Properties
+from coarnotify.core.activitystreams2 import Properties
 from coarnotify.models.notify import NotifyProperties
 from coarnotify import validate
 

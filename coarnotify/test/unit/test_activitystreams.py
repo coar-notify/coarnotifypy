@@ -1,7 +1,7 @@
 from unittest import TestCase
 from copy import deepcopy
 
-from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties
+from coarnotify.core.activitystreams2 import ActivityStream, Properties
 from coarnotify.test.fixtures.announce_endorsement import AnnounceEndorsementFixtureFactory
 
 

@@ -112,3 +112,9 @@ Module Contents
    .. py:method:: test_20_reject_validate()
 
 
+   .. py:method:: test_21_announce_relationship_validate()
+
+
+   .. py:method:: test_21_announce_service_result_validate()
+
+

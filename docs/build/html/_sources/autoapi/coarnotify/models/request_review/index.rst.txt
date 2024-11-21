@@ -17,7 +17,7 @@ Classes
 Module Contents
 ---------------
 
-.. py:class:: RequestReview(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: RequestReview(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -30,7 +30,7 @@ Module Contents
 
 
 
-.. py:class:: RequestReviewObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: RequestReviewObject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyObject`
 
@@ -43,7 +43,7 @@ Module Contents
 
 
 
-.. py:class:: RequestReviewItem(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: RequestReviewItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyItem`
 

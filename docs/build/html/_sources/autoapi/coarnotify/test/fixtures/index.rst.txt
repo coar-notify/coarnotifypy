@@ -110,6 +110,11 @@ Package Contents
 
 
 
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
 .. py:class:: AnnounceReviewFixtureFactory
 
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
@@ -126,6 +131,11 @@ Package Contents
 
 
    .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+   .. py:method:: invalid()
       :classmethod:
 
 

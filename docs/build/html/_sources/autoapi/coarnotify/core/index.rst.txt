@@ -1,0 +1,15 @@
+coarnotify.core
+===============
+
+.. py:module:: coarnotify.core
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/coarnotify/core/activitystreams2/index
+
+

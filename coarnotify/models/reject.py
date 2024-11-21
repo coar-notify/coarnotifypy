@@ -1,5 +1,5 @@
 from coarnotify.models.notify import NotifyPattern, NestedPatternObjectMixin, SummaryMixin
-from coarnotify.activitystreams2.activitystreams2 import ActivityStreamsTypes, Properties
+from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 class Reject(NestedPatternObjectMixin, NotifyPattern, SummaryMixin):

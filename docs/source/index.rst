@@ -33,4 +33,5 @@ Contents
     quickstart
     http_layer
     test_server
+    server
     dev

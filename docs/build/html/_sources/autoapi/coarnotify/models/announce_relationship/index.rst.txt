@@ -16,7 +16,7 @@ Classes
 Module Contents
 ---------------
 
-.. py:class:: AnnounceRelationship(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceRelationship(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -29,7 +29,7 @@ Module Contents
 
 
 
-.. py:class:: AnnounceRelationshipObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceRelationshipObject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyObject`
 

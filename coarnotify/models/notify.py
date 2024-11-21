@@ -1,6 +1,6 @@
 from setuptools.config.pyprojecttoml import validate
 
-from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties, ActivityStreamsTypes, ACTIVITY_STREAMS_OBJECTS
+from coarnotify.core.activitystreams2 import ActivityStream, Properties, ActivityStreamsTypes, ACTIVITY_STREAMS_OBJECTS
 from coarnotify import validate
 from coarnotify.exceptions import ValidationError
 from typing import Union

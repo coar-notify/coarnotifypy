@@ -18,7 +18,7 @@ Classes
 Module Contents
 ---------------
 
-.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -36,7 +36,7 @@ Module Contents
 
 
 
-.. py:class:: AnnounceServiceResultContext(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceServiceResultContext(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyObject`
 
@@ -49,7 +49,7 @@ Module Contents
 
 
 
-.. py:class:: AnnounceServiceResultItem(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceServiceResultItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyItem`
 
@@ -57,7 +57,7 @@ Module Contents
    .. py:method:: validate()
 
 
-.. py:class:: AnnounceServiceResultObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceServiceResultObject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyObject`
 

@@ -3,7 +3,7 @@ Factory for producing the correct model based on the type or data within a paylo
 """
 
 from typing import List, Callable, Union
-from coarnotify.activitystreams2.activitystreams2 import ActivityStream, Properties
+from coarnotify.core.activitystreams2 import ActivityStream, Properties
 from coarnotify.models import (
     Accept,
     AnnounceEndorsement,

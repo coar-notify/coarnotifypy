@@ -1,5 +1,5 @@
-from coarnotify.models.notify import NotifyPattern, NestedPatternObjectMixin, SummaryMixin, NotifyTypes
-from coarnotify.activitystreams2.activitystreams2 import ActivityStreamsTypes, Properties
+from coarnotify.models.notify import NotifyPattern, SummaryMixin, NotifyTypes
+from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 class UnprocessableNotification(NotifyPattern, SummaryMixin):

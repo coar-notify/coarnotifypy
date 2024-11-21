@@ -53,7 +53,7 @@ Classes
 Package Contents
 ----------------
 
-.. py:class:: Accept(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: Accept(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -64,7 +64,7 @@ Package Contents
    .. py:method:: validate()
 
 
-.. py:class:: AnnounceEndorsement(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceEndorsement(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -77,7 +77,7 @@ Package Contents
 
 
 
-.. py:class:: AnnounceRelationship(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceRelationship(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -90,25 +90,7 @@ Package Contents
 
 
 
-.. py:class:: AnnounceReview(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:property:: object
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
-
-
-
-   .. py:property:: context
-      :type: Union[coarnotify.models.notify.NotifyObject, None]
-
-
-
-.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceReview(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -126,18 +108,7 @@ Package Contents
 
 
 
-.. py:class:: Reject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
-
-   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
-
-
-   .. py:attribute:: TYPE
-
-
-   .. py:method:: validate()
-
-
-.. py:class:: RequestEndorsement(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: AnnounceServiceResult(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -150,7 +121,23 @@ Package Contents
 
 
 
-.. py:class:: RequestReview(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+   .. py:property:: context
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: Reject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:method:: validate()
+
+
+.. py:class:: RequestEndorsement(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
 
@@ -163,7 +150,20 @@ Package Contents
 
 
 
-.. py:class:: TentativelyAccept(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: RequestReview(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+
+   Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`
+
+
+   .. py:attribute:: TYPE
+
+
+   .. py:property:: object
+      :type: Union[coarnotify.models.notify.NotifyObject, None]
+
+
+
+.. py:class:: TentativelyAccept(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
 
@@ -174,7 +174,7 @@ Package Contents
    .. py:method:: validate()
 
 
-.. py:class:: TentativelyReject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: TentativelyReject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
 
@@ -185,7 +185,7 @@ Package Contents
    .. py:method:: validate()
 
 
-.. py:class:: UnprocessableNotification(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: UnprocessableNotification(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
 
@@ -196,7 +196,7 @@ Package Contents
    .. py:method:: validate()
 
 
-.. py:class:: UndoOffer(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: UndoOffer(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`coarnotify.models.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.models.notify.NotifyPattern`, :py:obj:`coarnotify.models.notify.SummaryMixin`
 
@@ -207,7 +207,7 @@ Package Contents
    .. py:method:: validate()
 
 
-.. py:class:: NotifyPattern(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyPattern(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyBase`
 
@@ -248,7 +248,7 @@ Package Contents
    .. py:method:: validate()
 
 
-.. py:class:: NotifyService(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyService(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyPatternPart`
 
@@ -264,7 +264,7 @@ Package Contents
    .. py:method:: validate()
 
 
-.. py:class:: NotifyObject(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyObject(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyPatternPart`
 
@@ -290,7 +290,7 @@ Package Contents
    .. py:method:: validate()
 
 
-.. py:class:: NotifyActor(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyActor(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyPatternPart`
 
@@ -306,7 +306,7 @@ Package Contents
 
 
 
-.. py:class:: NotifyItem(stream: Union[coarnotify.activitystreams2.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
+.. py:class:: NotifyItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None)
 
    Bases: :py:obj:`NotifyPatternPart`
 

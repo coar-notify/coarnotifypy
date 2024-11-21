@@ -1,0 +1,365 @@
+coarnotify.core.activitystreams2
+================================
+
+.. py:module:: coarnotify.core.activitystreams2
+
+.. autoapi-nested-parse::
+
+   This module contains everything COAR Notify needs to know about ActivityStreams 2.0
+   https://www.w3.org/TR/activitystreams-core/
+
+   It provides knowledge of the essential AS properties and types, and a class to wrap
+   ActivityStreams objects and provide a simple interface to work with them.
+
+   **NOTE** this is not a complete implementation of AS 2.0, it is **only** what is required
+   to work with COAR Notify patterns.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   coarnotify.core.activitystreams2.ACTIVITY_STREAMS_NAMESPACE
+   coarnotify.core.activitystreams2.ACTIVITY_STREAMS_OBJECTS
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.core.activitystreams2.Properties
+   coarnotify.core.activitystreams2.ActivityStreamsTypes
+   coarnotify.core.activitystreams2.ActivityStream
+
+
+Module Contents
+---------------
+
+.. py:data:: ACTIVITY_STREAMS_NAMESPACE
+   :value: 'https://www.w3.org/ns/activitystreams'
+
+
+   Namespace for Actvitity Streams, to be used to construct namespaced properties used in COAR Notify Patterns
+
+
+.. py:class:: Properties
+
+   ActivityStreams 2.0 properties used in COAR Notify Patterns
+
+   These are provided as tuples, where the first element is the property name, and the second element is the namespace.
+
+   These are suitbale to be used as property names in all the property getters/setters in the notify pattern objects
+   and in the validation configuration.
+
+
+   .. py:attribute:: ID
+
+      ``id`` property
+
+
+
+   .. py:attribute:: TYPE
+
+      ``type`` property
+
+
+
+   .. py:attribute:: ORIGIN
+
+      ``origin`` property
+
+
+
+   .. py:attribute:: OBJECT
+
+      ``object`` property
+
+
+
+   .. py:attribute:: TARGET
+
+      ``target`` property
+
+
+
+   .. py:attribute:: ACTOR
+
+      ``actor`` property
+
+
+
+   .. py:attribute:: IN_REPLY_TO
+
+      ``inReplyTo`` property
+
+
+
+   .. py:attribute:: CONTEXT
+
+      ``context`` property
+
+
+
+   .. py:attribute:: SUMMARY
+
+      ``summary`` property
+
+
+
+   .. py:attribute:: SUBJECT_TRIPLE
+
+      ``as:subject`` property
+
+
+
+   .. py:attribute:: OBJECT_TRIPLE
+
+      ``as:object`` property
+
+
+
+   .. py:attribute:: RELATIONSHIP_TRIPLE
+
+      ``as:relationship`` property
+
+
+
+.. py:class:: ActivityStreamsTypes
+
+   List of all the Activity Streams types COAR Notify may use.
+
+   Note that COAR Notify also has its own custom types and they are defined in
+   :py:class:`coarnotify.models.notify.NotifyTypes`
+
+
+   .. py:attribute:: ACCEPT
+      :value: 'Accept'
+
+
+
+   .. py:attribute:: ANNOUNCE
+      :value: 'Announce'
+
+
+
+   .. py:attribute:: REJECT
+      :value: 'Reject'
+
+
+
+   .. py:attribute:: OFFER
+      :value: 'Offer'
+
+
+
+   .. py:attribute:: TENTATIVE_ACCEPT
+      :value: 'TentativeAccept'
+
+
+
+   .. py:attribute:: TENTATIVE_REJECT
+      :value: 'TentativeReject'
+
+
+
+   .. py:attribute:: FLAG
+      :value: 'Flag'
+
+
+
+   .. py:attribute:: UNDO
+      :value: 'Undo'
+
+
+
+   .. py:attribute:: ACTIVITY
+      :value: 'Activity'
+
+
+
+   .. py:attribute:: APPLICATION
+      :value: 'Application'
+
+
+
+   .. py:attribute:: ARTICLE
+      :value: 'Article'
+
+
+
+   .. py:attribute:: AUDIO
+      :value: 'Audio'
+
+
+
+   .. py:attribute:: COLLECTION
+      :value: 'Collection'
+
+
+
+   .. py:attribute:: COLLECTION_PAGE
+      :value: 'CollectionPage'
+
+
+
+   .. py:attribute:: RELATIONSHIP
+      :value: 'Relationship'
+
+
+
+   .. py:attribute:: DOCUMENT
+      :value: 'Document'
+
+
+
+   .. py:attribute:: EVENT
+      :value: 'Event'
+
+
+
+   .. py:attribute:: GROUP
+      :value: 'Group'
+
+
+
+   .. py:attribute:: IMAGE
+      :value: 'Image'
+
+
+
+   .. py:attribute:: INTRANSITIVE_ACTIVITY
+      :value: 'IntransitiveActivity'
+
+
+
+   .. py:attribute:: NOTE
+      :value: 'Note'
+
+
+
+   .. py:attribute:: OBJECT
+      :value: 'Object'
+
+
+
+   .. py:attribute:: ORDERED_COLLECTION
+      :value: 'OrderedCollection'
+
+
+
+   .. py:attribute:: ORDERED_COLLECTION_PAGE
+      :value: 'OrderedCollectionPage'
+
+
+
+   .. py:attribute:: ORGANIZATION
+      :value: 'Organization'
+
+
+
+   .. py:attribute:: PAGE
+      :value: 'Page'
+
+
+
+   .. py:attribute:: PERSON
+      :value: 'Person'
+
+
+
+   .. py:attribute:: PLACE
+      :value: 'Place'
+
+
+
+   .. py:attribute:: PROFILE
+      :value: 'Profile'
+
+
+
+   .. py:attribute:: QUESTION
+      :value: 'Question'
+
+
+
+   .. py:attribute:: SERVICE
+      :value: 'Service'
+
+
+
+   .. py:attribute:: TOMBSTONE
+      :value: 'Tombstone'
+
+
+
+   .. py:attribute:: VIDEO
+      :value: 'Video'
+
+
+
+.. py:data:: ACTIVITY_STREAMS_OBJECTS
+
+   The sub-list of ActivityStreams types that are also objects in AS 2.0
+
+
+.. py:class:: ActivityStream(raw: dict = None)
+
+   A simple wrapper around an ActivityStreams dictionary object
+
+   Construct it with a python dictionary that represents an ActivityStreams object, or
+   without to create a fresh, blank object.
+
+   :param raw: the raw ActivityStreams object, as a dictionary
+
+
+   .. py:property:: doc
+      :type: dict
+
+
+      The internal dictionary representation of the ActivityStream, without the json-ld context
+
+
+
+   .. py:property:: context
+
+      The json-ld context of the ActivityStream
+
+
+
+   .. py:method:: set_property(property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]], value)
+
+      Set an arbitrary property on the object.  The property name can be one of:
+
+      * A simple string with the property name
+      * A tuple of the property name and the full namespace ``("name", "http://example.com/ns")``
+      * A tuple containing the property name and another tuple of the short name and the full namespace ``("name", ("as", "http://example.com/ns"))``
+
+      :param property: the property name
+      :param value: the value to set
+
+
+
+   .. py:method:: get_property(property: Union[str, tuple[str, str], tuple[str, tuple[str, str]]])
+
+      Get an arbitrary property on the object.  The property name can be one of:
+
+      * A simple string with the property name
+      * A tuple of the property name and the full namespace ``("name", "http://example.com/ns")``
+      * A tuple containing the property name and another tuple of the short name and the full namespace ``("name", ("as", "http://example.com/ns"))``
+
+      :param property:   the property name
+      :return: the value of the property, or None if it does not exist
+
+
+
+   .. py:method:: to_jsonld() -> dict
+
+      Get the activity stream as a JSON-LD object
+
+      :return:
+
+
+
