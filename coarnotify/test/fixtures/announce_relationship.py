@@ -8,6 +8,15 @@ class AnnounceRelationshipFixtureFactory(BaseFixtureFactory):
             return deepcopy(ANNOUNCE_RELATIONSHIP)
         return ANNOUNCE_RELATIONSHIP
 
+    @classmethod
+    def invalid(cls):
+        source = cls.source()
+        cls._base_invalid(source)
+        cls._actor_invalid(source)
+        cls._object_invalid(source)
+        cls._context_invalid(source)
+        return source
+
 
 ANNOUNCE_RELATIONSHIP = {
     "@context": [

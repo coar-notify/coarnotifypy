@@ -10,6 +10,14 @@ class AnnounceServiceResultFixtureFactory(BaseFixtureFactory):
             return deepcopy(ANNOUNCE_SERVICE_RESULT)
         return ANNOUNCE_SERVICE_RESULT
 
+    @classmethod
+    def invalid(cls):
+        source = cls.source()
+        cls._base_invalid(source)
+        cls._actor_invalid(source)
+        cls._object_invalid(source)
+        cls._context_invalid(source)
+        return source
 
 ANNOUNCE_SERVICE_RESULT = {
     "@context": [

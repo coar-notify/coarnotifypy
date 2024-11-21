@@ -427,3 +427,37 @@ class TestValidate(TestCase):
         isource = RejectFixtureFactory.invalid()
         with self.assertRaises(ValidationError) as ve:
             a = Reject(isource)
+
+    def test_21_announce_relationship_validate(self):
+        # make a valid one
+        source = AnnounceRelationshipFixtureFactory.source()
+        a = AnnounceRelationship(source)
+
+        self._base_validate(a)
+        self._actor_validate(a)
+        self._object_validate(a)
+        self._context_validate(a)
+
+        with self.assertRaises(ValueError):
+            # one of the required types, but not both of them
+            a.type = "Announce"
+
+        # now make one with fully invalid data
+        isource = AnnounceRelationshipFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = AnnounceRelationship(isource)
+
+    def test_21_announce_service_result_validate(self):
+        # make a valid one
+        source = AnnounceServiceResultFixtureFactory.source()
+        a = AnnounceServiceResult(source)
+
+        self._base_validate(a)
+        self._actor_validate(a)
+        self._object_validate(a)
+        self._context_validate(a)
+
+        # now make one with fully invalid data
+        isource = AnnounceServiceResultFixtureFactory.invalid()
+        with self.assertRaises(ValidationError) as ve:
+            a = AnnounceServiceResult(isource)
