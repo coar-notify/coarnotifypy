@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'coarnotifypy'
+project = 'coarnotify'
 copyright = '2024, Cottage Labs'
 author = 'Cottage Labs'
 release = '1.0.0.1'

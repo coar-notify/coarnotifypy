@@ -1,5 +1,5 @@
-coarnotifypy documentation
-==========================
+coarnotify documentation
+========================
 
 The protocol: https://coar-notify.net/
 

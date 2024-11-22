@@ -11,6 +11,8 @@ setup(
     author="Cottage Labs",
     author_email="richard@cottagelabs.com",
     description="COAR Notify Common Library",
+    long_description=open('README.md', 'r').read(),
+    long_description_content_type='text/markdown',
     license="Apache2",
     classifiers=[],
     extras_require={

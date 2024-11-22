@@ -1,4 +1,4 @@
-# coarnotifypy
+# COAR Notify Python Bindings
 
 https://coar-notify.net/
 
