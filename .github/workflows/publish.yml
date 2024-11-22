@@ -8,7 +8,9 @@ jobs:
   pypi-publish:
     name: Publish release to PyPI
     runs-on: ubuntu-latest
-    environment: testpypi
+    environment:
+      name: pypi
+      url: https://pypi.org/p/coarnotify  # Replace <package-name> with your PyPI project name
     permissions:
       id-token: write
     steps:
