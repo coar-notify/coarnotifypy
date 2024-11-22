@@ -1,15 +1,29 @@
+"""
+Pattern to represent a Request Review notification
+https://coar-notify.net/specification/1.0.0/request-review/
+"""
 from coarnotify.core.notify import NotifyPattern, NotifyTypes, NotifyObject, NotifyItem, NotifyProperties
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 from typing import Union
 
+__all__ = ["RequestReview", "RequestReviewObject", "RequestReviewItem"]
 
 class RequestReview(NotifyPattern):
+    """
+    Class to represent a Request Review notification
+    """
+
     TYPE = [ActivityStreamsTypes.OFFER, NotifyTypes.REVIEW_ACTION]
+    """Request Review types, including an ActivityStreams offer and a COAR Notify Review Action"""
 
     @property
-    def object(self) -> Union[NotifyObject, None]:
+    def object(self) -> Union["RequestReviewObject", None]:
+        """
+        Custom getter to retrieve the object property as a RequestReviewObject
+        :return:
+        """
         o = self.get_property(Properties.OBJECT)
         if o is not None:
             return RequestReviewObject(o,
@@ -23,7 +37,11 @@ class RequestReview(NotifyPattern):
 
 class RequestReviewObject(NotifyObject):
     @property
-    def item(self) -> Union[NotifyItem, None]:
+    def item(self) -> Union["RequestReviewItem", None]:
+        """
+        Custom getter to retrieve the item property as a RequestReviewItem
+        :return:
+        """
         i = self.get_property(NotifyProperties.ITEM)
         if i is not None:
             return RequestReviewItem(i,
@@ -36,10 +54,19 @@ class RequestReviewObject(NotifyObject):
 
 
 class RequestReviewItem(NotifyItem):
+    """
+    Custom Request Review Item class to provide the custom validation
+    """
 
-    def validate(self):
-        # Object does not require `type`, so we override the base validator to just validate
-        # the id
+    def validate(self) -> bool:
+        """
+        Extend the base validation to include the following constraints:
+
+        * The type property is required and must validate
+        * the ``mediaType`` property is required
+
+        :return: ``True`` if validation passes, else raise a ``ValidationError``
+        """
         ve = ValidationError()
         try:
             super(RequestReviewItem, self).validate()

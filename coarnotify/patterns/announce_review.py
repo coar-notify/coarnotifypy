@@ -1,15 +1,29 @@
+"""
+Pattern to represent the Announce Review notification
+https://coar-notify.net/specification/1.0.0/announce-review/
+"""
 from coarnotify.core.notify import NotifyPattern, NotifyTypes, NotifyObject, NotifyItem, NotifyProperties
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 from typing import Union
 
+__all__ = ["AnnounceReview", "AnnounceReviewContext", "AnnounceReviewItem", "AnnounceReviewObject"]
 
 class AnnounceReview(NotifyPattern):
+    """
+    Class to represent Announce Review pattern
+    """
     TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.REVIEW_ACTION]
+    """ Announce Review type, including Acitivity Streams Announce and Notify Review Action """
 
     @property
-    def object(self) -> Union[NotifyObject, None]:
+    def object(self) -> Union["AnnounceReviewObject", None]:
+        """
+        Custom getter to retrieve Announce Review object
+
+        :return: Announce Review Object
+        """
         o = self.get_property(Properties.OBJECT)
         if o is not None:
             return AnnounceReviewObject(o,
@@ -21,7 +35,12 @@ class AnnounceReview(NotifyPattern):
         return None
 
     @property
-    def context(self) -> Union[NotifyObject, None]:
+    def context(self) -> Union["AnnounceReviewContext", None]:
+        """
+        Custom getter to retrieve AnnounceReview Context
+
+        :return: AnnounceReviewContext
+        """
         c = self.get_property(Properties.CONTEXT)
         if c is not None:
             return AnnounceReviewContext(c,
@@ -33,8 +52,17 @@ class AnnounceReview(NotifyPattern):
         return None
 
 class AnnounceReviewContext(NotifyObject):
+    """
+    Custom Context for Announce Review, specifically to return custom
+    Announce Review Item
+    """
     @property
-    def item(self) -> Union[NotifyItem, None]:
+    def item(self) -> Union["AnnounceReviewItem", None]:
+        """
+        Custom getter to retrieve AnnounceReviewItem
+
+        :return: AnnounceReviewItem
+        """
         i = self.get_property(NotifyProperties.ITEM)
         if i is not None:
             return AnnounceReviewItem(i,
@@ -47,9 +75,19 @@ class AnnounceReviewContext(NotifyObject):
 
 
 class AnnounceReviewItem(NotifyItem):
-    def validate(self):
-        # Object does not require `type`, so we override the base validator to just validate
-        # the id
+    """
+    Custom AnnounceReviewItem which provides additional validation over the basic NotifyItem
+    """
+
+    def validate(self) -> bool:
+        """
+        In addition to the base validator, this:
+
+        * Reintroduces type validation
+        * make ``mediaType`` a required field
+
+        :return: ``True`` if valid, else raises a ValidationError
+        """
         ve = ValidationError()
         try:
             super(AnnounceReviewItem, self).validate()
@@ -65,7 +103,18 @@ class AnnounceReviewItem(NotifyItem):
 
 
 class AnnounceReviewObject(NotifyObject):
-    def validate(self):
+    """
+    Custom Announce Review Object to apply custom validation for this pattern
+    """
+
+    def validate(self) -> bool:
+        """
+        In addition to the base validator this:
+
+        * Makes type required
+
+        :return: ``True`` if valid, else raises ValidationError
+        """
         ve = ValidationError()
         try:
             super(AnnounceReviewObject, self).validate()

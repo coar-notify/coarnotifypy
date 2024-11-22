@@ -131,28 +131,32 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent Announce Review pattern
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Announce Review type, including Acitivity Streams Announce and Notify Review Action 
 
 
 
    .. py:property:: context
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceReviewContext, None]
 
 
-      Get the context property of the notification
+      Custom getter to retrieve AnnounceReview Context
+
+      :return: AnnounceReviewContext
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceReviewObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve Announce Review object
+
+      :return: Announce Review Object
 
 
 
@@ -161,28 +165,32 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent the Announce Service Result Pattern
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Announce Service Result type, the ActivityStreams Announce type
 
 
 
    .. py:property:: context
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceServiceResultContext, None]
 
 
-      Get the context property of the notification
+      Custom getter to retrieve the context property as an AnnounceServiceResultContext
+
+      :return:    AnnounceSericeResultCOntext
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceServiceResultObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve the object property as an AnnounceServiceResultObject
+
+      :return: AnnounceServiceResultObject
 
 
 
@@ -191,37 +199,23 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
 
 
-   A mixin to add to a pattern which can override the default object property to return a full
-   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
-
-   This mixin needs to be first on the inheritance list, as it overrides the object property
-   of the NotifyPattern class.
-
-   For example:
-
-   .. code-block:: python
-
-       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
-           pass
+   Class to represent a Reject notification
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Base validator for all notification patterns.  This extends the validate function on the superclass.
+      In addition to the base validation apply the following constraints:
 
-      In addition to the base class's constraints, this applies the following validation:
+      * The ``inReplyTo`` property is required
+      * The ``inReplyTo`` value must match the ``object.id`` value
 
-      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
-      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
-
-      :py:class:`NotifyBase`
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      :return: ``True`` if the validation passes, otherwise raise a ``ValidationError``
 
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Reject type, the ActivityStreams Reject type
 
 
 
@@ -230,20 +224,22 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent a Request Endorsement notification
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[RequestEndorsementObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve the object property as a RequestEndorsementObject
+
+      :return:
 
 
 
@@ -252,20 +248,21 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent a Request Review notification
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Request Review types, including an ActivityStreams offer and a COAR Notify Review Action
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[RequestReviewObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve the object property as a RequestReviewObject
+      :return:
 
 
 

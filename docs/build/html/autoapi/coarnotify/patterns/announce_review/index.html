@@ -36,21 +36,23 @@
             
   <section id="module-coarnotify.patterns.announce_review">
 <span id="coarnotify-patterns-announce-review"></span><h1>coarnotify.patterns.announce_review<a class="headerlink" href="#module-coarnotify.patterns.announce_review" title="Link to this heading">¶</a></h1>
+<p>Pattern to represent the Announce Review notification
+<a class="reference external" href="https://coar-notify.net/specification/1.0.0/announce-review/">https://coar-notify.net/specification/1.0.0/announce-review/</a></p>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReview" title="coarnotify.patterns.announce_review.AnnounceReview"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnnounceReview</span></code></a></p></td>
-<td><p>Base class for all notification patterns</p></td>
+<td><p>Class to represent Announce Review pattern</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewContext" title="coarnotify.patterns.announce_review.AnnounceReviewContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnnounceReviewContext</span></code></a></p></td>
-<td><p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties</p></td>
+<td><p>Custom Context for Announce Review, specifically to return custom</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewItem" title="coarnotify.patterns.announce_review.AnnounceReviewItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnnounceReviewItem</span></code></a></p></td>
-<td><p>Defult class to represent an item in the COAR Notify pattern.</p></td>
+<td><p>Custom AnnounceReviewItem which provides additional validation over the basic NotifyItem</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewObject" title="coarnotify.patterns.announce_review.AnnounceReviewObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnnounceReviewObject</span></code></a></p></td>
-<td><p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties</p></td>
+<td><p>Custom Announce Review Object to apply custom validation for this pattern</p></td>
 </tr>
 </tbody>
 </table>
@@ -61,23 +63,33 @@
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.announce_review.</span></span><span class="sig-name descname"><span class="pre">AnnounceReview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
-<p>Base class for all notification patterns</p>
+<p>Class to represent Announce Review pattern</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.TYPE" title="Link to this definition">¶</a></dt>
-<dd><p>The type of the pattern.  This should be overridden by subclasses, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Object</span></code></p>
+<dd><p>Announce Review type, including Acitivity Streams Announce and Notify Review Action</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.context">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><span class="pre">coarnotify.core.notify.NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.context" title="Link to this definition">¶</a></dt>
-<dd><p>Get the context property of the notification</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewContext" title="coarnotify.patterns.announce_review.AnnounceReviewContext"><span class="pre">AnnounceReviewContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.context" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve AnnounceReview Context</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnounceReviewContext</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><span class="pre">coarnotify.core.notify.NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.object" title="Link to this definition">¶</a></dt>
-<dd><p>Get the object property of the notification</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewObject" title="coarnotify.patterns.announce_review.AnnounceReviewObject"><span class="pre">AnnounceReviewObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.object" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve Announce Review object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Announce Review Object</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -86,13 +98,17 @@
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReviewContext">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.announce_review.</span></span><span class="sig-name descname"><span class="pre">AnnounceReviewContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewContext" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyObject</span></code></a></p>
-<p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties
-in notify patterns</p>
-<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
+<p>Custom Context for Announce Review, specifically to return custom
+Announce Review Item</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReviewContext.item">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">item</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyItem" title="coarnotify.core.notify.NotifyItem"><span class="pre">coarnotify.core.notify.NotifyItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewContext.item" title="Link to this definition">¶</a></dt>
-<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property of the object</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">item</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewItem" title="coarnotify.patterns.announce_review.AnnounceReviewItem"><span class="pre">AnnounceReviewItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewContext.item" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve AnnounceReviewItem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnounceReviewItem</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -101,17 +117,18 @@ in notify patterns</p>
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReviewItem">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.announce_review.</span></span><span class="sig-name descname"><span class="pre">AnnounceReviewItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewItem" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyItem" title="coarnotify.core.notify.NotifyItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyItem</span></code></a></p>
-<p>Defult class to represent an item in the COAR Notify pattern.
-Items are used to represent the <code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property in the notification patterns</p>
-<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
+<p>Custom AnnounceReviewItem which provides additional validation over the basic NotifyItem</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReviewItem.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewItem.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validate the item.  This overrides the base validation, as objects only absolutely require an <code class="docutils literal notranslate"><span class="pre">id</span></code> property,
-so the base requirement for a <code class="docutils literal notranslate"><span class="pre">type</span></code> is relaxed.</p>
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewItem.validate" title="Link to this definition">¶</a></dt>
+<dd><p>In addition to the base validator, this:</p>
+<ul class="simple">
+<li><p>Reintroduces type validation</p></li>
+<li><p>make <code class="docutils literal notranslate"><span class="pre">mediaType</span></code> a required field</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, else raises a ValidationError</p>
 </dd>
 </dl>
 </dd></dl>
@@ -122,17 +139,17 @@ so the base requirement for a <code class="docutils literal notranslate"><span c
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReviewObject">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.announce_review.</span></span><span class="sig-name descname"><span class="pre">AnnounceReviewObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewObject" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyObject</span></code></a></p>
-<p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties
-in notify patterns</p>
-<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
+<p>Custom Announce Review Object to apply custom validation for this pattern</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReviewObject.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewObject.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validate the object.  This overrides the base validation, as objects only absolutely require an <code class="docutils literal notranslate"><span class="pre">id</span></code> property,
-so the base requirement for a <code class="docutils literal notranslate"><span class="pre">type</span></code> is relaxed.</p>
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReviewObject.validate" title="Link to this definition">¶</a></dt>
+<dd><p>In addition to the base validator this:</p>
+<ul class="simple">
+<li><p>Makes type required</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, else raises ValidationError</p>
 </dd>
 </dl>
 </dd></dl>

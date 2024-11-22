@@ -3,6 +3,12 @@ coarnotify.patterns.request_review
 
 .. py:module:: coarnotify.patterns.request_review
 
+.. autoapi-nested-parse::
+
+   Pattern to represent a Request Review notification
+   https://coar-notify.net/specification/1.0.0/request-review/
+
+
 
 Classes
 -------
@@ -22,20 +28,21 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent a Request Review notification
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Request Review types, including an ActivityStreams offer and a COAR Notify Review Action
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[RequestReviewObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve the object property as a RequestReviewObject
+      :return:
 
 
 
@@ -44,18 +51,17 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyItem`
 
 
-   Defult class to represent an item in the COAR Notify pattern.
-   Items are used to represent the ``ietf:item`` property in the notification patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Custom Request Review Item class to provide the custom validation
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Validate the item.  This overrides the base validation, as objects only absolutely require an ``id`` property,
-      so the base requirement for a ``type`` is relaxed.
+      Extend the base validation to include the following constraints:
 
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      * The type property is required and must validate
+      * the ``mediaType`` property is required
+
+      :return: ``True`` if validation passes, else raise a ``ValidationError``
 
 
 
@@ -71,10 +77,11 @@ Module Contents
 
 
    .. py:property:: item
-      :type: Union[coarnotify.core.notify.NotifyItem, None]
+      :type: Union[RequestReviewItem, None]
 
 
-      Get the ``ietf:item`` property of the object
+      Custom getter to retrieve the item property as a RequestReviewItem
+      :return:
 
 
 

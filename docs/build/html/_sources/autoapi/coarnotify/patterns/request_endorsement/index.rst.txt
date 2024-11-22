@@ -3,6 +3,12 @@ coarnotify.patterns.request_endorsement
 
 .. py:module:: coarnotify.patterns.request_endorsement
 
+.. autoapi-nested-parse::
+
+   Pattern to represent a Request Endorsement notification
+   https://coar-notify.net/specification/1.0.0/request-endorsement/
+
+
 
 Classes
 -------
@@ -22,20 +28,22 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent a Request Endorsement notification
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[RequestEndorsementObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve the object property as a RequestEndorsementObject
+
+      :return:
 
 
 
@@ -44,18 +52,17 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyItem`
 
 
-   Defult class to represent an item in the COAR Notify pattern.
-   Items are used to represent the ``ietf:item`` property in the notification patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Custom item class for Request Endorsement to provide the custom validation
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Validate the item.  This overrides the base validation, as objects only absolutely require an ``id`` property,
-      so the base requirement for a ``type`` is relaxed.
+      Extend the base validation to include the following constraints:
 
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      * The item type is required and must validate
+      * The ``mediaType`` property is required
+
+      :return: ``True`` if validation passes, otherwise raise a ``ValidationError``
 
 
 
@@ -64,17 +71,15 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyObject`
 
 
-   Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for ``object`` or ``context`` properties
-   in notify patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Custom object class for Request Endorsement to provide the custom item getter
 
 
    .. py:property:: item
-      :type: Union[coarnotify.core.notify.NotifyItem, None]
+      :type: Union[RequestEndorsementItem, None]
 
 
-      Get the ``ietf:item`` property of the object
+      Custom getter to retrieve the item property as a RequestEndorsementItem
+      :return:
 
 
 

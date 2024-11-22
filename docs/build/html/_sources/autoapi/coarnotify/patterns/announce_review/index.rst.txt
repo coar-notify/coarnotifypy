@@ -3,6 +3,12 @@ coarnotify.patterns.announce_review
 
 .. py:module:: coarnotify.patterns.announce_review
 
+.. autoapi-nested-parse::
+
+   Pattern to represent the Announce Review notification
+   https://coar-notify.net/specification/1.0.0/announce-review/
+
+
 
 Classes
 -------
@@ -23,28 +29,32 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent Announce Review pattern
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Announce Review type, including Acitivity Streams Announce and Notify Review Action 
 
 
 
    .. py:property:: context
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceReviewContext, None]
 
 
-      Get the context property of the notification
+      Custom getter to retrieve AnnounceReview Context
+
+      :return: AnnounceReviewContext
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceReviewObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve Announce Review object
+
+      :return: Announce Review Object
 
 
 
@@ -53,17 +63,17 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyObject`
 
 
-   Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for ``object`` or ``context`` properties
-   in notify patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Custom Context for Announce Review, specifically to return custom
+   Announce Review Item
 
 
    .. py:property:: item
-      :type: Union[coarnotify.core.notify.NotifyItem, None]
+      :type: Union[AnnounceReviewItem, None]
 
 
-      Get the ``ietf:item`` property of the object
+      Custom getter to retrieve AnnounceReviewItem
+
+      :return: AnnounceReviewItem
 
 
 
@@ -72,18 +82,17 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyItem`
 
 
-   Defult class to represent an item in the COAR Notify pattern.
-   Items are used to represent the ``ietf:item`` property in the notification patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Custom AnnounceReviewItem which provides additional validation over the basic NotifyItem
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Validate the item.  This overrides the base validation, as objects only absolutely require an ``id`` property,
-      so the base requirement for a ``type`` is relaxed.
+      In addition to the base validator, this:
 
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      * Reintroduces type validation
+      * make ``mediaType`` a required field
+
+      :return: ``True`` if valid, else raises a ValidationError
 
 
 
@@ -92,18 +101,16 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyObject`
 
 
-   Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for ``object`` or ``context`` properties
-   in notify patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Custom Announce Review Object to apply custom validation for this pattern
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Validate the object.  This overrides the base validation, as objects only absolutely require an ``id`` property,
-      so the base requirement for a ``type`` is relaxed.
+      In addition to the base validator this:
 
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      * Makes type required
+
+      :return: ``True`` if valid, else raises ValidationError
 
 
 

@@ -1,14 +1,30 @@
+"""
+Pattern to represent the Announce Service Result notification
+https://coar-notify.net/specification/1.0.0/announce-resource/
+"""
 from coarnotify.core.notify import NotifyPattern, NotifyItem, NotifyProperties, NotifyObject
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 from typing import Union
 
+__all__ = ["AnnounceServiceResult", "AnnounceServiceResultObject", "AnnounceServiceResultContext", "AnnounceServiceResultItem"]
+
 class AnnounceServiceResult(NotifyPattern):
+    """
+    Class to represent the Announce Service Result Pattern
+    """
+
     TYPE = ActivityStreamsTypes.ANNOUNCE
+    """Announce Service Result type, the ActivityStreams Announce type"""
 
     @property
-    def object(self) -> Union[NotifyObject, None]:
+    def object(self) -> Union["AnnounceServiceResultObject", None]:
+        """
+        Custom getter to retrieve the object property as an AnnounceServiceResultObject
+
+        :return: AnnounceServiceResultObject
+        """
         o = self.get_property(Properties.OBJECT)
         if o is not None:
             return AnnounceServiceResultObject(o,
@@ -20,7 +36,12 @@ class AnnounceServiceResult(NotifyPattern):
         return None
 
     @property
-    def context(self) -> Union[NotifyObject, None]:
+    def context(self) -> Union["AnnounceServiceResultContext", None]:
+        """
+        Custom getter to retrieve the context property as an AnnounceServiceResultContext
+
+        :return:    AnnounceSericeResultCOntext
+        """
         c = self.get_property(Properties.CONTEXT)
         if c is not None:
             return AnnounceServiceResultContext(c,
@@ -33,8 +54,16 @@ class AnnounceServiceResult(NotifyPattern):
 
 
 class AnnounceServiceResultContext(NotifyObject):
+    """
+    Custom object class for Announce Service Result to provide the custom item getter
+    """
+
     @property
-    def item(self) -> Union[NotifyItem, None]:
+    def item(self) -> Union["AnnounceServiceResultItem", None]:
+        """
+        Custom getter to retrieve the item property as an AnnounceServiceResultItem
+        :return:
+        """
         i = self.get_property(NotifyProperties.ITEM)
         if i is not None:
             return AnnounceServiceResultItem(i,
@@ -46,9 +75,19 @@ class AnnounceServiceResultContext(NotifyObject):
         return None
 
 class AnnounceServiceResultItem(NotifyItem):
-    def validate(self):
-        # Object does not require `type`, so we override the base validator to just validate
-        # the id
+    """
+    Custom item class for Announce Service Result to apply the custom validation
+    """
+
+    def validate(self) -> bool:
+        """
+        Beyond the base validation, apply the following:
+
+        * Make type required and avlid
+        * Make the ``mediaType`` required
+
+        :return: ``True`` if validation passes, else raise a ``ValidationError``
+        """
         ve = ValidationError()
         try:
             super(AnnounceServiceResultItem, self).validate()
@@ -63,7 +102,18 @@ class AnnounceServiceResultItem(NotifyItem):
         return True
 
 class AnnounceServiceResultObject(NotifyObject):
-    def validate(self):
+    """
+    Custom object class for Announce Service Result to apply the custom validation
+    """
+
+    def validate(self) -> bool:
+        """
+        Extend the base validation to include the following constraints:
+
+        * The object type is required and must validate
+
+        :return: ``True`` if validation passes, else raise a ``ValidationError``
+        """
         ve = ValidationError()
         try:
             super(AnnounceServiceResultObject, self).validate()

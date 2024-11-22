@@ -36,18 +36,20 @@
             
   <section id="module-coarnotify.patterns.request_endorsement">
 <span id="coarnotify-patterns-request-endorsement"></span><h1>coarnotify.patterns.request_endorsement<a class="headerlink" href="#module-coarnotify.patterns.request_endorsement" title="Link to this heading">¶</a></h1>
+<p>Pattern to represent a Request Endorsement notification
+<a class="reference external" href="https://coar-notify.net/specification/1.0.0/request-endorsement/">https://coar-notify.net/specification/1.0.0/request-endorsement/</a></p>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.patterns.request_endorsement.RequestEndorsement" title="coarnotify.patterns.request_endorsement.RequestEndorsement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RequestEndorsement</span></code></a></p></td>
-<td><p>Base class for all notification patterns</p></td>
+<td><p>Class to represent a Request Endorsement notification</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.patterns.request_endorsement.RequestEndorsementItem" title="coarnotify.patterns.request_endorsement.RequestEndorsementItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RequestEndorsementItem</span></code></a></p></td>
-<td><p>Defult class to represent an item in the COAR Notify pattern.</p></td>
+<td><p>Custom item class for Request Endorsement to provide the custom validation</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.patterns.request_endorsement.RequestEndorsementObject" title="coarnotify.patterns.request_endorsement.RequestEndorsementObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RequestEndorsementObject</span></code></a></p></td>
-<td><p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties</p></td>
+<td><p>Custom object class for Request Endorsement to provide the custom item getter</p></td>
 </tr>
 </tbody>
 </table>
@@ -58,17 +60,22 @@
 <dt class="sig sig-object py" id="coarnotify.patterns.request_endorsement.RequestEndorsement">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.request_endorsement.</span></span><span class="sig-name descname"><span class="pre">RequestEndorsement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsement" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
-<p>Base class for all notification patterns</p>
+<p>Class to represent a Request Endorsement notification</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.patterns.request_endorsement.RequestEndorsement.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsement.TYPE" title="Link to this definition">¶</a></dt>
-<dd><p>The type of the pattern.  This should be overridden by subclasses, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Object</span></code></p>
+<dd><p>Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.patterns.request_endorsement.RequestEndorsement.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><span class="pre">coarnotify.core.notify.NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsement.object" title="Link to this definition">¶</a></dt>
-<dd><p>Get the object property of the notification</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.request_endorsement.RequestEndorsementObject" title="coarnotify.patterns.request_endorsement.RequestEndorsementObject"><span class="pre">RequestEndorsementObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsement.object" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve the object property as a RequestEndorsementObject</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -77,17 +84,18 @@
 <dt class="sig sig-object py" id="coarnotify.patterns.request_endorsement.RequestEndorsementItem">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.request_endorsement.</span></span><span class="sig-name descname"><span class="pre">RequestEndorsementItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsementItem" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyItem" title="coarnotify.core.notify.NotifyItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyItem</span></code></a></p>
-<p>Defult class to represent an item in the COAR Notify pattern.
-Items are used to represent the <code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property in the notification patterns</p>
-<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
+<p>Custom item class for Request Endorsement to provide the custom validation</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.request_endorsement.RequestEndorsementItem.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsementItem.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validate the item.  This overrides the base validation, as objects only absolutely require an <code class="docutils literal notranslate"><span class="pre">id</span></code> property,
-so the base requirement for a <code class="docutils literal notranslate"><span class="pre">type</span></code> is relaxed.</p>
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsementItem.validate" title="Link to this definition">¶</a></dt>
+<dd><p>Extend the base validation to include the following constraints:</p>
+<ul class="simple">
+<li><p>The item type is required and must validate</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">mediaType</span></code> property is required</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if validation passes, otherwise raise a <code class="docutils literal notranslate"><span class="pre">ValidationError</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -98,13 +106,12 @@ so the base requirement for a <code class="docutils literal notranslate"><span c
 <dt class="sig sig-object py" id="coarnotify.patterns.request_endorsement.RequestEndorsementObject">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.request_endorsement.</span></span><span class="sig-name descname"><span class="pre">RequestEndorsementObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsementObject" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyObject</span></code></a></p>
-<p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties
-in notify patterns</p>
-<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
+<p>Custom object class for Request Endorsement to provide the custom item getter</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.patterns.request_endorsement.RequestEndorsementObject.item">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">item</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyItem" title="coarnotify.core.notify.NotifyItem"><span class="pre">coarnotify.core.notify.NotifyItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsementObject.item" title="Link to this definition">¶</a></dt>
-<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property of the object</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">item</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.request_endorsement.RequestEndorsementItem" title="coarnotify.patterns.request_endorsement.RequestEndorsementItem"><span class="pre">RequestEndorsementItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.request_endorsement.RequestEndorsementObject.item" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve the item property as a RequestEndorsementItem
+:return:</p>
 </dd></dl>
 
 </dd></dl>
