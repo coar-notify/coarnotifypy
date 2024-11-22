@@ -8,7 +8,9 @@ jobs:
   pypi-publish:
     name: Publish release to PyPI
     runs-on: ubuntu-latest
-    environment: testpypi
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/coarnotify
     permissions:
       id-token: write
     steps:
@@ -26,3 +28,5 @@ jobs:
           python setup.py sdist bdist_wheel  # Could also be python -m build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
