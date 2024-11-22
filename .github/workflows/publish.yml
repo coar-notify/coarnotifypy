@@ -9,8 +9,8 @@ jobs:
     name: Publish release to PyPI
     runs-on: ubuntu-latest
     environment:
-      name: pypi
-      url: https://pypi.org/p/coarnotify
+      name: testpypi
+      url: https://test.pypi.org/p/coarnotify
     permissions:
       id-token: write
     steps:
