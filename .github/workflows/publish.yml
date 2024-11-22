@@ -5,12 +5,12 @@ on:
     types: [created]
 
 jobs:
-  pypi-publish:
-    name: Publish release to PyPI
+  pypi-publish2:
+    name: Publish release to Real PyPI
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/coarnotify  # Replace <package-name> with your PyPI project name
+      url: https://pypi.org/p/coarnotify
     permissions:
       id-token: write
     steps:
@@ -24,7 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install setuptools wheel
       - name: Build package
-        run: |
-          python setup.py sdist bdist_wheel  # Could also be python -m build
+        run: python -m build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
