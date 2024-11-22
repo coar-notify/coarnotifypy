@@ -33,10 +33,6 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: create_app()
-
-.. py:data:: app
-
 .. py:class:: COARNotifyServiceTestImpl
 
    Bases: :py:obj:`coarnotify.server.COARNotifyServiceBinding`
@@ -59,6 +55,8 @@ Module Contents
 
 
 
+.. py:function:: create_app()
+
 .. py:function:: inbox()
 
 .. py:function:: run_server(host=None, port=None, fake_https=False)
@@ -70,4 +68,6 @@ Module Contents
        that can help for debugging Plausible
    :return:
 
+
+.. py:data:: app
 

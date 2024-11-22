@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from coarnotify.client import COARNotifyClient
-from coarnotify.models import AnnounceEndorsement
+from coarnotify.patterns import AnnounceEndorsement
 from coarnotify.test.fixtures import AnnounceEndorsementFixtureFactory
 from coarnotify.test.mocks.http import MockHttpResponse, MockHttpLayer
 

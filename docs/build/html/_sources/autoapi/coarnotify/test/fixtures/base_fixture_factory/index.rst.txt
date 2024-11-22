@@ -17,10 +17,8 @@ Module Contents
 
 .. py:class:: BaseFixtureFactory
 
-   .. py:method:: source(copy=True)
+   .. py:method:: expected_value(path)
       :classmethod:
-
-      :abstractmethod:
 
 
 
@@ -29,8 +27,10 @@ Module Contents
 
 
 
-   .. py:method:: expected_value(path)
+   .. py:method:: source(copy=True)
       :classmethod:
+
+      :abstractmethod:
 
 
 

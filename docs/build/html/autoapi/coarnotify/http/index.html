@@ -15,7 +15,7 @@
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="coarnotify.models" href="../models/index.html" />
+    <link rel="next" title="coarnotify.patterns" href="../patterns/index.html" />
     <link rel="prev" title="coarnotify.factory" href="../factory/index.html" />
    
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
@@ -64,15 +64,14 @@
 <dd><p>Interface for the HTTP layer</p>
 <p>This defines the methods which need to be implemented in order for the client to fully operate</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.http.HttpLayer.post">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.http.HttpResponse" title="coarnotify.http.HttpResponse"><span class="pre">HttpResponse</span></a></span></span><a class="headerlink" href="#coarnotify.http.HttpLayer.post" title="Link to this definition">¶</a></dt>
-<dd><p>Make an HTTP POST request to the supplied URL with the given body data, and headers</p>
+<dt class="sig sig-object py" id="coarnotify.http.HttpLayer.get">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.http.HttpResponse" title="coarnotify.http.HttpResponse"><span class="pre">HttpResponse</span></a></span></span><a class="headerlink" href="#coarnotify.http.HttpLayer.get" title="Link to this definition">¶</a></dt>
+<dd><p>Make an HTTP GET request to the supplied URL with the given headers</p>
 <p><cite>args</cite> and <cite>kwargs</cite> can be used to pass implementation-specific parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>url</strong> – the request URL</p></li>
-<li><p><strong>data</strong> – the body data</p></li>
 <li><p><strong>headers</strong> – HTTP headers as a dict to include in the request</p></li>
 <li><p><strong>args</strong> – argument list to pass on to the implementation</p></li>
 <li><p><strong>kwargs</strong> – keyword arguments to pass on to the implementation</p></li>
@@ -85,14 +84,15 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.http.HttpLayer.get">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.http.HttpResponse" title="coarnotify.http.HttpResponse"><span class="pre">HttpResponse</span></a></span></span><a class="headerlink" href="#coarnotify.http.HttpLayer.get" title="Link to this definition">¶</a></dt>
-<dd><p>Make an HTTP GET request to the supplied URL with the given headers</p>
+<dt class="sig sig-object py" id="coarnotify.http.HttpLayer.post">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.http.HttpResponse" title="coarnotify.http.HttpResponse"><span class="pre">HttpResponse</span></a></span></span><a class="headerlink" href="#coarnotify.http.HttpLayer.post" title="Link to this definition">¶</a></dt>
+<dd><p>Make an HTTP POST request to the supplied URL with the given body data, and headers</p>
 <p><cite>args</cite> and <cite>kwargs</cite> can be used to pass implementation-specific parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>url</strong> – the request URL</p></li>
+<li><p><strong>data</strong> – the body data</p></li>
 <li><p><strong>headers</strong> – HTTP headers as a dict to include in the request</p></li>
 <li><p><strong>args</strong> – argument list to pass on to the implementation</p></li>
 <li><p><strong>kwargs</strong> – keyword arguments to pass on to the implementation</p></li>
@@ -149,6 +149,27 @@
 <p>Implementation of the HTTP layer using the requests library.  This is the default implementation
 used when no other implementation is supplied</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.http.RequestsHttpLayer.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.http.RequestsHttpResponse" title="coarnotify.http.RequestsHttpResponse"><span class="pre">RequestsHttpResponse</span></a></span></span><a class="headerlink" href="#coarnotify.http.RequestsHttpLayer.get" title="Link to this definition">¶</a></dt>
+<dd><p>Make an HTTP GET request to the supplied URL with the given headers</p>
+<p><cite>args</cite> and <cite>kwargs</cite> can be used to pass additional parameters to the <cite>requests.get</cite> method,
+such as authentication credentials, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> – the request URL</p></li>
+<li><p><strong>headers</strong> – HTTP headers as a dict to include in the request</p></li>
+<li><p><strong>args</strong> – argument list to pass on to requests.get</p></li>
+<li><p><strong>kwargs</strong> – keyword arguments to pass on to requests.get</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HttpResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.http.RequestsHttpLayer.post">
 <span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.http.RequestsHttpResponse" title="coarnotify.http.RequestsHttpResponse"><span class="pre">RequestsHttpResponse</span></a></span></span><a class="headerlink" href="#coarnotify.http.RequestsHttpLayer.post" title="Link to this definition">¶</a></dt>
 <dd><p>Make an HTTP POST request to the supplied URL with the given body data, and headers</p>
@@ -166,27 +187,6 @@ such as authentication credentials, etc.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>RequestsHttpResponse</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.http.RequestsHttpLayer.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.http.RequestsHttpResponse" title="coarnotify.http.RequestsHttpResponse"><span class="pre">RequestsHttpResponse</span></a></span></span><a class="headerlink" href="#coarnotify.http.RequestsHttpLayer.get" title="Link to this definition">¶</a></dt>
-<dd><p>Make an HTTP GET request to the supplied URL with the given headers</p>
-<p><cite>args</cite> and <cite>kwargs</cite> can be used to pass additional parameters to the <cite>requests.get</cite> method,
-such as authentication credentials, etc.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>url</strong> – the request URL</p></li>
-<li><p><strong>headers</strong> – HTTP headers as a dict to include in the request</p></li>
-<li><p><strong>args</strong> – argument list to pass on to requests.get</p></li>
-<li><p><strong>kwargs</strong> – keyword arguments to pass on to requests.get</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>HttpResponse</p>
 </dd>
 </dl>
 </dd></dl>
@@ -219,6 +219,12 @@ such as authentication credentials, etc.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.http.RequestsHttpResponse.requests_response">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">requests_response</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">requests.Response</span></em><a class="headerlink" href="#coarnotify.http.RequestsHttpResponse.requests_response" title="Link to this definition">¶</a></dt>
+<dd><p>Get the original requests response object</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.http.RequestsHttpResponse.status_code">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#coarnotify.http.RequestsHttpResponse.status_code" title="Link to this definition">¶</a></dt>
 <dd><p>Get the status code of the response</p>
@@ -227,12 +233,6 @@ such as authentication credentials, etc.</p>
 <dd class="field-odd"><p>the status code</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.http.RequestsHttpResponse.requests_response">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">requests_response</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">requests.Response</span></em><a class="headerlink" href="#coarnotify.http.RequestsHttpResponse.requests_response" title="Link to this definition">¶</a></dt>
-<dd><p>Get the original requests response object</p>
 </dd></dl>
 
 </dd></dl>
@@ -285,8 +285,8 @@ such as authentication credentials, etc.</p>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.http.HttpLayer"><code class="docutils literal notranslate"><span class="pre">HttpLayer</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.HttpLayer.post"><code class="docutils literal notranslate"><span class="pre">HttpLayer.post()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.HttpLayer.get"><code class="docutils literal notranslate"><span class="pre">HttpLayer.get()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.HttpLayer.post"><code class="docutils literal notranslate"><span class="pre">HttpLayer.post()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.http.HttpResponse"><code class="docutils literal notranslate"><span class="pre">HttpResponse</span></code></a><ul>
@@ -295,21 +295,21 @@ such as authentication credentials, etc.</p>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.http.RequestsHttpLayer"><code class="docutils literal notranslate"><span class="pre">RequestsHttpLayer</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.RequestsHttpLayer.post"><code class="docutils literal notranslate"><span class="pre">RequestsHttpLayer.post()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.RequestsHttpLayer.get"><code class="docutils literal notranslate"><span class="pre">RequestsHttpLayer.get()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.RequestsHttpLayer.post"><code class="docutils literal notranslate"><span class="pre">RequestsHttpLayer.post()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.http.RequestsHttpResponse"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.RequestsHttpResponse.header"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse.header()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.RequestsHttpResponse.status_code"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse.status_code</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.RequestsHttpResponse.requests_response"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse.requests_response</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.http.RequestsHttpResponse.status_code"><code class="docutils literal notranslate"><span class="pre">RequestsHttpResponse.status_code</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../models/index.html">coarnotify.models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../patterns/index.html">coarnotify.patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../test/index.html">coarnotify.test</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../validate/index.html">coarnotify.validate</a></li>
@@ -328,7 +328,7 @@ such as authentication credentials, etc.</p>
   <li><a href="../../index.html">API Reference</a><ul>
   <li><a href="../index.html">coarnotify</a><ul>
       <li>Previous: <a href="../factory/index.html" title="previous chapter">coarnotify.factory</a></li>
-      <li>Next: <a href="../models/index.html" title="next chapter">coarnotify.models</a></li>
+      <li>Next: <a href="../patterns/index.html" title="next chapter">coarnotify.patterns</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

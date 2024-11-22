@@ -52,13 +52,9 @@
 <dt class="sig sig-object py" id="coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.fixtures.base_fixture_factory.</span></span><span class="sig-name descname"><span class="pre">BaseFixtureFactory</span></span><a class="headerlink" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory" title="Link to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.source">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.source" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Abstractmethod<span class="colon">:</span></dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.expected_value">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expected_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.expected_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.invalid">
@@ -66,9 +62,13 @@
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.expected_value">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expected_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.expected_value" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.source" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Abstractmethod<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -117,7 +117,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../exceptions/index.html">coarnotify.exceptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../factory/index.html">coarnotify.factory</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../http/index.html">coarnotify.http</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../models/index.html">coarnotify.models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../patterns/index.html">coarnotify.patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../../index.html">coarnotify.test</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a><ul class="current">
@@ -132,9 +132,9 @@
 <li class="toctree-l9"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory</span></code></a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory.source()</span></code></a></li>
-<li class="toctree-l11"><a class="reference internal" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory.invalid()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.expected_value"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory.expected_value()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.invalid"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory.invalid()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#coarnotify.test.fixtures.base_fixture_factory.BaseFixtureFactory.source"><code class="docutils literal notranslate"><span class="pre">BaseFixtureFactory.source()</span></code></a></li>
 </ul>
 </li>
 </ul>

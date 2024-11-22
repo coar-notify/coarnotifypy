@@ -26,21 +26,6 @@ Module Contents
    This defines the methods which need to be implemented in order for the client to fully operate
 
 
-   .. py:method:: post(url, data, headers=None, *args, **kwargs)
-
-      Make an HTTP POST request to the supplied URL with the given body data, and headers
-
-      `args` and `kwargs` can be used to pass implementation-specific parameters
-
-      :param url: the request URL
-      :param data: the body data
-      :param headers: HTTP headers as a dict to include in the request
-      :param args: argument list to pass on to the implementation
-      :param kwargs: keyword arguments to pass on to the implementation
-      :return: HttpResponse
-
-
-
    .. py:method:: get(url, headers=None, *args, **kwargs)
       :abstractmethod:
 
@@ -59,6 +44,21 @@ Module Contents
 
    .. py:method:: head(url, headers=None, *args, **kwargs)
       :abstractmethod:
+
+
+
+   .. py:method:: post(url, data, headers=None, *args, **kwargs)
+
+      Make an HTTP POST request to the supplied URL with the given body data, and headers
+
+      `args` and `kwargs` can be used to pass implementation-specific parameters
+
+      :param url: the request URL
+      :param data: the body data
+      :param headers: HTTP headers as a dict to include in the request
+      :param args: argument list to pass on to the implementation
+      :param kwargs: keyword arguments to pass on to the implementation
+      :return: HttpResponse
 
 
 

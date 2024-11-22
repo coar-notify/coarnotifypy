@@ -15,12 +15,44 @@ Classes
 
 .. autoapisummary::
 
-   coarnotify.client.NotifyResponse
    coarnotify.client.COARNotifyClient
+   coarnotify.client.NotifyResponse
 
 
 Module Contents
 ---------------
+
+.. py:class:: COARNotifyClient(inbox_url: str = None, http_layer: coarnotify.http.HttpLayer = None)
+
+   The COAR Notify Client, which is the mechanism through which you will interact with external inboxes.
+
+   If you do not supply an inbox URL at construction you will
+   need to supply it via the ``inbox_url`` setter, or when you send a notification
+
+   :param inbox_url:   HTTP URI of the inbox to communicate with by default
+   :param http_layer:  An implementation of the HttpLayer interface to use for sending HTTP requests.
+                       If not provided, the default implementation will be used based on ``requests``
+
+
+   .. py:method:: send(notification: coarnotify.core.notify.NotifyPattern, inbox_url: str = None, validate: bool = True) -> NotifyResponse
+
+      Send the given notification to the inbox.  If no inbox URL is provided, the default inbox URL will be used.
+
+      :param notification: The notification object (from the models provided, or a subclass you have made of the NotifyPattern class)
+      :param inbox_url: The HTTP URI to send the notification to.  Omit if using the default inbox_url supplied in the constructor.
+                          If it is omitted, and no value is passed here then we will also look in the ``target.inbox`` property of the notification
+      :param validate: Whether to validate the notification before sending.  If you are sure the notification is valid, you can set this to False
+      :return: a NotifyResponse object representing the response from the server
+
+
+
+   .. py:property:: inbox_url
+      :type: Union[str, None]
+
+
+      The HTTP URI of the inbox to communicate with by default
+
+
 
 .. py:class:: NotifyResponse(action, location=None)
 
@@ -36,13 +68,13 @@ Module Contents
    URL which will give you access to the resource
 
 
-   .. py:attribute:: CREATED
-      :value: 'created'
-
-
-
    .. py:attribute:: ACCEPTED
       :value: 'accepted'
+
+
+
+   .. py:attribute:: CREATED
+      :value: 'created'
 
 
 
@@ -59,38 +91,6 @@ Module Contents
 
 
       The HTTP URI of the created resource, if present
-
-
-
-.. py:class:: COARNotifyClient(inbox_url: str = None, http_layer: coarnotify.http.HttpLayer = None)
-
-   The COAR Notify Client, which is the mechanism through which you will interact with external inboxes.
-
-   If you do not supply an inbox URL at construction you will
-   need to supply it via the ``inbox_url`` setter, or when you send a notification
-
-   :param inbox_url:   HTTP URI of the inbox to communicate with by default
-   :param http_layer:  An implementation of the HttpLayer interface to use for sending HTTP requests.
-                       If not provided, the default implementation will be used based on ``requests``
-
-
-   .. py:property:: inbox_url
-      :type: Union[str, None]
-
-
-      The HTTP URI of the inbox to communicate with by default
-
-
-
-   .. py:method:: send(notification: coarnotify.core.notify.NotifyPattern, inbox_url: str = None, validate: bool = True) -> NotifyResponse
-
-      Send the given notification to the inbox.  If no inbox URL is provided, the default inbox URL will be used.
-
-      :param notification: The notification object (from the models provided, or a subclass you have made of the NotifyPattern class)
-      :param inbox_url: The HTTP URI to send the notification to.  Omit if using the default inbox_url supplied in the constructor.
-                          If it is omitted, and no value is passed here then we will also look in the ``target.inbox`` property of the notification
-      :param validate: Whether to validate the notification before sending.  If you are sure the notification is valid, you can set this to False
-      :return: a NotifyResponse object representing the response from the server
 
 
 

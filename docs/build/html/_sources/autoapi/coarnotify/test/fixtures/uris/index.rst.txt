@@ -9,12 +9,12 @@ Attributes
 
 .. autoapisummary::
 
-   coarnotify.test.fixtures.uris.DEFAULT_SCHEMES
-   coarnotify.test.fixtures.uris.DEFAULT_HOSTS
-   coarnotify.test.fixtures.uris.DEFAULT_PORTS
-   coarnotify.test.fixtures.uris.DEFAULT_PATHS
-   coarnotify.test.fixtures.uris.DEFAULT_QUERIES
    coarnotify.test.fixtures.uris.DEFAULT_FRAGMENTS
+   coarnotify.test.fixtures.uris.DEFAULT_HOSTS
+   coarnotify.test.fixtures.uris.DEFAULT_PATHS
+   coarnotify.test.fixtures.uris.DEFAULT_PORTS
+   coarnotify.test.fixtures.uris.DEFAULT_QUERIES
+   coarnotify.test.fixtures.uris.DEFAULT_SCHEMES
 
 
 Classes
@@ -40,27 +40,27 @@ Module Contents
 
 
 
-.. py:data:: DEFAULT_SCHEMES
-   :value: ['http', 'https']
+.. py:data:: DEFAULT_FRAGMENTS
+   :value: ['', 'fragment']
 
 
 .. py:data:: DEFAULT_HOSTS
    :value: ['example.com', 'localhost', '192.168.0.1', '2001:db8::7']
 
 
-.. py:data:: DEFAULT_PORTS
-   :value: ['', '80', '8080']
-
-
 .. py:data:: DEFAULT_PATHS
    :value: ['', '/', '/path', '/path/to/file']
+
+
+.. py:data:: DEFAULT_PORTS
+   :value: ['', '80', '8080']
 
 
 .. py:data:: DEFAULT_QUERIES
    :value: ['', 'query', 'query=string&o=1']
 
 
-.. py:data:: DEFAULT_FRAGMENTS
-   :value: ['', 'fragment']
+.. py:data:: DEFAULT_SCHEMES
+   :value: ['http', 'https']
 
 

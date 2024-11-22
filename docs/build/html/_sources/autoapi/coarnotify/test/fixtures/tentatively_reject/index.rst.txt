@@ -28,12 +28,12 @@ Module Contents
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 
 
-   .. py:method:: source(copy=True)
+   .. py:method:: invalid()
       :classmethod:
 
 
 
-   .. py:method:: invalid()
+   .. py:method:: source(copy=True)
       :classmethod:
 
 

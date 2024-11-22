@@ -23,76 +23,12 @@ Classes
 .. autoapisummary::
 
    coarnotify.server.COARNotifyReceipt
-   coarnotify.server.COARNotifyServiceBinding
    coarnotify.server.COARNotifyServer
+   coarnotify.server.COARNotifyServiceBinding
 
 
 Module Contents
 ---------------
-
-.. py:class:: COARNotifyReceipt(status: int, location: str = None)
-
-   An object representing the response from a COAR Notify server.
-
-   Server implementations should construct and return this object with the appropriate properties
-   when implementing the :py:meth:`COARNotifyServiceBinding.notification_received` binding
-
-   :param status: the HTTP status code, should be one of the constants ``CREATED`` (201) or ``ACCEPTED`` (202)
-   :param location: the HTTP URI for the resource that was created (if present)
-
-
-   .. py:attribute:: CREATED
-      :value: 201
-
-
-      The status code for a created resource
-
-
-
-   .. py:attribute:: ACCEPTED
-      :value: 202
-
-
-      The status code for an accepted request
-
-
-
-   .. py:property:: status
-      :type: int
-
-
-      The status code of the response.  Should be one of the constants ``CREATED`` (201) or ``ACCEPTED`` (202)
-
-
-
-   .. py:property:: location
-      :type: Union[str, None]
-
-
-      The HTTP URI of the created resource, if present
-
-
-
-.. py:class:: COARNotifyServiceBinding
-
-   Interface for implementing a COAR Notify server binding.
-
-   Server implementation should extend this class and implement the :py:meth:`notification_received` method
-
-   That method will receive a :py:class:`NotifyPattern` object, which will be one of the known types
-   and should return a :py:class:`COARNotifyReceipt` object with the appropriate status code and location URL
-
-
-   .. py:method:: notification_received(notification: coarnotify.models.NotifyPattern) -> COARNotifyReceipt
-      :abstractmethod:
-
-
-      Process the receipt of the given notification, and respond with an appropriate receipt object
-
-      :param notification: the notification object received
-      :return: the receipt object to send back to the client
-
-
 
 .. py:exception:: COARNotifyServerError(status: int, msg: str)
 
@@ -109,6 +45,14 @@ Module Contents
    :param msg: Message to send back to the client
 
 
+   .. py:property:: message
+      :type: str
+
+
+      The error message
+
+
+
    .. py:property:: status
       :type: int
 
@@ -117,11 +61,46 @@ Module Contents
 
 
 
-   .. py:property:: message
-      :type: str
+.. py:class:: COARNotifyReceipt(status: int, location: str = None)
+
+   An object representing the response from a COAR Notify server.
+
+   Server implementations should construct and return this object with the appropriate properties
+   when implementing the :py:meth:`COARNotifyServiceBinding.notification_received` binding
+
+   :param status: the HTTP status code, should be one of the constants ``CREATED`` (201) or ``ACCEPTED`` (202)
+   :param location: the HTTP URI for the resource that was created (if present)
 
 
-      The error message
+   .. py:attribute:: ACCEPTED
+      :value: 202
+
+
+      The status code for an accepted request
+
+
+
+   .. py:attribute:: CREATED
+      :value: 201
+
+
+      The status code for a created resource
+
+
+
+   .. py:property:: location
+      :type: Union[str, None]
+
+
+      The HTTP URI of the created resource, if present
+
+
+
+   .. py:property:: status
+      :type: int
+
+
+      The status code of the response.  Should be one of the constants ``CREATED`` (201) or ``ACCEPTED`` (202)
 
 
 
@@ -155,6 +134,27 @@ Module Contents
       :param raw: The JSON representation of the data, either as a string or a dictionary
       :param validate:    Whether to validate the notification before passing to the service implementation
       :return:   The COARNotifyReceipt response from the service implementation
+
+
+
+.. py:class:: COARNotifyServiceBinding
+
+   Interface for implementing a COAR Notify server binding.
+
+   Server implementation should extend this class and implement the :py:meth:`notification_received` method
+
+   That method will receive a :py:class:`NotifyPattern` object, which will be one of the known types
+   and should return a :py:class:`COARNotifyReceipt` object with the appropriate status code and location URL
+
+
+   .. py:method:: notification_received(notification: coarnotify.patterns.NotifyPattern) -> COARNotifyReceipt
+      :abstractmethod:
+
+
+      Process the receipt of the given notification, and respond with an appropriate receipt object
+
+      :param notification: the notification object received
+      :return: the receipt object to send back to the client
 
 
 

@@ -23,115 +23,75 @@ Classes
 
 .. autoapisummary::
 
-   coarnotify.core.notify.NotifyProperties
-   coarnotify.core.notify.NotifyTypes
+   coarnotify.core.notify.NestedPatternObjectMixin
+   coarnotify.core.notify.NotifyActor
    coarnotify.core.notify.NotifyBase
+   coarnotify.core.notify.NotifyItem
+   coarnotify.core.notify.NotifyObject
    coarnotify.core.notify.NotifyPattern
    coarnotify.core.notify.NotifyPatternPart
+   coarnotify.core.notify.NotifyProperties
    coarnotify.core.notify.NotifyService
-   coarnotify.core.notify.NotifyObject
-   coarnotify.core.notify.NotifyActor
-   coarnotify.core.notify.NotifyItem
-   coarnotify.core.notify.NestedPatternObjectMixin
+   coarnotify.core.notify.NotifyTypes
    coarnotify.core.notify.SummaryMixin
 
 
 Module Contents
 ---------------
 
-.. py:data:: NOTIFY_NAMESPACE
-   :value: 'https://coar-notify.net'
+.. py:class:: NestedPatternObjectMixin
+
+   A mixin to add to a pattern which can override the default object property to return a full
+   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
+
+   This mixin needs to be first on the inheritance list, as it overrides the object property
+   of the NotifyPattern class.
+
+   For example:
+
+   .. code-block:: python
+
+       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
+           pass
 
 
-   Namespace for COAR Notify, to be used to construct namespaced properties used in COAR Notify Patterns
+   .. py:property:: object
+      :type: Union[NotifyPattern, NotifyObject, None]
 
 
-.. py:class:: NotifyProperties
-
-   COAR Notify properties used in COAR Notify Patterns
-
-   Most of these are provided as tuples, where the first element is the property name, and the second element is the namespace.
-   Some are provided as plain strings without namespaces
-
-   These are suitable to be used as property names in all the property getters/setters in the notify pattern objects
-   and in the validation configuration.
-
-
-   .. py:attribute:: INBOX
-
-      ``inbox`` property
-
-
-
-   .. py:attribute:: CITE_AS
-
-      ``ietf:cite-as`` property
+      Retrieve an object as it's correctly typed pattern, falling back to a default ``NotifyObject`` if no pattern matches
 
 
 
-   .. py:attribute:: ITEM
+.. py:class:: NotifyActor(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
-      ``ietf:item`` property
-
-
-
-   .. py:attribute:: NAME
-      :value: 'name'
+   Bases: :py:obj:`NotifyPatternPart`
 
 
-      ``name`` property
+   Deafult class to represents an actor in the COAR Notify pattern.
+   Actors are used to represent the ``actor`` property in the notification patterns
+
+   Specific patterns may need to extend this class to provide their specific behaviours and validation
 
 
+   .. py:attribute:: ALLOWED_TYPES
 
-   .. py:attribute:: MEDIA_TYPE
-      :value: 'mediaType'
-
-
-      ``mediaType`` property
+      The allowed types for an actor: ``Service``, ``Application``, ``Group``, ``Organisation``, ``Person``
 
 
 
-.. py:class:: NotifyTypes
+   .. py:attribute:: DEFAULT_TYPE
 
-   List of all the COAR Notify types patterns may use.
-
-   These are in addition to the base Activity Streams types, which are in :py:class:`coarnotify.core.activitystreams2.ActivityStreamsTypes`
-
-
-   .. py:attribute:: ENDORSMENT_ACTION
-      :value: 'coar-notify:EndorsementAction'
+      Default type is ``Service``, but can also be set as any one of the other allowed types
 
 
 
-   .. py:attribute:: INGEST_ACTION
-      :value: 'coar-notify:IngestAction'
+   .. py:property:: name
+      :type: str
 
 
+      Get the name property of the actor
 
-   .. py:attribute:: RELATIONSHIP_ACTION
-      :value: 'coar-notify:RelationshipAction'
-
-
-
-   .. py:attribute:: REVIEW_ACTION
-      :value: 'coar-notify:ReviewAction'
-
-
-
-   .. py:attribute:: UNPROCESSABLE_NOTIFICATION
-      :value: 'coar-notify:UnprocessableNotification'
-
-
-
-   .. py:attribute:: ABOUT_PAGE
-      :value: 'sorg:AboutPage'
-
-
-
-.. py:data:: VALIDATORS
-   :type:  coarnotify.validate.Validator
-
-   Default Validator object for all pattern types, of type :py:class:`coarnotify.validate.Validator`
 
 
 .. py:class:: NotifyBase(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct: bool = True, validate_properties: bool = True, validators: coarnotify.validate.Validator = None, validation_context: Union[str, Tuple[str, str]] = None, properties_by_reference: bool = True)
@@ -148,52 +108,6 @@ Module Contents
    properties "id" and "type"
 
 
-   .. py:property:: validate_properties
-      :type: bool
-
-
-      Are properties being validated on set
-
-
-
-   .. py:property:: validate_stream_on_construct
-      :type: bool
-
-
-      Is the stream validated on construction
-
-
-
-   .. py:property:: validators
-      :type: coarnotify.validate.Validator
-
-
-      The validator object for this instance
-
-
-
-   .. py:property:: doc
-
-      The underlying ActivityStream object, excluding the JSON-LD @context
-
-
-
-   .. py:property:: id
-      :type: str
-
-
-      The ``id`` of the object
-
-
-
-   .. py:property:: type
-      :type: Union[str, list[str]]
-
-
-      The ``type`` of the object
-
-
-
    .. py:method:: get_property(prop_name: Union[str, Tuple[str, str]], by_reference: bool = None)
 
       Generic property getter.  It is strongly recommended that all accessors proxy for this function
@@ -206,6 +120,39 @@ Module Contents
 
 
 
+   .. py:method:: optional_and_validate(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
+
+      Validate the value if it is not None, but do not raise a validation error if it is None
+
+      :param ve:
+      :param prop_name:
+      :param value:
+      :return:
+
+
+
+   .. py:method:: required(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
+
+      Add a required error to the validation error if the value is None
+
+      :param ve: The validation error to which to add the message
+      :param prop_name:   The property to check
+      :param value:   The value
+
+
+
+   .. py:method:: required_and_validate(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
+
+      Add a required error to the validation error if the value is None, and then validate the value if not.
+
+      Any error messages are added to the ``ValidationError`` object
+
+      :param ve: the validation error to which to add the message
+      :param prop_name: The property to check
+      :param value: the value to check
+
+
+
    .. py:method:: set_property(prop_name: Union[str, Tuple[str, str]], value, by_reference: bool = None)
 
       Generic property setter.  It is strongly recommended that all accessors proxy for this function
@@ -215,6 +162,14 @@ Module Contents
       :param prop_name: The property to set
       :param value: The value to set
       :param by_reference: Whether to set by_reference or by_value.  If not supplied will default to the object-wide setting
+
+
+
+   .. py:method:: to_jsonld() -> dict
+
+      Get the notification pattern as JSON-LD
+
+      :return: JSON-LD representation of the pattern
 
 
 
@@ -246,192 +201,77 @@ Module Contents
 
 
 
-   .. py:method:: required(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
+   .. py:property:: doc
 
-      Add a required error to the validation error if the value is None
-
-      :param ve: The validation error to which to add the message
-      :param prop_name:   The property to check
-      :param value:   The value
+      The underlying ActivityStream object, excluding the JSON-LD @context
 
 
 
-   .. py:method:: required_and_validate(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
-
-      Add a required error to the validation error if the value is None, and then validate the value if not.
-
-      Any error messages are added to the ``ValidationError`` object
-
-      :param ve: the validation error to which to add the message
-      :param prop_name: The property to check
-      :param value: the value to check
-
-
-
-   .. py:method:: optional_and_validate(ve: coarnotify.exceptions.ValidationError, prop_name: Union[str, tuple], value)
-
-      Validate the value if it is not None, but do not raise a validation error if it is None
-
-      :param ve:
-      :param prop_name:
-      :param value:
-      :return:
-
-
-
-   .. py:method:: to_jsonld() -> dict
-
-      Get the notification pattern as JSON-LD
-
-      :return: JSON-LD representation of the pattern
-
-
-
-.. py:class:: NotifyPattern(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
-
-   Bases: :py:obj:`NotifyBase`
-
-
-   Base class for all notification patterns
-
-
-   .. py:attribute:: TYPE
-
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
-
-
-
-   .. py:property:: origin
-      :type: Union[NotifyService, None]
-
-
-      Get the origin property of the notification
-
-
-
-   .. py:property:: target
-      :type: Union[NotifyService, None]
-
-
-      Get the target property of the notification
-
-
-
-   .. py:property:: object
-      :type: Union[NotifyObject, None]
-
-
-      Get the object property of the notification
-
-
-
-   .. py:property:: in_reply_to
+   .. py:property:: id
       :type: str
 
 
-      Get the inReplyTo property of the notification
+      The ``id`` of the object
 
 
 
-   .. py:property:: actor
-      :type: Union[NotifyActor, None]
+   .. py:property:: type
+      :type: Union[str, list[str]]
 
 
-      Get the actor property of the notification
-
-
-
-   .. py:property:: context
-      :type: Union[NotifyObject, None]
-
-
-      Get the context property of the notification
+      The ``type`` of the object
 
 
 
-   .. py:method:: validate() -> bool
+   .. py:property:: validate_properties
+      :type: bool
 
-      Base validator for all notification patterns.  This extends the validate function on the superclass.
 
-      In addition to the base class's constraints, this applies the following validation:
-
-      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
-      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
-
-      :py:class:`NotifyBase`
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      Are properties being validated on set
 
 
 
-.. py:class:: NotifyPatternPart(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
-
-   Bases: :py:obj:`NotifyBase`
-
-
-   Base class for all pattern parts, such as objects, contexts, actors, etc
-
-   If there is a default type specified, and a type is not given at construction, then
-   the default type will be added
-
-   :param stream:  The activity stream object, or a dict from which one can be created
-   :param validate_stream_on_construct:    should the incoming stream be validated at construction-time
-   :param validate_properties:     should individual properties be validated as they are set
-   :param validators:      the validator object for this class and all nested elements.  If not provided will use the default :py:data:`VALIDATORS`
-   :param validation_context:  the context in which this object is being validated.  This is used to determine which validators to use
-   :param properties_by_reference:     should properties be get and set by reference (the default) or by value.  Use this with caution: setting by value
-       makes it impossible to set a property in a nested object using the dot notation, like ``obj.actor.name = "Bob"``, instead you will need to retrive
-       the object, set the value, then set the whole object back on the parent object.
+   .. py:property:: validate_stream_on_construct
+      :type: bool
 
 
-   .. py:attribute:: DEFAULT_TYPE
-      :value: None
-
-
-      The default type for this object, if none is provided on construction.  If not provided, then no default type will be set
+      Is the stream validated on construction
 
 
 
-   .. py:attribute:: ALLOWED_TYPES
-      :value: []
+   .. py:property:: validators
+      :type: coarnotify.validate.Validator
 
 
-      The list of types that are permissable for this object.  If the list is empty, then any type is allowed
+      The validator object for this instance
 
 
 
-.. py:class:: NotifyService(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+.. py:class:: NotifyItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
    Bases: :py:obj:`NotifyPatternPart`
 
 
-   Default class to represent a service in the COAR Notify pattern.
-
-   Services are used to represent ``origin`` and ``target`` properties in the notification patterns
+   Defult class to represent an item in the COAR Notify pattern.
+   Items are used to represent the ``ietf:item`` property in the notification patterns
 
    Specific patterns may need to extend this class to provide their specific behaviours and validation
 
 
-   .. py:attribute:: DEFAULT_TYPE
+   .. py:method:: validate()
 
-      The default type for a service is ``Service``, but the type can be set to any value
+      Validate the item.  This overrides the base validation, as objects only absolutely require an ``id`` property,
+      so the base requirement for a ``type`` is relaxed.
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
 
 
 
-   .. py:property:: inbox
+   .. py:property:: media_type
       :type: str
 
 
-      Get the ``inbox`` property of the service
-
-
-
-   .. py:method:: validate() -> bool
-
-      Validate the service.  This extends the base validation, and also applies the following additional constraints:
-
-      * The ``inbox`` property is required and must validate
-
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      Get the ``mediaType`` property of the item
 
 
 
@@ -444,6 +284,15 @@ Module Contents
    in notify patterns
 
    Specific patterns may need to extend this class to provide their specific behaviours and validation
+
+
+   .. py:method:: validate() -> bool
+
+      Validate the object.  This overrides the base validation, as objects only absolutely require an ``id`` property,
+      so the base requirement for a ``type`` is relaxed.
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
 
 
    .. py:property:: cite_as
@@ -470,95 +319,233 @@ Module Contents
 
 
 
+.. py:class:: NotifyPattern(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`NotifyBase`
+
+
+   Base class for all notification patterns
+
+
    .. py:method:: validate() -> bool
 
-      Validate the object.  This overrides the base validation, as objects only absolutely require an ``id`` property,
-      so the base requirement for a ``type`` is relaxed.
+      Base validator for all notification patterns.  This extends the validate function on the superclass.
 
+      In addition to the base class's constraints, this applies the following validation:
+
+      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
+      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
+
+      :py:class:`NotifyBase`
       :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
 
 
 
-.. py:class:: NotifyActor(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+   .. py:attribute:: TYPE
+
+      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+
+
+
+   .. py:property:: actor
+      :type: Union[NotifyActor, None]
+
+
+      Get the actor property of the notification
+
+
+
+   .. py:property:: context
+      :type: Union[NotifyObject, None]
+
+
+      Get the context property of the notification
+
+
+
+   .. py:property:: in_reply_to
+      :type: str
+
+
+      Get the inReplyTo property of the notification
+
+
+
+   .. py:property:: object
+      :type: Union[NotifyObject, None]
+
+
+      Get the object property of the notification
+
+
+
+   .. py:property:: origin
+      :type: Union[NotifyService, None]
+
+
+      Get the origin property of the notification
+
+
+
+   .. py:property:: target
+      :type: Union[NotifyService, None]
+
+
+      Get the target property of the notification
+
+
+
+.. py:class:: NotifyPatternPart(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`NotifyBase`
+
+
+   Base class for all pattern parts, such as objects, contexts, actors, etc
+
+   If there is a default type specified, and a type is not given at construction, then
+   the default type will be added
+
+   :param stream:  The activity stream object, or a dict from which one can be created
+   :param validate_stream_on_construct:    should the incoming stream be validated at construction-time
+   :param validate_properties:     should individual properties be validated as they are set
+   :param validators:      the validator object for this class and all nested elements.  If not provided will use the default :py:data:`VALIDATORS`
+   :param validation_context:  the context in which this object is being validated.  This is used to determine which validators to use
+   :param properties_by_reference:     should properties be get and set by reference (the default) or by value.  Use this with caution: setting by value
+       makes it impossible to set a property in a nested object using the dot notation, like ``obj.actor.name = "Bob"``, instead you will need to retrive
+       the object, set the value, then set the whole object back on the parent object.
+
+
+   .. py:attribute:: ALLOWED_TYPES
+      :value: []
+
+
+      The list of types that are permissable for this object.  If the list is empty, then any type is allowed
+
+
+
+   .. py:attribute:: DEFAULT_TYPE
+      :value: None
+
+
+      The default type for this object, if none is provided on construction.  If not provided, then no default type will be set
+
+
+
+.. py:class:: NotifyProperties
+
+   COAR Notify properties used in COAR Notify Patterns
+
+   Most of these are provided as tuples, where the first element is the property name, and the second element is the namespace.
+   Some are provided as plain strings without namespaces
+
+   These are suitable to be used as property names in all the property getters/setters in the notify pattern objects
+   and in the validation configuration.
+
+
+   .. py:attribute:: CITE_AS
+
+      ``ietf:cite-as`` property
+
+
+
+   .. py:attribute:: INBOX
+
+      ``inbox`` property
+
+
+
+   .. py:attribute:: ITEM
+
+      ``ietf:item`` property
+
+
+
+   .. py:attribute:: MEDIA_TYPE
+      :value: 'mediaType'
+
+
+      ``mediaType`` property
+
+
+
+   .. py:attribute:: NAME
+      :value: 'name'
+
+
+      ``name`` property
+
+
+
+.. py:class:: NotifyService(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
    Bases: :py:obj:`NotifyPatternPart`
 
 
-   Deafult class to represents an actor in the COAR Notify pattern.
-   Actors are used to represent the ``actor`` property in the notification patterns
+   Default class to represent a service in the COAR Notify pattern.
+
+   Services are used to represent ``origin`` and ``target`` properties in the notification patterns
 
    Specific patterns may need to extend this class to provide their specific behaviours and validation
+
+
+   .. py:method:: validate() -> bool
+
+      Validate the service.  This extends the base validation, and also applies the following additional constraints:
+
+      * The ``inbox`` property is required and must validate
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
 
 
    .. py:attribute:: DEFAULT_TYPE
 
-      Default type is ``Service``, but can also be set as any one of the other allowed types
+      The default type for a service is ``Service``, but the type can be set to any value
 
 
 
-   .. py:attribute:: ALLOWED_TYPES
-
-      The allowed types for an actor: ``Service``, ``Application``, ``Group``, ``Organisation``, ``Person``
-
-
-
-   .. py:property:: name
+   .. py:property:: inbox
       :type: str
 
 
-      Get the name property of the actor
+      Get the ``inbox`` property of the service
 
 
 
-.. py:class:: NotifyItem(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+.. py:class:: NotifyTypes
 
-   Bases: :py:obj:`NotifyPatternPart`
+   List of all the COAR Notify types patterns may use.
 
-
-   Defult class to represent an item in the COAR Notify pattern.
-   Items are used to represent the ``ietf:item`` property in the notification patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   These are in addition to the base Activity Streams types, which are in :py:class:`coarnotify.core.activitystreams2.ActivityStreamsTypes`
 
 
-   .. py:property:: media_type
-      :type: str
-
-
-      Get the ``mediaType`` property of the item
+   .. py:attribute:: ABOUT_PAGE
+      :value: 'sorg:AboutPage'
 
 
 
-   .. py:method:: validate()
-
-      Validate the item.  This overrides the base validation, as objects only absolutely require an ``id`` property,
-      so the base requirement for a ``type`` is relaxed.
-
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+   .. py:attribute:: ENDORSMENT_ACTION
+      :value: 'coar-notify:EndorsementAction'
 
 
 
-.. py:class:: NestedPatternObjectMixin
-
-   A mixin to add to a pattern which can override the default object property to return a full
-   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
-
-   This mixin needs to be first on the inheritance list, as it overrides the object property
-   of the NotifyPattern class.
-
-   For example:
-
-   .. code-block:: python
-
-       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
-           pass
+   .. py:attribute:: INGEST_ACTION
+      :value: 'coar-notify:IngestAction'
 
 
-   .. py:property:: object
-      :type: Union[NotifyPattern, NotifyObject, None]
+
+   .. py:attribute:: RELATIONSHIP_ACTION
+      :value: 'coar-notify:RelationshipAction'
 
 
-      Retrieve an object as it's correctly typed pattern, falling back to a default ``NotifyObject`` if no pattern matches
+
+   .. py:attribute:: REVIEW_ACTION
+      :value: 'coar-notify:ReviewAction'
+
+
+
+   .. py:attribute:: UNPROCESSABLE_NOTIFICATION
+      :value: 'coar-notify:UnprocessableNotification'
 
 
 
@@ -573,5 +560,18 @@ Module Contents
 
       The summary property of the pattern
 
+
+
+.. py:data:: NOTIFY_NAMESPACE
+   :value: 'https://coar-notify.net'
+
+
+   Namespace for COAR Notify, to be used to construct namespaced properties used in COAR Notify Patterns
+
+
+.. py:data:: VALIDATORS
+   :type:  coarnotify.validate.Validator
+
+   Default Validator object for all pattern types, of type :py:class:`coarnotify.validate.Validator`
 
 

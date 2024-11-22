@@ -55,20 +55,20 @@ are shared across all objects.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.absolute_uri" title="coarnotify.validate.absolute_uri"><code class="xref py py-obj docutils literal notranslate"><span class="pre">absolute_uri</span></code></a>(→ bool)</p></td>
 <td><p>Validate that the given string is an absolute URI</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.url" title="coarnotify.validate.url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">url</span></code></a>(→ bool)</p></td>
-<td><p>Validate that the given string is an absolute HTTP URI (i.e. a URL)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.one_of" title="coarnotify.validate.one_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">one_of</span></code></a>(→ Callable)</p></td>
-<td><p>Closure that returns a validation function that checks that the value is one of the given values</p></td>
-</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.at_least_one_of" title="coarnotify.validate.at_least_one_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">at_least_one_of</span></code></a>(→ Callable)</p></td>
 <td><p>Closure that returns a validation function that checks that a list of values contains at least one</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.contains" title="coarnotify.validate.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contains</span></code></a>(→ Callable)</p></td>
 <td><p>Closure that returns a validation function that checks the provided values contain the required value</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.type_checker" title="coarnotify.validate.type_checker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type_checker</span></code></a>(obj, value)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.one_of" title="coarnotify.validate.one_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">one_of</span></code></a>(→ Callable)</p></td>
+<td><p>Closure that returns a validation function that checks that the value is one of the given values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.validate.type_checker" title="coarnotify.validate.type_checker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type_checker</span></code></a>(obj, value)</p></td>
 <td><p>Validate that the given value is of the correct type for the object.  The exact behaviour of this function</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.validate.url" title="coarnotify.validate.url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">url</span></code></a>(→ bool)</p></td>
+<td><p>Validate that the given string is an absolute HTTP URI (i.e. a URL)</p></td>
 </tr>
 </tbody>
 </table>
@@ -166,38 +166,6 @@ property is being validated.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="coarnotify.validate.url">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.validate.url" title="Link to this definition">¶</a></dt>
-<dd><p>Validate that the given string is an absolute HTTP URI (i.e. a URL)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>obj</strong> – The Notify object to which the property being validated belongs.</p></li>
-<li><p><strong>uri</strong> – The string that claims to be an HTTP URI</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the URI is valid, otherwise ValueError is raised</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="coarnotify.validate.one_of">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">one_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#coarnotify.validate.one_of" title="Link to this definition">¶</a></dt>
-<dd><p>Closure that returns a validation function that checks that the value is one of the given values</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>values</strong> – The list of values to choose from.  When the returned function is run, the value passed to it
-must be one of these values</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>a validation function</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.validate.at_least_one_of">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">at_least_one_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#coarnotify.validate.at_least_one_of" title="Link to this definition">¶</a></dt>
 <dd><p>Closure that returns a validation function that checks that a list of values contains at least one
@@ -229,6 +197,21 @@ must contain this value</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="coarnotify.validate.one_of">
+<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">one_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#coarnotify.validate.one_of" title="Link to this definition">¶</a></dt>
+<dd><p>Closure that returns a validation function that checks that the value is one of the given values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> – The list of values to choose from.  When the returned function is run, the value passed to it
+must be one of these values</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a validation function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.validate.type_checker">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">type_checker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.validate.type_checker" title="Link to this definition">¶</a></dt>
 <dd><p>Validate that the given value is of the correct type for the object.  The exact behaviour of this function
@@ -251,6 +234,23 @@ depends on the object provided:</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the type is valid, otherwise ValueError is raised</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="coarnotify.validate.url">
+<span class="sig-prename descclassname"><span class="pre">coarnotify.validate.</span></span><span class="sig-name descname"><span class="pre">url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.validate.url" title="Link to this definition">¶</a></dt>
+<dd><p>Validate that the given string is an absolute HTTP URI (i.e. a URL)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – The Notify object to which the property being validated belongs.</p></li>
+<li><p><strong>uri</strong> – The string that claims to be an HTTP URI</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the URI is valid, otherwise ValueError is raised</p>
 </dd>
 </dl>
 </dd></dl>
@@ -300,7 +300,7 @@ depends on the object provided:</p>
 <li class="toctree-l4"><a class="reference internal" href="../exceptions/index.html">coarnotify.exceptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../factory/index.html">coarnotify.factory</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../http/index.html">coarnotify.http</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../models/index.html">coarnotify.models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../patterns/index.html">coarnotify.patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../test/index.html">coarnotify.test</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">coarnotify.validate</a><ul>
@@ -313,11 +313,11 @@ depends on the object provided:</p>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.absolute_uri"><code class="docutils literal notranslate"><span class="pre">absolute_uri()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.url"><code class="docutils literal notranslate"><span class="pre">url()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.one_of"><code class="docutils literal notranslate"><span class="pre">one_of()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.at_least_one_of"><code class="docutils literal notranslate"><span class="pre">at_least_one_of()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.contains"><code class="docutils literal notranslate"><span class="pre">contains()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.one_of"><code class="docutils literal notranslate"><span class="pre">one_of()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.type_checker"><code class="docutils literal notranslate"><span class="pre">type_checker()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#coarnotify.validate.url"><code class="docutils literal notranslate"><span class="pre">url()</span></code></a></li>
 </ul>
 </li>
 </ul>

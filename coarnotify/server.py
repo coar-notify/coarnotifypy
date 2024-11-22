@@ -4,7 +4,7 @@ Supporting classes for COAR Notify server implementations
 from typing import Union
 import json
 
-from coarnotify.models import NotifyPattern
+from coarnotify.patterns import NotifyPattern
 from coarnotify.factory import COARNotifyFactory
 
 class COARNotifyReceipt:

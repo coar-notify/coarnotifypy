@@ -25,9 +25,21 @@ Module Contents
    Factory for producing the correct model based on the type or data within a payload
 
 
-   .. py:attribute:: MODELS
+   .. py:method:: get_by_object(data: dict, *args, **kwargs) -> coarnotify.core.notify.NotifyPattern
+      :classmethod:
 
-      The list of model classes recognised by this factory
+
+      Get an instance of a model based on the data provided.
+
+      Internally this calls ``get_by_types`` to determine the class to instantiate, and then creates an instance of that
+      Using the supplied args and kwargs.
+
+      If a model cannot be found that matches the data, a NotifyException is raised.
+
+      :param data: The raw stream data to parse and instantiate around
+      :param args: any args to pass to the object constructor
+      :param kwargs: any kwargs to pass to the object constructor
+      :return: A NotifyPattern of the correct type, wrapping the data
 
 
 
@@ -50,21 +62,9 @@ Module Contents
 
 
 
-   .. py:method:: get_by_object(data: dict, *args, **kwargs) -> coarnotify.core.notify.NotifyPattern
-      :classmethod:
+   .. py:attribute:: MODELS
 
-
-      Get an instance of a model based on the data provided.
-
-      Internally this calls ``get_by_types`` to determine the class to instantiate, and then creates an instance of that
-      Using the supplied args and kwargs.
-
-      If a model cannot be found that matches the data, a NotifyException is raised.
-
-      :param data: The raw stream data to parse and instantiate around
-      :param args: any args to pass to the object constructor
-      :param kwargs: any kwargs to pass to the object constructor
-      :return: A NotifyPattern of the correct type, wrapping the data
+      The list of model classes recognised by this factory
 
 
 

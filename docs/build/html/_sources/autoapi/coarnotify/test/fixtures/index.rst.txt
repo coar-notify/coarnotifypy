@@ -32,55 +32,36 @@ Classes
 
 .. autoapisummary::
 
-   coarnotify.test.fixtures.BaseFixtureFactory
    coarnotify.test.fixtures.AcceptFixtureFactory
    coarnotify.test.fixtures.AnnounceEndorsementFixtureFactory
    coarnotify.test.fixtures.AnnounceRelationshipFixtureFactory
    coarnotify.test.fixtures.AnnounceReviewFixtureFactory
    coarnotify.test.fixtures.AnnounceServiceResultFixtureFactory
+   coarnotify.test.fixtures.BaseFixtureFactory
    coarnotify.test.fixtures.RejectFixtureFactory
    coarnotify.test.fixtures.RequestEndorsementFixtureFactory
-   coarnotify.test.fixtures.URIFixtureFactory
    coarnotify.test.fixtures.RequestReviewFixtureFactory
    coarnotify.test.fixtures.TentativelyAcceptFixtureFactory
    coarnotify.test.fixtures.TentativelyRejectFixtureFactory
-   coarnotify.test.fixtures.UnprocessableNotificationFixtureFactory
+   coarnotify.test.fixtures.URIFixtureFactory
    coarnotify.test.fixtures.UndoOfferFixtureFactory
+   coarnotify.test.fixtures.UnprocessableNotificationFixtureFactory
 
 
 Package Contents
 ----------------
-
-.. py:class:: BaseFixtureFactory
-
-   .. py:method:: source(copy=True)
-      :classmethod:
-
-      :abstractmethod:
-
-
-
-   .. py:method:: invalid()
-      :classmethod:
-
-
-
-   .. py:method:: expected_value(path)
-      :classmethod:
-
-
 
 .. py:class:: AcceptFixtureFactory
 
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 
 
-   .. py:method:: source(copy=True)
+   .. py:method:: invalid()
       :classmethod:
 
 
 
-   .. py:method:: invalid()
+   .. py:method:: source(copy=True)
       :classmethod:
 
 
@@ -90,12 +71,12 @@ Package Contents
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 
 
-   .. py:method:: source(copy=True)
+   .. py:method:: invalid()
       :classmethod:
 
 
 
-   .. py:method:: invalid()
+   .. py:method:: source(copy=True)
       :classmethod:
 
 
@@ -105,12 +86,12 @@ Package Contents
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 
 
-   .. py:method:: source(copy=True)
+   .. py:method:: invalid()
       :classmethod:
 
 
 
-   .. py:method:: invalid()
+   .. py:method:: source(copy=True)
       :classmethod:
 
 
@@ -130,13 +111,32 @@ Package Contents
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 
 
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
    .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+.. py:class:: BaseFixtureFactory
+
+   .. py:method:: expected_value(path)
       :classmethod:
 
 
 
    .. py:method:: invalid()
       :classmethod:
+
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+      :abstractmethod:
 
 
 
@@ -155,12 +155,57 @@ Package Contents
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 
 
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
    .. py:method:: source(copy=True)
       :classmethod:
 
 
 
+.. py:class:: RequestReviewFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
    .. py:method:: invalid()
+      :classmethod:
+
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+.. py:class:: TentativelyAcceptFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+   .. py:method:: source(copy=True)
+      :classmethod:
+
+
+
+.. py:class:: TentativelyRejectFixtureFactory
+
+   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
+
+
+   .. py:method:: invalid()
+      :classmethod:
+
+
+
+   .. py:method:: source(copy=True)
       :classmethod:
 
 
@@ -177,14 +222,9 @@ Package Contents
 
 
 
-.. py:class:: RequestReviewFixtureFactory
+.. py:class:: UndoOfferFixtureFactory
 
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
-
-
-   .. py:method:: source(copy=True)
-      :classmethod:
-
 
 
    .. py:method:: invalid()
@@ -192,32 +232,7 @@ Package Contents
 
 
 
-.. py:class:: TentativelyAcceptFixtureFactory
-
-   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
-
-
    .. py:method:: source(copy=True)
-      :classmethod:
-
-
-
-   .. py:method:: invalid()
-      :classmethod:
-
-
-
-.. py:class:: TentativelyRejectFixtureFactory
-
-   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
-
-
-   .. py:method:: source(copy=True)
-      :classmethod:
-
-
-
-   .. py:method:: invalid()
       :classmethod:
 
 
@@ -227,27 +242,12 @@ Package Contents
    Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
 
 
-   .. py:method:: source(copy=True)
-      :classmethod:
-
-
-
    .. py:method:: invalid()
       :classmethod:
 
 
 
-.. py:class:: UndoOfferFixtureFactory
-
-   Bases: :py:obj:`coarnotify.test.fixtures.BaseFixtureFactory`
-
-
    .. py:method:: source(copy=True)
-      :classmethod:
-
-
-
-   .. py:method:: invalid()
       :classmethod:
 
 

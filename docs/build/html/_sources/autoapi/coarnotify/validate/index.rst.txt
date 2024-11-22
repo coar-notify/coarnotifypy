@@ -25,11 +25,11 @@ Functions
 .. autoapisummary::
 
    coarnotify.validate.absolute_uri
-   coarnotify.validate.url
-   coarnotify.validate.one_of
    coarnotify.validate.at_least_one_of
    coarnotify.validate.contains
+   coarnotify.validate.one_of
    coarnotify.validate.type_checker
+   coarnotify.validate.url
 
 
 Module Contents
@@ -114,24 +114,6 @@ Module Contents
    :return: ``True`` if the URI is valid, otherwise ValueError is raised
 
 
-.. py:function:: url(obj, url: str) -> bool
-
-   Validate that the given string is an absolute HTTP URI (i.e. a URL)
-
-   :param obj: The Notify object to which the property being validated belongs.
-   :param uri: The string that claims to be an HTTP URI
-   :return: ``True`` if the URI is valid, otherwise ValueError is raised
-
-
-.. py:function:: one_of(values: List[str]) -> Callable
-
-   Closure that returns a validation function that checks that the value is one of the given values
-
-   :param values: The list of values to choose from.  When the returned function is run, the value passed to it
-       must be one of these values
-   :return: a validation function
-
-
 .. py:function:: at_least_one_of(values: List[str]) -> Callable
 
    Closure that returns a validation function that checks that a list of values contains at least one
@@ -151,6 +133,15 @@ Module Contents
    :return: a validation function
 
 
+.. py:function:: one_of(values: List[str]) -> Callable
+
+   Closure that returns a validation function that checks that the value is one of the given values
+
+   :param values: The list of values to choose from.  When the returned function is run, the value passed to it
+       must be one of these values
+   :return: a validation function
+
+
 .. py:function:: type_checker(obj, value)
 
    Validate that the given value is of the correct type for the object.  The exact behaviour of this function
@@ -164,5 +155,14 @@ Module Contents
    :param obj: the notify object being validated
    :param value: the type being validated
    :return: ``True`` if the type is valid, otherwise ValueError is raised
+
+
+.. py:function:: url(obj, url: str) -> bool
+
+   Validate that the given string is an absolute HTTP URI (i.e. a URL)
+
+   :param obj: The Notify object to which the property being validated belongs.
+   :param uri: The string that claims to be an HTTP URI
+   :return: ``True`` if the URI is valid, otherwise ValueError is raised
 
 

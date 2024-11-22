@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from coarnotify.models import (
+from coarnotify.patterns import (
     Accept,
     AnnounceEndorsement,
     AnnounceRelationship,

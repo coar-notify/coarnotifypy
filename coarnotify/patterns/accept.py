@@ -1,11 +1,31 @@
+"""
+Pattern to represent an Accept notification
+https://coar-notify.net/specification/1.0.0/accept/
+"""
 from coarnotify.core.notify import NotifyPattern, NestedPatternObjectMixin
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
-class Accept(NestedPatternObjectMixin, NotifyPattern):
-    TYPE = ActivityStreamsTypes.ACCEPT
+__all__ = ["Accept"]
 
-    def validate(self):
+class Accept(NestedPatternObjectMixin, NotifyPattern):
+    """
+    Class to represent an Accept notification
+    """
+    TYPE = ActivityStreamsTypes.ACCEPT
+    """ The Accept type """
+
+    def validate(self) -> bool:
+        """
+        Validate the Accept pattern.
+
+        In addition to the base validation, this:
+
+        * Makes ``inReplyTo`` required
+        * Requires the ``inReplyTo`` value to be the same as the ``object.id`` value
+
+        :return: ``True`` if valid, otherwise raises a :py:class:`coarnotify.exceptions.ValidationError`
+        """
         ve = ValidationError()
         try:
             super(Accept, self).validate()

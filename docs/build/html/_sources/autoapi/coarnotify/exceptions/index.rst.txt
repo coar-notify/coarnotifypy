@@ -96,14 +96,6 @@ Module Contents
 
 
 
-   .. py:property:: errors
-      :type: dict
-
-
-      The dictionary of errors
-
-
-
    .. py:method:: add_error(key: str, value: str)
 
       Record an error on the supplied ``key`` with the message ``value``
@@ -127,6 +119,14 @@ Module Contents
    .. py:method:: has_errors() -> bool
 
       Are there any errors registered
+
+
+
+   .. py:property:: errors
+      :type: dict
+
+
+      The dictionary of errors
 
 
 

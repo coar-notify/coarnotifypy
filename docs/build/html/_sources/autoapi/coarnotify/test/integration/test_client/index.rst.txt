@@ -23,10 +23,6 @@ Classes
 Module Contents
 ---------------
 
-.. py:data:: INBOX
-   :value: 'http://localhost:5005/inbox'
-
-
 .. py:class:: TestClient(methodName='runTest')
 
    Bases: :py:obj:`unittest.TestCase`
@@ -98,5 +94,9 @@ Module Contents
 
 
    .. py:method:: test_13_undo_offer()
+
+
+.. py:data:: INBOX
+   :value: 'http://localhost:5005/inbox'
 
 

@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from coarnotify.client import COARNotifyClient
-from coarnotify.models import (
+from coarnotify.patterns import (
     Accept,
     AnnounceEndorsement,
     AnnounceRelationship,

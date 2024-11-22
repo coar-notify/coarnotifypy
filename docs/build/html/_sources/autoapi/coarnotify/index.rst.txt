@@ -32,7 +32,7 @@ Submodules
    /autoapi/coarnotify/exceptions/index
    /autoapi/coarnotify/factory/index
    /autoapi/coarnotify/http/index
-   /autoapi/coarnotify/models/index
+   /autoapi/coarnotify/patterns/index
    /autoapi/coarnotify/server/index
    /autoapi/coarnotify/test/index
    /autoapi/coarnotify/validate/index

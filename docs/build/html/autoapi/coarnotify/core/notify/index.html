@@ -54,14 +54,20 @@
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties" title="coarnotify.core.notify.NotifyProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyProperties</span></code></a></p></td>
-<td><p>COAR Notify properties used in COAR Notify Patterns</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.NestedPatternObjectMixin" title="coarnotify.core.notify.NestedPatternObjectMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NestedPatternObjectMixin</span></code></a></p></td>
+<td><p>A mixin to add to a pattern which can override the default object property to return a full</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes" title="coarnotify.core.notify.NotifyTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyTypes</span></code></a></p></td>
-<td><p>List of all the COAR Notify types patterns may use.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyActor" title="coarnotify.core.notify.NotifyActor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyActor</span></code></a></p></td>
+<td><p>Deafult class to represents an actor in the COAR Notify pattern.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyBase" title="coarnotify.core.notify.NotifyBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyBase</span></code></a></p></td>
 <td><p>Base class from which all Notify objects extend.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyItem" title="coarnotify.core.notify.NotifyItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyItem</span></code></a></p></td>
+<td><p>Defult class to represent an item in the COAR Notify pattern.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyObject</span></code></a></p></td>
+<td><p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a></p></td>
 <td><p>Base class for all notification patterns</p></td>
@@ -69,20 +75,14 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart" title="coarnotify.core.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p></td>
 <td><p>Base class for all pattern parts, such as objects, contexts, actors, etc</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyService" title="coarnotify.core.notify.NotifyService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyService</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties" title="coarnotify.core.notify.NotifyProperties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyProperties</span></code></a></p></td>
+<td><p>COAR Notify properties used in COAR Notify Patterns</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyService" title="coarnotify.core.notify.NotifyService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyService</span></code></a></p></td>
 <td><p>Default class to represent a service in the COAR Notify pattern.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyObject</span></code></a></p></td>
-<td><p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyActor" title="coarnotify.core.notify.NotifyActor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyActor</span></code></a></p></td>
-<td><p>Deafult class to represents an actor in the COAR Notify pattern.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyItem" title="coarnotify.core.notify.NotifyItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyItem</span></code></a></p></td>
-<td><p>Defult class to represent an item in the COAR Notify pattern.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NestedPatternObjectMixin" title="coarnotify.core.notify.NestedPatternObjectMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NestedPatternObjectMixin</span></code></a></p></td>
-<td><p>A mixin to add to a pattern which can override the default object property to return a full</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes" title="coarnotify.core.notify.NotifyTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyTypes</span></code></a></p></td>
+<td><p>List of all the COAR Notify types patterns may use.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.core.notify.SummaryMixin" title="coarnotify.core.notify.SummaryMixin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SummaryMixin</span></code></a></p></td>
 <td><p>Mixin to provide an API for setting and getting the <code class="docutils literal notranslate"><span class="pre">summary</span></code> property of a pattern</p></td>
@@ -92,93 +92,51 @@
 </section>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NOTIFY_NAMESPACE">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NOTIFY_NAMESPACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://coar-notify.net'</span></em><a class="headerlink" href="#coarnotify.core.notify.NOTIFY_NAMESPACE" title="Link to this definition">¶</a></dt>
-<dd><p>Namespace for COAR Notify, to be used to construct namespaced properties used in COAR Notify Patterns</p>
-</dd></dl>
-
 <dl class="py class">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyProperties</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties" title="Link to this definition">¶</a></dt>
-<dd><p>COAR Notify properties used in COAR Notify Patterns</p>
-<p>Most of these are provided as tuples, where the first element is the property name, and the second element is the namespace.
-Some are provided as plain strings without namespaces</p>
-<p>These are suitable to be used as property names in all the property getters/setters in the notify pattern objects
-and in the validation configuration.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.INBOX">
-<span class="sig-name descname"><span class="pre">INBOX</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.INBOX" title="Link to this definition">¶</a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">inbox</span></code> property</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.CITE_AS">
-<span class="sig-name descname"><span class="pre">CITE_AS</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.CITE_AS" title="Link to this definition">¶</a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">ietf:cite-as</span></code> property</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.ITEM">
-<span class="sig-name descname"><span class="pre">ITEM</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.ITEM" title="Link to this definition">¶</a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.NAME">
-<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'name'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.NAME" title="Link to this definition">¶</a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">name</span></code> property</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.MEDIA_TYPE">
-<span class="sig-name descname"><span class="pre">MEDIA_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mediaType'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.MEDIA_TYPE" title="Link to this definition">¶</a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">mediaType</span></code> property</p>
+<dt class="sig sig-object py" id="coarnotify.core.notify.NestedPatternObjectMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NestedPatternObjectMixin</span></span><a class="headerlink" href="#coarnotify.core.notify.NestedPatternObjectMixin" title="Link to this definition">¶</a></dt>
+<dd><p>A mixin to add to a pattern which can override the default object property to return a full
+nested pattern from the <code class="docutils literal notranslate"><span class="pre">object</span></code> property, rather than the default <a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyObject</span></code></a></p>
+<p>This mixin needs to be first on the inheritance list, as it overrides the object property
+of the NotifyPattern class.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySpecialPattern</span><span class="p">(</span><span class="n">NestedPatternObjectMixin</span><span class="p">,</span> <span class="n">NotifyPattern</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NestedPatternObjectMixin.object">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><span class="pre">NotifyPattern</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><span class="pre">NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NestedPatternObjectMixin.object" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve an object as it’s correctly typed pattern, falling back to a default <code class="docutils literal notranslate"><span class="pre">NotifyObject</span></code> if no pattern matches</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyTypes</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes" title="Link to this definition">¶</a></dt>
-<dd><p>List of all the COAR Notify types patterns may use.</p>
-<p>These are in addition to the base Activity Streams types, which are in <a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStreamsTypes" title="coarnotify.core.activitystreams2.ActivityStreamsTypes"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.core.activitystreams2.ActivityStreamsTypes</span></code></a></p>
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyActor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyActor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyActor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart" title="coarnotify.core.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
+<p>Deafult class to represents an actor in the COAR Notify pattern.
+Actors are used to represent the <code class="docutils literal notranslate"><span class="pre">actor</span></code> property in the notification patterns</p>
+<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.ENDORSMENT_ACTION">
-<span class="sig-name descname"><span class="pre">ENDORSMENT_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:EndorsementAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.ENDORSMENT_ACTION" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.INGEST_ACTION">
-<span class="sig-name descname"><span class="pre">INGEST_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:IngestAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.INGEST_ACTION" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.RELATIONSHIP_ACTION">
-<span class="sig-name descname"><span class="pre">RELATIONSHIP_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:RelationshipAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.RELATIONSHIP_ACTION" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.REVIEW_ACTION">
-<span class="sig-name descname"><span class="pre">REVIEW_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:ReviewAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.REVIEW_ACTION" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.UNPROCESSABLE_NOTIFICATION">
-<span class="sig-name descname"><span class="pre">UNPROCESSABLE_NOTIFICATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:UnprocessableNotification'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.UNPROCESSABLE_NOTIFICATION" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.ABOUT_PAGE">
-<span class="sig-name descname"><span class="pre">ABOUT_PAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sorg:AboutPage'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.ABOUT_PAGE" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyActor.ALLOWED_TYPES">
+<span class="sig-name descname"><span class="pre">ALLOWED_TYPES</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyActor.ALLOWED_TYPES" title="Link to this definition">¶</a></dt>
+<dd><p>The allowed types for an actor: <code class="docutils literal notranslate"><span class="pre">Service</span></code>, <code class="docutils literal notranslate"><span class="pre">Application</span></code>, <code class="docutils literal notranslate"><span class="pre">Group</span></code>, <code class="docutils literal notranslate"><span class="pre">Organisation</span></code>, <code class="docutils literal notranslate"><span class="pre">Person</span></code></p>
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="coarnotify.core.notify.VALIDATORS">
-<span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">VALIDATORS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../validate/index.html#coarnotify.validate.Validator" title="coarnotify.validate.Validator"><span class="pre">coarnotify.validate.Validator</span></a></em><a class="headerlink" href="#coarnotify.core.notify.VALIDATORS" title="Link to this definition">¶</a></dt>
-<dd><p>Default Validator object for all pattern types, of type <a class="reference internal" href="../../validate/index.html#coarnotify.validate.Validator" title="coarnotify.validate.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.validate.Validator</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyActor.DEFAULT_TYPE">
+<span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyActor.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
+<dd><p>Default type is <code class="docutils literal notranslate"><span class="pre">Service</span></code>, but can also be set as any one of the other allowed types</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyActor.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyActor.name" title="Link to this definition">¶</a></dt>
+<dd><p>Get the name property of the actor</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -193,42 +151,6 @@ and in the validation configuration.</p>
 <p>This class forms the basis for both of those types, and provides essential services,
 such as construction, accessors and validation, as well as supporting the essential
 properties “id” and “type”</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.validate_properties">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.validate_properties" title="Link to this definition">¶</a></dt>
-<dd><p>Are properties being validated on set</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.validate_stream_on_construct">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_stream_on_construct</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.validate_stream_on_construct" title="Link to this definition">¶</a></dt>
-<dd><p>Is the stream validated on construction</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.validators">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validators</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../validate/index.html#coarnotify.validate.Validator" title="coarnotify.validate.Validator"><span class="pre">coarnotify.validate.Validator</span></a></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.validators" title="Link to this definition">¶</a></dt>
-<dd><p>The validator object for this instance</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.doc">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">doc</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.doc" title="Link to this definition">¶</a></dt>
-<dd><p>The underlying ActivityStream object, excluding the JSON-LD &#64;context</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.id">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.id" title="Link to this definition">¶</a></dt>
-<dd><p>The <code class="docutils literal notranslate"><span class="pre">id</span></code> of the object</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.type">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.type" title="Link to this definition">¶</a></dt>
-<dd><p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> of the object</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.get_property">
 <span class="sig-name descname"><span class="pre">get_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.get_property" title="Link to this definition">¶</a></dt>
@@ -249,6 +171,55 @@ activity stream object.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.optional_and_validate">
+<span class="sig-name descname"><span class="pre">optional_and_validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.optional_and_validate" title="Link to this definition">¶</a></dt>
+<dd><p>Validate the value if it is not None, but do not raise a validation error if it is None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ve</strong></p></li>
+<li><p><strong>prop_name</strong></p></li>
+<li><p><strong>value</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.required">
+<span class="sig-name descname"><span class="pre">required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.required" title="Link to this definition">¶</a></dt>
+<dd><p>Add a required error to the validation error if the value is None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ve</strong> – The validation error to which to add the message</p></li>
+<li><p><strong>prop_name</strong> – The property to check</p></li>
+<li><p><strong>value</strong> – The value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.required_and_validate">
+<span class="sig-name descname"><span class="pre">required_and_validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.required_and_validate" title="Link to this definition">¶</a></dt>
+<dd><p>Add a required error to the validation error if the value is None, and then validate the value if not.</p>
+<p>Any error messages are added to the <code class="docutils literal notranslate"><span class="pre">ValidationError</span></code> object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ve</strong> – the validation error to which to add the message</p></li>
+<li><p><strong>prop_name</strong> – The property to check</p></li>
+<li><p><strong>value</strong> – the value to check</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.set_property">
 <span class="sig-name descname"><span class="pre">set_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.set_property" title="Link to this definition">¶</a></dt>
 <dd><p>Generic property setter.  It is strongly recommended that all accessors proxy for this function
@@ -261,6 +232,17 @@ activity stream object.</p>
 <li><p><strong>value</strong> – The value to set</p></li>
 <li><p><strong>by_reference</strong> – Whether to set by_reference or by_value.  If not supplied will default to the object-wide setting</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.to_jsonld">
+<span class="sig-name descname"><span class="pre">to_jsonld</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.to_jsonld" title="Link to this definition">¶</a></dt>
+<dd><p>Get the notification pattern as JSON-LD</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>JSON-LD representation of the pattern</p>
 </dd>
 </dl>
 </dd></dl>
@@ -301,64 +283,106 @@ and the <code class="docutils literal notranslate"><span class="pre">validation_
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.required">
-<span class="sig-name descname"><span class="pre">required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.required" title="Link to this definition">¶</a></dt>
-<dd><p>Add a required error to the validation error if the value is None</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ve</strong> – The validation error to which to add the message</p></li>
-<li><p><strong>prop_name</strong> – The property to check</p></li>
-<li><p><strong>value</strong> – The value</p></li>
-</ul>
-</dd>
-</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.doc">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">doc</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.doc" title="Link to this definition">¶</a></dt>
+<dd><p>The underlying ActivityStream object, excluding the JSON-LD &#64;context</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.required_and_validate">
-<span class="sig-name descname"><span class="pre">required_and_validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.required_and_validate" title="Link to this definition">¶</a></dt>
-<dd><p>Add a required error to the validation error if the value is None, and then validate the value if not.</p>
-<p>Any error messages are added to the <code class="docutils literal notranslate"><span class="pre">ValidationError</span></code> object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ve</strong> – the validation error to which to add the message</p></li>
-<li><p><strong>prop_name</strong> – The property to check</p></li>
-<li><p><strong>value</strong> – the value to check</p></li>
-</ul>
-</dd>
-</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.id" title="Link to this definition">¶</a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">id</span></code> of the object</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.optional_and_validate">
-<span class="sig-name descname"><span class="pre">optional_and_validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><span class="pre">coarnotify.exceptions.ValidationError</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.optional_and_validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validate the value if it is not None, but do not raise a validation error if it is None</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ve</strong></p></li>
-<li><p><strong>prop_name</strong></p></li>
-<li><p><strong>value</strong></p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p></p>
-</dd>
-</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.type" title="Link to this definition">¶</a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> of the object</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.validate_properties">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.validate_properties" title="Link to this definition">¶</a></dt>
+<dd><p>Are properties being validated on set</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.validate_stream_on_construct">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_stream_on_construct</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.validate_stream_on_construct" title="Link to this definition">¶</a></dt>
+<dd><p>Is the stream validated on construction</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.validators">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validators</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../validate/index.html#coarnotify.validate.Validator" title="coarnotify.validate.Validator"><span class="pre">coarnotify.validate.Validator</span></a></em><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.validators" title="Link to this definition">¶</a></dt>
+<dd><p>The validator object for this instance</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyItem" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart" title="coarnotify.core.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
+<p>Defult class to represent an item in the COAR Notify pattern.
+Items are used to represent the <code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property in the notification patterns</p>
+<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyBase.to_jsonld">
-<span class="sig-name descname"><span class="pre">to_jsonld</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyBase.to_jsonld" title="Link to this definition">¶</a></dt>
-<dd><p>Get the notification pattern as JSON-LD</p>
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyItem.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyItem.validate" title="Link to this definition">¶</a></dt>
+<dd><p>Validate the item.  This overrides the base validation, as objects only absolutely require an <code class="docutils literal notranslate"><span class="pre">id</span></code> property,
+so the base requirement for a <code class="docutils literal notranslate"><span class="pre">type</span></code> is relaxed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>JSON-LD representation of the pattern</p>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyItem.media_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyItem.media_type" title="Link to this definition">¶</a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">mediaType</span></code> property of the item</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyObject" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart" title="coarnotify.core.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
+<p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties
+in notify patterns</p>
+<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyObject.validate" title="Link to this definition">¶</a></dt>
+<dd><p>Validate the object.  This overrides the base validation, as objects only absolutely require an <code class="docutils literal notranslate"><span class="pre">id</span></code> property,
+so the base requirement for a <code class="docutils literal notranslate"><span class="pre">type</span></code> is relaxed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject.cite_as">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cite_as</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyObject.cite_as" title="Link to this definition">¶</a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">ietf:cite-as</span></code> property of the object</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject.item">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">item</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyItem" title="coarnotify.core.notify.NotifyItem"><span class="pre">NotifyItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyObject.item" title="Link to this definition">¶</a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property of the object</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject.triple">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">triple</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyObject.triple" title="Link to this definition">¶</a></dt>
+<dd><p>Get object, relationship and subject properties as a relationship triple</p>
 </dd></dl>
 
 </dd></dl>
@@ -368,34 +392,23 @@ and the <code class="docutils literal notranslate"><span class="pre">validation_
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyPattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#coarnotify.core.notify.NotifyBase" title="coarnotify.core.notify.NotifyBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyBase</span></code></a></p>
 <p>Base class for all notification patterns</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.validate" title="Link to this definition">¶</a></dt>
+<dd><p>Base validator for all notification patterns.  This extends the validate function on the superclass.</p>
+<p>In addition to the base class’s constraints, this applies the following validation:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">origin</span></code>, <code class="docutils literal notranslate"><span class="pre">target</span></code> and <code class="docutils literal notranslate"><span class="pre">object</span></code> properties are required and must be valid</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">actor</span></code> <code class="docutils literal notranslate"><span class="pre">inReplyTo</span></code> and <code class="docutils literal notranslate"><span class="pre">context</span></code> properties are optional, but if present must be valid</p></li>
+</ul>
+<p><a class="reference internal" href="#coarnotify.core.notify.NotifyBase" title="coarnotify.core.notify.NotifyBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyBase</span></code></a>
+:return: <code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.TYPE" title="Link to this definition">¶</a></dt>
 <dd><p>The type of the pattern.  This should be overridden by subclasses, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Object</span></code></p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.origin">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyService" title="coarnotify.core.notify.NotifyService"><span class="pre">NotifyService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.origin" title="Link to this definition">¶</a></dt>
-<dd><p>Get the origin property of the notification</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.target">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyService" title="coarnotify.core.notify.NotifyService"><span class="pre">NotifyService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.target" title="Link to this definition">¶</a></dt>
-<dd><p>Get the target property of the notification</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><span class="pre">NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.object" title="Link to this definition">¶</a></dt>
-<dd><p>Get the object property of the notification</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.in_reply_to">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">in_reply_to</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.in_reply_to" title="Link to this definition">¶</a></dt>
-<dd><p>Get the inReplyTo property of the notification</p>
 </dd></dl>
 
 <dl class="py property">
@@ -410,17 +423,28 @@ and the <code class="docutils literal notranslate"><span class="pre">validation_
 <dd><p>Get the context property of the notification</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Base validator for all notification patterns.  This extends the validate function on the superclass.</p>
-<p>In addition to the base class’s constraints, this applies the following validation:</p>
-<ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">origin</span></code>, <code class="docutils literal notranslate"><span class="pre">target</span></code> and <code class="docutils literal notranslate"><span class="pre">object</span></code> properties are required and must be valid</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">actor</span></code> <code class="docutils literal notranslate"><span class="pre">inReplyTo</span></code> and <code class="docutils literal notranslate"><span class="pre">context</span></code> properties are optional, but if present must be valid</p></li>
-</ul>
-<p><a class="reference internal" href="#coarnotify.core.notify.NotifyBase" title="coarnotify.core.notify.NotifyBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyBase</span></code></a>
-:return: <code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.in_reply_to">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">in_reply_to</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.in_reply_to" title="Link to this definition">¶</a></dt>
+<dd><p>Get the inReplyTo property of the notification</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.object">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><span class="pre">NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.object" title="Link to this definition">¶</a></dt>
+<dd><p>Get the object property of the notification</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.origin">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyService" title="coarnotify.core.notify.NotifyService"><span class="pre">NotifyService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.origin" title="Link to this definition">¶</a></dt>
+<dd><p>Get the origin property of the notification</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.target">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyService" title="coarnotify.core.notify.NotifyService"><span class="pre">NotifyService</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.target" title="Link to this definition">¶</a></dt>
+<dd><p>Get the target property of the notification</p>
 </dd></dl>
 
 </dd></dl>
@@ -447,15 +471,55 @@ the object, set the value, then set the whole object back on the parent object.<
 </dd>
 </dl>
 <dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPatternPart.ALLOWED_TYPES">
+<span class="sig-name descname"><span class="pre">ALLOWED_TYPES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPatternPart.ALLOWED_TYPES" title="Link to this definition">¶</a></dt>
+<dd><p>The list of types that are permissable for this object.  If the list is empty, then any type is allowed</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPatternPart.DEFAULT_TYPE">
 <span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPatternPart.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
 <dd><p>The default type for this object, if none is provided on construction.  If not provided, then no default type will be set</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyProperties</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties" title="Link to this definition">¶</a></dt>
+<dd><p>COAR Notify properties used in COAR Notify Patterns</p>
+<p>Most of these are provided as tuples, where the first element is the property name, and the second element is the namespace.
+Some are provided as plain strings without namespaces</p>
+<p>These are suitable to be used as property names in all the property getters/setters in the notify pattern objects
+and in the validation configuration.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPatternPart.ALLOWED_TYPES">
-<span class="sig-name descname"><span class="pre">ALLOWED_TYPES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPatternPart.ALLOWED_TYPES" title="Link to this definition">¶</a></dt>
-<dd><p>The list of types that are permissable for this object.  If the list is empty, then any type is allowed</p>
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.CITE_AS">
+<span class="sig-name descname"><span class="pre">CITE_AS</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.CITE_AS" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">ietf:cite-as</span></code> property</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.INBOX">
+<span class="sig-name descname"><span class="pre">INBOX</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.INBOX" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">inbox</span></code> property</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.ITEM">
+<span class="sig-name descname"><span class="pre">ITEM</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.ITEM" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.MEDIA_TYPE">
+<span class="sig-name descname"><span class="pre">MEDIA_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mediaType'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.MEDIA_TYPE" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">mediaType</span></code> property</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyProperties.NAME">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'name'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyProperties.NAME" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">name</span></code> property</p>
 </dd></dl>
 
 </dd></dl>
@@ -467,18 +531,6 @@ the object, set the value, then set the whole object back on the parent object.<
 <p>Default class to represent a service in the COAR Notify pattern.</p>
 <p>Services are used to represent <code class="docutils literal notranslate"><span class="pre">origin</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code> properties in the notification patterns</p>
 <p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyService.DEFAULT_TYPE">
-<span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyService.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
-<dd><p>The default type for a service is <code class="docutils literal notranslate"><span class="pre">Service</span></code>, but the type can be set to any value</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyService.inbox">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inbox</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyService.inbox" title="Link to this definition">¶</a></dt>
-<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">inbox</span></code> property of the service</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.core.notify.NotifyService.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyService.validate" title="Link to this definition">¶</a></dt>
@@ -493,118 +545,54 @@ the object, set the value, then set the whole object back on the parent object.<
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyObject" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart" title="coarnotify.core.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
-<p>Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">context</span></code> properties
-in notify patterns</p>
-<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject.cite_as">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cite_as</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyObject.cite_as" title="Link to this definition">¶</a></dt>
-<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">ietf:cite-as</span></code> property of the object</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject.item">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">item</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyItem" title="coarnotify.core.notify.NotifyItem"><span class="pre">NotifyItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyObject.item" title="Link to this definition">¶</a></dt>
-<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property of the object</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject.triple">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">triple</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyObject.triple" title="Link to this definition">¶</a></dt>
-<dd><p>Get object, relationship and subject properties as a relationship triple</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyObject.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyObject.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validate the object.  This overrides the base validation, as objects only absolutely require an <code class="docutils literal notranslate"><span class="pre">id</span></code> property,
-so the base requirement for a <code class="docutils literal notranslate"><span class="pre">type</span></code> is relaxed.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyActor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyActor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyActor" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart" title="coarnotify.core.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
-<p>Deafult class to represents an actor in the COAR Notify pattern.
-Actors are used to represent the <code class="docutils literal notranslate"><span class="pre">actor</span></code> property in the notification patterns</p>
-<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyActor.DEFAULT_TYPE">
-<span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyActor.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
-<dd><p>Default type is <code class="docutils literal notranslate"><span class="pre">Service</span></code>, but can also be set as any one of the other allowed types</p>
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyService.DEFAULT_TYPE">
+<span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyService.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
+<dd><p>The default type for a service is <code class="docutils literal notranslate"><span class="pre">Service</span></code>, but the type can be set to any value</p>
 </dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyService.inbox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inbox</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyService.inbox" title="Link to this definition">¶</a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">inbox</span></code> property of the service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyTypes</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes" title="Link to this definition">¶</a></dt>
+<dd><p>List of all the COAR Notify types patterns may use.</p>
+<p>These are in addition to the base Activity Streams types, which are in <a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStreamsTypes" title="coarnotify.core.activitystreams2.ActivityStreamsTypes"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.core.activitystreams2.ActivityStreamsTypes</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.ABOUT_PAGE">
+<span class="sig-name descname"><span class="pre">ABOUT_PAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sorg:AboutPage'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.ABOUT_PAGE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyActor.ALLOWED_TYPES">
-<span class="sig-name descname"><span class="pre">ALLOWED_TYPES</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyActor.ALLOWED_TYPES" title="Link to this definition">¶</a></dt>
-<dd><p>The allowed types for an actor: <code class="docutils literal notranslate"><span class="pre">Service</span></code>, <code class="docutils literal notranslate"><span class="pre">Application</span></code>, <code class="docutils literal notranslate"><span class="pre">Group</span></code>, <code class="docutils literal notranslate"><span class="pre">Organisation</span></code>, <code class="docutils literal notranslate"><span class="pre">Person</span></code></p>
-</dd></dl>
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.ENDORSMENT_ACTION">
+<span class="sig-name descname"><span class="pre">ENDORSMENT_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:EndorsementAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.ENDORSMENT_ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyActor.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyActor.name" title="Link to this definition">¶</a></dt>
-<dd><p>Get the name property of the actor</p>
-</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.INGEST_ACTION">
+<span class="sig-name descname"><span class="pre">INGEST_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:IngestAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.INGEST_ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
-</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.RELATIONSHIP_ACTION">
+<span class="sig-name descname"><span class="pre">RELATIONSHIP_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:RelationshipAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.RELATIONSHIP_ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyItem">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NotifyItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyItem" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart" title="coarnotify.core.notify.NotifyPatternPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a></p>
-<p>Defult class to represent an item in the COAR Notify pattern.
-Items are used to represent the <code class="docutils literal notranslate"><span class="pre">ietf:item</span></code> property in the notification patterns</p>
-<p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyItem.media_type">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyItem.media_type" title="Link to this definition">¶</a></dt>
-<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">mediaType</span></code> property of the item</p>
-</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.REVIEW_ACTION">
+<span class="sig-name descname"><span class="pre">REVIEW_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:ReviewAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.REVIEW_ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyItem.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.core.notify.NotifyItem.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validate the item.  This overrides the base validation, as objects only absolutely require an <code class="docutils literal notranslate"><span class="pre">id</span></code> property,
-so the base requirement for a <code class="docutils literal notranslate"><span class="pre">type</span></code> is relaxed.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NestedPatternObjectMixin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NestedPatternObjectMixin</span></span><a class="headerlink" href="#coarnotify.core.notify.NestedPatternObjectMixin" title="Link to this definition">¶</a></dt>
-<dd><p>A mixin to add to a pattern which can override the default object property to return a full
-nested pattern from the <code class="docutils literal notranslate"><span class="pre">object</span></code> property, rather than the default <a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyObject</span></code></a></p>
-<p>This mixin needs to be first on the inheritance list, as it overrides the object property
-of the NotifyPattern class.</p>
-<p>For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySpecialPattern</span><span class="p">(</span><span class="n">NestedPatternObjectMixin</span><span class="p">,</span> <span class="n">NotifyPattern</span><span class="p">):</span>
-    <span class="k">pass</span>
-</pre></div>
-</div>
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NestedPatternObjectMixin.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><span class="pre">NotifyPattern</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><span class="pre">NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NestedPatternObjectMixin.object" title="Link to this definition">¶</a></dt>
-<dd><p>Retrieve an object as it’s correctly typed pattern, falling back to a default <code class="docutils literal notranslate"><span class="pre">NotifyObject</span></code> if no pattern matches</p>
-</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.UNPROCESSABLE_NOTIFICATION">
+<span class="sig-name descname"><span class="pre">UNPROCESSABLE_NOTIFICATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:UnprocessableNotification'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.UNPROCESSABLE_NOTIFICATION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -618,6 +606,18 @@ of the NotifyPattern class.</p>
 <dd><p>The summary property of the pattern</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NOTIFY_NAMESPACE">
+<span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">NOTIFY_NAMESPACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://coar-notify.net'</span></em><a class="headerlink" href="#coarnotify.core.notify.NOTIFY_NAMESPACE" title="Link to this definition">¶</a></dt>
+<dd><p>Namespace for COAR Notify, to be used to construct namespaced properties used in COAR Notify Patterns</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="coarnotify.core.notify.VALIDATORS">
+<span class="sig-prename descclassname"><span class="pre">coarnotify.core.notify.</span></span><span class="sig-name descname"><span class="pre">VALIDATORS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../validate/index.html#coarnotify.validate.Validator" title="coarnotify.validate.Validator"><span class="pre">coarnotify.validate.Validator</span></a></em><a class="headerlink" href="#coarnotify.core.notify.VALIDATORS" title="Link to this definition">¶</a></dt>
+<dd><p>Default Validator object for all pattern types, of type <a class="reference internal" href="../../validate/index.html#coarnotify.validate.Validator" title="coarnotify.validate.Validator"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.validate.Validator</span></code></a></p>
 </dd></dl>
 
 </section>
@@ -668,90 +668,90 @@ of the NotifyPattern class.</p>
 <li class="toctree-l7"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NOTIFY_NAMESPACE"><code class="docutils literal notranslate"><span class="pre">NOTIFY_NAMESPACE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NestedPatternObjectMixin"><code class="docutils literal notranslate"><span class="pre">NestedPatternObjectMixin</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NestedPatternObjectMixin.object"><code class="docutils literal notranslate"><span class="pre">NestedPatternObjectMixin.object</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyActor"><code class="docutils literal notranslate"><span class="pre">NotifyActor</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyActor.ALLOWED_TYPES"><code class="docutils literal notranslate"><span class="pre">NotifyActor.ALLOWED_TYPES</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyActor.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyActor.DEFAULT_TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyActor.name"><code class="docutils literal notranslate"><span class="pre">NotifyActor.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase"><code class="docutils literal notranslate"><span class="pre">NotifyBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.get_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.get_property()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.optional_and_validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.optional_and_validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.required"><code class="docutils literal notranslate"><span class="pre">NotifyBase.required()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.required_and_validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.required_and_validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.set_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.set_property()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.to_jsonld"><code class="docutils literal notranslate"><span class="pre">NotifyBase.to_jsonld()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validate_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_property()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.doc"><code class="docutils literal notranslate"><span class="pre">NotifyBase.doc</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.id"><code class="docutils literal notranslate"><span class="pre">NotifyBase.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.type"><code class="docutils literal notranslate"><span class="pre">NotifyBase.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validate_properties"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_properties</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validate_stream_on_construct"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_stream_on_construct</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validators"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validators</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyItem"><code class="docutils literal notranslate"><span class="pre">NotifyItem</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyItem.validate"><code class="docutils literal notranslate"><span class="pre">NotifyItem.validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyItem.media_type"><code class="docutils literal notranslate"><span class="pre">NotifyItem.media_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject"><code class="docutils literal notranslate"><span class="pre">NotifyObject</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject.validate"><code class="docutils literal notranslate"><span class="pre">NotifyObject.validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject.cite_as"><code class="docutils literal notranslate"><span class="pre">NotifyObject.cite_as</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject.item"><code class="docutils literal notranslate"><span class="pre">NotifyObject.item</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject.triple"><code class="docutils literal notranslate"><span class="pre">NotifyObject.triple</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern"><code class="docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.validate"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.actor"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.actor</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.context"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.context</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.in_reply_to"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.in_reply_to</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.object"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.object</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.origin"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.origin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.target"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.target</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart.ALLOWED_TYPES"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart.ALLOWED_TYPES</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart.DEFAULT_TYPE</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties"><code class="docutils literal notranslate"><span class="pre">NotifyProperties</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties.INBOX"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.INBOX</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties.CITE_AS"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.CITE_AS</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties.INBOX"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.INBOX</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties.ITEM"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.ITEM</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties.NAME"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.NAME</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties.MEDIA_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.MEDIA_TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyProperties.NAME"><code class="docutils literal notranslate"><span class="pre">NotifyProperties.NAME</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyService"><code class="docutils literal notranslate"><span class="pre">NotifyService</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.validate"><code class="docutils literal notranslate"><span class="pre">NotifyService.validate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyService.DEFAULT_TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.inbox"><code class="docutils literal notranslate"><span class="pre">NotifyService.inbox</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes"><code class="docutils literal notranslate"><span class="pre">NotifyTypes</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.ABOUT_PAGE"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.ABOUT_PAGE</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.ENDORSMENT_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.ENDORSMENT_ACTION</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.INGEST_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.INGEST_ACTION</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.RELATIONSHIP_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.RELATIONSHIP_ACTION</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.REVIEW_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.REVIEW_ACTION</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.UNPROCESSABLE_NOTIFICATION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.UNPROCESSABLE_NOTIFICATION</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.ABOUT_PAGE"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.ABOUT_PAGE</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.VALIDATORS"><code class="docutils literal notranslate"><span class="pre">VALIDATORS</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase"><code class="docutils literal notranslate"><span class="pre">NotifyBase</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validate_properties"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_properties</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validate_stream_on_construct"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_stream_on_construct</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validators"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validators</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.doc"><code class="docutils literal notranslate"><span class="pre">NotifyBase.doc</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.id"><code class="docutils literal notranslate"><span class="pre">NotifyBase.id</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.type"><code class="docutils literal notranslate"><span class="pre">NotifyBase.type</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.get_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.get_property()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.set_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.set_property()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.validate_property"><code class="docutils literal notranslate"><span class="pre">NotifyBase.validate_property()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.required"><code class="docutils literal notranslate"><span class="pre">NotifyBase.required()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.required_and_validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.required_and_validate()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.optional_and_validate"><code class="docutils literal notranslate"><span class="pre">NotifyBase.optional_and_validate()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyBase.to_jsonld"><code class="docutils literal notranslate"><span class="pre">NotifyBase.to_jsonld()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern"><code class="docutils literal notranslate"><span class="pre">NotifyPattern</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.TYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.origin"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.origin</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.target"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.target</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.object"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.object</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.in_reply_to"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.in_reply_to</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.actor"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.actor</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.context"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.context</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.validate"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.validate()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart.DEFAULT_TYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPatternPart.ALLOWED_TYPES"><code class="docutils literal notranslate"><span class="pre">NotifyPatternPart.ALLOWED_TYPES</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyService"><code class="docutils literal notranslate"><span class="pre">NotifyService</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyService.DEFAULT_TYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.inbox"><code class="docutils literal notranslate"><span class="pre">NotifyService.inbox</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.validate"><code class="docutils literal notranslate"><span class="pre">NotifyService.validate()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject"><code class="docutils literal notranslate"><span class="pre">NotifyObject</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject.cite_as"><code class="docutils literal notranslate"><span class="pre">NotifyObject.cite_as</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject.item"><code class="docutils literal notranslate"><span class="pre">NotifyObject.item</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject.triple"><code class="docutils literal notranslate"><span class="pre">NotifyObject.triple</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyObject.validate"><code class="docutils literal notranslate"><span class="pre">NotifyObject.validate()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyActor"><code class="docutils literal notranslate"><span class="pre">NotifyActor</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyActor.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyActor.DEFAULT_TYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyActor.ALLOWED_TYPES"><code class="docutils literal notranslate"><span class="pre">NotifyActor.ALLOWED_TYPES</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyActor.name"><code class="docutils literal notranslate"><span class="pre">NotifyActor.name</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyItem"><code class="docutils literal notranslate"><span class="pre">NotifyItem</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyItem.media_type"><code class="docutils literal notranslate"><span class="pre">NotifyItem.media_type</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyItem.validate"><code class="docutils literal notranslate"><span class="pre">NotifyItem.validate()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NestedPatternObjectMixin"><code class="docutils literal notranslate"><span class="pre">NestedPatternObjectMixin</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NestedPatternObjectMixin.object"><code class="docutils literal notranslate"><span class="pre">NestedPatternObjectMixin.object</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.SummaryMixin"><code class="docutils literal notranslate"><span class="pre">SummaryMixin</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.SummaryMixin.summary"><code class="docutils literal notranslate"><span class="pre">SummaryMixin.summary</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NOTIFY_NAMESPACE"><code class="docutils literal notranslate"><span class="pre">NOTIFY_NAMESPACE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.VALIDATORS"><code class="docutils literal notranslate"><span class="pre">VALIDATORS</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -763,7 +763,7 @@ of the NotifyPattern class.</p>
 <li class="toctree-l4"><a class="reference internal" href="../../exceptions/index.html">coarnotify.exceptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../factory/index.html">coarnotify.factory</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../http/index.html">coarnotify.http</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../models/index.html">coarnotify.models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../patterns/index.html">coarnotify.patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../test/index.html">coarnotify.test</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../validate/index.html">coarnotify.validate</a></li>

@@ -25,12 +25,7 @@ Module Contents
 
 .. py:class:: NotifyFixtureFactory
 
-   .. py:method:: source()
-      :classmethod:
-
-
-
-   .. py:method:: target()
+   .. py:method:: object()
       :classmethod:
 
 
@@ -40,7 +35,12 @@ Module Contents
 
 
 
-   .. py:method:: object()
+   .. py:method:: source()
+      :classmethod:
+
+
+
+   .. py:method:: target()
       :classmethod:
 
 

@@ -25,6 +25,7 @@ extensions = [
 autoapi_dirs = ['../../coarnotify']
 # omit 'private-members', 'special-members'
 autoapi_options = ['members', 'undoc-members', 'show-inheritance', 'show-module-summary', 'imported-members']
+autoapi_member_order = "groupwise"
 
 templates_path = ['_templates']
 exclude_patterns = []

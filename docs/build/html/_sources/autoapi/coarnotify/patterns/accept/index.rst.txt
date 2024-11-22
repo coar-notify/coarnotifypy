@@ -1,0 +1,50 @@
+coarnotify.patterns.accept
+==========================
+
+.. py:module:: coarnotify.patterns.accept
+
+.. autoapi-nested-parse::
+
+   Pattern to represent an Accept notification
+   https://coar-notify.net/specification/1.0.0/accept/
+
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   coarnotify.patterns.accept.Accept
+
+
+Module Contents
+---------------
+
+.. py:class:: Accept(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
+
+   Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`
+
+
+   Class to represent an Accept notification
+
+
+   .. py:method:: validate() -> bool
+
+      Validate the Accept pattern.
+
+      In addition to the base validation, this:
+
+      * Makes ``inReplyTo`` required
+      * Requires the ``inReplyTo`` value to be the same as the ``object.id`` value
+
+      :return: ``True`` if valid, otherwise raises a :py:class:`coarnotify.exceptions.ValidationError`
+
+
+
+   .. py:attribute:: TYPE
+
+      The Accept type 
+
+
+
