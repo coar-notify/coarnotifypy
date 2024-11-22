@@ -3,6 +3,12 @@ coarnotify.patterns.announce_endorsement
 
 .. py:module:: coarnotify.patterns.announce_endorsement
 
+.. autoapi-nested-parse::
+
+   Pattern to represent an ``Announce Endorsement`` notification
+   https://coar-notify.net/specification/1.0.0/announce-endorsement/
+
+
 
 Classes
 -------
@@ -22,20 +28,22 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent an Announce Endorsement pattern
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action
 
 
 
    .. py:property:: context
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceEndorsementContext, None]
 
 
-      Get the context property of the notification
+      Get a context specific to Announce Endorsement
+
+      :return: The Announce Endorsement context object
 
 
 
@@ -44,17 +52,17 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyObject`
 
 
-   Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for ``object`` or ``context`` properties
-   in notify patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Announce Endorsement context object, which extends the base NotifyObject
+   to allow us to pass back a custom :py:class:`AnnounceEndorsementItem`
 
 
    .. py:property:: item
-      :type: Union[coarnotify.core.notify.NotifyItem, None]
+      :type: Union[AnnounceEndorsementItem, None]
 
 
-      Get the ``ietf:item`` property of the object
+      Get a custom :py:class:`AnnounceEndorsementItem`
+
+      :return: the Announce Endorsement Item
 
 
 
@@ -63,18 +71,18 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyItem`
 
 
-   Defult class to represent an item in the COAR Notify pattern.
-   Items are used to represent the ``ietf:item`` property in the notification patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Announce Endorsement Item, which extends the base NotifyItem to provide
+   additional validation
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Validate the item.  This overrides the base validation, as objects only absolutely require an ``id`` property,
-      so the base requirement for a ``type`` is relaxed.
+      Extends the base validation with validation custom to Announce Endorsement notifications
 
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      * Adds type validation, which the base NotifyItem does not apply
+      * Requires the ``mediaType`` value
+
+      :return: ``True`` if valid, otherwise raises a ValidationError
 
 
 

@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="coarnotify",
+    name="coarnotifypy",
     version="1.0.0.1",  # Version 1 of the library for the 1.0.0 spec
     packages=find_packages(),
     install_requires=[
         "requests"
     ],
-    url="http://cottagelabs.com/",
+    urls=["https://coar-notify.net/", "http://cottagelabs.com/"],
     author="Cottage Labs",
     author_email="richard@cottagelabs.com",
     description="COAR Notify Common Library",

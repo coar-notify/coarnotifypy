@@ -1,3 +1,8 @@
+"""
+All the COAR Notify pattern objects are defined in this module.
+
+Some of the pattern objects have supporting objects in their individual submodules
+"""
 from coarnotify.patterns.accept import Accept
 from coarnotify.patterns.announce_endorsement import AnnounceEndorsement
 from coarnotify.patterns.announce_relationship import AnnounceRelationship

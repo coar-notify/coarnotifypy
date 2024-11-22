@@ -3,6 +3,13 @@ coarnotify.patterns
 
 .. py:module:: coarnotify.patterns
 
+.. autoapi-nested-parse::
+
+   All the COAR Notify pattern objects are defined in this module.
+
+   Some of the pattern objects have supporting objects in their individual submodules
+
+
 
 Submodules
 ----------
@@ -78,20 +85,22 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent an Announce Endorsement pattern
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action
 
 
 
    .. py:property:: context
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceEndorsementContext, None]
 
 
-      Get the context property of the notification
+      Get a context specific to Announce Endorsement
+
+      :return: The Announce Endorsement context object
 
 
 
