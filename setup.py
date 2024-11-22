@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="coarnotifypy",
+    name="coarnotify",
     version="1.0.0.1",  # Version 1 of the library for the 1.0.0 spec
     packages=find_packages(),
     install_requires=[

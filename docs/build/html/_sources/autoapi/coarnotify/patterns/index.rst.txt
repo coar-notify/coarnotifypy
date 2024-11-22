@@ -109,20 +109,20 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent an Announce Relationship notification
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Announce Relationship types, including an ActivityStreams announce and a COAR Notify Relationship Action
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceRelationshipObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve the object property as an AnnounceRelationshipObject
 
 
 

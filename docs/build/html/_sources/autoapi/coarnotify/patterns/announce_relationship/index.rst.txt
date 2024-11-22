@@ -3,6 +3,12 @@ coarnotify.patterns.announce_relationship
 
 .. py:module:: coarnotify.patterns.announce_relationship
 
+.. autoapi-nested-parse::
+
+   Pattern to represent an Announce Relationship notification
+   https://coar-notify.net/specification/1.0.0/announce-relationship/
+
+
 
 Classes
 -------
@@ -21,20 +27,20 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
-   Base class for all notification patterns
+   Class to represent an Announce Relationship notification
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Announce Relationship types, including an ActivityStreams announce and a COAR Notify Relationship Action
 
 
 
    .. py:property:: object
-      :type: Union[coarnotify.core.notify.NotifyObject, None]
+      :type: Union[AnnounceRelationshipObject, None]
 
 
-      Get the object property of the notification
+      Custom getter to retrieve the object property as an AnnounceRelationshipObject
 
 
 
@@ -43,18 +49,16 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyObject`
 
 
-   Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for ``object`` or ``context`` properties
-   in notify patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Custom object class for Announce Relationship to apply the custom validation
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Validate the object.  This overrides the base validation, as objects only absolutely require an ``id`` property,
-      so the base requirement for a ``type`` is relaxed.
+      Extend the base validation to include the following constraints:
 
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      * The object triple is required and each part must validate
+
+      :return:
 
 
 

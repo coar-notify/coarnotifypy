@@ -1,15 +1,25 @@
+"""
+Pattern to represent an Announce Relationship notification
+https://coar-notify.net/specification/1.0.0/announce-relationship/
+"""
 from coarnotify.core.notify import NotifyPattern, NotifyTypes, NotifyObject
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 from typing import Union
 
+__all__ = ["AnnounceRelationship", "AnnounceRelationshipObject"]
 
 class AnnounceRelationship(NotifyPattern):
+    """
+    Class to represent an Announce Relationship notification
+    """
     TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.RELATIONSHIP_ACTION]
+    """Announce Relationship types, including an ActivityStreams announce and a COAR Notify Relationship Action"""
 
     @property
-    def object(self) -> Union[NotifyObject, None]:
+    def object(self) -> Union["AnnounceRelationshipObject", None]:
+        """Custom getter to retrieve the object property as an AnnounceRelationshipObject"""
         o = self.get_property(Properties.OBJECT)
         if o is not None:
             return AnnounceRelationshipObject(o,
@@ -22,7 +32,17 @@ class AnnounceRelationship(NotifyPattern):
 
 
 class AnnounceRelationshipObject(NotifyObject):
-    def validate(self):
+    """
+    Custom object class for Announce Relationship to apply the custom validation
+    """
+    def validate(self) -> bool:
+        """
+        Extend the base validation to include the following constraints:
+
+        * The object triple is required and each part must validate
+
+        :return:
+        """
         ve = ValidationError()
         try:
             super(AnnounceRelationshipObject, self).validate()
