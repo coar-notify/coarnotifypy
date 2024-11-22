@@ -77,3 +77,29 @@ Integration tests are located in ``coarnotify/test/integration`` and can be run 
 
     pytest coarnotify/test/integration
 
+Making a release
+----------------
+
+1. Update the version number in ``setup.py`` and ``coarnotify/__init__.py``
+
+2. Make the release in github, with the version number as the tag
+
+3. Build the package locally:
+
+.. code-block:: console
+
+    python -m pip install build twine
+    python -m build
+    twine check dist/*
+
+4. Test upload the package to TestPypi (you will need an account on https://test.pypi.org and to set up an API token):
+
+.. code-block:: console
+
+    twine upload -r testpypi dist/*
+
+5. Do the release to the real Pypi:
+
+.. code-block:: console
+
+    twine upload dist/*

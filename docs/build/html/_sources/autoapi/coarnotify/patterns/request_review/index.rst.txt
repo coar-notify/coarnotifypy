@@ -70,10 +70,7 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyObject`
 
 
-   Deafult class to represent an object in the COAR Notify pattern.  Objects can be used for ``object`` or ``context`` properties
-   in notify patterns
-
-   Specific patterns may need to extend this class to provide their specific behaviours and validation
+   Custom Request Review Object class to return the custom RequestReviewItem class
 
 
    .. py:property:: item

@@ -36,6 +36,9 @@ class RequestReview(NotifyPattern):
 
 
 class RequestReviewObject(NotifyObject):
+    """
+    Custom Request Review Object class to return the custom RequestReviewItem class
+    """
     @property
     def item(self) -> Union["RequestReviewItem", None]:
         """

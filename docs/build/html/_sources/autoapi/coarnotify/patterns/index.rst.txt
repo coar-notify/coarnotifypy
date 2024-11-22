@@ -271,37 +271,23 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
 
 
-   A mixin to add to a pattern which can override the default object property to return a full
-   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
-
-   This mixin needs to be first on the inheritance list, as it overrides the object property
-   of the NotifyPattern class.
-
-   For example:
-
-   .. code-block:: python
-
-       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
-           pass
+   Class to represent a Tentative Accept notification
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Base validator for all notification patterns.  This extends the validate function on the superclass.
+      In addition to the base validation apply the following constraints:
 
-      In addition to the base class's constraints, this applies the following validation:
+      * The ``inReplyTo`` property is required
+      * The ``inReplyTo`` value must match the ``object.id`` value
 
-      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
-      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
-
-      :py:class:`NotifyBase`
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      :return:
 
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Tentative Accept type, the ActivityStreams Tentative Accept type
 
 
 
@@ -310,37 +296,23 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
 
 
-   A mixin to add to a pattern which can override the default object property to return a full
-   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
-
-   This mixin needs to be first on the inheritance list, as it overrides the object property
-   of the NotifyPattern class.
-
-   For example:
-
-   .. code-block:: python
-
-       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
-           pass
+   Class to represent a Tentative Reject notification
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Base validator for all notification patterns.  This extends the validate function on the superclass.
+      In addition to the base validation apply the following constraints:
 
-      In addition to the base class's constraints, this applies the following validation:
+      * The ``inReplyTo`` property is required
+      * The ``inReplyTo`` value must match the ``object.id`` value
 
-      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
-      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
-
-      :py:class:`NotifyBase`
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      :return:
 
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Tentative Reject type, the ActivityStreams Tentative Reject type
 
 
 
@@ -349,37 +321,23 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NestedPatternObjectMixin`, :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
 
 
-   A mixin to add to a pattern which can override the default object property to return a full
-   nested pattern from the ``object`` property, rather than the default :py:class:`NotifyObject`
-
-   This mixin needs to be first on the inheritance list, as it overrides the object property
-   of the NotifyPattern class.
-
-   For example:
-
-   .. code-block:: python
-
-       class MySpecialPattern(NestedPatternObjectMixin, NotifyPattern):
-           pass
+   Class to represent the Undo Offer notification
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Base validator for all notification patterns.  This extends the validate function on the superclass.
+      In addition to the base validation apply the following constraints:
 
-      In addition to the base class's constraints, this applies the following validation:
+      * The ``inReplyTo`` property is required
+      * The ``inReplyTo`` value must match the ``object.id`` value
 
-      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
-      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
-
-      :py:class:`NotifyBase`
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      :return:
 
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Undo Offer type, the ActivityStreams Undo type
 
 
 
@@ -388,26 +346,23 @@ Package Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
 
 
-   Base class for all notification patterns
+   Class to represent the Unprocessable Notification notification
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Base validator for all notification patterns.  This extends the validate function on the superclass.
+      In addition to the base validation apply the following constraints:
 
-      In addition to the base class's constraints, this applies the following validation:
+      * The ``inReplyTo`` property is required
+      * The ``summary`` property is required
 
-      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
-      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
-
-      :py:class:`NotifyBase`
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      :return:
 
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Unprocessable Notification types, including an ActivityStreams Flag and a COAR Notify Unprocessable Notification
 
 
 

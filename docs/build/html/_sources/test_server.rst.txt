@@ -68,3 +68,12 @@ the server response.
     resp = client.send(ae)
     print(resp.action)
     print(resp.location)
+
+PyCharm Debugging
+^^^^^^^^^^^^^^^^^
+
+The test server can quickly be set up in debug mode for PyCharm by adding ``-d`` to the startup command
+
+.. code-block:: console
+
+    COARNOTIFY_SETTINGS=local.cfg; python coarnotify/test/server/inbox.py -d

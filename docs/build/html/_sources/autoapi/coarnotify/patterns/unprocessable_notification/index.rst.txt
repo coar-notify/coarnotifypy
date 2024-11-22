@@ -3,6 +3,12 @@ coarnotify.patterns.unprocessable_notification
 
 .. py:module:: coarnotify.patterns.unprocessable_notification
 
+.. autoapi-nested-parse::
+
+   Pattern to represent the Unprocessable Notification notification
+   https://coar-notify.net/specification/1.0.0/unprocessable/
+
+
 
 Classes
 -------
@@ -20,26 +26,23 @@ Module Contents
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`, :py:obj:`coarnotify.core.notify.SummaryMixin`
 
 
-   Base class for all notification patterns
+   Class to represent the Unprocessable Notification notification
 
 
-   .. py:method:: validate()
+   .. py:method:: validate() -> bool
 
-      Base validator for all notification patterns.  This extends the validate function on the superclass.
+      In addition to the base validation apply the following constraints:
 
-      In addition to the base class's constraints, this applies the following validation:
+      * The ``inReplyTo`` property is required
+      * The ``summary`` property is required
 
-      * The ``origin``, ``target`` and ``object`` properties are required and must be valid
-      * The ``actor`` ``inReplyTo`` and ``context`` properties are optional, but if present must be valid
-
-      :py:class:`NotifyBase`
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+      :return:
 
 
 
    .. py:attribute:: TYPE
 
-      The type of the pattern.  This should be overridden by subclasses, otherwise defaults to ``Object``
+      Unprocessable Notification types, including an ActivityStreams Flag and a COAR Notify Unprocessable Notification
 
 
 

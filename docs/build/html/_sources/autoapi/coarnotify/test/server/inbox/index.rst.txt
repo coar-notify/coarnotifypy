@@ -3,6 +3,12 @@ coarnotify.test.server.inbox
 
 .. py:module:: coarnotify.test.server.inbox
 
+.. autoapi-nested-parse::
+
+   Single file implementation of a test server, showing all the layers of the general
+   solution in one place.
+
+
 
 Attributes
 ----------
@@ -38,36 +44,56 @@ Module Contents
    Bases: :py:obj:`coarnotify.server.COARNotifyServiceBinding`
 
 
-   Interface for implementing a COAR Notify server binding.
-
-   Server implementation should extend this class and implement the :py:meth:`notification_received` method
-
-   That method will receive a :py:class:`NotifyPattern` object, which will be one of the known types
-   and should return a :py:class:`COARNotifyReceipt` object with the appropriate status code and location URL
+   Test server implementation of the main service binding
 
 
-   .. py:method:: notification_received(notification)
+   .. py:method:: notification_received(notification: coarnotify.core.notify.NotifyPattern) -> coarnotify.server.COARNotifyReceipt
 
-      Process the receipt of the given notification, and respond with an appropriate receipt object
+      Process an incoming notification object in the following way:
 
-      :param notification: the notification object received
-      :return: the receipt object to send back to the client
+      1. Generate a name for the notification based on the timestamp and a random UUID
+      2. Write the notification JSON-LD  to a file in the store directory
+      3. Return a receipt for the notification using the configured response status and a location pointing to the file
+
+      :param notification:
+      :return:
 
 
 
 .. py:function:: create_app()
 
+   Create the flask app, pulling config from ``settings.py`` then any supplied local config
+   in environment variable ``COARNOTIFY_SETTINGS``.
+
+   :return:
+
+
 .. py:function:: inbox()
 
+   Main web entry point.  POST to /inbox to trigger it
+
+   This pulls the notification out of the request as JSON, and sends it to the server
+   which will parse it and send it on to the service binding implementation
+
+   When it gets the receipt it will return a blank HTTP response with the appropriate
+   status code and Location header
+
+   :return:
+
+
 .. py:function:: run_server(host=None, port=None, fake_https=False)
+
+   Start the web server using the flask built in server
 
    :param host:
    :param port:
    :param fake_https:
-       if fake_https is True, develop can use https:// to access the server
-       that can help for debugging Plausible
+       if fake_https is True, developer can use https:// to access the server
    :return:
 
 
 .. py:data:: app
+
+   The global flask app for the test server
+
 

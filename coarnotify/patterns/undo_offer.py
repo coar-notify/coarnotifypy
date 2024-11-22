@@ -1,11 +1,29 @@
+"""
+Pattern to represent the Undo Offer notification
+https://coar-notify.net/specification/1.0.0/undo-offer/
+"""
 from coarnotify.core.notify import NotifyPattern, NestedPatternObjectMixin, SummaryMixin
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
-class UndoOffer(NestedPatternObjectMixin, NotifyPattern, SummaryMixin):
-    TYPE = ActivityStreamsTypes.UNDO
+__all__ = ["UndoOffer"]
 
-    def validate(self):
+class UndoOffer(NestedPatternObjectMixin, NotifyPattern, SummaryMixin):
+    """
+    Class to represent the Undo Offer notification
+    """
+    TYPE = ActivityStreamsTypes.UNDO
+    """Undo Offer type, the ActivityStreams Undo type"""
+
+    def validate(self) -> bool:
+        """
+        In addition to the base validation apply the following constraints:
+
+        * The ``inReplyTo`` property is required
+        * The ``inReplyTo`` value must match the ``object.id`` value
+
+        :return:
+        """
         ve = ValidationError()
         try:
             super(UndoOffer, self).validate()

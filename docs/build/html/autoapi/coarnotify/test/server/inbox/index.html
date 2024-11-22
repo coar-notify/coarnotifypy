@@ -36,12 +36,14 @@
             
   <section id="module-coarnotify.test.server.inbox">
 <span id="coarnotify-test-server-inbox"></span><h1>coarnotify.test.server.inbox<a class="headerlink" href="#module-coarnotify.test.server.inbox" title="Link to this heading">¶</a></h1>
+<p>Single file implementation of a test server, showing all the layers of the general
+solution in one place.</p>
 <section id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.inbox.app" title="coarnotify.test.server.inbox.app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">app</span></code></a></p></td>
-<td><p></p></td>
+<td><p>The global flask app for the test server</p></td>
 </tr>
 </tbody>
 </table>
@@ -51,7 +53,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl" title="coarnotify.test.server.inbox.COARNotifyServiceTestImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COARNotifyServiceTestImpl</span></code></a></p></td>
-<td><p>Interface for implementing a COAR Notify server binding.</p></td>
+<td><p>Test server implementation of the main service binding</p></td>
 </tr>
 </tbody>
 </table>
@@ -61,13 +63,13 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.inbox.create_app" title="coarnotify.test.server.inbox.create_app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_app</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Create the flask app, pulling config from <code class="docutils literal notranslate"><span class="pre">settings.py</span></code> then any supplied local config</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.server.inbox.inbox" title="coarnotify.test.server.inbox.inbox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inbox</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Main web entry point.  POST to /inbox to trigger it</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.inbox.run_server" title="coarnotify.test.server.inbox.run_server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_server</span></code></a>([host, port, fake_https])</p></td>
-<td><p></p></td>
+<td><p>Start the web server using the flask built in server</p></td>
 </tr>
 </tbody>
 </table>
@@ -78,20 +80,22 @@
 <dt class="sig sig-object py" id="coarnotify.test.server.inbox.COARNotifyServiceTestImpl">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.inbox.</span></span><span class="sig-name descname"><span class="pre">COARNotifyServiceTestImpl</span></span><a class="headerlink" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../server/index.html#coarnotify.server.COARNotifyServiceBinding" title="coarnotify.server.COARNotifyServiceBinding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.server.COARNotifyServiceBinding</span></code></a></p>
-<p>Interface for implementing a COAR Notify server binding.</p>
-<p>Server implementation should extend this class and implement the <a class="reference internal" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received" title="coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received"><code class="xref py py-meth docutils literal notranslate"><span class="pre">notification_received()</span></code></a> method</p>
-<p>That method will receive a <code class="xref py py-class docutils literal notranslate"><span class="pre">NotifyPattern</span></code> object, which will be one of the known types
-and should return a <code class="xref py py-class docutils literal notranslate"><span class="pre">COARNotifyReceipt</span></code> object with the appropriate status code and location URL</p>
+<p>Test server implementation of the main service binding</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received">
-<span class="sig-name descname"><span class="pre">notification_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notification</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received" title="Link to this definition">¶</a></dt>
-<dd><p>Process the receipt of the given notification, and respond with an appropriate receipt object</p>
+<span class="sig-name descname"><span class="pre">notification_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><span class="pre">coarnotify.core.notify.NotifyPattern</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../server/index.html#coarnotify.server.COARNotifyReceipt" title="coarnotify.server.COARNotifyReceipt"><span class="pre">coarnotify.server.COARNotifyReceipt</span></a></span></span><a class="headerlink" href="#coarnotify.test.server.inbox.COARNotifyServiceTestImpl.notification_received" title="Link to this definition">¶</a></dt>
+<dd><p>Process an incoming notification object in the following way:</p>
+<ol class="arabic simple">
+<li><p>Generate a name for the notification based on the timestamp and a random UUID</p></li>
+<li><p>Write the notification JSON-LD  to a file in the store directory</p></li>
+<li><p>Return a receipt for the notification using the configured response status and a location pointing to the file</p></li>
+</ol>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>notification</strong> – the notification object received</p>
+<dd class="field-odd"><p><strong>notification</strong></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the receipt object to send back to the client</p>
+<dd class="field-even"><p></p>
 </dd>
 </dl>
 </dd></dl>
@@ -101,23 +105,40 @@ and should return a <code class="xref py py-class docutils literal notranslate">
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.test.server.inbox.create_app">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.inbox.</span></span><span class="sig-name descname"><span class="pre">create_app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.server.inbox.create_app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Create the flask app, pulling config from <code class="docutils literal notranslate"><span class="pre">settings.py</span></code> then any supplied local config
+in environment variable <code class="docutils literal notranslate"><span class="pre">COARNOTIFY_SETTINGS</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.test.server.inbox.inbox">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.inbox.</span></span><span class="sig-name descname"><span class="pre">inbox</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.server.inbox.inbox" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Main web entry point.  POST to /inbox to trigger it</p>
+<p>This pulls the notification out of the request as JSON, and sends it to the server
+which will parse it and send it on to the service binding implementation</p>
+<p>When it gets the receipt it will return a blank HTTP response with the appropriate
+status code and Location header</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="coarnotify.test.server.inbox.run_server">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.inbox.</span></span><span class="sig-name descname"><span class="pre">run_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fake_https</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.test.server.inbox.run_server" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Start the web server using the flask built in server</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>host</strong></p></li>
 <li><p><strong>port</strong></p></li>
-<li><p><strong>fake_https</strong> – if fake_https is True, develop can use <a class="reference external" href="https://">https://</a> to access the server
-that can help for debugging Plausible</p></li>
+<li><p><strong>fake_https</strong> – if fake_https is True, developer can use <a class="reference external" href="https://">https://</a> to access the server</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -129,7 +150,8 @@ that can help for debugging Plausible</p></li>
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.inbox.app">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.inbox.</span></span><span class="sig-name descname"><span class="pre">app</span></span><a class="headerlink" href="#coarnotify.test.server.inbox.app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The global flask app for the test server</p>
+</dd></dl>
 
 </section>
 </section>
@@ -180,9 +202,6 @@ that can help for debugging Plausible</p></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../../index.html">coarnotify.test</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l6"><a class="reference internal" href="../../fixtures/index.html">coarnotify.test.fixtures</a></li>
-<li class="toctree-l6"><a class="reference internal" href="../../integration/index.html">coarnotify.test.integration</a></li>
-<li class="toctree-l6"><a class="reference internal" href="../../mocks/index.html">coarnotify.test.mocks</a></li>
 <li class="toctree-l6 current"><a class="reference internal" href="../index.html">coarnotify.test.server</a><ul class="current">
 <li class="toctree-l7 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l8 current"><a class="current reference internal" href="#">coarnotify.test.server.inbox</a><ul>
@@ -207,7 +226,6 @@ that can help for debugging Plausible</p></li>
 </li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="../../unit/index.html">coarnotify.test.unit</a></li>
 </ul>
 </li>
 </ul>

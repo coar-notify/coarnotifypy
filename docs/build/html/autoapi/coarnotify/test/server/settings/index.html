@@ -15,7 +15,7 @@
     <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="coarnotify.test.unit" href="../../unit/index.html" />
+    <link rel="next" title="coarnotify.validate" href="../../../validate/index.html" />
     <link rel="prev" title="coarnotify.test.server.inbox" href="../inbox/index.html" />
    
   <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
@@ -41,31 +41,31 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.DEBUG" title="coarnotify.test.server.settings.DEBUG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEBUG</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Put flask into debug mode for developer convenience</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.DEBUG_PYCHARM" title="coarnotify.test.server.settings.DEBUG_PYCHARM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEBUG_PYCHARM</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Put the app into PyCharm debug mode.  This turns off <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> and starts the PyCharm debugger.  You can set this here, or you can start the test server with the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.DEBUG_PYCHARM_PORT" title="coarnotify.test.server.settings.DEBUG_PYCHARM_PORT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEBUG_PYCHARM_PORT</span></code></a></p></td>
-<td><p></p></td>
+<td><p>The port to connect to for PyCharm debugging</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.DEBUG_PYCHARM_SERVER" title="coarnotify.test.server.settings.DEBUG_PYCHARM_SERVER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEBUG_PYCHARM_SERVER</span></code></a></p></td>
-<td><p></p></td>
+<td><p>The host to connect to for PyCharm debugging</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.HOST" title="coarnotify.test.server.settings.HOST"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HOST</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Host where the app will run</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.PORT" title="coarnotify.test.server.settings.PORT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PORT</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Port to start the app on</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.RESPONSE_STATUS" title="coarnotify.test.server.settings.RESPONSE_STATUS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESPONSE_STATUS</span></code></a></p></td>
-<td><p></p></td>
+<td><p>HTTP Response to provide to any incoming reqeusts.  201 and 202 are the specification compliant values</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.STORE_DIR" title="coarnotify.test.server.settings.STORE_DIR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STORE_DIR</span></code></a></p></td>
-<td><p></p></td>
+<td><p>The directory on the local machine to use to store incoming JSON files</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#coarnotify.test.server.settings.VALIDATE_INCOMING" title="coarnotify.test.server.settings.VALIDATE_INCOMING"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VALIDATE_INCOMING</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Should the server attempt to validate the incoming notifications</p></td>
 </tr>
 </tbody>
 </table>
@@ -75,47 +75,56 @@
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.DEBUG">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">DEBUG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#coarnotify.test.server.settings.DEBUG" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Put flask into debug mode for developer convenience</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.DEBUG_PYCHARM">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">DEBUG_PYCHARM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#coarnotify.test.server.settings.DEBUG_PYCHARM" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Put the app into PyCharm debug mode.  This turns off <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> and starts the PyCharm debugger.  You can set this here, or you can start the test server with the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.DEBUG_PYCHARM_PORT">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">DEBUG_PYCHARM_PORT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6000</span></em><a class="headerlink" href="#coarnotify.test.server.settings.DEBUG_PYCHARM_PORT" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The port to connect to for PyCharm debugging</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.DEBUG_PYCHARM_SERVER">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">DEBUG_PYCHARM_SERVER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'localhost'</span></em><a class="headerlink" href="#coarnotify.test.server.settings.DEBUG_PYCHARM_SERVER" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The host to connect to for PyCharm debugging</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.HOST">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">HOST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'localhost'</span></em><a class="headerlink" href="#coarnotify.test.server.settings.HOST" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Host where the app will run</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.PORT">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">PORT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5005</span></em><a class="headerlink" href="#coarnotify.test.server.settings.PORT" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Port to start the app on</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.RESPONSE_STATUS">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">RESPONSE_STATUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">201</span></em><a class="headerlink" href="#coarnotify.test.server.settings.RESPONSE_STATUS" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>HTTP Response to provide to any incoming reqeusts.  201 and 202 are the specification compliant values</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.STORE_DIR">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">STORE_DIR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/your/store/dir'</span></em><a class="headerlink" href="#coarnotify.test.server.settings.STORE_DIR" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The directory on the local machine to use to store incoming JSON files</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="coarnotify.test.server.settings.VALIDATE_INCOMING">
 <span class="sig-prename descclassname"><span class="pre">coarnotify.test.server.settings.</span></span><span class="sig-name descname"><span class="pre">VALIDATE_INCOMING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#coarnotify.test.server.settings.VALIDATE_INCOMING" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Should the server attempt to validate the incoming notifications</p>
+</dd></dl>
 
 </section>
 </section>
@@ -166,9 +175,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../../index.html">coarnotify.test</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="../../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l6"><a class="reference internal" href="../../fixtures/index.html">coarnotify.test.fixtures</a></li>
-<li class="toctree-l6"><a class="reference internal" href="../../integration/index.html">coarnotify.test.integration</a></li>
-<li class="toctree-l6"><a class="reference internal" href="../../mocks/index.html">coarnotify.test.mocks</a></li>
 <li class="toctree-l6 current"><a class="reference internal" href="../index.html">coarnotify.test.server</a><ul class="current">
 <li class="toctree-l7 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l8"><a class="reference internal" href="../inbox/index.html">coarnotify.test.server.inbox</a></li>
@@ -192,7 +198,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="../../unit/index.html">coarnotify.test.unit</a></li>
 </ul>
 </li>
 </ul>
@@ -215,7 +220,7 @@
   <li><a href="../../index.html">coarnotify.test</a><ul>
   <li><a href="../index.html">coarnotify.test.server</a><ul>
       <li>Previous: <a href="../inbox/index.html" title="previous chapter">coarnotify.test.server.inbox</a></li>
-      <li>Next: <a href="../../unit/index.html" title="next chapter">coarnotify.test.unit</a></li>
+      <li>Next: <a href="../../../validate/index.html" title="next chapter">coarnotify.validate</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

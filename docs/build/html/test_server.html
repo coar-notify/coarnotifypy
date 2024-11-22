@@ -85,6 +85,13 @@ the server response.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
 </pre></div>
 </div>
+<section id="pycharm-debugging">
+<h3>PyCharm Debugging<a class="headerlink" href="#pycharm-debugging" title="Link to this heading">¶</a></h3>
+<p>The test server can quickly be set up in debug mode for PyCharm by adding <code class="docutils literal notranslate"><span class="pre">-d</span></code> to the startup command</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">COARNOTIFY_SETTINGS=local.cfg; python coarnotify/test/server/inbox.py -d</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -122,7 +129,10 @@ the server response.</p>
 <li class="toctree-l1"><a class="reference internal" href="http_layer.html">Creating your own HTTP Layer</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Test Server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#configuring-the-test-server">Configuring the Test Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-and-using-the-test-server">Running and using the Test Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-and-using-the-test-server">Running and using the Test Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pycharm-debugging">PyCharm Debugging</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dev.html">Information for Developers</a></li>

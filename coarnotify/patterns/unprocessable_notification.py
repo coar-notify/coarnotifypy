@@ -1,11 +1,30 @@
+"""
+Pattern to represent the Unprocessable Notification notification
+https://coar-notify.net/specification/1.0.0/unprocessable/
+"""
+
 from coarnotify.core.notify import NotifyPattern, SummaryMixin, NotifyTypes
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
-class UnprocessableNotification(NotifyPattern, SummaryMixin):
-    TYPE = [ActivityStreamsTypes.FLAG, NotifyTypes.UNPROCESSABLE_NOTIFICATION]
+__all__ = ["UnprocessableNotification"]
 
-    def validate(self):
+class UnprocessableNotification(NotifyPattern, SummaryMixin):
+    """
+    Class to represent the Unprocessable Notification notification
+    """
+    TYPE = [ActivityStreamsTypes.FLAG, NotifyTypes.UNPROCESSABLE_NOTIFICATION]
+    """Unprocessable Notification types, including an ActivityStreams Flag and a COAR Notify Unprocessable Notification"""
+
+    def validate(self) -> bool:
+        """
+        In addition to the base validation apply the following constraints:
+
+        * The ``inReplyTo`` property is required
+        * The ``summary`` property is required
+
+        :return:
+        """
         ve = ValidationError()
         try:
             super(UnprocessableNotification, self).validate()

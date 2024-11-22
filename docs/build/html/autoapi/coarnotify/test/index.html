@@ -15,7 +15,7 @@
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="coarnotify.test.fixtures" href="fixtures/index.html" />
+    <link rel="next" title="coarnotify.test.server" href="server/index.html" />
     <link rel="prev" title="coarnotify.server" href="../server/index.html" />
    
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
@@ -36,15 +36,22 @@
             
   <section id="module-coarnotify.test">
 <span id="coarnotify-test"></span><h1>coarnotify.test<a class="headerlink" href="#module-coarnotify.test" title="Link to this heading">¶</a></h1>
+<p>This module contains all the test infrastructure.</p>
+<p>For the purposes of conciseness, the test code is mostly excluded from the auto-documentation.</p>
+<p>The test code is structured as follows:</p>
+<ul class="simple">
+<li><p><cite>fixtures</cite> contains test fixtures and factories for generating fixtures</p></li>
+<li><p><cite>integration</cite> contains integration tests for the library.  These depend on a running server, and there is a test server provided</p></li>
+<li><p><cite>mocks</cite> contains mock objects for testing</p></li>
+<li><p><cite>server</cite> contains the test server, and documentation for this is generated and available on the docsite</p></li>
+<li><p><cite>unit</cite> contains unit tests for the library</p></li>
+</ul>
+<p>For information on running the integration and unit tests, see <a class="reference internal" href="../../../dev.html"><span class="doc">Information for Developers</span></a>.</p>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fixtures/index.html">coarnotify.test.fixtures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integration/index.html">coarnotify.test.integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mocks/index.html">coarnotify.test.mocks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server/index.html">coarnotify.test.server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit/index.html">coarnotify.test.unit</a></li>
 </ul>
 </div>
 </section>
@@ -96,11 +103,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">coarnotify.test</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="fixtures/index.html">coarnotify.test.fixtures</a></li>
-<li class="toctree-l6"><a class="reference internal" href="integration/index.html">coarnotify.test.integration</a></li>
-<li class="toctree-l6"><a class="reference internal" href="mocks/index.html">coarnotify.test.mocks</a></li>
 <li class="toctree-l6"><a class="reference internal" href="server/index.html">coarnotify.test.server</a></li>
-<li class="toctree-l6"><a class="reference internal" href="unit/index.html">coarnotify.test.unit</a></li>
 </ul>
 </li>
 </ul>
@@ -121,7 +124,7 @@
   <li><a href="../../index.html">API Reference</a><ul>
   <li><a href="../index.html">coarnotify</a><ul>
       <li>Previous: <a href="../server/index.html" title="previous chapter">coarnotify.server</a></li>
-      <li>Next: <a href="fixtures/index.html" title="next chapter">coarnotify.test.fixtures</a></li>
+      <li>Next: <a href="server/index.html" title="next chapter">coarnotify.test.server</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

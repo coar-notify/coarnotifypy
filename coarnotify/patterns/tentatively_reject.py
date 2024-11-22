@@ -1,12 +1,29 @@
-
+"""
+Pattern for the Tentatively Reject notification
+https://coar-notify.net/specification/1.0.0/tentative-reject/
+"""
 from coarnotify.core.notify import NotifyPattern, SummaryMixin, NestedPatternObjectMixin
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
-class TentativelyReject(NestedPatternObjectMixin, NotifyPattern, SummaryMixin):
-    TYPE = ActivityStreamsTypes.TENTATIVE_REJECT
+__all__ = ["TentativelyReject"]
 
-    def validate(self):
+class TentativelyReject(NestedPatternObjectMixin, NotifyPattern, SummaryMixin):
+    """
+    Class to represent a Tentative Reject notification
+    """
+    TYPE = ActivityStreamsTypes.TENTATIVE_REJECT
+    """Tentative Reject type, the ActivityStreams Tentative Reject type"""
+
+    def validate(self) -> bool:
+        """
+        In addition to the base validation apply the following constraints:
+
+        * The ``inReplyTo`` property is required
+        * The ``inReplyTo`` value must match the ``object.id`` value
+
+        :return:
+        """
         ve = ValidationError()
         try:
             super(TentativelyReject, self).validate()

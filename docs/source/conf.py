@@ -26,7 +26,12 @@ autoapi_dirs = ['../../coarnotify']
 # omit 'private-members', 'special-members'
 autoapi_options = ['members', 'undoc-members', 'show-inheritance', 'show-module-summary', 'imported-members']
 autoapi_member_order = "groupwise"
-
+autoapi_ignore = [
+    "*/test/fixtures*",
+    "*/test/integration*",
+    "*/test/mocks*",
+    "*/test/unit*",
+]
 templates_path = ['_templates']
 exclude_patterns = []
 

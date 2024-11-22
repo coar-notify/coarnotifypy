@@ -3,6 +3,13 @@ coarnotify.test.server
 
 .. py:module:: coarnotify.test.server
 
+.. autoapi-nested-parse::
+
+   Test server implementation
+
+   For documentation on how to use this see :doc:`/test_server`.
+
+
 
 Submodules
 ----------
