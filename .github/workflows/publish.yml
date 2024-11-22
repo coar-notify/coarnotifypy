@@ -5,12 +5,35 @@ on:
     types: [created]
 
 jobs:
-  pypi-publish2:
-    name: Publish release to Real PyPI
+#  pypi-publish:
+#    name: Publish release to Real PyPI
+#    runs-on: ubuntu-latest
+#    environment:
+#      name: pypi
+#      url: https://pypi.org/p/coarnotify
+#    permissions:
+#      id-token: write
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Set up Python
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: "3.x"
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip
+#          pip install setuptools wheel
+#      - name: Build package
+#        run: python -m build
+#      - name: Publish package distributions to PyPI
+#        uses: pypa/gh-action-pypi-publish@release/v1
+
+  test-pypi-publish:
+    name: Publish release to Test PyPI
     runs-on: ubuntu-latest
     environment:
-      name: pypi
-      url: https://pypi.org/p/coarnotify
+      name: testpypi
+      url: https://test.pypi.org/p/coarnotify
     permissions:
       id-token: write
     steps:
