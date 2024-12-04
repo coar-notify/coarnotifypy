@@ -59,7 +59,7 @@ class COARNotifyServiceBinding:
     and should return a :py:class:`COARNotifyReceipt` object with the appropriate status code and location URL
     """
 
-    def notification_received(self, notification: NotifyPattern) -> COARNotifyReceipt:
+    def notification_received(self, notification: 'NotifyPattern') -> COARNotifyReceipt:
         """
         Process the receipt of the given notification, and respond with an appropriate receipt object
 
