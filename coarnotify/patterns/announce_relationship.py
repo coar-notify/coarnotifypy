@@ -30,6 +30,25 @@ class AnnounceRelationship(NotifyPattern):
                                 properties_by_reference=self._properties_by_reference)
         return None
 
+    def validate(self) -> bool:
+        """
+        Extends the base validation to make `context` required
+
+        :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+        """
+        ve = ValidationError()
+        try:
+            super(NotifyPattern, self).validate()
+        except ValidationError as superve:
+            ve = superve
+
+        self.required_and_validate(ve, Properties.CONTEXT, self.context)
+
+        if ve.has_errors():
+            raise ve
+
+        return True
+
 
 class AnnounceRelationshipObject(NotifyObject):
     """

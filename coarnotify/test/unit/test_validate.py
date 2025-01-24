@@ -89,15 +89,17 @@ class TestValidate(TestCase):
         assert Properties.TARGET in errors
         assert Properties.ORIGIN in errors
 
-        target = errors[Properties.TARGET]
-        assert len(target.get("errors")) == 0
-        assert target.get("nested") is not None
-        assert NotifyProperties.INBOX in target.get("nested")
+        # These are no longer causing validation errors, as the index field is not being checked
+        
+        # target = errors[Properties.TARGET]
+        # assert len(target.get("errors")) == 0
+        # assert target.get("nested") is not None
+        # assert NotifyProperties.INBOX in target.get("nested")
 
-        origin = errors[Properties.ORIGIN]
-        assert len(origin.get("errors")) == 0
-        assert origin.get("nested") is not None
-        assert NotifyProperties.INBOX in origin.get("nested")
+        # origin = errors[Properties.ORIGIN]
+        # assert len(origin.get("errors")) == 0
+        # assert origin.get("nested") is not None
+        # assert NotifyProperties.INBOX in origin.get("nested")
 
     def test_05_validation_modes(self):
         valid = NotifyFixtureFactory.source()

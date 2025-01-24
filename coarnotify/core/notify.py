@@ -606,6 +606,7 @@ class NotifyPatternPart(NotifyBase):
 
         self.set_property(Properties.TYPE, types)
 
+
 class NotifyService(NotifyPatternPart):
     """
     Default class to represent a service in the COAR Notify pattern.
@@ -625,27 +626,6 @@ class NotifyService(NotifyPatternPart):
     @inbox.setter
     def inbox(self, value: str):
         self.set_property(NotifyProperties.INBOX, value)
-
-    def validate(self) -> bool:
-        """
-        Validate the service.  This extends the base validation, and also applies the following additional constraints:
-
-        * The ``inbox`` property is required and must validate
-
-        :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
-        """
-        ve = ValidationError()
-        try:
-            super(NotifyService, self).validate()
-        except ValidationError as superve:
-            ve = superve
-
-        self.required_and_validate(ve, NotifyProperties.INBOX, self.inbox)
-
-        if ve.has_errors():
-            raise ve
-
-        return True
 
 
 class NotifyObject(NotifyPatternPart):
