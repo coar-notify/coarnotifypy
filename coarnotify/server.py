@@ -1,11 +1,15 @@
 """
 Supporting classes for COAR Notify server implementations
 """
-from typing import Union
 import json
+import typing
+from typing import Union
 
-from coarnotify.patterns import NotifyPattern
 from coarnotify.factory import COARNotifyFactory
+
+if typing.TYPE_CHECKING:
+    from coarnotify.core.notify import NotifyPattern
+
 
 class COARNotifyReceipt:
     """
@@ -24,7 +28,7 @@ class COARNotifyReceipt:
     ACCEPTED = 202
     """The status code for an accepted request"""
 
-    def __init__(self, status: int, location: str=None):
+    def __init__(self, status: int, location: str = None):
         """
         Construct a new COARNotifyReceipt object with the status code and location URL (optional)
 
@@ -55,7 +59,7 @@ class COARNotifyServiceBinding:
     and should return a :py:class:`COARNotifyReceipt` object with the appropriate status code and location URL
     """
 
-    def notification_received(self, notification: NotifyPattern) -> COARNotifyReceipt:
+    def notification_received(self, notification: 'NotifyPattern') -> COARNotifyReceipt:
         """
         Process the receipt of the given notification, and respond with an appropriate receipt object
 
@@ -76,6 +80,7 @@ class COARNotifyServerError(Exception):
     :param status: HTTP Status code to respond to the client with
     :param msg: Message to send back to the client
     """
+
     def __init__(self, status: int, msg: str):
         """
         Construct a new COARNotifyServerError with the given status code and message
@@ -119,6 +124,7 @@ class COARNotifyServer:
 
     :param service_impl: Your service implementation
     """
+
     def __init__(self, service_impl: COARNotifyServiceBinding):
         """
         Construct a new COARNotifyServer with the given service implementation
@@ -126,7 +132,7 @@ class COARNotifyServer:
         """
         self._service_impl = service_impl
 
-    def receive(self, raw: Union[dict, str], validate: bool=True) -> COARNotifyReceipt:
+    def receive(self, raw: Union[dict, str], validate: bool = True) -> COARNotifyReceipt:
         """
         Receive an incoming notification as JSON, parse and validate (optional) and then pass to the
         service implementation
