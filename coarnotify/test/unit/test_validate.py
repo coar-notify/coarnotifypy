@@ -36,6 +36,7 @@ from coarnotify.exceptions import ValidationError
 from coarnotify.core.activitystreams2 import Properties
 from coarnotify.core.notify import NotifyProperties
 from coarnotify import validate
+from coarnotify.validate import Validator
 
 
 class TestValidate(TestCase):
@@ -90,7 +91,7 @@ class TestValidate(TestCase):
         assert Properties.ORIGIN in errors
 
         # These are no longer causing validation errors, as the index field is not being checked
-        
+
         # target = errors[Properties.TARGET]
         # assert len(target.get("errors")) == 0
         # assert target.get("nested") is not None
@@ -462,3 +463,54 @@ class TestValidate(TestCase):
         isource = AnnounceServiceResultFixtureFactory.invalid()
         with self.assertRaises(ValidationError) as ve:
             a = AnnounceServiceResult(isource)
+
+    def test_22_add_rules(self):
+        rules = {
+            Properties.ID: {
+                "default": validate.absolute_uri,
+                "context": {
+                    Properties.CONTEXT: {
+                        "default": validate.url
+                    },
+                    Properties.ORIGIN: {
+                        "default": validate.url
+                    },
+                    Properties.TARGET: {
+                        "default": validate.url
+                    },
+                    NotifyProperties.ITEM: {
+                        "default": validate.url
+                    }
+                }
+            },
+            Properties.TYPE: {
+                "default": validate.type_checker,
+            }
+        }
+
+        v = Validator(rules)
+
+        update = {
+            Properties.ID: {
+                "default": validate.url
+            },
+            Properties.TYPE: {
+                "context": {
+                    Properties.CONTEXT: {
+                        "default": validate.url
+                    }
+                }
+            },
+            Properties.ACTOR : {
+                "default": validate.url
+            }
+        }
+
+        v.add_rules(update)
+
+        rules = v.rules()
+        assert rules[Properties.ID]["default"] == validate.url
+        assert rules[Properties.ID]["context"][Properties.CONTEXT]["default"] == validate.url
+        assert rules[Properties.TYPE]["default"] == validate.type_checker
+        assert rules[Properties.TYPE]["context"][Properties.CONTEXT]["default"] == validate.url
+        assert rules[Properties.ACTOR]["default"] == validate.url

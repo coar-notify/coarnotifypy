@@ -112,3 +112,9 @@ class COARNotifyFactory:
         inst = klazz(data, *args, **kwargs)
         return inst
 
+    @classmethod
+    def register(cls, model: NotifyPattern):
+        existing = cls.get_by_types(model.TYPE)
+        if existing is not None:
+            cls.MODELS.remove(existing)
+        cls.MODELS.append(model)

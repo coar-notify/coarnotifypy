@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+from coarnotify.core.notify import NotifyPattern
 from coarnotify.patterns import (
     Accept,
     AnnounceEndorsement,
@@ -152,3 +153,13 @@ class TestFactory(TestCase):
         assert isinstance(ar, UndoOffer)
 
         assert ar.id == source["id"]
+
+    def test_15_register(self):
+        class TestPattern(NotifyPattern):
+            TYPE = Accept.TYPE
+
+        COARNotifyFactory.register(TestPattern)
+
+        tp = COARNotifyFactory.get_by_types(Accept.TYPE)
+        assert tp == TestPattern
+

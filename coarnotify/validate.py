@@ -94,6 +94,20 @@ class Validator:
         """The ruleset for this validator"""
         return self._rules
 
+    def add_rules(self, rules):
+        existing = self.rules()
+
+        def merge_dicts_recursive(dict1, dict2):
+            merged = dict1.copy()  # Start with a copy of dict1
+            for key, value in dict2.items():
+                if key in merged and isinstance(merged[key], dict) and isinstance(value, dict):
+                    merged[key] = merge_dicts_recursive(merged[key], value)
+                else:
+                    merged[key] = value
+            return merged
+
+        self._rules = merge_dicts_recursive(existing, rules)
+
 
 #############################################
 ## URI validator
