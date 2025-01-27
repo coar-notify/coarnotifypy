@@ -531,20 +531,6 @@ and in the validation configuration.</p>
 <p>Default class to represent a service in the COAR Notify pattern.</p>
 <p>Services are used to represent <code class="docutils literal notranslate"><span class="pre">origin</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code> properties in the notification patterns</p>
 <p>Specific patterns may need to extend this class to provide their specific behaviours and validation</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyService.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyService.validate" title="Link to this definition">¶</a></dt>
-<dd><p>Validate the service.  This extends the base validation, and also applies the following additional constraints:</p>
-<ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">inbox</span></code> property is required and must validate</p></li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if valid, otherwise raises <a class="reference internal" href="../../exceptions/index.html#coarnotify.exceptions.ValidationError" title="coarnotify.exceptions.ValidationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">coarnotify.exceptions.ValidationError</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.core.notify.NotifyService.DEFAULT_TYPE">
 <span class="sig-name descname"><span class="pre">DEFAULT_TYPE</span></span><a class="headerlink" href="#coarnotify.core.notify.NotifyService.DEFAULT_TYPE" title="Link to this definition">¶</a></dt>
@@ -732,7 +718,6 @@ and in the validation configuration.</p>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyService"><code class="docutils literal notranslate"><span class="pre">NotifyService</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.validate"><code class="docutils literal notranslate"><span class="pre">NotifyService.validate()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.DEFAULT_TYPE"><code class="docutils literal notranslate"><span class="pre">NotifyService.DEFAULT_TYPE</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyService.inbox"><code class="docutils literal notranslate"><span class="pre">NotifyService.inbox</span></code></a></li>
 </ul>

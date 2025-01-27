@@ -89,6 +89,9 @@ Module Contents
    :param rules: The rules to use for validation
 
 
+   .. py:method:: add_rules(rules)
+
+
    .. py:method:: get(property: Union[str, Tuple[str, str]], context: Union[str, Tuple[str, str]] = None) -> Callable
 
       Get the validation function for the given property in the given context

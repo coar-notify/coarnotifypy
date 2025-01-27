@@ -32,6 +32,14 @@ Module Contents
    Class to represent Announce Review pattern
 
 
+   .. py:method:: validate() -> bool
+
+      Extends the base validation to make `context` required
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
+
+
    .. py:attribute:: TYPE
 
       Announce Review type, including Acitivity Streams Announce and Notify Review Action 

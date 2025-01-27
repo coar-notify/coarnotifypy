@@ -80,7 +80,7 @@ Integration tests are located in ``coarnotify/test/integration`` and can be run 
 Making a release
 ----------------
 
-1. Update the version number in ``setup.py`` and ``coarnotify/__init__.py``
+1. Update the version number in ``setup.py`` and ``coarnotify/__init__.py``, and update references in ``README.md`` to the appropriate specification version if needed
 
 2. Make the release in github, with the version number as the tag
 

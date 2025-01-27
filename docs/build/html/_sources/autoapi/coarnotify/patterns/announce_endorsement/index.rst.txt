@@ -31,6 +31,14 @@ Module Contents
    Class to represent an Announce Endorsement pattern
 
 
+   .. py:method:: validate() -> bool
+
+      Extends the base validation to make `context` required
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
+
+
    .. py:attribute:: TYPE
 
       Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action

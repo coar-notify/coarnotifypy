@@ -62,6 +62,11 @@ Module Contents
 
 
 
+   .. py:method:: register(model: coarnotify.core.notify.NotifyPattern)
+      :classmethod:
+
+
+
    .. py:attribute:: MODELS
 
       The list of model classes recognised by this factory

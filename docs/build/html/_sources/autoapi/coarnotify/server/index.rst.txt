@@ -147,7 +147,7 @@ Module Contents
    and should return a :py:class:`COARNotifyReceipt` object with the appropriate status code and location URL
 
 
-   .. py:method:: notification_received(notification: coarnotify.patterns.NotifyPattern) -> COARNotifyReceipt
+   .. py:method:: notification_received(notification: coarnotify.core.notify.NotifyPattern) -> COARNotifyReceipt
       :abstractmethod:
 
 

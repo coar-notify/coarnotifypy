@@ -488,16 +488,6 @@ Module Contents
    Specific patterns may need to extend this class to provide their specific behaviours and validation
 
 
-   .. py:method:: validate() -> bool
-
-      Validate the service.  This extends the base validation, and also applies the following additional constraints:
-
-      * The ``inbox`` property is required and must validate
-
-      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
-
-
-
    .. py:attribute:: DEFAULT_TYPE
 
       The default type for a service is ``Service``, but the type can be set to any value

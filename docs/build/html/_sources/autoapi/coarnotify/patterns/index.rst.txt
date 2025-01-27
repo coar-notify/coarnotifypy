@@ -88,6 +88,14 @@ Package Contents
    Class to represent an Announce Endorsement pattern
 
 
+   .. py:method:: validate() -> bool
+
+      Extends the base validation to make `context` required
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
+
+
    .. py:attribute:: TYPE
 
       Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action
@@ -112,6 +120,14 @@ Package Contents
    Class to represent an Announce Relationship notification
 
 
+   .. py:method:: validate() -> bool
+
+      Extends the base validation to make `context` required
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
+
+
    .. py:attribute:: TYPE
 
       Announce Relationship types, including an ActivityStreams announce and a COAR Notify Relationship Action
@@ -132,6 +148,14 @@ Package Contents
 
 
    Class to represent Announce Review pattern
+
+
+   .. py:method:: validate() -> bool
+
+      Extends the base validation to make `context` required
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
 
 
    .. py:attribute:: TYPE
@@ -166,6 +190,14 @@ Package Contents
 
 
    Class to represent the Announce Service Result Pattern
+
+
+   .. py:method:: validate() -> bool
+
+      Extends the base validation to make `context` required
+
+      :return: ``True`` if valid, otherwise raises :py:class:`coarnotify.exceptions.ValidationError`
+
 
 
    .. py:attribute:: TYPE
