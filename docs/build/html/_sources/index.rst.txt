@@ -3,11 +3,13 @@ coarnotify documentation
 
 The protocol: https://coar-notify.net/
 
+Specification version: 1.0.1 https://coar-notify.net/specification/1.0.1/
+
 The code: https://github.com/CottageLabs/coarnotifypy
 
 The COAR Notify Protocol is a set of profiles, constraints and conventions around the use of W3C Linked Data Notifications (LDN) to integrate repository systems with relevant services in a distributed, resilient and web-native architecture.
 
-This library provides a Python implementation of the COAR Notify Protocol version 1.0.0 (https://coar-notify.net/specification/1.0.0/),
+This library provides a Python implementation of the COAR Notify Protocol version 1.0.1 (https://coar-notify.net/specification/1.0.1/),
 which covers the following aspects of the protocol:
 
 * A set of model objects which can be used to represent the core Patterns

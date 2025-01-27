@@ -100,7 +100,8 @@
 <section id="making-a-release">
 <h2>Making a release<a class="headerlink" href="#making-a-release" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
-<li><p>Update the version number in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">coarnotify/__init__.py</span></code>, and update references in <code class="docutils literal notranslate"><span class="pre">README.md</span></code> to the appropriate specification version if needed</p></li>
+<li><p>Update the version number in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and <code class="docutils literal notranslate"><span class="pre">coarnotify/__init__.py</span></code></p></li>
+<li><p>Update references in <code class="docutils literal notranslate"><span class="pre">README.md</span></code> and <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> to the appropriate specification version if needed</p></li>
 <li><p>Make the release in github, with the version number as the tag</p></li>
 <li><p>Build the package locally:</p></li>
 </ol>
@@ -109,13 +110,13 @@
 <span class="go">twine check dist/*</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
+<ol class="arabic simple" start="5">
 <li><p>Test upload the package to TestPypi (you will need an account on <a class="reference external" href="https://test.pypi.org">https://test.pypi.org</a> and to set up an API token):</p></li>
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">twine upload -r testpypi dist/*</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="5">
+<ol class="arabic simple" start="6">
 <li><p>Do the release to the real Pypi:</p></li>
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">twine upload dist/*</span>
