@@ -14,7 +14,7 @@ Checkout the library from github:
 
 .. code-block:: console
 
-    git clone https://github.com/CottageLabs/coarnotifypy.git
+    git clone https://github.com/coar-notify/coarnotifypy.git
     cd coarnotifypy
     pip install .
 
