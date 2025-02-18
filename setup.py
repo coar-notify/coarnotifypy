@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="coarnotify",
-    version="1.0.1.2",  # Version 2 of the library for the 1.0.1 spec
+    version="1.0.1.3",  # Version 3 of the library for the 1.0.1 spec
     packages=find_packages(),
     install_requires=[
         "requests"

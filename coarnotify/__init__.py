@@ -14,4 +14,4 @@ integration tests which can be run against a remote inbox, and a
 stand-alone inbox you can use for local testing.
 """
 
-__version__ = "1.0.1.2"
+__version__ = "1.0.1.3"
