@@ -1,30 +1,30 @@
-"""
-Pattern to represent an Accept notification
+"""Pattern to represent an Accept notification.
+
 https://coar-notify.net/specification/1.0.0/accept/
 """
+
 from coarnotify.core.notify import NotifyPattern, NestedPatternObjectMixin
 from coarnotify.core.activitystreams2 import ActivityStreamsTypes, Properties
 from coarnotify.exceptions import ValidationError
 
 __all__ = ["Accept"]
 
+
 class Accept(NestedPatternObjectMixin, NotifyPattern):
-    """
-    Class to represent an Accept notification
-    """
+    """Class to represent an Accept notification."""
+
     TYPE = ActivityStreamsTypes.ACCEPT
-    """ The Accept type """
+    """The Accept type."""
 
     def validate(self) -> bool:
-        """
-        Validate the Accept pattern.
+        """Validate the Accept pattern.
 
         In addition to the base validation, this:
 
         * Makes ``inReplyTo`` required
         * Requires the ``inReplyTo`` value to be the same as the ``object.id`` value
 
-        :return: ``True`` if valid, otherwise raises a :py:class:`coarnotify.exceptions.ValidationError`
+        :return:``True`` if valid, otherwise raises a :py:class:`coarnotify.exceptions.ValidationError`
         """
         ve = ValidationError()
         try:
@@ -38,8 +38,14 @@ class Accept(NestedPatternObjectMixin, NotifyPattern):
 
         objid = self.object.id if self.object else None
         if self.in_reply_to != objid:
-            ve.add_error(Properties.IN_REPLY_TO,
-                         f"Expected inReplyTo id to be the same as the nested object id. inReplyTo: {self.in_reply_to}, object.id: {objid}")
+            error_msg = (
+                f"Expected inReplyTo id to be the same as the nested object id. "
+                f"inReplyTo: {self.in_reply_to}, object.id: {objid}"
+            )
+            ve.add_error(
+                Properties.IN_REPLY_TO,
+                error_msg,
+            )
 
         if ve.has_errors():
             raise ve

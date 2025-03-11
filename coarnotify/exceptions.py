@@ -1,17 +1,14 @@
-"""
-Module for custom exceptions
-"""
+"""Module for custom exceptions."""
+
 
 class NotifyException(Exception):
-    """
-    Base class for all exceptions in the coarnotifypy library
-    """
+    """Base class for all exceptions in the coarnotifypy library."""
+
     pass
 
 
 class ValidationError(NotifyException):
-    """
-    Exception class for validation errors.
+    """Exception class for validation errors.
 
     :param errors: a dictionary of errors to construct the exception around.  See below for the details
         of its structure
@@ -70,23 +67,22 @@ class ValidationError(NotifyException):
                 }
             }
         }
-
     """
-    def __init__(self, errors: dict=None):
+
+    def __init__(self, errors: dict = None):
         super().__init__()
         self._errors = errors if errors is not None else {}
 
     @property
     def errors(self) -> dict:
-        """The dictionary of errors"""
+        """The dictionary of errors."""
         return self._errors
 
     def add_error(self, key: str, value: str):
-        """
-        Record an error on the supplied ``key`` with the message ``value``
+        """Record an error on the supplied ``key`` with the message ``value``
 
         :param key: the key for which an error is to be recorded
-        :param value:   the error message
+        :param value: the error message
         :return:
         """
         if key not in self._errors:
@@ -94,8 +90,7 @@ class ValidationError(NotifyException):
         self._errors[key]["errors"].append(value)
 
     def add_nested_errors(self, key: str, subve: "ValidationError"):
-        """
-        Take an existing ValidationError and add it as a nested set of errors under the supplied key
+        """Take an existing ValidationError and add it as a nested set of errors under the supplied key.
 
         :param key: the key under which all the nested validation errors should go
         :param subve: the existing ValidationError object
@@ -110,8 +105,9 @@ class ValidationError(NotifyException):
             self._errors[key]["nested"][k] = v
 
     def has_errors(self) -> bool:
-        """Are there any errors registered"""
+        """Are there any errors registered."""
         return len(self._errors) > 0
 
     def __str__(self):
+        """Return a string representation of the errors."""
         return str(self._errors)

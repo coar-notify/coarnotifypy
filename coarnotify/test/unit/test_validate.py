@@ -1,3 +1,5 @@
+"""Test the validation functions for the various patterns."""
+
 from unittest import TestCase
 
 from coarnotify.core.notify import NotifyPattern, NotifyService, NotifyObject
@@ -13,7 +15,7 @@ from coarnotify.patterns import (
     TentativelyReject,
     UnprocessableNotification,
     UndoOffer,
-    Reject
+    Reject,
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -29,7 +31,7 @@ from coarnotify.test.fixtures import (
     TentativelyRejectFixtureFactory,
     UnprocessableNotificationFixtureFactory,
     UndoOfferFixtureFactory,
-    RejectFixtureFactory
+    RejectFixtureFactory,
 )
 
 from coarnotify.exceptions import ValidationError
@@ -40,9 +42,12 @@ from coarnotify.validate import Validator
 
 
 class TestValidate(TestCase):
+    """Test the validation functions for the various patterns."""
+
     def test_01_structural_empty(self):
+        """Test the basic structure of the notification pattern."""
         n = NotifyPattern()
-        n.id = None     # these are automatically set, so remove them to trigger validation
+        n.id = None  # these are automatically set, so remove them to trigger validation
         n.type = None
         with self.assertRaises(ValidationError) as ve:
             n.validate()
@@ -55,6 +60,7 @@ class TestValidate(TestCase):
         assert Properties.ORIGIN in errors
 
     def test_02_structural_basic(self):
+        """Test the basic structure of the notification pattern."""
         n = NotifyPattern()
         with self.assertRaises(ValidationError) as ve:
             n.validate()
@@ -67,6 +73,7 @@ class TestValidate(TestCase):
         assert Properties.ORIGIN in errors
 
     def test_03_structural_valid_document(self):
+        """Test the basic structure of the notification pattern."""
         n = NotifyPattern()
         n.target = NotifyFixtureFactory.target()
         n.origin = NotifyFixtureFactory.origin()
@@ -75,6 +82,7 @@ class TestValidate(TestCase):
         assert n.validate() is True
 
     def test_04_structural_invalid_nested(self):
+        """Test the basic structure of the notification pattern."""
         n = NotifyPattern()
         n.target = NotifyService({"whatever": "value"}, validate_stream_on_construct=False)
         n.origin = NotifyService({"another": "junk"}, validate_stream_on_construct=False)
@@ -86,7 +94,9 @@ class TestValidate(TestCase):
         errors = ve.exception.errors
         assert Properties.ID not in errors
         assert Properties.TYPE not in errors
-        assert Properties.OBJECT not in errors  # the object is present, and will acquire an id, so will not be in the errors
+        assert (
+            Properties.OBJECT not in errors
+        )  # the object is present, and will acquire an id, so will not be in the errors
         assert Properties.TARGET in errors
         assert Properties.ORIGIN in errors
 
@@ -103,6 +113,7 @@ class TestValidate(TestCase):
         # assert NotifyProperties.INBOX in origin.get("nested")
 
     def test_05_validation_modes(self):
+        """Test the various validation modes."""
         valid = NotifyFixtureFactory.source()
         n = NotifyPattern(stream=valid, validate_stream_on_construct=True)
 
@@ -121,13 +132,14 @@ class TestValidate(TestCase):
 
         n = NotifyPattern(validate_properties=False)
         n.id = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"  # valid
-        n.id = "http://example.com/^path"   # invalid
+        n.id = "http://example.com/^path"  # invalid
 
         with self.assertRaises(ValidationError) as ve:
             n.validate()
         assert ve.exception.errors.get(Properties.ID) is not None
 
     def test_06_validate_id_property(self):
+        """Test the validation of the ID property."""
         n = NotifyPattern()
         # test the various ways it can fail:
         with self.assertRaises(ValueError) as ve:
@@ -168,11 +180,10 @@ class TestValidate(TestCase):
         n.id = "https://generic-service.com/system/inbox/"
 
     def test_07_validate_url(self):
+        """Test the validation of the URL property."""
         urls = URIFixtureFactory.generate(schemes=["http", "https"])
-        # print(urls)
 
         for url in urls:
-            # print(url)
             assert validate.url(None, url) is True
 
         with self.assertRaises(ValueError):
@@ -185,6 +196,7 @@ class TestValidate(TestCase):
             validate.url(None, "http://example.com/path^wrong")
 
     def test_08_one_of(self):
+        """Test the one_of validation function."""
         values = ["a", "b", "c"]
         validator = validate.one_of(values)
         assert validator(None, "a") is True
@@ -199,6 +211,7 @@ class TestValidate(TestCase):
             validator(None, ["a", "b"])
 
     def test_09_contains(self):
+        """Test the contains validation function."""
         validator = validate.contains("a")
         assert validator(None, ["a", "b", "c"]) is True
 
@@ -206,6 +219,7 @@ class TestValidate(TestCase):
             validator(None, ["b", "c", "d"])
 
     def test_10_at_least_one_of(self):
+        """Test the at_least_one_of validation function."""
         values = ["a", "b", "c"]
         validator = validate.at_least_one_of(values)
         assert validator(None, "a") is True
@@ -219,7 +233,7 @@ class TestValidate(TestCase):
         assert validator(None, ["a", "d"]) is True
 
     ########################################
-    ## validation methods for specific patterns
+    # validation methods for specific patterns
 
     def _base_validate(self, a):
         # now try to apply invalid values to it
@@ -271,6 +285,7 @@ class TestValidate(TestCase):
             a.context.cite_as = "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0"
 
     def test_11_accept_validate(self):
+        """Test the validation of the Accept pattern."""
         # make a valid one
         source = AcceptFixtureFactory.source()
         a = Accept(source)
@@ -279,10 +294,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = AcceptFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = Accept(isource)
 
     def test_12_announce_endorsement_validate(self):
+        """Test the validation of the AnnounceEndorsement pattern."""
         # make a valid one
         source = AnnounceEndorsementFixtureFactory.source()
         a = AnnounceEndorsement(source)
@@ -299,10 +315,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = AnnounceEndorsementFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = AnnounceEndorsement(isource)
 
     def test_13_tentative_accept_validate(self):
+        """Test the validation of the TentativelyAccept pattern."""
         # make a valid one
         source = TentativelyAcceptFixtureFactory.source()
         a = TentativelyAccept(source)
@@ -314,10 +331,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = TentativelyAcceptFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = TentativelyAccept(isource)
 
     def test_14_tentative_reject_validate(self):
+        """Test the validation of the TentativelyReject pattern."""
         # make a valid one
         source = TentativelyRejectFixtureFactory.source()
         a = TentativelyReject(source)
@@ -329,10 +347,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = TentativelyRejectFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = TentativelyReject(isource)
 
     def test_15_unprocessable_notification_validate(self):
+        """Test the validation of the UnprocessableNotification pattern."""
         # make a valid one
         source = UnprocessableNotificationFixtureFactory.source()
         a = UnprocessableNotification(source)
@@ -343,10 +362,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = UnprocessableNotificationFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = UnprocessableNotification(isource)
 
     def test_16_undo_offer_validate(self):
+        """Test the validation of the UndoOffer pattern."""
         # make a valid one
         source = UndoOfferFixtureFactory.source()
         a = UndoOffer(source)
@@ -357,11 +377,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = UndoOfferFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = UnprocessableNotification(isource)
 
-
     def test_17_announce_review_validate(self):
+        """Test the validation of the AnnounceReview pattern."""
         # make a valid one
         source = AnnounceReviewFixtureFactory.source()
         a = AnnounceReview(source)
@@ -377,10 +397,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = AnnounceReviewFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = AnnounceReview(isource)
 
     def test_18_request_endorsement_validate(self):
+        """Test the validation of the RequestEndorsement pattern."""
         # make a valid one
         source = RequestEndorsementFixtureFactory.source()
         a = RequestEndorsement(source)
@@ -395,10 +416,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = RequestEndorsementFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = RequestEndorsement(isource)
 
     def test_19_request_review_validate(self):
+        """Test the validation of the RequestReview pattern."""
         # make a valid one
         source = RequestReviewFixtureFactory.source()
         a = RequestReview(source)
@@ -413,10 +435,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = RequestReviewFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = RequestReview(isource)
 
     def test_20_reject_validate(self):
+        """Test the validation of the Reject pattern."""
         # make a valid one
         source = RejectFixtureFactory.source()
         a = Reject(source)
@@ -427,10 +450,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = RejectFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = Reject(isource)
 
     def test_21_announce_relationship_validate(self):
+        """Test the validation of the AnnounceRelationship pattern."""
         # make a valid one
         source = AnnounceRelationshipFixtureFactory.source()
         a = AnnounceRelationship(source)
@@ -446,10 +470,11 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = AnnounceRelationshipFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = AnnounceRelationship(isource)
 
     def test_21_announce_service_result_validate(self):
+        """Test the validation of the AnnounceServiceResult pattern."""
         # make a valid one
         source = AnnounceServiceResultFixtureFactory.source()
         a = AnnounceServiceResult(source)
@@ -461,49 +486,32 @@ class TestValidate(TestCase):
 
         # now make one with fully invalid data
         isource = AnnounceServiceResultFixtureFactory.invalid()
-        with self.assertRaises(ValidationError) as ve:
+        with self.assertRaises(ValidationError):
             a = AnnounceServiceResult(isource)
 
     def test_22_add_rules(self):
+        """Test the addition of rules to the validator."""
         rules = {
             Properties.ID: {
                 "default": validate.absolute_uri,
                 "context": {
-                    Properties.CONTEXT: {
-                        "default": validate.url
-                    },
-                    Properties.ORIGIN: {
-                        "default": validate.url
-                    },
-                    Properties.TARGET: {
-                        "default": validate.url
-                    },
-                    NotifyProperties.ITEM: {
-                        "default": validate.url
-                    }
-                }
+                    Properties.CONTEXT: {"default": validate.url},
+                    Properties.ORIGIN: {"default": validate.url},
+                    Properties.TARGET: {"default": validate.url},
+                    NotifyProperties.ITEM: {"default": validate.url},
+                },
             },
             Properties.TYPE: {
                 "default": validate.type_checker,
-            }
+            },
         }
 
         v = Validator(rules)
 
         update = {
-            Properties.ID: {
-                "default": validate.url
-            },
-            Properties.TYPE: {
-                "context": {
-                    Properties.CONTEXT: {
-                        "default": validate.url
-                    }
-                }
-            },
-            Properties.ACTOR : {
-                "default": validate.url
-            }
+            Properties.ID: {"default": validate.url},
+            Properties.TYPE: {"context": {Properties.CONTEXT: {"default": validate.url}}},
+            Properties.ACTOR: {"default": validate.url},
         }
 
         v.add_rules(update)

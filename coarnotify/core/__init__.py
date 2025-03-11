@@ -1,3 +1,1 @@
-"""
-This module contains the central objects that form the basis for the COAR notify patterns
-"""
+"""This module contains the central objects that form the basis for the COAR notify patterns."""

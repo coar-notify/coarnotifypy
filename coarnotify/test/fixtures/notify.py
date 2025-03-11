@@ -1,55 +1,53 @@
+"""Notify Fixture Factory."""
+
 from copy import deepcopy
 from coarnotify.core.notify import NotifyObject, NotifyService
 
 
 class NotifyFixtureFactory:
+    """Notify Fixture Factory."""
+
     @classmethod
     def source(cls):
+        """Return a copy of the source."""
         return deepcopy(BASE_NOTIFY)
 
     @classmethod
     def target(cls):
+        """Return a copy of the target."""
         return NotifyService(deepcopy(BASE_NOTIFY["target"]))
 
     @classmethod
     def origin(cls):
+        """Return a copy of the origin."""
         return NotifyService(deepcopy(BASE_NOTIFY["origin"]))
 
     @classmethod
     def object(cls):
+        """Return a copy of the object."""
         return NotifyObject(deepcopy(BASE_NOTIFY["object"]))
 
 
 BASE_NOTIFY = {
-    "@context": [
-        "https://www.w3.org/ns/activitystreams",
-        "https://purl.org/coar/notify"
-    ],
+    "@context": ["https://www.w3.org/ns/activitystreams", "https://purl.org/coar/notify"],
     "id": "urn:uuid:94ecae35-dcfd-4182-8550-22c7164fe23f",
     "type": "Object",
     "origin": {
         "id": "https://overlay-journal.com/system",
         "inbox": "https://overlay-journal.com/inbox/",
-        "type": "Service"
+        "type": "Service",
     },
     "object": {
         "id": "https://overlay-journal.com/articles/00001/",
         "ietf:cite-as": "https://overlay-journal.com/articles/00001/",
-        "type": [
-            "Page",
-            "sorg:WebPage"
-        ]
+        "type": ["Page", "sorg:WebPage"],
     },
     "target": {
         "id": "https://research-organisation.org/repository",
         "inbox": "https://research-organisation.org/inbox/",
-        "type": "Service"
+        "type": "Service",
     },
-    "actor": {
-        "id": "https://overlay-journal.com",
-        "name": "Overlay Journal",
-        "type": "Service"
-    },
+    "actor": {"id": "https://overlay-journal.com", "name": "Overlay Journal", "type": "Service"},
     "inReplyTo": "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd",
     "context": {
         "id": "https://research-organisation.org/repository/preprint/201203/421/",
@@ -57,11 +55,8 @@ BASE_NOTIFY = {
         "ietf:item": {
             "id": "https://research-organisation.org/repository/preprint/201203/421/content.pdf",
             "mediaType": "application/pdf",
-            "type": [
-                "Article",
-                "sorg:ScholarlyArticle"
-            ]
+            "type": ["Article", "sorg:ScholarlyArticle"],
         },
-        "type": "sorg:AboutPage"
-    }
+        "type": "sorg:AboutPage",
+    },
 }
