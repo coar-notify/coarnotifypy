@@ -1,7 +1,7 @@
-"""
-This module provides a set of validation functions that can be used to validate properties on objects.
-It also contains a ``Validator`` class which is used to wrap the protocol-wide validation rules which
-are shared across all objects.
+"""This module provides a set of validation functions that can be used to validate properties on objects.
+
+It also contains a ``Validator`` class which is used to wrap the protocol-wide validation rules which are shared across
+all objects.
 """
 
 from urllib.parse import urlparse
@@ -13,32 +13,24 @@ __all__ = ('Validator', 'absolute_uri', 'url', 'one_of', 'at_least_one_of', 'con
 
 REQUIRED_MESSAGE = "`{x}` is a required field"
 
+
 class Validator:
-    """
-    A wrapper around a set of validation rules which can be used to select the appropriate validator
-    in a given context.
+    """A wrapper around a set of validation rules which can be used to select the appropriate validator in a given
+    context.
 
     The validation rules are structured as follows:
 
     .. code-block:: python
 
-        {
-            "<property>": {
-                "default": default_validator_function
-                "context": {
-                    "<context>": {
-                        "default": default_validator_function
-                    }
-                }
-            }
-        }
+    {     "<property>": {         "default": default_validator_function         "context": {             "<context>": {
+    "default": default_validator_function             }         }     } }
 
     Here the ``<property>`` key is the name of the property being validated, which may be a string (the property name)
     or a ``tuple`` of strings (the property name and the namespace for the property name).
 
     If a ``context`` is provided, then if the top level property is being validated, and it appears inside a field
-    present in the ``context`` then the ``default`` validator at the top level is overridden by the ``default`` validator
-    in the ``context``.
+    present in the ``context`` then the ``default`` validator at the top level is overridden by the ``default``
+    validator in the ``context``.
 
     For example, consider the following rules:
 
@@ -58,25 +50,24 @@ class Validator:
             }
         }
 
-    This tells us that the ``TYPE`` property should be validated with ``validate.type_checker`` by default.  But if
-    we are looking at that ``TYPE`` property inside an ``ACTOR`` object, then instead we should use ``validate.one_of``.
+    This tells us that the ``TYPE`` property should be validated with ``validate.type_checker`` by default.  But if we
+    are looking at that ``TYPE`` property inside an ``ACTOR`` object, then instead we should use ``validate.one_of``.
 
     When the :py:meth:`get` method is called, the ``context`` parameter can be used to specify the context in which the
     property is being validated.
 
     :param rules: The rules to use for validation
     """
+
     def __init__(self, rules: dict):
-        """
-        Create a new validator with the given rules
+        """Create a new validator with the given rules.
 
         :param rules: The rules to use for validation
         """
         self._rules = rules
 
-    def get(self, property: Union[str, Tuple[str, str]], context: Union[str, Tuple[str, str]]=None) -> Callable:
-        """
-        Get the validation function for the given property in the given context
+    def get(self, property: Union[str, Tuple[str, str]], context: Union[str, Tuple[str, str]] = None) -> Callable:
+        """Get the validation function for the given property in the given context.
 
         :param property: the property to get the validation function for
         :param context: the context in which the property is being validated
@@ -91,7 +82,7 @@ class Validator:
         return default
 
     def rules(self):
-        """The ruleset for this validator"""
+        """The ruleset for this validator."""
         return self._rules
 
     def add_rules(self, rules):
@@ -110,20 +101,23 @@ class Validator:
 
 
 #############################################
-## URI validator
+# URI validator
 
 URI_RE = r'^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'
 SCHEME = re.compile(r'^[a-zA-Z][a-zA-Z0-9+\-.]*$')
-IPv6 = re.compile(r"(?:^|(?<=\s))\[{0,1}(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))]{0,1}(?=\s|$)")
+IPv6 = re.compile(
+    r"(?:^|(?<=\s))\[{0,1}(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))]{0,1}(?=\s|$)"  # noqa E501
+)
 
 HOSTPORT = re.compile(
-        r'^(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
-        r'localhost|' #localhost...
-        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|' # ...or ipv4
-        r"(?:^|(?<=\s))(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(?=\s|$)"
-        r')' 
-        r'(?::\d+)?$', # optional port
-        re.IGNORECASE)
+    r'^(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain...
+    r'localhost|'  # localhost...
+    r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|'  # ...or ipv4
+    r"(?:^|(?<=\s))(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(?=\s|$)"  # noqa E501
+    r')'
+    r'(?::\d+)?$',  # optional port
+    re.IGNORECASE,
+)
 
 MARK = "-_.!~*'()"
 UNRESERVED = "a-zA-Z0-9" + MARK
@@ -138,12 +132,11 @@ USERINFO = re.compile("^[" + UNRESERVED + "%;:&=+$,]*$")
 
 
 def absolute_uri(obj, uri: str) -> bool:
-    """
-    Validate that the given string is an absolute URI
+    """Validate that the given string is an absolute URI.
 
     :param obj: The Notify object to which the property being validated belongs.
     :param uri: The string that claims to be an absolute URI
-    :return: ``True`` if the URI is valid, otherwise ValueError is raised
+    :return:``True`` if the URI is valid, otherwise ValueError is raised
     """
     m = re.match(URI_RE, uri)
     if m is None:
@@ -173,11 +166,11 @@ def absolute_uri(obj, uri: str) -> bool:
             if not USERINFO.match(userinfo):
                 raise ValueError(f"Invalid URI authority `{authority}`")
         # determine if the domain is ipv6
-        if hostport.startswith("["):    # ipv6 with an optional port
+        if hostport.startswith("["):  # ipv6 with an optional port
             port_separator = hostport.rfind("]:")
             port = None
             if port_separator != -1:
-                port = hostport[port_separator+2:]
+                port = hostport[port_separator + 2 :]  # noqa: E203
                 host = hostport[1:port_separator]
             else:
                 host = hostport[1:-1]
@@ -206,16 +199,16 @@ def absolute_uri(obj, uri: str) -> bool:
 
     return True
 
+
 ###############################################
 
 
-def url(obj, url:str) -> bool:
-    """
-    Validate that the given string is an absolute HTTP URI (i.e. a URL)
+def url(obj, url: str) -> bool:
+    """Validate that the given string is an absolute HTTP URI (i.e. a URL)
 
     :param obj: The Notify object to which the property being validated belongs.
     :param uri: The string that claims to be an HTTP URI
-    :return: ``True`` if the URI is valid, otherwise ValueError is raised
+    :return:``True`` if the URI is valid, otherwise ValueError is raised
     """
     absolute_uri(obj, url)
     o = urlparse(url)
@@ -227,28 +220,30 @@ def url(obj, url:str) -> bool:
 
 
 def one_of(values: List[str]) -> Callable:
-    """
-    Closure that returns a validation function that checks that the value is one of the given values
+    """Closure that returns a validation function that checks that the value is one of the given values.
 
-    :param values: The list of values to choose from.  When the returned function is run, the value passed to it
-        must be one of these values
+    :param values: The list of values to choose from. When the returned function is run, the value passed to it must be
+        one of these values
     :return: a validation function
     """
+
     def validate(obj, x):
         if x not in values:
             raise ValueError(f"`{x}` is not one of the valid values: {values}")
         return True
+
     return validate
 
-def at_least_one_of(values: List[str]) -> Callable:
-    """
-    Closure that returns a validation function that checks that a list of values contains at least one
-    of the given values
 
-    :param values: The list of values to choose from.  When the returned function is run, the values (plural) passed to it
-        must contain at least one of these values
+def at_least_one_of(values: List[str]) -> Callable:
+    """Closure that returns a validation function that checks that a list of values contains at least one of the given
+    values.
+
+    :param values: The list of values to choose from. When the returned function is run, the values (plural) passed to
+        it must contain at least one of these values
     :return: a validation function
     """
+
     def validate(obj, x):
         if not isinstance(x, list):
             x = [x]
@@ -263,12 +258,12 @@ def at_least_one_of(values: List[str]) -> Callable:
 
     return validate
 
-def contains(value: str) -> Callable:
-    """
-    Closure that returns a validation function that checks the provided values contain the required value
 
-    :param value: The value that must be present. When the returned function is run, the value(s) passed to it
-        must contain this value
+def contains(value: str) -> Callable:
+    """Closure that returns a validation function that checks the provided values contain the required value.
+
+    :param value: The value that must be present. When the returned function is run, the value(s) passed to it must
+        contain this value
     :return: a validation function
     """
     values = value
@@ -288,9 +283,9 @@ def contains(value: str) -> Callable:
 
     return validate
 
+
 def type_checker(obj, value):
-    """
-    Validate that the given value is of the correct type for the object.  The exact behaviour of this function
+    """Validate that the given value is of the correct type for the object.  The exact behaviour of this function
     depends on the object provided:
 
     * If the object has an ``ALLOWED_TYPES`` attribute which is not an empty list, then the value must be one of
@@ -300,7 +295,7 @@ def type_checker(obj, value):
 
     :param obj: the notify object being validated
     :param value: the type being validated
-    :return: ``True`` if the type is valid, otherwise ValueError is raised
+    :return:``True`` if the type is valid, otherwise ValueError is raised
     """
     if hasattr(obj, "ALLOWED_TYPES"):
         allowed = obj.ALLOWED_TYPES

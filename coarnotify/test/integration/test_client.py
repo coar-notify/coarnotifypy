@@ -1,3 +1,5 @@
+"""Test the COARNotifyClient class."""
+
 from unittest import TestCase
 
 from coarnotify.client import COARNotifyClient
@@ -13,7 +15,7 @@ from coarnotify.patterns import (
     TentativelyAccept,
     TentativelyReject,
     UnprocessableNotification,
-    UndoOffer
+    UndoOffer,
 )
 
 from coarnotify.test.fixtures import (
@@ -28,14 +30,17 @@ from coarnotify.test.fixtures import (
     TentativelyAcceptFixtureFactory,
     TentativelyRejectFixtureFactory,
     UnprocessableNotificationFixtureFactory,
-    UndoOfferFixtureFactory
+    UndoOfferFixtureFactory,
 )
 
 INBOX = "http://localhost:5005/inbox"
 
 
 class TestClient(TestCase):
+    """Test the COARNotifyClient class."""
+
     def test_01_accept(self):
+        """Accept a notification."""
         client = COARNotifyClient(INBOX)
         source = AcceptFixtureFactory.source()
         acc = Accept(source)
@@ -45,6 +50,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_02_announce_endorsement(self):
+        """Announce an endorsement."""
         client = COARNotifyClient(INBOX)
         source = AnnounceEndorsementFixtureFactory.source()
         ae = AnnounceEndorsement(source)
@@ -54,6 +60,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_04_announce_relationship(self):
+        """Announce a relationship."""
         client = COARNotifyClient(INBOX)
         source = AnnounceRelationshipFixtureFactory.source()
         ae = AnnounceRelationship(source)
@@ -63,6 +70,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_05_announce_review(self):
+        """Announce a review."""
         client = COARNotifyClient(INBOX)
         source = AnnounceReviewFixtureFactory.source()
         ae = AnnounceReview(source)
@@ -72,6 +80,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_06_announce_service_result(self):
+        """Announce a service result."""
         client = COARNotifyClient(INBOX)
         source = AnnounceServiceResultFixtureFactory.source()
         ae = AnnounceServiceResult(source)
@@ -90,6 +99,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_08_request_endorsement(self):
+        """Request an endorsement."""
         client = COARNotifyClient(INBOX)
         source = RequestEndorsementFixtureFactory.source()
         ae = RequestEndorsement(source)
@@ -99,6 +109,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_09_request_review(self):
+        """Request a review."""
         client = COARNotifyClient(INBOX)
         source = RequestReviewFixtureFactory.source()
         ae = RequestReview(source)
@@ -108,6 +119,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_10_tentatively_accept(self):
+        """Tentatively accept a notification."""
         client = COARNotifyClient(INBOX)
         source = TentativelyAcceptFixtureFactory.source()
         ae = TentativelyAccept(source)
@@ -117,6 +129,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_11_tentatively_reject(self):
+        """Tentatively reject a notification."""
         client = COARNotifyClient(INBOX)
         source = TentativelyRejectFixtureFactory.source()
         ae = TentativelyReject(source)
@@ -126,6 +139,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_12_unprocessable_notification(self):
+        """Unprocessable notification."""
         client = COARNotifyClient(INBOX)
         source = UnprocessableNotificationFixtureFactory.source()
         ae = UnprocessableNotification(source)
@@ -135,6 +149,7 @@ class TestClient(TestCase):
         print(resp.location)
 
     def test_13_undo_offer(self):
+        """Undo an offer."""
         client = COARNotifyClient(INBOX)
         source = UndoOfferFixtureFactory.source()
         ae = UndoOffer(source)

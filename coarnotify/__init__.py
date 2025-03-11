@@ -1,8 +1,6 @@
-"""
-This is the base of the `coarnotifypy` module.
+"""This is the base of the `coarnotifypy` module.
 
-In here you will find
-a full set of model objects for all the Notify Patterns documented in
+In here you will find a full set of model objects for all the Notify Patterns documented in
 https://coar-notify.net/specification/1.0.1/
 
 You will also find a client library that will allow you to send notifications

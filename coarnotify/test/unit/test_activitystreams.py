@@ -1,3 +1,5 @@
+"""ActivityStreams2 tests."""
+
 from unittest import TestCase
 from copy import deepcopy
 
@@ -6,7 +8,10 @@ from coarnotify.test.fixtures.announce_endorsement import AnnounceEndorsementFix
 
 
 class TestActivitystreams(TestCase):
+    """Test the ActivityStream class."""
+
     def test_01_construction(self):
+        """Test the construction of an ActivityStream object."""
         as2 = ActivityStream()
         assert as2.doc == {}
         assert as2.context == []
@@ -21,6 +26,7 @@ class TestActivitystreams(TestCase):
         assert as2.context == s2context
 
     def test_02_set_properties(self):
+        """Test setting properties on an ActivityStream object."""
         as2 = ActivityStream()
 
         # properties that are just basic json
@@ -51,6 +57,7 @@ class TestActivitystreams(TestCase):
         assert as2.context == [Properties.ID[1], "http://example.com", {"foaf": "http://xmlns.com/foaf/0.1"}]
 
     def test_03_get_properties(self):
+        """Test getting properties from an ActivityStream object."""
         as2 = ActivityStream()
         as2.set_property("random", "value")
         as2.set_property(Properties.ID, "id")
@@ -65,6 +72,7 @@ class TestActivitystreams(TestCase):
         assert as2.get_property("foaf:name") == "name value"
 
     def test_04_to_jsonld(self):
+        """Test converting an ActivityStream object to JSON-LD."""
         # check we can round trip a document
         source = AnnounceEndorsementFixtureFactory.source()
         s2 = deepcopy(source)
@@ -83,7 +91,7 @@ class TestActivitystreams(TestCase):
             "random": "value",
             "id": "id",
             "object": "object value",
-            "foaf:name": "name value"
+            "foaf:name": "name value",
         }
 
         assert as2.to_jsonld() == expected

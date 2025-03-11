@@ -1,3 +1,5 @@
+"""Test models for the COAR Notify pattern."""
+
 from unittest import TestCase
 from copy import deepcopy
 
@@ -16,7 +18,7 @@ from coarnotify.patterns import (
     TentativelyAccept,
     TentativelyReject,
     UnprocessableNotification,
-    UndoOffer
+    UndoOffer,
 )
 from coarnotify.test.fixtures.notify import NotifyFixtureFactory
 from coarnotify.test.fixtures import (
@@ -31,13 +33,16 @@ from coarnotify.test.fixtures import (
     TentativelyAcceptFixtureFactory,
     TentativelyRejectFixtureFactory,
     UnprocessableNotificationFixtureFactory,
-    UndoOfferFixtureFactory
+    UndoOfferFixtureFactory,
 )
 
 
 class TestModels(TestCase):
+    """Test the COAR Notify pattern models."""
 
     def _get_testable_properties(self, source, prop_map=None):
+        """Get a list of properties that can be tested."""
+
         def expand(node, path):
             paths = []
             for k, v in node.items():
@@ -74,6 +79,8 @@ class TestModels(TestCase):
         return proptest
 
     def _apply_property_test(self, proptest, obj, fixtures):
+        """Apply a test to a set of properties."""
+
         def get_prop(source, prop):
             p = prop
             if isinstance(prop, tuple):
@@ -110,6 +117,7 @@ class TestModels(TestCase):
             assert oval == eval, f"{oprop}:{oval} - {fprop}:{eval}"
 
     def test_01_notify_manual_construct(self):
+        """Test manual construction of a NotifyPattern object."""
         n = NotifyPattern()
 
         # check the default properties
@@ -125,7 +133,7 @@ class TestModels(TestCase):
 
         # now check the setters
         n.id = "urn:whatever"
-        n.ALLOWED_TYPES = ["Object", "Other"]   # this is a hack to test the setter
+        n.ALLOWED_TYPES = ["Object", "Other"]  # this is a hack to test the setter
         n.type = "Other"
 
         origin = NotifyService()
@@ -172,6 +180,7 @@ class TestModels(TestCase):
         assert n.context.type is None
 
     def test_02_notify_from_fixture(self):
+        """Test construction of a NotifyPattern object from a fixture."""
         source = NotifyFixtureFactory.source()
         n = NotifyPattern(source)
 
@@ -200,6 +209,7 @@ class TestModels(TestCase):
         assert n.type == "Other"
 
     def test_03_notify_operations(self):
+        """Test the NotifyPattern operations."""
         n = NotifyPattern()
         with self.assertRaises(ValidationError):
             n.validate()
@@ -212,6 +222,7 @@ class TestModels(TestCase):
         assert n.to_jsonld() == compare
 
     def test_04_accept(self):
+        """Test the Accept pattern."""
         a = Accept()
 
         source = AcceptFixtureFactory.source()
@@ -224,6 +235,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, a, AcceptFixtureFactory)
 
     def test_05_announce_endorsement(self):
+        """Test the AnnounceEndorsement pattern."""
         ae = AnnounceEndorsement()
         source = AnnounceEndorsementFixtureFactory.source()
         compare = deepcopy(source)
@@ -235,6 +247,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, ae, AnnounceEndorsementFixtureFactory)
 
     def test_07_announce_relationship(self):
+        """Test the AnnounceRelationship pattern."""
         ae = AnnounceRelationship()
 
         source = AnnounceRelationshipFixtureFactory.source()
@@ -247,6 +260,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, ae, AnnounceRelationshipFixtureFactory)
 
     def test_08_announce_review(self):
+        """Test the AnnounceReview pattern."""
         ar = AnnounceReview()
 
         source = AnnounceReviewFixtureFactory.source()
@@ -259,11 +273,12 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, ar, AnnounceReviewFixtureFactory)
 
     def test_09_announce_service_result(self):
+        """Test the AnnounceServiceResult pattern."""
         asr = AnnounceServiceResult()
 
         source = AnnounceServiceResultFixtureFactory.source()
         compare = deepcopy(source)
-        compare["type"] = compare["type"][0]    # because it's a single field, but is a list in the fixture
+        compare["type"] = compare["type"][0]  # because it's a single field, but is a list in the fixture
         asr = AnnounceServiceResult(source)
 
         assert asr.validate() is True
@@ -273,6 +288,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, asr, AnnounceServiceResultFixtureFactory)
 
     def test_10_reject(self):
+        """Test the Reject pattern."""
         rej = Reject()
 
         source = RejectFixtureFactory.source()
@@ -285,6 +301,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, rej, RejectFixtureFactory)
 
     def test_11_request_endorsement(self):
+        """Test the RequestEndorsement pattern."""
         re = RequestEndorsement()
 
         source = RequestEndorsementFixtureFactory.source()
@@ -298,6 +315,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, re, RequestEndorsementFixtureFactory)
 
     def test_13_request_review(self):
+        """Test the RequestReview pattern."""
         ri = RequestReview()
 
         source = RequestReviewFixtureFactory.source()
@@ -311,6 +329,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, ri, RequestReviewFixtureFactory)
 
     def test_14_tentatively_accept(self):
+        """Test the TentativelyAccept pattern."""
         ta = TentativelyAccept()
 
         source = TentativelyAcceptFixtureFactory.source()
@@ -324,6 +343,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, ta, TentativelyAcceptFixtureFactory)
 
     def test_15_tentatively_reject(self):
+        """Test the TentativelyReject pattern."""
         ta = TentativelyReject()
 
         source = TentativelyRejectFixtureFactory.source()
@@ -337,6 +357,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, ta, TentativelyRejectFixtureFactory)
 
     def test_16_unprocessable_notification(self):
+        """Test the UnprocessableNotification pattern."""
         ta = UnprocessableNotification()
 
         source = UnprocessableNotificationFixtureFactory.source()
@@ -350,6 +371,7 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, ta, UnprocessableNotificationFixtureFactory)
 
     def test_17_undo_offer(self):
+        """Test the UndoOffer pattern."""
         ta = UndoOffer()
 
         source = UndoOfferFixtureFactory.source()
@@ -363,7 +385,8 @@ class TestModels(TestCase):
         self._apply_property_test(proptest, ta, UndoOfferFixtureFactory)
 
     def test_18_by_ref(self):
-        # Create a basic NotifyPatter, and explcitly declare properties by reference to be true (the default)
+        """Test the NotifyPattern properties_by_reference flag."""
+        # Create a basic NotifyPattern, and explicitly declare properties by reference to be true (the default)
         n = NotifyPattern(properties_by_reference=True)
 
         # create an object externally, and confirm that it does not have a specific id
@@ -388,7 +411,7 @@ class TestModels(TestCase):
         assert n.object.id == "urn:whatever"
 
     def test_19_by_value(self):
-        # Create a basic NotifyPatter, and explcitly declare properties by reference to be false.
+        # Create a basic NotifyPatter, and explicitly declare properties by reference to be false.
         # Object should now be copied and passed around by value, so updates to one do not affect
         # the other
         n = NotifyPattern(properties_by_reference=False)
@@ -410,4 +433,3 @@ class TestModels(TestCase):
         obj = n.object
         obj.id = "urn:whatever"
         assert n.object.id != "urn:whatever"
-

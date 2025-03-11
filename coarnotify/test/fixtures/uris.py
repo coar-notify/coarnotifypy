@@ -1,9 +1,14 @@
+"""URI fixtures for testing."""
+
 from copy import deepcopy
 
 
 class URIFixtureFactory:
+    """URI fixture factory."""
+
     @classmethod
     def generate(cls, schemes=None, hosts=None, ports=None, paths=None, queries=None, fragments=None):
+        """Generate URIs."""
         schemes = schemes if schemes is not None else deepcopy(DEFAULT_SCHEMES)
         hosts = hosts if hosts is not None else deepcopy(DEFAULT_HOSTS)
         ports = ports if ports is not None else deepcopy(DEFAULT_PORTS)
@@ -24,6 +29,7 @@ class URIFixtureFactory:
 
     @classmethod
     def generate_uri(cls, scheme, host, port, path, query, fragment):
+        """Generate a URI."""
         # account for port numbers and IPv6 addresses
         if host is not None and ":" in host and port is not None and port != "":
             host = f"[{host}]"
@@ -36,30 +42,13 @@ class URIFixtureFactory:
         return url
 
 
-DEFAULT_SCHEMES = [
-    "http",
-    "https"
-]
+DEFAULT_SCHEMES = ["http", "https"]
 
-DEFAULT_HOSTS = [
-    "example.com",
-    "localhost",
-    "192.168.0.1",
-    "2001:db8::7"
-]
+DEFAULT_HOSTS = ["example.com", "localhost", "192.168.0.1", "2001:db8::7"]
 
-DEFAULT_PORTS = [
-    "",
-    "80",
-    "8080"
-]
+DEFAULT_PORTS = ["", "80", "8080"]
 
-DEFAULT_PATHS = [
-    "",
-    "/",
-    "/path",
-    "/path/to/file"
-]
+DEFAULT_PATHS = ["", "/", "/path", "/path/to/file"]
 
 DEFAULT_QUERIES = [
     "",
@@ -67,7 +56,4 @@ DEFAULT_QUERIES = [
     "query=string&o=1",
 ]
 
-DEFAULT_FRAGMENTS = [
-    "",
-    "fragment"
-]
+DEFAULT_FRAGMENTS = ["", "fragment"]

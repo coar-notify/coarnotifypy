@@ -1,3 +1,5 @@
+"""Test cases for the factory module."""
+
 from unittest import TestCase
 
 from coarnotify.core.notify import NotifyPattern
@@ -13,7 +15,7 @@ from coarnotify.patterns import (
     TentativelyAccept,
     TentativelyReject,
     UnprocessableNotification,
-    UndoOffer
+    UndoOffer,
 )
 from coarnotify.factory import COARNotifyFactory
 
@@ -29,12 +31,15 @@ from coarnotify.test.fixtures import (
     TentativelyAcceptFixtureFactory,
     TentativelyRejectFixtureFactory,
     UnprocessableNotificationFixtureFactory,
-    UndoOfferFixtureFactory
+    UndoOfferFixtureFactory,
 )
 
 
 class TestFactory(TestCase):
+    """Test the COARNotifyFactory class."""
+
     def test_01_accept(self):
+        """Accept a notification."""
         acc = COARNotifyFactory.get_by_types(Accept.TYPE)
         assert acc == Accept
 
@@ -45,6 +50,7 @@ class TestFactory(TestCase):
         assert acc.id == source["id"]
 
     def test_02_announce_endorsement(self):
+        """Announce an endorsement."""
         ae = COARNotifyFactory.get_by_types(AnnounceEndorsement.TYPE)
         assert ae == AnnounceEndorsement
 
@@ -55,6 +61,7 @@ class TestFactory(TestCase):
         assert ae.id == source["id"]
 
     def test_04_announce_relationship(self):
+        """Announce a relationship."""
         ar = COARNotifyFactory.get_by_types(AnnounceRelationship.TYPE)
         assert ar == AnnounceRelationship
 
@@ -65,6 +72,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_05_announce_review(self):
+        """Announce a review."""
         ar = COARNotifyFactory.get_by_types(AnnounceReview.TYPE)
         assert ar == AnnounceReview
 
@@ -75,6 +83,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_06_announce_service_result(self):
+        """Announce a service result."""
         ar = COARNotifyFactory.get_by_types(AnnounceServiceResult.TYPE)
         assert ar == AnnounceServiceResult
 
@@ -85,6 +94,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_07_reject(self):
+        """Reject a notification."""
         ar = COARNotifyFactory.get_by_types(Reject.TYPE)
         assert ar == Reject
 
@@ -95,6 +105,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_08_request_endorsement(self):
+        """Request an endorsement."""
         ar = COARNotifyFactory.get_by_types(RequestEndorsement.TYPE)
         assert ar == RequestEndorsement
 
@@ -105,6 +116,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_10_request_review(self):
+        """Request a review."""
         ar = COARNotifyFactory.get_by_types(RequestReview.TYPE)
         assert ar == RequestReview
 
@@ -115,6 +127,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_11_tentatively_accept(self):
+        """Tentatively accept a notification."""
         ar = COARNotifyFactory.get_by_types(TentativelyAccept.TYPE)
         assert ar == TentativelyAccept
 
@@ -125,6 +138,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_12_tentatively_reject(self):
+        """Tentatively reject a notification."""
         ar = COARNotifyFactory.get_by_types(TentativelyReject.TYPE)
         assert ar == TentativelyReject
 
@@ -135,6 +149,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_13_unprocessable_notification(self):
+        """Unprocessable notification."""
         ar = COARNotifyFactory.get_by_types(UnprocessableNotification.TYPE)
         assert ar == UnprocessableNotification
 
@@ -145,6 +160,7 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_14_undo_offer(self):
+        """Undo an offer."""
         ar = COARNotifyFactory.get_by_types(UndoOffer.TYPE)
         assert ar == UndoOffer
 
@@ -155,6 +171,8 @@ class TestFactory(TestCase):
         assert ar.id == source["id"]
 
     def test_15_register(self):
+        """Register a new pattern."""
+
         class TestPattern(NotifyPattern):
             TYPE = Accept.TYPE
 
@@ -162,4 +180,3 @@ class TestFactory(TestCase):
 
         tp = COARNotifyFactory.get_by_types(Accept.TYPE)
         assert tp == TestPattern
-

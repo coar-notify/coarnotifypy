@@ -1,19 +1,16 @@
-"""
-HTTP layer interface and default implementation using requests lib
-"""
+"""HTTP layer interface and default implementation using requests lib."""
+
 import requests
 
 
 class HttpLayer:
-    """
-    Interface for the HTTP layer
+    """Interface for the HTTP layer.
 
     This defines the methods which need to be implemented in order for the client to fully operate
     """
 
-    def post(self, url: str, data: str, headers: dict=None, *args, **kwargs) -> 'HttpResponse':
-        """
-        Make an HTTP POST request to the supplied URL with the given body data, and headers
+    def post(self, url: str, data: str, headers: dict = None, *args, **kwargs) -> 'HttpResponse':
+        """Make an HTTP POST request to the supplied URL with the given body data, and headers.
 
         `args` and `kwargs` can be used to pass implementation-specific parameters
 
@@ -26,9 +23,8 @@ class HttpLayer:
         """
         raise NotImplementedError()
 
-    def get(self, url: str, headers: dict=None, *args, **kwargs) -> 'HttpResponse':
-        """
-        Make an HTTP GET request to the supplied URL with the given headers
+    def get(self, url: str, headers: dict = None, *args, **kwargs) -> 'HttpResponse':
+        """Make an HTTP GET request to the supplied URL with the given headers.
 
         `args` and `kwargs` can be used to pass implementation-specific parameters
 
@@ -42,15 +38,13 @@ class HttpLayer:
 
 
 class HttpResponse:
-    """
-    Interface for the HTTP response object
+    """Interface for the HTTP response object.
 
     This defines the methods which need to be implemented in order for the client to fully operate
     """
 
     def header(self, header_name: str) -> str:
-        """
-        Get the value of a header from the response
+        """Get the value of a header from the response.
 
         :param header_name: the name of the header
         :return: the header value
@@ -59,8 +53,7 @@ class HttpResponse:
 
     @property
     def status_code(self) -> int:
-        """
-        Get the status code of the response
+        """Get the status code of the response.
 
         :return: the status code
         """
@@ -68,20 +61,20 @@ class HttpResponse:
 
 
 #######################################
-## Implementations using requests lib
+# Implementations using requests lib
+
 
 class RequestsHttpLayer(HttpLayer):
-    """
-    Implementation of the HTTP layer using the requests library.  This is the default implementation
-    used when no other implementation is supplied
+    """Implementation of the HTTP layer using the requests library.
+
+    This is the default implementation used when no other implementation is supplied
     """
 
-    def post(self, url: str, data: str, headers: dict=None, *args, **kwargs) -> 'RequestsHttpResponse':
-        """
-        Make an HTTP POST request to the supplied URL with the given body data, and headers
+    def post(self, url: str, data: str, headers: dict = None, *args, **kwargs) -> 'RequestsHttpResponse':
+        """Make an HTTP POST request to the supplied URL with the given body data, and headers.
 
-        `args` and `kwargs` can be used to pass additional parameters to the `requests.post` method,
-        such as authentication credentials, etc.
+        `args` and `kwargs` can be used to pass additional parameters to the `requests.post` method, such as
+        authentication credentials, etc.
 
         :param url: the request URL
         :param data: the body data
@@ -93,12 +86,11 @@ class RequestsHttpLayer(HttpLayer):
         resp = requests.post(url, data=data, headers=headers, *args, **kwargs)
         return RequestsHttpResponse(resp)
 
-    def get(self, url: str, headers: dict=None, *args, **kwargs) -> 'RequestsHttpResponse':
-        """
-        Make an HTTP GET request to the supplied URL with the given headers
+    def get(self, url: str, headers: dict = None, *args, **kwargs) -> 'RequestsHttpResponse':
+        """Make an HTTP GET request to the supplied URL with the given headers.
 
-        `args` and `kwargs` can be used to pass additional parameters to the `requests.get` method,
-        such as authentication credentials, etc.
+        `args` and `kwargs` can be used to pass additional parameters to the `requests.get` method, such as
+        authentication credentials, etc.
 
         :param url: the request URL
         :param headers: HTTP headers as a dict to include in the request
@@ -110,9 +102,9 @@ class RequestsHttpLayer(HttpLayer):
         resp = requests.get(url, headers=headers, *args, **kwargs)
         return RequestsHttpResponse(resp)
 
+
 class RequestsHttpResponse(HttpResponse):
-    """
-    Implementation fo the HTTP response object using the requests library
+    """Implementation fo the HTTP response object using the requests library.
 
     This wraps the requests response object and provides the interface required by the client
 
@@ -120,16 +112,14 @@ class RequestsHttpResponse(HttpResponse):
     """
 
     def __init__(self, resp: requests.Response):
-        """
-        Construct the object as a wrapper around the original requests response object
+        """Construct the object as a wrapper around the original requests response object.
 
         :param resp: response object from the requests library
         """
         self._resp = resp
 
     def header(self, header_name: str) -> str:
-        """
-        Get the value of a header from the response
+        """Get the value of a header from the response.
 
         :param header_name: the name of the header
         :return: the header value
@@ -138,8 +128,7 @@ class RequestsHttpResponse(HttpResponse):
 
     @property
     def status_code(self) -> int:
-        """
-        Get the status code of the response
+        """Get the status code of the response.
 
         :return: the status code
         """
@@ -147,5 +136,5 @@ class RequestsHttpResponse(HttpResponse):
 
     @property
     def requests_response(self) -> requests.Response:
-        """Get the original requests response object"""
+        """Get the original requests response object."""
         return self._resp
