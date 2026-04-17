@@ -34,6 +34,10 @@ class RequestReview(NotifyPattern):
                                     properties_by_reference=self._properties_by_reference)
         return None
 
+    @object.setter
+    def object(self, value: "RequestReviewObject"):
+        self.set_property(Properties.OBJECT, value.doc)
+
 
 class RequestReviewObject(NotifyObject):
     """

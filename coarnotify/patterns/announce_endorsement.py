@@ -34,6 +34,10 @@ class AnnounceEndorsement(NotifyPattern):
                                 properties_by_reference=self._properties_by_reference)
         return None
 
+    @context.setter
+    def context(self, value: "AnnounceEndorsementContext"):
+        self.set_property(Properties.CONTEXT, value.doc)
+
     def validate(self) -> bool:
         """
         Extends the base validation to make `context` required

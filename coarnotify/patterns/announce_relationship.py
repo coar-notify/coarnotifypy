@@ -30,6 +30,10 @@ class AnnounceRelationship(NotifyPattern):
                                 properties_by_reference=self._properties_by_reference)
         return None
 
+    @object.setter
+    def object(self, value: "AnnounceRelationshipObject"):
+        self.set_property(Properties.OBJECT, value.doc)
+
     def validate(self) -> bool:
         """
         Extends the base validation to make `context` required

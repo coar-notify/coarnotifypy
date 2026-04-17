@@ -35,6 +35,10 @@ class AnnounceServiceResult(NotifyPattern):
                                         properties_by_reference=self._properties_by_reference)
         return None
 
+    @object.setter
+    def object(self, value: "AnnounceServiceResultObject"):
+        self.set_property(Properties.OBJECT, value.doc)
+
     @property
     def context(self) -> Union["AnnounceServiceResultContext", None]:
         """
@@ -51,6 +55,10 @@ class AnnounceServiceResult(NotifyPattern):
                                          validation_context=Properties.CONTEXT,
                                          properties_by_reference=self._properties_by_reference)
         return None
+
+    @context.setter
+    def context(self, value: "AnnounceServiceResultContext"):
+        self.set_property(Properties.CONTEXT, value.doc)
 
     def validate(self) -> bool:
         """

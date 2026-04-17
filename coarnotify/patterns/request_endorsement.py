@@ -34,6 +34,10 @@ class RequestEndorsement(NotifyPattern):
                                         properties_by_reference=self._properties_by_reference)
         return None
 
+    @object.setter
+    def object(self, value: "RequestEndorsementObject"):
+        self.set_property(Properties.OBJECT, value.doc)
+
 
 class RequestEndorsementObject(NotifyObject):
     """
