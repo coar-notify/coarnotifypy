@@ -14,7 +14,7 @@ class RequestEndorsement(NotifyPattern):
     """
     Class to represent a Request Endorsement notification
     """
-    TYPE = [ActivityStreamsTypes.OFFER, NotifyTypes.ENDORSMENT_ACTION]
+    TYPE = [ActivityStreamsTypes.OFFER, NotifyTypes.ENDORSEMENT_ACTION]
     """Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action"""
 
     @property

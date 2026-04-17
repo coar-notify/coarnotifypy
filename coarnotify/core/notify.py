@@ -43,7 +43,7 @@ class NotifyTypes:
 
     These are in addition to the base Activity Streams types, which are in :py:class:`coarnotify.core.activitystreams2.ActivityStreamsTypes`
     """
-    ENDORSMENT_ACTION = "coar-notify:EndorsementAction"
+    ENDORSEMENT_ACTION = "coar-notify:EndorsementAction"
     INGEST_ACTION = "coar-notify:IngestAction"
     RELATIONSHIP_ACTION = "coar-notify:RelationshipAction"
     REVIEW_ACTION = "coar-notify:ReviewAction"

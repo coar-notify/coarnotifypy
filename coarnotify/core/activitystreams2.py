@@ -12,7 +12,7 @@ from typing import Union
 
 
 ACTIVITY_STREAMS_NAMESPACE = "https://www.w3.org/ns/activitystreams"
-"""Namespace for Actvitity Streams, to be used to construct namespaced properties used in COAR Notify Patterns"""
+"""Namespace for Activity Streams, to be used to construct namespaced properties used in COAR Notify Patterns"""
 
 class Properties:
     """
@@ -20,7 +20,7 @@ class Properties:
 
     These are provided as tuples, where the first element is the property name, and the second element is the namespace.
 
-    These are suitbale to be used as property names in all the property getters/setters in the notify pattern objects
+    These are suitable to be used as property names in all the property getters/setters in the notify pattern objects
     and in the validation configuration.
     """
     ID = ("id", ACTIVITY_STREAMS_NAMESPACE)
