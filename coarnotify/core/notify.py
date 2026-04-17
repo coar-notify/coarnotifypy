@@ -660,7 +660,7 @@ class NotifyObject(NotifyPatternPart):
 
     @item.setter
     def item(self, value: "NotifyItem"):
-        self.set_property(NotifyProperties.ITEM, value)
+        self.set_property(NotifyProperties.ITEM, value.doc)
 
     @property
     def triple(self) -> tuple[str, str, str]:
