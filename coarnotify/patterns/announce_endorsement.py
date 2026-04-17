@@ -17,7 +17,7 @@ class AnnounceEndorsement(NotifyPattern):
     TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.ENDORSEMENT_ACTION]
     """Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action"""
 
-    @property
+    @NotifyPattern.context.getter
     def context(self) -> Union["AnnounceEndorsementContext", None]:
         """
         Get a context specific to Announce Endorsement
@@ -33,10 +33,6 @@ class AnnounceEndorsement(NotifyPattern):
                                 validation_context=Properties.CONTEXT,
                                 properties_by_reference=self._properties_by_reference)
         return None
-
-    @context.setter
-    def context(self, value: "AnnounceEndorsementContext"):
-        self.set_property(Properties.CONTEXT, value.doc)
 
     def validate(self) -> bool:
         """

@@ -18,7 +18,7 @@ class RequestReview(NotifyPattern):
     TYPE = [ActivityStreamsTypes.OFFER, NotifyTypes.REVIEW_ACTION]
     """Request Review types, including an ActivityStreams offer and a COAR Notify Review Action"""
 
-    @property
+    @NotifyPattern.object.getter
     def object(self) -> Union["RequestReviewObject", None]:
         """
         Custom getter to retrieve the object property as a RequestReviewObject
@@ -33,10 +33,6 @@ class RequestReview(NotifyPattern):
                                     validation_context=Properties.OBJECT,
                                     properties_by_reference=self._properties_by_reference)
         return None
-
-    @object.setter
-    def object(self, value: "RequestReviewObject"):
-        self.set_property(Properties.OBJECT, value.doc)
 
 
 class RequestReviewObject(NotifyObject):

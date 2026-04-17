@@ -17,7 +17,7 @@ class RequestEndorsement(NotifyPattern):
     TYPE = [ActivityStreamsTypes.OFFER, NotifyTypes.ENDORSEMENT_ACTION]
     """Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action"""
 
-    @property
+    @NotifyPattern.object.getter
     def object(self) -> Union["RequestEndorsementObject", None]:
         """
         Custom getter to retrieve the object property as a RequestEndorsementObject
@@ -33,10 +33,6 @@ class RequestEndorsement(NotifyPattern):
                                         validation_context=Properties.OBJECT,
                                         properties_by_reference=self._properties_by_reference)
         return None
-
-    @object.setter
-    def object(self, value: "RequestEndorsementObject"):
-        self.set_property(Properties.OBJECT, value.doc)
 
 
 class RequestEndorsementObject(NotifyObject):

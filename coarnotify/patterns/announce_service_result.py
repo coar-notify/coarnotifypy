@@ -18,7 +18,7 @@ class AnnounceServiceResult(NotifyPattern):
     TYPE = ActivityStreamsTypes.ANNOUNCE
     """Announce Service Result type, the ActivityStreams Announce type"""
 
-    @property
+    @NotifyPattern.object.getter
     def object(self) -> Union["AnnounceServiceResultObject", None]:
         """
         Custom getter to retrieve the object property as an AnnounceServiceResultObject
@@ -35,11 +35,7 @@ class AnnounceServiceResult(NotifyPattern):
                                         properties_by_reference=self._properties_by_reference)
         return None
 
-    @object.setter
-    def object(self, value: "AnnounceServiceResultObject"):
-        self.set_property(Properties.OBJECT, value.doc)
-
-    @property
+    @NotifyPattern.context.getter
     def context(self) -> Union["AnnounceServiceResultContext", None]:
         """
         Custom getter to retrieve the context property as an AnnounceServiceResultContext
@@ -55,10 +51,6 @@ class AnnounceServiceResult(NotifyPattern):
                                          validation_context=Properties.CONTEXT,
                                          properties_by_reference=self._properties_by_reference)
         return None
-
-    @context.setter
-    def context(self, value: "AnnounceServiceResultContext"):
-        self.set_property(Properties.CONTEXT, value.doc)
 
     def validate(self) -> bool:
         """
