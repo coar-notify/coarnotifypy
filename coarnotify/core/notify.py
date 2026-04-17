@@ -508,6 +508,15 @@ class NotifyPattern(NotifyBase):
     def context(self, value: "NotifyObject"):
         self.set_property(Properties.CONTEXT, value.doc)
 
+    @property
+    def namespaces(self) -> list:
+        """Get the JSON-LD @context namespaces of the notification"""
+        return self._stream.context
+
+    @namespaces.setter
+    def namespaces(self, value: list):
+        self._stream.context = value
+
     def validate(self) -> bool:
         """
         Base validator for all notification patterns.  This extends the validate function on the superclass.
