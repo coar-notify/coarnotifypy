@@ -395,6 +395,7 @@ class NotifyPattern(NotifyBase):
                                             validation_context=validation_context,
                                             properties_by_reference=properties_by_reference)
         self._ensure_type_contains(self.TYPE)
+        self._stream._register_namespace(NOTIFY_NAMESPACE)
 
     def _ensure_type_contains(self, types: Union[str, list[str]]):
         """Ensure that the type field contains the given types"""
