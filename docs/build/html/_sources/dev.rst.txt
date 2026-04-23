@@ -69,7 +69,7 @@ Then start the server with the following command:
 
 .. code-block:: console
 
-    COARNOTIFY_SETTINGS=local.cfg; python coarnotify/test/server/inbox.py
+    export COARNOTIFY_SETTINGS=/path/to/local.cfg; python coarnotify/test/server/inbox.py
 
 Integration tests are located in ``coarnotify/test/integration`` and can be run with the following command (or your preferred test runner):
 

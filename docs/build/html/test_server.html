@@ -67,7 +67,7 @@ were going to a real inbox.</p>
 <section id="running-and-using-the-test-server">
 <h2>Running and using the Test Server<a class="headerlink" href="#running-and-using-the-test-server" title="Link to this heading">¶</a></h2>
 <p>Start the server with the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">COARNOTIFY_SETTINGS=local.cfg; python coarnotify/test/server/inbox.py</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export COARNOTIFY_SETTINGS=/path/to/local.cfg; python coarnotify/test/server/inbox.py</span>
 </pre></div>
 </div>
 <p>You can then send notifications to the server using the client library, and set the target inbox

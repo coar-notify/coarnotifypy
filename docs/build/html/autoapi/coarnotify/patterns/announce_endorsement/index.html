@@ -62,6 +62,17 @@
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent an Announce Endorsement pattern</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.announce_endorsement.AnnounceEndorsement.context">
+<span class="sig-name descname"><span class="pre">context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext" title="coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext"><span class="pre">AnnounceEndorsementContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement.context" title="Link to this definition">¶</a></dt>
+<dd><p>Get a context specific to Announce Endorsement</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Announce Endorsement context object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_endorsement.AnnounceEndorsement.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement.validate" title="Link to this definition">¶</a></dt>
 <dd><p>Extends the base validation to make <cite>context</cite> required</p>
@@ -76,17 +87,6 @@
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_endorsement.AnnounceEndorsement.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement.TYPE" title="Link to this definition">¶</a></dt>
 <dd><p>Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.announce_endorsement.AnnounceEndorsement.context">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext" title="coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext"><span class="pre">AnnounceEndorsementContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement.context" title="Link to this definition">¶</a></dt>
-<dd><p>Get a context specific to Announce Endorsement</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Announce Endorsement context object</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -177,7 +177,7 @@ additional validation</p>
 <li class="toctree-l4"><a class="reference internal" href="../../core/index.html">coarnotify.core</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../exceptions/index.html">coarnotify.exceptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../factory/index.html">coarnotify.factory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../http/index.html">coarnotify.http</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../http_lib/index.html">coarnotify.http_lib</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html">coarnotify.patterns</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l6"><a class="reference internal" href="../accept/index.html">coarnotify.patterns.accept</a></li>
@@ -185,9 +185,9 @@ additional validation</p>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement.context"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement.context()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement.validate"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement.validate()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement.TYPE"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement.TYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsement.context"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement.context</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsementContext</span></code></a><ul>

@@ -65,6 +65,28 @@
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent the Announce Service Result Pattern</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.announce_service_result.AnnounceServiceResult.context">
+<span class="sig-name descname"><span class="pre">context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResultContext" title="coarnotify.patterns.announce_service_result.AnnounceServiceResultContext"><span class="pre">AnnounceServiceResultContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.context" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve the context property as an AnnounceServiceResultContext</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnounceSericeResultCOntext</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.announce_service_result.AnnounceServiceResult.object">
+<span class="sig-name descname"><span class="pre">object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResultObject" title="coarnotify.patterns.announce_service_result.AnnounceServiceResultObject"><span class="pre">AnnounceServiceResultObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.object" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve the object property as an AnnounceServiceResultObject</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnounceServiceResultObject</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_service_result.AnnounceServiceResult.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.validate" title="Link to this definition">¶</a></dt>
 <dd><p>Extends the base validation to make <cite>context</cite> required</p>
@@ -79,28 +101,6 @@
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_service_result.AnnounceServiceResult.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.TYPE" title="Link to this definition">¶</a></dt>
 <dd><p>Announce Service Result type, the ActivityStreams Announce type</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.announce_service_result.AnnounceServiceResult.context">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResultContext" title="coarnotify.patterns.announce_service_result.AnnounceServiceResultContext"><span class="pre">AnnounceServiceResultContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.context" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve the context property as an AnnounceServiceResultContext</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>AnnounceSericeResultCOntext</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.announce_service_result.AnnounceServiceResult.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResultObject" title="coarnotify.patterns.announce_service_result.AnnounceServiceResultObject"><span class="pre">AnnounceServiceResultObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.object" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve the object property as an AnnounceServiceResultObject</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>AnnounceServiceResultObject</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -206,7 +206,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../core/index.html">coarnotify.core</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../exceptions/index.html">coarnotify.exceptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../factory/index.html">coarnotify.factory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../http/index.html">coarnotify.http</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../http_lib/index.html">coarnotify.http_lib</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html">coarnotify.patterns</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l6"><a class="reference internal" href="../accept/index.html">coarnotify.patterns.accept</a></li>
@@ -217,10 +217,10 @@
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.context"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.context()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.object"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.object()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.validate"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.validate()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.TYPE"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.TYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.context"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.context</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResult.object"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.object</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.patterns.announce_service_result.AnnounceServiceResultContext"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResultContext</span></code></a><ul>

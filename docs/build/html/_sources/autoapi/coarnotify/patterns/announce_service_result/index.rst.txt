@@ -32,6 +32,22 @@ Module Contents
    Class to represent the Announce Service Result Pattern
 
 
+   .. py:method:: context() -> Union[AnnounceServiceResultContext, None]
+
+      Custom getter to retrieve the context property as an AnnounceServiceResultContext
+
+      :return:    AnnounceSericeResultCOntext
+
+
+
+   .. py:method:: object() -> Union[AnnounceServiceResultObject, None]
+
+      Custom getter to retrieve the object property as an AnnounceServiceResultObject
+
+      :return: AnnounceServiceResultObject
+
+
+
    .. py:method:: validate() -> bool
 
       Extends the base validation to make `context` required
@@ -43,26 +59,6 @@ Module Contents
    .. py:attribute:: TYPE
 
       Announce Service Result type, the ActivityStreams Announce type
-
-
-
-   .. py:property:: context
-      :type: Union[AnnounceServiceResultContext, None]
-
-
-      Custom getter to retrieve the context property as an AnnounceServiceResultContext
-
-      :return:    AnnounceSericeResultCOntext
-
-
-
-   .. py:property:: object
-      :type: Union[AnnounceServiceResultObject, None]
-
-
-      Custom getter to retrieve the object property as an AnnounceServiceResultObject
-
-      :return: AnnounceServiceResultObject
 
 
 

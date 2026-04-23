@@ -32,6 +32,22 @@ Module Contents
    Class to represent Announce Review pattern
 
 
+   .. py:method:: context() -> Union[AnnounceReviewContext, None]
+
+      Custom getter to retrieve AnnounceReview Context
+
+      :return: AnnounceReviewContext
+
+
+
+   .. py:method:: object() -> Union[AnnounceReviewObject, None]
+
+      Custom getter to retrieve Announce Review object
+
+      :return: Announce Review Object
+
+
+
    .. py:method:: validate() -> bool
 
       Extends the base validation to make `context` required
@@ -43,26 +59,6 @@ Module Contents
    .. py:attribute:: TYPE
 
       Announce Review type, including Acitivity Streams Announce and Notify Review Action 
-
-
-
-   .. py:property:: context
-      :type: Union[AnnounceReviewContext, None]
-
-
-      Custom getter to retrieve AnnounceReview Context
-
-      :return: AnnounceReviewContext
-
-
-
-   .. py:property:: object
-      :type: Union[AnnounceReviewObject, None]
-
-
-      Custom getter to retrieve Announce Review object
-
-      :return: Announce Review Object
 
 
 

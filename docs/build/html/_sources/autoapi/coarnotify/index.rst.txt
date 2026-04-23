@@ -31,7 +31,7 @@ Submodules
    /autoapi/coarnotify/core/index
    /autoapi/coarnotify/exceptions/index
    /autoapi/coarnotify/factory/index
-   /autoapi/coarnotify/http/index
+   /autoapi/coarnotify/http_lib/index
    /autoapi/coarnotify/patterns/index
    /autoapi/coarnotify/server/index
    /autoapi/coarnotify/test/index

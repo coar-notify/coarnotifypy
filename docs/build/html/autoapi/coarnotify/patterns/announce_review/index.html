@@ -65,6 +65,28 @@
 <dd><p>Bases: <a class="reference internal" href="../../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent Announce Review pattern</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.context">
+<span class="sig-name descname"><span class="pre">context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewContext" title="coarnotify.patterns.announce_review.AnnounceReviewContext"><span class="pre">AnnounceReviewContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.context" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve AnnounceReview Context</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnounceReviewContext</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.object">
+<span class="sig-name descname"><span class="pre">object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewObject" title="coarnotify.patterns.announce_review.AnnounceReviewObject"><span class="pre">AnnounceReviewObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.object" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve Announce Review object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Announce Review Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.validate" title="Link to this definition">¶</a></dt>
 <dd><p>Extends the base validation to make <cite>context</cite> required</p>
@@ -79,28 +101,6 @@
 <dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.TYPE" title="Link to this definition">¶</a></dt>
 <dd><p>Announce Review type, including Acitivity Streams Announce and Notify Review Action</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.context">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewContext" title="coarnotify.patterns.announce_review.AnnounceReviewContext"><span class="pre">AnnounceReviewContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.context" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve AnnounceReview Context</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>AnnounceReviewContext</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.announce_review.AnnounceReview.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewObject" title="coarnotify.patterns.announce_review.AnnounceReviewObject"><span class="pre">AnnounceReviewObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.announce_review.AnnounceReview.object" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve Announce Review object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Announce Review Object</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -211,7 +211,7 @@ Announce Review Item</p>
 <li class="toctree-l4"><a class="reference internal" href="../../core/index.html">coarnotify.core</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../exceptions/index.html">coarnotify.exceptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../factory/index.html">coarnotify.factory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../http/index.html">coarnotify.http</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../http_lib/index.html">coarnotify.http_lib</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html">coarnotify.patterns</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l6"><a class="reference internal" href="../accept/index.html">coarnotify.patterns.accept</a></li>
@@ -221,10 +221,10 @@ Announce Review Item</p>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReview"><code class="docutils literal notranslate"><span class="pre">AnnounceReview</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReview.context"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.context()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReview.object"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.object()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReview.validate"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.validate()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReview.TYPE"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.TYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReview.context"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.context</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReview.object"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.object</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.patterns.announce_review.AnnounceReviewContext"><code class="docutils literal notranslate"><span class="pre">AnnounceReviewContext</span></code></a><ul>

@@ -30,6 +30,12 @@ Module Contents
    Class to represent an Announce Relationship notification
 
 
+   .. py:method:: object() -> Union[AnnounceRelationshipObject, None]
+
+      Custom getter to retrieve the object property as an AnnounceRelationshipObject
+
+
+
    .. py:method:: validate() -> bool
 
       Extends the base validation to make `context` required
@@ -41,14 +47,6 @@ Module Contents
    .. py:attribute:: TYPE
 
       Announce Relationship types, including an ActivityStreams announce and a COAR Notify Relationship Action
-
-
-
-   .. py:property:: object
-      :type: Union[AnnounceRelationshipObject, None]
-
-
-      Custom getter to retrieve the object property as an AnnounceRelationshipObject
 
 
 
