@@ -1,4 +1,4 @@
-from coarnotify.http import HttpLayer, HttpResponse
+from coarnotify.http_lib import HttpLayer, HttpResponse
 
 
 class MockHttpLayer(HttpLayer):

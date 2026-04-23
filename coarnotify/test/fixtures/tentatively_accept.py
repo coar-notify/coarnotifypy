@@ -17,14 +17,6 @@ class TentativelyAcceptFixtureFactory(BaseFixtureFactory):
         cls._object_invalid(source)
         return source
 
-    # @classmethod
-    # def expected_value(cls, path):
-    #     bits = path.split(".")
-    #     node = TENTATIVELY_ACCEPT
-    #     for bit in bits:
-    #         node = node[bit]
-    #     return node
-
 TENTATIVELY_ACCEPT = {
     "@context": [
         "https://www.w3.org/ns/activitystreams",

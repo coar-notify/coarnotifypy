@@ -109,8 +109,11 @@ class COARNotifyFactory:
 
         klazz = cls.get_by_types(types)
 
-        inst = klazz(data, *args, **kwargs)
-        return inst
+        if klazz is not None:
+            inst = klazz(data, *args, **kwargs)
+            return inst
+
+        return None
 
     @classmethod
     def register(cls, model: NotifyPattern):

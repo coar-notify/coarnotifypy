@@ -15,7 +15,7 @@ REQUIRED_MESSAGE = "`{x}` is a required field"
 
 class Validator:
     """
-    A wrapper around a set of validation rules which can be used to select the appropriate validator
+    A wrapper around a set oaf validation rules which can be used to select the appropriate validator
     in a given context.
 
     The validation rules are structured as follows:

@@ -46,7 +46,7 @@ Start the server with the following command:
 
 .. code-block:: console
 
-    COARNOTIFY_SETTINGS=local.cfg; python coarnotify/test/server/inbox.py
+    export COARNOTIFY_SETTINGS=/path/to/local.cfg; python coarnotify/test/server/inbox.py
 
 You can then send notifications to the server using the client library, and set the target inbox
 to ``http://localhost:5005/inbox``.
