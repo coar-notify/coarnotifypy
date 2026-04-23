@@ -7,7 +7,7 @@ import json
 from typing import Union
 
 from coarnotify.exceptions import NotifyException
-from coarnotify.http import RequestsHttpLayer, HttpLayer
+from coarnotify.http_lib import RequestsHttpLayer, HttpLayer
 from coarnotify.core.notify import NotifyPattern
 
 
