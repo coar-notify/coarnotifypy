@@ -88,6 +88,14 @@ Package Contents
    Class to represent an Announce Endorsement pattern
 
 
+   .. py:method:: context() -> Union[AnnounceEndorsementContext, None]
+
+      Get a context specific to Announce Endorsement
+
+      :return: The Announce Endorsement context object
+
+
+
    .. py:method:: validate() -> bool
 
       Extends the base validation to make `context` required
@@ -102,22 +110,18 @@ Package Contents
 
 
 
-   .. py:property:: context
-      :type: Union[AnnounceEndorsementContext, None]
-
-
-      Get a context specific to Announce Endorsement
-
-      :return: The Announce Endorsement context object
-
-
-
 .. py:class:: AnnounceRelationship(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
    Class to represent an Announce Relationship notification
+
+
+   .. py:method:: object() -> Union[AnnounceRelationshipObject, None]
+
+      Custom getter to retrieve the object property as an AnnounceRelationshipObject
+
 
 
    .. py:method:: validate() -> bool
@@ -134,20 +138,28 @@ Package Contents
 
 
 
-   .. py:property:: object
-      :type: Union[AnnounceRelationshipObject, None]
-
-
-      Custom getter to retrieve the object property as an AnnounceRelationshipObject
-
-
-
 .. py:class:: AnnounceReview(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
    Class to represent Announce Review pattern
+
+
+   .. py:method:: context() -> Union[AnnounceReviewContext, None]
+
+      Custom getter to retrieve AnnounceReview Context
+
+      :return: AnnounceReviewContext
+
+
+
+   .. py:method:: object() -> Union[AnnounceReviewObject, None]
+
+      Custom getter to retrieve Announce Review object
+
+      :return: Announce Review Object
+
 
 
    .. py:method:: validate() -> bool
@@ -164,32 +176,28 @@ Package Contents
 
 
 
-   .. py:property:: context
-      :type: Union[AnnounceReviewContext, None]
-
-
-      Custom getter to retrieve AnnounceReview Context
-
-      :return: AnnounceReviewContext
-
-
-
-   .. py:property:: object
-      :type: Union[AnnounceReviewObject, None]
-
-
-      Custom getter to retrieve Announce Review object
-
-      :return: Announce Review Object
-
-
-
 .. py:class:: AnnounceServiceResult(stream: Union[coarnotify.core.activitystreams2.ActivityStream, dict] = None, validate_stream_on_construct=True, validate_properties=True, validators=None, validation_context=None, properties_by_reference=True)
 
    Bases: :py:obj:`coarnotify.core.notify.NotifyPattern`
 
 
    Class to represent the Announce Service Result Pattern
+
+
+   .. py:method:: context() -> Union[AnnounceServiceResultContext, None]
+
+      Custom getter to retrieve the context property as an AnnounceServiceResultContext
+
+      :return:    AnnounceSericeResultCOntext
+
+
+
+   .. py:method:: object() -> Union[AnnounceServiceResultObject, None]
+
+      Custom getter to retrieve the object property as an AnnounceServiceResultObject
+
+      :return: AnnounceServiceResultObject
+
 
 
    .. py:method:: validate() -> bool
@@ -203,26 +211,6 @@ Package Contents
    .. py:attribute:: TYPE
 
       Announce Service Result type, the ActivityStreams Announce type
-
-
-
-   .. py:property:: context
-      :type: Union[AnnounceServiceResultContext, None]
-
-
-      Custom getter to retrieve the context property as an AnnounceServiceResultContext
-
-      :return:    AnnounceSericeResultCOntext
-
-
-
-   .. py:property:: object
-      :type: Union[AnnounceServiceResultObject, None]
-
-
-      Custom getter to retrieve the object property as an AnnounceServiceResultObject
-
-      :return: AnnounceServiceResultObject
 
 
 
@@ -259,19 +247,17 @@ Package Contents
    Class to represent a Request Endorsement notification
 
 
-   .. py:attribute:: TYPE
-
-      Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action
-
-
-
-   .. py:property:: object
-      :type: Union[RequestEndorsementObject, None]
-
+   .. py:method:: object() -> Union[RequestEndorsementObject, None]
 
       Custom getter to retrieve the object property as a RequestEndorsementObject
 
       :return:
+
+
+
+   .. py:attribute:: TYPE
+
+      Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action
 
 
 
@@ -283,18 +269,16 @@ Package Contents
    Class to represent a Request Review notification
 
 
-   .. py:attribute:: TYPE
-
-      Request Review types, including an ActivityStreams offer and a COAR Notify Review Action
-
-
-
-   .. py:property:: object
-      :type: Union[RequestReviewObject, None]
-
+   .. py:method:: object() -> Union[RequestReviewObject, None]
 
       Custom getter to retrieve the object property as a RequestReviewObject
       :return:
+
+
+
+   .. py:attribute:: TYPE
+
+      Request Review types, including an ActivityStreams offer and a COAR Notify Review Action
 
 
 

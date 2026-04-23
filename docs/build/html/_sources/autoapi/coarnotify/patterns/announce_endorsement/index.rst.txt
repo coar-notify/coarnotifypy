@@ -31,6 +31,14 @@ Module Contents
    Class to represent an Announce Endorsement pattern
 
 
+   .. py:method:: context() -> Union[AnnounceEndorsementContext, None]
+
+      Get a context specific to Announce Endorsement
+
+      :return: The Announce Endorsement context object
+
+
+
    .. py:method:: validate() -> bool
 
       Extends the base validation to make `context` required
@@ -42,16 +50,6 @@ Module Contents
    .. py:attribute:: TYPE
 
       Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action
-
-
-
-   .. py:property:: context
-      :type: Union[AnnounceEndorsementContext, None]
-
-
-      Get a context specific to Announce Endorsement
-
-      :return: The Announce Endorsement context object
 
 
 

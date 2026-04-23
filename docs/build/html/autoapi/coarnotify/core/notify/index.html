@@ -430,6 +430,12 @@ so the base requirement for a <code class="docutils literal notranslate"><span c
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.namespaces">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">namespaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.namespaces" title="Link to this definition">¶</a></dt>
+<dd><p>Get the JSON-LD &#64;context namespaces of the notification</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="coarnotify.core.notify.NotifyPattern.object">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#coarnotify.core.notify.NotifyObject" title="coarnotify.core.notify.NotifyObject"><span class="pre">NotifyObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyPattern.object" title="Link to this definition">¶</a></dt>
 <dd><p>Get the object property of the notification</p>
@@ -556,8 +562,8 @@ and in the validation configuration.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.ENDORSMENT_ACTION">
-<span class="sig-name descname"><span class="pre">ENDORSMENT_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:EndorsementAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.ENDORSMENT_ACTION" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="coarnotify.core.notify.NotifyTypes.ENDORSEMENT_ACTION">
+<span class="sig-name descname"><span class="pre">ENDORSEMENT_ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'coar-notify:EndorsementAction'</span></em><a class="headerlink" href="#coarnotify.core.notify.NotifyTypes.ENDORSEMENT_ACTION" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -699,6 +705,7 @@ and in the validation configuration.</p>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.actor"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.actor</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.context"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.context</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.in_reply_to"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.in_reply_to</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.namespaces"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.namespaces</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.object"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.object</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.origin"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.origin</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyPattern.target"><code class="docutils literal notranslate"><span class="pre">NotifyPattern.target</span></code></a></li>
@@ -724,7 +731,7 @@ and in the validation configuration.</p>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes"><code class="docutils literal notranslate"><span class="pre">NotifyTypes</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.ABOUT_PAGE"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.ABOUT_PAGE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.ENDORSMENT_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.ENDORSMENT_ACTION</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.ENDORSEMENT_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.ENDORSEMENT_ACTION</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.INGEST_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.INGEST_ACTION</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.RELATIONSHIP_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.RELATIONSHIP_ACTION</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#coarnotify.core.notify.NotifyTypes.REVIEW_ACTION"><code class="docutils literal notranslate"><span class="pre">NotifyTypes.REVIEW_ACTION</span></code></a></li>
@@ -747,7 +754,7 @@ and in the validation configuration.</p>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../../exceptions/index.html">coarnotify.exceptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../factory/index.html">coarnotify.factory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../http/index.html">coarnotify.http</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../http_lib/index.html">coarnotify.http_lib</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../patterns/index.html">coarnotify.patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../server/index.html">coarnotify.server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../test/index.html">coarnotify.test</a></li>

@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="coarnotify.patterns.accept" href="accept/index.html" />
-    <link rel="prev" title="coarnotify.http" href="../http/index.html" />
+    <link rel="prev" title="coarnotify.http_lib" href="../http_lib/index.html" />
    
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
@@ -137,6 +137,17 @@
 <dd><p>Bases: <a class="reference internal" href="../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent an Announce Endorsement pattern</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceEndorsement.context">
+<span class="sig-name descname"><span class="pre">context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="announce_endorsement/index.html#coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext" title="coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext"><span class="pre">AnnounceEndorsementContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceEndorsement.context" title="Link to this definition">¶</a></dt>
+<dd><p>Get a context specific to Announce Endorsement</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Announce Endorsement context object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.AnnounceEndorsement.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceEndorsement.validate" title="Link to this definition">¶</a></dt>
 <dd><p>Extends the base validation to make <cite>context</cite> required</p>
@@ -153,17 +164,6 @@
 <dd><p>Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action</p>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceEndorsement.context">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="announce_endorsement/index.html#coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext" title="coarnotify.patterns.announce_endorsement.AnnounceEndorsementContext"><span class="pre">AnnounceEndorsementContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.AnnounceEndorsement.context" title="Link to this definition">¶</a></dt>
-<dd><p>Get a context specific to Announce Endorsement</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Announce Endorsement context object</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -171,6 +171,12 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.</span></span><span class="sig-name descname"><span class="pre">AnnounceRelationship</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.AnnounceRelationship" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent an Announce Relationship notification</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceRelationship.object">
+<span class="sig-name descname"><span class="pre">object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="announce_relationship/index.html#coarnotify.patterns.announce_relationship.AnnounceRelationshipObject" title="coarnotify.patterns.announce_relationship.AnnounceRelationshipObject"><span class="pre">AnnounceRelationshipObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceRelationship.object" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve the object property as an AnnounceRelationshipObject</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.AnnounceRelationship.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceRelationship.validate" title="Link to this definition">¶</a></dt>
@@ -188,12 +194,6 @@
 <dd><p>Announce Relationship types, including an ActivityStreams announce and a COAR Notify Relationship Action</p>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceRelationship.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="announce_relationship/index.html#coarnotify.patterns.announce_relationship.AnnounceRelationshipObject" title="coarnotify.patterns.announce_relationship.AnnounceRelationshipObject"><span class="pre">AnnounceRelationshipObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.AnnounceRelationship.object" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve the object property as an AnnounceRelationshipObject</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -201,6 +201,28 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.</span></span><span class="sig-name descname"><span class="pre">AnnounceReview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.AnnounceReview" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent Announce Review pattern</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceReview.context">
+<span class="sig-name descname"><span class="pre">context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="announce_review/index.html#coarnotify.patterns.announce_review.AnnounceReviewContext" title="coarnotify.patterns.announce_review.AnnounceReviewContext"><span class="pre">AnnounceReviewContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceReview.context" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve AnnounceReview Context</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnounceReviewContext</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceReview.object">
+<span class="sig-name descname"><span class="pre">object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="announce_review/index.html#coarnotify.patterns.announce_review.AnnounceReviewObject" title="coarnotify.patterns.announce_review.AnnounceReviewObject"><span class="pre">AnnounceReviewObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceReview.object" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve Announce Review object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Announce Review Object</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.AnnounceReview.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceReview.validate" title="Link to this definition">¶</a></dt>
@@ -218,28 +240,6 @@
 <dd><p>Announce Review type, including Acitivity Streams Announce and Notify Review Action</p>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceReview.context">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="announce_review/index.html#coarnotify.patterns.announce_review.AnnounceReviewContext" title="coarnotify.patterns.announce_review.AnnounceReviewContext"><span class="pre">AnnounceReviewContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.AnnounceReview.context" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve AnnounceReview Context</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>AnnounceReviewContext</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceReview.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="announce_review/index.html#coarnotify.patterns.announce_review.AnnounceReviewObject" title="coarnotify.patterns.announce_review.AnnounceReviewObject"><span class="pre">AnnounceReviewObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.AnnounceReview.object" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve Announce Review object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Announce Review Object</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -247,6 +247,28 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.</span></span><span class="sig-name descname"><span class="pre">AnnounceServiceResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.AnnounceServiceResult" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent the Announce Service Result Pattern</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceServiceResult.context">
+<span class="sig-name descname"><span class="pre">context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="announce_service_result/index.html#coarnotify.patterns.announce_service_result.AnnounceServiceResultContext" title="coarnotify.patterns.announce_service_result.AnnounceServiceResultContext"><span class="pre">AnnounceServiceResultContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceServiceResult.context" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve the context property as an AnnounceServiceResultContext</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnounceSericeResultCOntext</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceServiceResult.object">
+<span class="sig-name descname"><span class="pre">object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="announce_service_result/index.html#coarnotify.patterns.announce_service_result.AnnounceServiceResultObject" title="coarnotify.patterns.announce_service_result.AnnounceServiceResultObject"><span class="pre">AnnounceServiceResultObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceServiceResult.object" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve the object property as an AnnounceServiceResultObject</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AnnounceServiceResultObject</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.AnnounceServiceResult.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceServiceResult.validate" title="Link to this definition">¶</a></dt>
@@ -262,28 +284,6 @@
 <dt class="sig sig-object py" id="coarnotify.patterns.AnnounceServiceResult.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.AnnounceServiceResult.TYPE" title="Link to this definition">¶</a></dt>
 <dd><p>Announce Service Result type, the ActivityStreams Announce type</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceServiceResult.context">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="announce_service_result/index.html#coarnotify.patterns.announce_service_result.AnnounceServiceResultContext" title="coarnotify.patterns.announce_service_result.AnnounceServiceResultContext"><span class="pre">AnnounceServiceResultContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.AnnounceServiceResult.context" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve the context property as an AnnounceServiceResultContext</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>AnnounceSericeResultCOntext</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.AnnounceServiceResult.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="announce_service_result/index.html#coarnotify.patterns.announce_service_result.AnnounceServiceResultObject" title="coarnotify.patterns.announce_service_result.AnnounceServiceResultObject"><span class="pre">AnnounceServiceResultObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.AnnounceServiceResult.object" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve the object property as an AnnounceServiceResultObject</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>AnnounceServiceResultObject</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -321,21 +321,21 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.</span></span><span class="sig-name descname"><span class="pre">RequestEndorsement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.RequestEndorsement" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent a Request Endorsement notification</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="coarnotify.patterns.RequestEndorsement.TYPE">
-<span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.RequestEndorsement.TYPE" title="Link to this definition">¶</a></dt>
-<dd><p>Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action</p>
-</dd></dl>
-
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="coarnotify.patterns.RequestEndorsement.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="request_endorsement/index.html#coarnotify.patterns.request_endorsement.RequestEndorsementObject" title="coarnotify.patterns.request_endorsement.RequestEndorsementObject"><span class="pre">RequestEndorsementObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.RequestEndorsement.object" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="request_endorsement/index.html#coarnotify.patterns.request_endorsement.RequestEndorsementObject" title="coarnotify.patterns.request_endorsement.RequestEndorsementObject"><span class="pre">RequestEndorsementObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.RequestEndorsement.object" title="Link to this definition">¶</a></dt>
 <dd><p>Custom getter to retrieve the object property as a RequestEndorsementObject</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="coarnotify.patterns.RequestEndorsement.TYPE">
+<span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.RequestEndorsement.TYPE" title="Link to this definition">¶</a></dt>
+<dd><p>Request Endorsement types, including an ActivityStreams offer and a COAR Notify Endorsement Action</p>
 </dd></dl>
 
 </dd></dl>
@@ -345,17 +345,17 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">coarnotify.patterns.</span></span><span class="sig-name descname"><span class="pre">RequestReview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/activitystreams2/index.html#coarnotify.core.activitystreams2.ActivityStream" title="coarnotify.core.activitystreams2.ActivityStream"><span class="pre">coarnotify.core.activitystreams2.ActivityStream</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_stream_on_construct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties_by_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#coarnotify.patterns.RequestReview" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core/notify/index.html#coarnotify.core.notify.NotifyPattern" title="coarnotify.core.notify.NotifyPattern"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coarnotify.core.notify.NotifyPattern</span></code></a></p>
 <p>Class to represent a Request Review notification</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="coarnotify.patterns.RequestReview.object">
+<span class="sig-name descname"><span class="pre">object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="request_review/index.html#coarnotify.patterns.request_review.RequestReviewObject" title="coarnotify.patterns.request_review.RequestReviewObject"><span class="pre">RequestReviewObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#coarnotify.patterns.RequestReview.object" title="Link to this definition">¶</a></dt>
+<dd><p>Custom getter to retrieve the object property as a RequestReviewObject
+:return:</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="coarnotify.patterns.RequestReview.TYPE">
 <span class="sig-name descname"><span class="pre">TYPE</span></span><a class="headerlink" href="#coarnotify.patterns.RequestReview.TYPE" title="Link to this definition">¶</a></dt>
 <dd><p>Request Review types, including an ActivityStreams offer and a COAR Notify Review Action</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="coarnotify.patterns.RequestReview.object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="request_review/index.html#coarnotify.patterns.request_review.RequestReviewObject" title="coarnotify.patterns.request_review.RequestReviewObject"><span class="pre">RequestReviewObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#coarnotify.patterns.RequestReview.object" title="Link to this definition">¶</a></dt>
-<dd><p>Custom getter to retrieve the object property as a RequestReviewObject
-:return:</p>
 </dd></dl>
 
 </dd></dl>
@@ -516,7 +516,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../core/index.html">coarnotify.core</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../exceptions/index.html">coarnotify.exceptions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../factory/index.html">coarnotify.factory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../http/index.html">coarnotify.http</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http_lib/index.html">coarnotify.http_lib</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">coarnotify.patterns</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="accept/index.html">coarnotify.patterns.accept</a></li>
@@ -541,29 +541,29 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.patterns.AnnounceEndorsement"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceEndorsement.context"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement.context()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceEndorsement.validate"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement.validate()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceEndorsement.TYPE"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement.TYPE</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceEndorsement.context"><code class="docutils literal notranslate"><span class="pre">AnnounceEndorsement.context</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.patterns.AnnounceRelationship"><code class="docutils literal notranslate"><span class="pre">AnnounceRelationship</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceRelationship.object"><code class="docutils literal notranslate"><span class="pre">AnnounceRelationship.object()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceRelationship.validate"><code class="docutils literal notranslate"><span class="pre">AnnounceRelationship.validate()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceRelationship.TYPE"><code class="docutils literal notranslate"><span class="pre">AnnounceRelationship.TYPE</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceRelationship.object"><code class="docutils literal notranslate"><span class="pre">AnnounceRelationship.object</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.patterns.AnnounceReview"><code class="docutils literal notranslate"><span class="pre">AnnounceReview</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceReview.context"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.context()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceReview.object"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.object()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceReview.validate"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.validate()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceReview.TYPE"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.TYPE</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceReview.context"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.context</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceReview.object"><code class="docutils literal notranslate"><span class="pre">AnnounceReview.object</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.patterns.AnnounceServiceResult"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceServiceResult.context"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.context()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceServiceResult.object"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.object()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceServiceResult.validate"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.validate()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceServiceResult.TYPE"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.TYPE</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceServiceResult.context"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.context</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.AnnounceServiceResult.object"><code class="docutils literal notranslate"><span class="pre">AnnounceServiceResult.object</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.patterns.Reject"><code class="docutils literal notranslate"><span class="pre">Reject</span></code></a><ul>
@@ -572,13 +572,13 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.patterns.RequestEndorsement"><code class="docutils literal notranslate"><span class="pre">RequestEndorsement</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.RequestEndorsement.object"><code class="docutils literal notranslate"><span class="pre">RequestEndorsement.object()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.RequestEndorsement.TYPE"><code class="docutils literal notranslate"><span class="pre">RequestEndorsement.TYPE</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.RequestEndorsement.object"><code class="docutils literal notranslate"><span class="pre">RequestEndorsement.object</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.patterns.RequestReview"><code class="docutils literal notranslate"><span class="pre">RequestReview</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.RequestReview.object"><code class="docutils literal notranslate"><span class="pre">RequestReview.object()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.RequestReview.TYPE"><code class="docutils literal notranslate"><span class="pre">RequestReview.TYPE</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#coarnotify.patterns.RequestReview.object"><code class="docutils literal notranslate"><span class="pre">RequestReview.object</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#coarnotify.patterns.TentativelyAccept"><code class="docutils literal notranslate"><span class="pre">TentativelyAccept</span></code></a><ul>
@@ -622,7 +622,7 @@
   <li><a href="../../../index.html">Documentation overview</a><ul>
   <li><a href="../../index.html">API Reference</a><ul>
   <li><a href="../index.html">coarnotify</a><ul>
-      <li>Previous: <a href="../http/index.html" title="previous chapter">coarnotify.http</a></li>
+      <li>Previous: <a href="../http_lib/index.html" title="previous chapter">coarnotify.http_lib</a></li>
       <li>Next: <a href="accept/index.html" title="next chapter">coarnotify.patterns.accept</a></li>
   </ul></li>
   </ul></li>

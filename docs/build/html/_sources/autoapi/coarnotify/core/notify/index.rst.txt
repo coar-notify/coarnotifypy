@@ -371,6 +371,14 @@ Module Contents
 
 
 
+   .. py:property:: namespaces
+      :type: list
+
+
+      Get the JSON-LD @context namespaces of the notification
+
+
+
    .. py:property:: object
       :type: Union[NotifyObject, None]
 
@@ -514,7 +522,7 @@ Module Contents
 
 
 
-   .. py:attribute:: ENDORSMENT_ACTION
+   .. py:attribute:: ENDORSEMENT_ACTION
       :value: 'coar-notify:EndorsementAction'
 
 

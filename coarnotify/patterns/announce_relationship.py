@@ -17,7 +17,7 @@ class AnnounceRelationship(NotifyPattern):
     TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.RELATIONSHIP_ACTION]
     """Announce Relationship types, including an ActivityStreams announce and a COAR Notify Relationship Action"""
 
-    @property
+    @NotifyPattern.object.getter
     def object(self) -> Union["AnnounceRelationshipObject", None]:
         """Custom getter to retrieve the object property as an AnnounceRelationshipObject"""
         o = self.get_property(Properties.OBJECT)

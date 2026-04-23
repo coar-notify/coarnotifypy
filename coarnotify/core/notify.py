@@ -43,7 +43,7 @@ class NotifyTypes:
 
     These are in addition to the base Activity Streams types, which are in :py:class:`coarnotify.core.activitystreams2.ActivityStreamsTypes`
     """
-    ENDORSMENT_ACTION = "coar-notify:EndorsementAction"
+    ENDORSEMENT_ACTION = "coar-notify:EndorsementAction"
     INGEST_ACTION = "coar-notify:IngestAction"
     RELATIONSHIP_ACTION = "coar-notify:RelationshipAction"
     REVIEW_ACTION = "coar-notify:ReviewAction"
@@ -395,6 +395,7 @@ class NotifyPattern(NotifyBase):
                                             validation_context=validation_context,
                                             properties_by_reference=properties_by_reference)
         self._ensure_type_contains(self.TYPE)
+        self._stream._register_namespace(NOTIFY_NAMESPACE)
 
     def _ensure_type_contains(self, types: Union[str, list[str]]):
         """Ensure that the type field contains the given types"""
@@ -506,6 +507,15 @@ class NotifyPattern(NotifyBase):
     @context.setter
     def context(self, value: "NotifyObject"):
         self.set_property(Properties.CONTEXT, value.doc)
+
+    @property
+    def namespaces(self) -> list:
+        """Get the JSON-LD @context namespaces of the notification"""
+        return self._stream.context
+
+    @namespaces.setter
+    def namespaces(self, value: list):
+        self._stream.context = value
 
     def validate(self) -> bool:
         """
@@ -660,7 +670,7 @@ class NotifyObject(NotifyPatternPart):
 
     @item.setter
     def item(self, value: "NotifyItem"):
-        self.set_property(NotifyProperties.ITEM, value)
+        self.set_property(NotifyProperties.ITEM, value.doc)
 
     @property
     def triple(self) -> tuple[str, str, str]:

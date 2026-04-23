@@ -17,7 +17,7 @@ class AnnounceReview(NotifyPattern):
     TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.REVIEW_ACTION]
     """ Announce Review type, including Acitivity Streams Announce and Notify Review Action """
 
-    @property
+    @NotifyPattern.object.getter
     def object(self) -> Union["AnnounceReviewObject", None]:
         """
         Custom getter to retrieve Announce Review object
@@ -34,7 +34,7 @@ class AnnounceReview(NotifyPattern):
                                 properties_by_reference=self._properties_by_reference)
         return None
 
-    @property
+    @NotifyPattern.context.getter
     def context(self) -> Union["AnnounceReviewContext", None]:
         """
         Custom getter to retrieve AnnounceReview Context

@@ -14,10 +14,10 @@ class AnnounceEndorsement(NotifyPattern):
     """
     Class to represent an Announce Endorsement pattern
     """
-    TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.ENDORSMENT_ACTION]
+    TYPE = [ActivityStreamsTypes.ANNOUNCE, NotifyTypes.ENDORSEMENT_ACTION]
     """Announce Endorsement type, consisting of Activity Streams Announce and Notify Endorsement Action"""
 
-    @property
+    @NotifyPattern.context.getter
     def context(self) -> Union["AnnounceEndorsementContext", None]:
         """
         Get a context specific to Announce Endorsement
